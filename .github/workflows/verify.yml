@@ -16,7 +16,7 @@ jobs:
         apt-get install software-properties-common -y
         apt-add-repository ppa:git-core/ppa -y
         apt-get install git -y
-        git config --global --add safe.directory /__w/ac-library.cr/ac-library.cr
+        git config --global --add safe.directory /__w/compe-library.cr/compe-library.cr
 
     - uses: actions/checkout@v3
 
