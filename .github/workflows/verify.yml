@@ -28,6 +28,10 @@ jobs:
         python3 -m pip install --upgrade pip
         python3 -m pip install -U online-judge-verify-helper
 
+    - name: Install crystal dependencies
+      run: |
+        shards install
+
     - name: Run verify
       run: |
         cd verify/
