@@ -31,10 +31,10 @@ module NgLib
     def get(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
       r = if range.end.nil?
-                @size
-              else
-                range.end.not_nil! + (range.exclusive? ? 0 : 1)
-              end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
       get(l, r)
     end
 
@@ -57,10 +57,10 @@ module NgLib
     def get?(range : Range(Int?, Int?)) : T?
       l = (range.begin || 0)
       r = if range.end.nil?
-                @size
-              else
-                range.end.not_nil! + (range.exclusive? ? 0 : 1)
-              end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
       get?(l, r)
     end
 
@@ -73,10 +73,10 @@ module NgLib
     def get!(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
       r = if range.end.nil?
-                @size
-              else
-                range.end.not_nil! + (range.exclusive? ? 0 : 1)
-              end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
       get!(l, r)
     end
 
@@ -94,7 +94,7 @@ module NgLib
     def []?(l, r) : T?
       get?(l, r)
     end
-    
+
     # `get?(range : Range(Int?, Int?))` へのエイリアスです。
     def []?(range : Range(Int?, Int?)) : T?
       get?(range)
