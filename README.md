@@ -7,7 +7,7 @@
 
 
 ## これはなに？
-AtCoder用の Crystal ライブラリです。
+競技プログラミング用の Crystal ライブラリです。
 
 [google/ac-library.cr](https://github.com/google/ac-library.cr) に依存しています。
 
