@@ -12,7 +12,7 @@ module NgLib
     # ```
     def initialize(n : Int)
       @size = n.to_i32
-      @graph = Array.new(@size){ Array(Int32).new }
+      @graph = Array.new(@size) { Array(Int32).new }
     end
 
     # 辺 (u, v) を追加します。
@@ -22,7 +22,7 @@ module NgLib
     #
     # ```
     # graph = BfsGraph.new(n)
-    # graph.add_edge(u, v) # => (u) <---w---> (v)
+    # graph.add_edge(u, v)                 # => (u) <---w---> (v)
     # graph.add_edge(u, v, directed: true) # => (u) ----w---> (v)
     # ```
     def add_edge(u : Int, v : Int, directed : Bool = false)
@@ -37,7 +37,7 @@ module NgLib
     # dists # => [[0, 1, 3], [1, 0, 2], [1, 1, 0]]
     # ```
     def shortest_path
-      (0...@size).map{ |s| shortest_path(s) }
+      (0...@size).map { |s| shortest_path(s) }
     end
 
     # 始点 `start` から各頂点への最短経路長を返します。
@@ -48,7 +48,7 @@ module NgLib
     # ```
     def shortest_path(start : Int)
       queue = Deque.new([start.to_i32])
-      dist = Array.new(@size){ |i| i == start ? 0_i64 : OO }
+      dist = Array.new(@size) { |i| i == start ? 0_i64 : OO }
       until queue.empty?
         from = queue.shift
         @graph[from].each do |to|

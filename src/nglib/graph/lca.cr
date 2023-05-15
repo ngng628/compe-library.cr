@@ -6,7 +6,7 @@ module NgLib
     getter parent : Array(Array(Int64))
     getter dist : Array(Int64)
     @graph : Graph
-  
+
     # 木構造グラフ `graph` に対して、`root` を根とする LCA を構築します。
     def initialize(@graph : Graph, root = 0_i64)
       n = graph.size
@@ -14,8 +14,8 @@ module NgLib
       while (1_i64 << k) < n
         k += 1
       end
-  
-      @parent = Array.new(k){ [-1_i64] * n }
+
+      @parent = Array.new(k) { [-1_i64] * n }
       @dist = [OO] * n
       dfs(root, -1_i64, 0_i64)
       (k - 1).times do |i|
@@ -46,17 +46,17 @@ module NgLib
       end
       @parent[0][u]
     end
-  
+
     # 頂点 `u` と頂点 `v` の距離を返します。
-    def distanceBetween(u : Int, v : Int) : Int64
+    def distance_between(u : Int, v : Int) : Int64
       dist[u] + dist[v] - dist[ancestor(u, v)] * 2
     end
 
     # 頂点 `u` から頂点 `v` までのパスに頂点 `a` が含まれているか返します。
     def on_path?(u : Int, v : Int, a : Int) : Bool
-      distanceBetween(u, a) + distanceBetween(a, v) == distanceBetween(u, v)
+      distance_between(u, a) + distance_between(a, v) == distance_between(u, v)
     end
-  
+
     private def dfs(root : Int64, par : Int64, d : Int64)
       @parent[0][root] = par
       @dist[root] = d

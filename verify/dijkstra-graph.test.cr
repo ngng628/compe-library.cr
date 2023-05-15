@@ -12,15 +12,15 @@ struct W < NgLib::Weight
   def self.zero
     W.new(0_i64)
   end
- 
+
   def self.inf
     W.new(OO)
   end
- 
+
   def +(other : self)
     W.new(Math.min(@weight + other.weight, OO))
   end
- 
+
   def <=>(other : self)
     weight <=> other.weight
   end

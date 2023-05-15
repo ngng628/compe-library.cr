@@ -37,3 +37,16 @@ jobs:
       run: |
         cd verify/
         oj-verify run --jobs 4
+
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal:1.7.3
+      options: --security-opt seccomp=unconfined
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Crystal dependencies
+        run: |
+          shards install --ignore-crystal-version
+      - name: Run linter
+        run: ./bin/ameba
