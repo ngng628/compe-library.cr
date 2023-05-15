@@ -1,453 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.6.2">
-<meta name="crystal_docs.project_version" content="main">
-<meta name="crystal_docs.project_name" content="compe-library-cr">
-
-
-
-<link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/doc.js"></script>
-
-  <meta name="repository-name" content="compe-library-cr">
-  <title>NgLib::BfsGraph - compe-library-cr main</title>
-  <script type="text/javascript">
-    CrystalDocs.base_path = "../";
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="compe-library-cr" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
   </script>
-</head>
-<body>
-
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-<div class="sidebar">
-  <div class="sidebar-header">
+  <meta content="compe-library-cr" name="repository-name"/>
+  <title>
+   NgLib::BfsGraph - compe-library-cr main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
     </div>
-
     <div class="project-summary">
-      <h1 class="project-name">
-        <a href="../index.html">
-          compe-library-cr
-        </a>
-      </h1>
-
-      <span class="project-version">
-        main
-      </span>
-    </div>
-  </div>
-
-  <div class="search-results hidden">
-    <ul class="search-list"></ul>
-  </div>
-
-  <div class="types-list">
-    <ul>
-  
-  <li class=" " data-id="compe-library-cr/toplevel" data-name="top level namespace">
-      <a href="../toplevel.html">Top Level Namespace</a>
-      
-    </li>
-  
-  <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
-      <a href="../NgLib.html">NgLib</a>
-      
-        <ul>
-  
-  <li class=" current" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
-      <a href="../NgLib/BfsGraph.html">BfsGraph</a>
-      
-    </li>
-  
-  <li class="parent " data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
-      <a href="../NgLib/DijkstraGraph.html">DijkstraGraph</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
-      <a href="../NgLib/DijkstraGraph/Edge.html">Edge</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
-      <a href="../NgLib/Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class="parent " data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
-      <a href="../NgLib/LCA.html">LCA</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
-      <a href="../NgLib/LCA/Graph.html">Graph</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
-      <a href="../NgLib/StaticRangeSum.html">StaticRangeSum</a>
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
-      <a href="../NgLib/Weight.html">Weight</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-</ul>
-
-  </div>
-</div>
-
-
-<div class="main-content">
-<h1 class="type-name">
-
-  <span class="kind">class</span> NgLib::BfsGraph
-
-</h1>
-
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../NgLib/BfsGraph.html">NgLib::BfsGraph</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2>
-    <a id="defined-in" class="anchor" href="#defined-in">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Defined in:
-  </h2>
-  
-    
-      <a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L4" target="_blank">
-        nglib/graph/bfs.cr
+     <h1 class="project-name">
+      <a href="../index.html">
+       compe-library-cr
       </a>
-    
-    <br/>
-  
-
-
-
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28n%3AInt%29-class-method" class="signature"><strong>.new</strong>(n : Int)</a>
-        
-          <div class="summary"><p>n 頂点 0 辺からなるグラフを作成します。</p></div>
-        
-      </li>
-    
-  </ul>
-
-
-
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method" class="signature"><strong>#add_edge</strong>(u : Int, v : Int, directed : Bool = <span class="n">false</span>)</a>
-        
-          <div class="summary"><p>辺 (u, v) を追加します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#graph%3AArray%28Array%28Int32%29%29-instance-method" class="signature"><strong>#graph</strong> : Array(Array(Int32))</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method" class="signature"><strong>#shortest_path</strong>(start : Int, dest : Int)</a>
-        
-          <div class="summary"><p>始点 <code>start</code> から終点 <code>dest</code> への最短経路長を返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#shortest_path%28start%3AInt%29-instance-method" class="signature"><strong>#shortest_path</strong>(start : Int)</a>
-        
-          <div class="summary"><p>始点 <code>start</code> から各頂点への最短経路長を返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#shortest_path-instance-method" class="signature"><strong>#shortest_path</strong></a>
-        
-          <div class="summary"><p>全点対間の最短経路長を返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#size%3AInt32-instance-method" class="signature"><strong>#size</strong> : Int32</a>
-        
-      </li>
-    
-  </ul>
-
-
-
-
-
-<div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(n:Int)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(n : Int)
-
-        <a class="method-permalink" href="#new%28n%3AInt%29-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>n 頂点 0 辺からなるグラフを作成します。</p>
-<pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L13" target="_blank">View source</a>]
-        
-      </div>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
     </div>
-  
-
-
-
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="compe-library-cr/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="current" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::BfsGraph
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/BfsGraph.html">
+      NgLib::BfsGraph
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L4" target="_blank">
+    nglib/graph/bfs.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%3AInt%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n : Int)
+     </a>
+     <div class="summary">
+      <p>
+       $n$ 頂点 $0$ 辺からなるグラフを作成します。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+      <strong>
+       #add_edge
+      </strong>
+      (u : Int, v : Int, directed : Bool =
+      <span class="n">
+       false
+      </span>
+      )
+     </a>
+     <div class="summary">
+      <p>
+       辺 $(u, v)$ を追加します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#graph%3AArray%28Array%28Int32%29%29-instance-method">
+      <strong>
+       #graph
+      </strong>
+      : Array(Array(Int32))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Int, dest : Int)
+     </a>
+     <div class="summary">
+      <p>
+       始点
+       <code>
+        start
+       </code>
+       から終点
+       <code>
+        dest
+       </code>
+       への最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3AInt%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Int)
+     </a>
+     <div class="summary">
+      <p>
+       始点
+       <code>
+        start
+       </code>
+       から各頂点への最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       全点対間の最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%3AInt32-instance-method">
+      <strong>
+       #size
+      </strong>
+      : Int32
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(n:Int)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n : Int)
+     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      $n$ 頂点 $0$ 辺からなるグラフを作成します。
+     </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L13" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="add_edge(u:Int,v:Int,directed:Bool=false)-instance-method">
-      <div class="signature">
-        
-        def <strong>add_edge</strong>(u : Int, v : Int, directed : Bool = <span class="n">false</span>)
-
-        <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>辺 (u, v) を追加します。</p>
-<p><code>directed</code> が <code>true</code> の場合、
-有向グラフとみなして、u から v への辺のみ生やします。</p>
-<pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)
+   </h2>
+   <div class="entry-detail" id="add_edge(u:Int,v:Int,directed:Bool=false)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add_edge
+     </strong>
+     (u : Int, v : Int, directed : Bool =
+     <span class="n">
+      false
+     </span>
+     )
+     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      辺 $(u, v)$ を追加します。
+     </p>
+     <p>
+      <code>
+       directed
+      </code>
+      が
+      <code>
+       true
+      </code>
+      の場合、
+有向グラフとみなして、$u$ から $v$ への辺のみ生やします。
+     </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)
 graph.add_edge(u, v)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
 graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L28" target="_blank">View source</a>]
-        
-      </div>
     </div>
-  
-    <div class="entry-detail" id="graph:Array(Array(Int32))-instance-method">
-      <div class="signature">
-        
-        def <strong>graph</strong> : Array(Array(Int32))
-
-        <a class="method-permalink" href="#graph%3AArray%28Array%28Int32%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L6" target="_blank">View source</a>]
-        
-      </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L28" target="_blank">
+      View source
+     </a>
+     ]
     </div>
-  
-    <div class="entry-detail" id="shortest_path(start:Int,dest:Int)-instance-method">
-      <div class="signature">
-        
-        def <strong>shortest_path</strong>(start : Int, dest : Int)
-
-        <a class="method-permalink" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>始点 <code>start</code> から終点 <code>dest</code> への最短経路長を返します。</p>
-<pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>, dest: <span class="n">0</span>)
+   </div>
+   <div class="entry-detail" id="graph:Array(Array(Int32))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      graph
+     </strong>
+     : Array(Array(Int32))
+     <a class="method-permalink" href="#graph%3AArray%28Array%28Int32%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L6" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Int,dest:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Int, dest : Int)
+     <a class="method-permalink" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点
+      <code>
+       start
+      </code>
+      から終点
+      <code>
+       dest
+      </code>
+      への最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>, dest: <span class="n">0</span>)
 dist <span class="c"># =&gt; 12</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L69" target="_blank">View source</a>]
-        
-      </div>
     </div>
-  
-    <div class="entry-detail" id="shortest_path(start:Int)-instance-method">
-      <div class="signature">
-        
-        def <strong>shortest_path</strong>(start : Int)
-
-        <a class="method-permalink" href="#shortest_path%28start%3AInt%29-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>始点 <code>start</code> から各頂点への最短経路長を返します。</p>
-<pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>)
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L69" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Int)
+     <a class="method-permalink" href="#shortest_path%28start%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点
+      <code>
+       start
+      </code>
+      から各頂点への最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>)
 dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L49" target="_blank">View source</a>]
-        
-      </div>
     </div>
-  
-    <div class="entry-detail" id="shortest_path-instance-method">
-      <div class="signature">
-        
-        def <strong>shortest_path</strong>
-
-        <a class="method-permalink" href="#shortest_path-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>全点対間の最短経路長を返します。</p>
-<pre><code class="language-crystal">dists <span class="o">=</span> graph.shortest_path
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L49" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     <a class="method-permalink" href="#shortest_path-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      全点対間の最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dists <span class="o">=</span> graph.shortest_path
 dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L39" target="_blank">View source</a>]
-        
-      </div>
     </div>
-  
-    <div class="entry-detail" id="size:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>size</strong> : Int32
-
-        <a class="method-permalink" href="#size%3AInt32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/bfs.cr#L5" target="_blank">View source</a>]
-        
-      </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L39" target="_blank">
+      View source
+     </a>
+     ]
     </div>
-  
-
-
-
-
-</div>
-
-</body>
+   </div>
+   <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#size%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/bfs.cr#L5" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
 </html>

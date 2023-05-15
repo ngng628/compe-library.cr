@@ -1,413 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.6.2">
-<meta name="crystal_docs.project_version" content="main">
-<meta name="crystal_docs.project_name" content="compe-library-cr">
-
-
-
-<link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/doc.js"></script>
-
-  <meta name="repository-name" content="compe-library-cr">
-  <title>NgLib::LCA - compe-library-cr main</title>
-  <script type="text/javascript">
-    CrystalDocs.base_path = "../";
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="compe-library-cr" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
   </script>
-</head>
-<body>
-
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-<div class="sidebar">
-  <div class="sidebar-header">
+  <meta content="compe-library-cr" name="repository-name"/>
+  <title>
+   NgLib::LCA - compe-library-cr main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
     </div>
-
     <div class="project-summary">
-      <h1 class="project-name">
-        <a href="../index.html">
-          compe-library-cr
-        </a>
-      </h1>
-
-      <span class="project-version">
-        main
-      </span>
-    </div>
-  </div>
-
-  <div class="search-results hidden">
-    <ul class="search-list"></ul>
-  </div>
-
-  <div class="types-list">
-    <ul>
-  
-  <li class=" " data-id="compe-library-cr/toplevel" data-name="top level namespace">
-      <a href="../toplevel.html">Top Level Namespace</a>
-      
-    </li>
-  
-  <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
-      <a href="../NgLib.html">NgLib</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
-      <a href="../NgLib/BfsGraph.html">BfsGraph</a>
-      
-    </li>
-  
-  <li class="parent " data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
-      <a href="../NgLib/DijkstraGraph.html">DijkstraGraph</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
-      <a href="../NgLib/DijkstraGraph/Edge.html">Edge</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
-      <a href="../NgLib/Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class="parent open current" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
-      <a href="../NgLib/LCA.html">LCA</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
-      <a href="../NgLib/LCA/Graph.html">Graph</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
-      <a href="../NgLib/StaticRangeSum.html">StaticRangeSum</a>
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
-      <a href="../NgLib/Weight.html">Weight</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-</ul>
-
-  </div>
-</div>
-
-
-<div class="main-content">
-<h1 class="type-name">
-
-  <span class="kind">class</span> NgLib::LCA
-
-</h1>
-
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../NgLib/LCA.html">NgLib::LCA</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2>
-    <a id="defined-in" class="anchor" href="#defined-in">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Defined in:
-  </h2>
-  
-    
-      <a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L4" target="_blank">
-        nglib/graph/lca.cr
+     <h1 class="project-name">
+      <a href="../index.html">
+       compe-library-cr
       </a>
-    
-    <br/>
-  
-
-
-
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="compe-library-cr/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent open current" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::LCA
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/LCA.html">
+      NgLib::LCA
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L4" target="_blank">
+    nglib/graph/lca.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method" class="signature"><strong>.new</strong>(graph : Graph, root = <span class="n">0_i64</span>)</a>
-        
-          <div class="summary"><p>木構造グラフ <code>graph</code> に対して、<code>root</code> を根とする LCA を構築します。</p></div>
-        
-      </li>
-    
-  </ul>
-
-
-
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (graph : Graph, root =
+      <span class="n">
+       0_i64
+      </span>
+      )
+     </a>
+     <div class="summary">
+      <p>
+       木構造グラフ
+       <code>
+        graph
+       </code>
+       に対して、
+       <code>
+        root
+       </code>
+       を根とする LCA を構築します。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method" class="signature"><strong>#ancestor</strong>(u : Int, v : Int) : Int64</a>
-        
-          <div class="summary"><p>頂点 <code>u</code> と 頂点 <code>v</code> の最近共通祖先を返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#dist%3AArray%28Int64%29-instance-method" class="signature"><strong>#dist</strong> : Array(Int64)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method" class="signature"><strong>#distance_between</strong>(u : Int, v : Int) : Int64</a>
-        
-          <div class="summary"><p>頂点 <code>u</code> と頂点 <code>v</code> の距離を返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method" class="signature"><strong>#on_path?</strong>(u : Int, v : Int, a : Int) : Bool</a>
-        
-          <div class="summary"><p>頂点 <code>u</code> から頂点 <code>v</code> までのパスに頂点 <code>a</code> が含まれているか返します。</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#parent%3AArray%28Array%28Int64%29%29-instance-method" class="signature"><strong>#parent</strong> : Array(Array(Int64))</a>
-        
-      </li>
-    
-  </ul>
-
-
-
-
-
-<div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+      <strong>
+       #ancestor
+      </strong>
+      (u : Int, v : Int) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       頂点 $u$ と 頂点 $v$ の最近共通祖先を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dist%3AArray%28Int64%29-instance-method">
+      <strong>
+       #dist
+      </strong>
+      : Array(Int64)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+      <strong>
+       #distance_between
+      </strong>
+      (u : Int, v : Int) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       頂点 $u$ と頂点 $v$ の距離を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method">
+      <strong>
+       #on_path?
+      </strong>
+      (u : Int, v : Int, a : Int) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       頂点 $u$ から頂点 $v$ までのパスに頂点 $a$ が含まれているか返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#parent%3AArray%28Array%28Int64%29%29-instance-method">
+      <strong>
+       #parent
+      </strong>
+      : Array(Array(Int64))
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(graph:Graph,root=0_i64)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(graph : <a href="../NgLib/LCA/Graph.html">Graph</a>, root = <span class="n">0_i64</span>)
-
-        <a class="method-permalink" href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>木構造グラフ <code>graph</code> に対して、<code>root</code> を根とする LCA を構築します。</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L11" target="_blank">View source</a>]
-        
-      </div>
+   </h2>
+   <div class="entry-detail" id="new(graph:Graph,root=0_i64)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (graph :
+     <a href="../NgLib/LCA/Graph.html">
+      Graph
+     </a>
+     , root =
+     <span class="n">
+      0_i64
+     </span>
+     )
+     <a class="method-permalink" href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method">
+      #
+     </a>
     </div>
-  
-
-
-
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+    <div class="doc">
+     <p>
+      木構造グラフ
+      <code>
+       graph
+      </code>
+      に対して、
+      <code>
+       root
+      </code>
+      を根とする LCA を構築します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L11" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="ancestor(u:Int,v:Int):Int64-instance-method">
-      <div class="signature">
-        
-        def <strong>ancestor</strong>(u : Int, v : Int) : Int64
-
-        <a class="method-permalink" href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>頂点 <code>u</code> と 頂点 <code>v</code> の最近共通祖先を返します。</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L33" target="_blank">View source</a>]
-        
-      </div>
+   </h2>
+   <div class="entry-detail" id="ancestor(u:Int,v:Int):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      ancestor
+     </strong>
+     (u : Int, v : Int) : Int64
+     <a class="method-permalink" href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+      #
+     </a>
     </div>
-  
-    <div class="entry-detail" id="dist:Array(Int64)-instance-method">
-      <div class="signature">
-        
-        def <strong>dist</strong> : Array(Int64)
-
-        <a class="method-permalink" href="#dist%3AArray%28Int64%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L7" target="_blank">View source</a>]
-        
-      </div>
+    <div class="doc">
+     <p>
+      頂点 $u$ と 頂点 $v$ の最近共通祖先を返します。
+     </p>
     </div>
-  
-    <div class="entry-detail" id="distance_between(u:Int,v:Int):Int64-instance-method">
-      <div class="signature">
-        
-        def <strong>distance_between</strong>(u : Int, v : Int) : Int64
-
-        <a class="method-permalink" href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>頂点 <code>u</code> と頂点 <code>v</code> の距離を返します。</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L51" target="_blank">View source</a>]
-        
-      </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L33" target="_blank">
+      View source
+     </a>
+     ]
     </div>
-  
-    <div class="entry-detail" id="on_path?(u:Int,v:Int,a:Int):Bool-instance-method">
-      <div class="signature">
-        
-        def <strong>on_path?</strong>(u : Int, v : Int, a : Int) : Bool
-
-        <a class="method-permalink" href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>頂点 <code>u</code> から頂点 <code>v</code> までのパスに頂点 <code>a</code> が含まれているか返します。</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L56" target="_blank">View source</a>]
-        
-      </div>
+   </div>
+   <div class="entry-detail" id="dist:Array(Int64)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      dist
+     </strong>
+     : Array(Int64)
+     <a class="method-permalink" href="#dist%3AArray%28Int64%29-instance-method">
+      #
+     </a>
     </div>
-  
-    <div class="entry-detail" id="parent:Array(Array(Int64))-instance-method">
-      <div class="signature">
-        
-        def <strong>parent</strong> : Array(Array(Int64))
-
-        <a class="method-permalink" href="#parent%3AArray%28Array%28Int64%29%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/lca.cr#L6" target="_blank">View source</a>]
-        
-      </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L7" target="_blank">
+      View source
+     </a>
+     ]
     </div>
-  
-
-
-
-
-</div>
-
-</body>
+   </div>
+   <div class="entry-detail" id="distance_between(u:Int,v:Int):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      distance_between
+     </strong>
+     (u : Int, v : Int) : Int64
+     <a class="method-permalink" href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 $u$ と頂点 $v$ の距離を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L51" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="on_path?(u:Int,v:Int,a:Int):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      on_path?
+     </strong>
+     (u : Int, v : Int, a : Int) : Bool
+     <a class="method-permalink" href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 $u$ から頂点 $v$ までのパスに頂点 $a$ が含まれているか返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L56" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="parent:Array(Array(Int64))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      parent
+     </strong>
+     : Array(Array(Int64))
+     <a class="method-permalink" href="#parent%3AArray%28Array%28Int64%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/lca.cr#L6" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
 </html>

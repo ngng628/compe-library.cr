@@ -1,375 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.6.2">
-<meta name="crystal_docs.project_version" content="main">
-<meta name="crystal_docs.project_name" content="compe-library-cr">
-
-
-
-<link href="../css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../js/doc.js"></script>
-
-  <meta name="repository-name" content="compe-library-cr">
-  <title>NgLib::Edge - compe-library-cr main</title>
-  <script type="text/javascript">
-    CrystalDocs.base_path = "../";
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="compe-library-cr" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
   </script>
-</head>
-<body>
-
-<svg class="hidden">
-  <symbol id="octicon-link" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
-  </symbol>
-</svg>
-<div class="sidebar">
-  <div class="sidebar-header">
+  <meta content="compe-library-cr" name="repository-name"/>
+  <title>
+   NgLib::Edge - compe-library-cr main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
     <div class="search-box">
-      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
     </div>
-
     <div class="project-summary">
-      <h1 class="project-name">
-        <a href="../index.html">
-          compe-library-cr
-        </a>
-      </h1>
-
-      <span class="project-version">
-        main
-      </span>
-    </div>
-  </div>
-
-  <div class="search-results hidden">
-    <ul class="search-list"></ul>
-  </div>
-
-  <div class="types-list">
-    <ul>
-  
-  <li class=" " data-id="compe-library-cr/toplevel" data-name="top level namespace">
-      <a href="../toplevel.html">Top Level Namespace</a>
-      
-    </li>
-  
-  <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
-      <a href="../NgLib.html">NgLib</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
-      <a href="../NgLib/BfsGraph.html">BfsGraph</a>
-      
-    </li>
-  
-  <li class="parent " data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
-      <a href="../NgLib/DijkstraGraph.html">DijkstraGraph</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
-      <a href="../NgLib/DijkstraGraph/Edge.html">Edge</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" current" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
-      <a href="../NgLib/Edge.html">Edge</a>
-      
-    </li>
-  
-  <li class="parent " data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
-      <a href="../NgLib/LCA.html">LCA</a>
-      
-        <ul>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
-      <a href="../NgLib/LCA/Graph.html">Graph</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
-      <a href="../NgLib/StaticRangeSum.html">StaticRangeSum</a>
-      
-    </li>
-  
-  <li class=" " data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
-      <a href="../NgLib/Weight.html">Weight</a>
-      
-    </li>
-  
-</ul>
-
-      
-    </li>
-  
-</ul>
-
-  </div>
-</div>
-
-
-<div class="main-content">
-<h1 class="type-name">
-
-  <span class="kind">struct</span> NgLib::Edge
-
-</h1>
-
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../NgLib/Edge.html">NgLib::Edge</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <h2>
-    <a id="defined-in" class="anchor" href="#defined-in">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Defined in:
-  </h2>
-  
-    
-      <a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/weighted-edge.cr#L2" target="_blank">
-        nglib/graph/weighted-edge.cr
+     <h1 class="project-name">
+      <a href="../index.html">
+       compe-library-cr
       </a>
-    
-    <br/>
-  
-
-
-
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="compe-library-cr/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="current" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     struct
+    </span>
+    NgLib::Edge
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/Edge.html">
+      NgLib::Edge
+     </a>
+    </li>
+    <li class="superclass">
+     Struct
+    </li>
+    <li class="superclass">
+     Value
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/weighted-edge.cr#L2" target="_blank">
+    nglib/graph/weighted-edge.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Constructors
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method" class="signature"><strong>.new</strong>(t : Int64, w : Int64)</a>
-        
-      </li>
-    
-  </ul>
-
-
-
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (t : Int64, w : Int64)
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#class-method-summary" id="class-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#to-class-method" class="signature"><strong>.to</strong></a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#weight-class-method" class="signature"><strong>.weight</strong></a>
-        
-      </li>
-    
-  </ul>
-
-
-
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#to-class-method">
+      <strong>
+       .to
+      </strong>
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#weight-class-method">
+      <strong>
+       .weight
+      </strong>
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#%5B%5D%28i%3AInt%29-instance-method" class="signature"><strong>#[]</strong>(i : Int)</a>
-        
-      </li>
-    
-  </ul>
-
-
-
-
-
-<div class="methods-inherited">
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-    
-
-
-    
-
-
-    
-
-
-  
-</div>
-
-
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%28i%3AInt%29-instance-method">
+      <strong>
+       #[]
+      </strong>
+      (i : Int)
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(t:Int64,w:Int64)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(t : Int64, w : Int64)
-
-        <a class="method-permalink" href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/weighted-edge.cr#L5" target="_blank">View source</a>]
-        
-      </div>
+   </h2>
+   <div class="entry-detail" id="new(t:Int64,w:Int64)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (t : Int64, w : Int64)
+     <a class="method-permalink" href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method">
+      #
+     </a>
     </div>
-  
-
-
-
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/weighted-edge.cr#L5" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#class-method-detail" id="class-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="to-class-method">
-      <div class="signature">
-        
-        def self.<strong>to</strong>
-
-        <a class="method-permalink" href="#to-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/weighted-edge.cr#L9" target="_blank">View source</a>]
-        
-      </div>
+   </h2>
+   <div class="entry-detail" id="to-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      to
+     </strong>
+     <a class="method-permalink" href="#to-class-method">
+      #
+     </a>
     </div>
-  
-    <div class="entry-detail" id="weight-class-method">
-      <div class="signature">
-        
-        def self.<strong>weight</strong>
-
-        <a class="method-permalink" href="#weight-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/weighted-edge.cr#L13" target="_blank">View source</a>]
-        
-      </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/weighted-edge.cr#L9" target="_blank">
+      View source
+     </a>
+     ]
     </div>
-  
-
-
-
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
+   </div>
+   <div class="entry-detail" id="weight-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      weight
+     </strong>
+     <a class="method-permalink" href="#weight-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/weighted-edge.cr#L13" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
     Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="[](i:Int)-instance-method">
-      <div class="signature">
-        
-        def <strong>[]</strong>(i : Int)
-
-        <a class="method-permalink" href="#%5B%5D%28i%3AInt%29-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/ngng628/compe-library.cr/blob/ab93e9ffb8a3f4ccf672f0a87da9bc57897a9de0/src/nglib/graph/weighted-edge.cr#L17" target="_blank">View source</a>]
-        
-      </div>
+   </h2>
+   <div class="entry-detail" id="[](i:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []
+     </strong>
+     (i : Int)
+     <a class="method-permalink" href="#%5B%5D%28i%3AInt%29-instance-method">
+      #
+     </a>
     </div>
-  
-
-
-
-
-</div>
-
-</body>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5a1e7efe5c8f7481e5932da8241b5b7afcd9cff1/src/nglib/graph/weighted-edge.cr#L17" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
 </html>
