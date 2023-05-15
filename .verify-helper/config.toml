@@ -1,5 +1,5 @@
-# You need to set the `CR_BUNDLE_PATH`
-
 [languages.cr]
-bundle = "bin/cr-bundle {path} -f -p ./src"
-list_dependencies = "bin/cr-bundle {path} -d -p ./src"
+compile = "bash .verify-helper/build.sh {path} {tempdir}/a.out --release"
+execute = "{tempdir}/a.out"
+bundle = "./bin/cr-bundle {path} -f -p ./src"
+list_dependencies = "./bin/cr-bundle {path} -d -p ./src"
