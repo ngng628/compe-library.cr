@@ -45,7 +45,7 @@ module NgLib
     alias Pos = {Int32, Int32}
     getter h : Int32, w : Int32
     getter delta : Array(Pos)
-    getter s : Array(T)
+    @s : Array(T)
     @bar : T
 
     def self.dydx2(s : Array(Array(T)))
