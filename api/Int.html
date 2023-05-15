@@ -6,15 +6,15 @@
   <meta content="Crystal Docs 1.6.2" name="generator"/>
   <meta content="main" name="crystal_docs.project_version"/>
   <meta content="compe-library-cr" name="crystal_docs.project_name"/>
-  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
-  <script src="../js/doc.js" type="text/javascript">
+  <link href="css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="js/doc.js" type="text/javascript">
   </script>
   <meta content="compe-library-cr" name="repository-name"/>
   <title>
-   NgLib::Edge - compe-library-cr main
+   Int - compe-library-cr main
   </title>
   <script type="text/javascript">
-   CrystalDocs.base_path = "../";
+   CrystalDocs.base_path = "";
   </script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
   </script>
@@ -45,7 +45,7 @@
     </div>
     <div class="project-summary">
      <h1 class="project-name">
-      <a href="../index.html">
+      <a href="index.html">
        compe-library-cr
       </a>
      </h1>
@@ -61,78 +61,78 @@
    <div class="types-list">
     <ul>
      <li class="" data-id="compe-library-cr/toplevel" data-name="top level namespace">
-      <a href="../toplevel.html">
+      <a href="toplevel.html">
        Top Level Namespace
       </a>
      </li>
      <li class="" data-id="compe-library-cr/Char" data-name="char">
-      <a href="../Char.html">
+      <a href="Char.html">
        Char
       </a>
      </li>
-     <li class="" data-id="compe-library-cr/Int" data-name="int">
-      <a href="../Int.html">
+     <li class="current" data-id="compe-library-cr/Int" data-name="int">
+      <a href="Int.html">
        Int
       </a>
      </li>
-     <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
-      <a href="../NgLib.html">
+     <li class="parent" data-id="compe-library-cr/NgLib" data-name="nglib">
+      <a href="NgLib.html">
        NgLib
       </a>
       <ul>
        <li class="" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
-        <a href="../NgLib/BfsGraph.html">
+        <a href="NgLib/BfsGraph.html">
          BfsGraph
         </a>
        </li>
        <li class="parent" data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
-        <a href="../NgLib/DijkstraGraph.html">
+        <a href="NgLib/DijkstraGraph.html">
          DijkstraGraph
         </a>
         <ul>
          <li class="" data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
-          <a href="../NgLib/DijkstraGraph/Edge.html">
+          <a href="NgLib/DijkstraGraph/Edge.html">
            Edge
           </a>
          </li>
         </ul>
        </li>
-       <li class="current" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
-        <a href="../NgLib/Edge.html">
+       <li class="" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
+        <a href="NgLib/Edge.html">
          Edge
         </a>
        </li>
        <li class="parent" data-id="compe-library-cr/NgLib/Grid" data-name="nglib::grid(t)">
-        <a href="../NgLib/Grid.html">
+        <a href="NgLib/Grid.html">
          Grid
         </a>
         <ul>
          <li class="" data-id="compe-library-cr/NgLib/Grid/Pos" data-name="nglib::grid::pos">
-          <a href="../NgLib/Grid/Pos.html">
+          <a href="NgLib/Grid/Pos.html">
            Pos
           </a>
          </li>
         </ul>
        </li>
        <li class="parent" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
-        <a href="../NgLib/LCA.html">
+        <a href="NgLib/LCA.html">
          LCA
         </a>
         <ul>
          <li class="" data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
-          <a href="../NgLib/LCA/Graph.html">
+          <a href="NgLib/LCA/Graph.html">
            Graph
           </a>
          </li>
         </ul>
        </li>
        <li class="" data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
-        <a href="../NgLib/StaticRangeSum.html">
+        <a href="NgLib/StaticRangeSum.html">
          StaticRangeSum
         </a>
        </li>
        <li class="" data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
-        <a href="../NgLib/Weight.html">
+        <a href="NgLib/Weight.html">
          Weight
         </a>
        </li>
@@ -144,18 +144,18 @@
   <div class="main-content">
    <h1 class="type-name">
     <span class="kind">
-     struct
+     abstract struct
     </span>
-    NgLib::Edge
+    Int
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/Edge.html">
-      NgLib::Edge
+     <a href="Int.html">
+      Int
      </a>
     </li>
     <li class="superclass">
-     Struct
+     Number
     </li>
     <li class="superclass">
      Value
@@ -165,6 +165,163 @@
     </li>
    </ul>
    <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    Int is the base type of all integer types.
+   </p>
+   <p>
+    There are four signed integer types:
+    <code>
+     Int8
+    </code>
+    ,
+    <code>
+     Int16
+    </code>
+    ,
+    <code>
+     Int32
+    </code>
+    and
+    <code>
+     Int64
+    </code>
+    ,
+being able to represent numbers of 8, 16, 32 and 64 bits respectively.
+There are four unsigned integer types:
+    <code>
+     UInt8
+    </code>
+    ,
+    <code>
+     UInt16
+    </code>
+    ,
+    <code>
+     UInt32
+    </code>
+    and
+    <code>
+     UInt64
+    </code>
+    .
+   </p>
+   <p>
+    An integer literal is an optional
+    <code>
+     +
+    </code>
+    or
+    <code>
+     -
+    </code>
+    sign, followed by
+a sequence of digits and underscores, optionally followed by a suffix.
+If no suffix is present, the literal's type is
+    <code>
+     Int32
+    </code>
+    , or
+    <code>
+     Int64
+    </code>
+    if the
+number doesn't fit into an
+    <code>
+     Int32
+    </code>
+    :
+   </p>
+   <pre><code class="language-crystal"><span class="n">1</span> <span class="c"># Int32</span>
+
+<span class="n">1_i8</span>  <span class="c"># Int8</span>
+<span class="n">1_i16</span> <span class="c"># Int16</span>
+<span class="n">1_i32</span> <span class="c"># Int32</span>
+<span class="n">1_i64</span> <span class="c"># Int64</span>
+
+<span class="n">1_u8</span>  <span class="c"># UInt8</span>
+<span class="n">1_u16</span> <span class="c"># UInt16</span>
+<span class="n">1_u32</span> <span class="c"># UInt32</span>
+<span class="n">1_u64</span> <span class="c"># UInt64</span>
+
+<span class="n">+10</span> <span class="c"># Int32</span>
+<span class="n">-20</span> <span class="c"># Int32</span>
+
+<span class="n">2147483648</span> <span class="c"># Int64</span></code></pre>
+   <p>
+    Literals without a suffix that are larger than
+    <code>
+     Int64::MAX
+    </code>
+    represent a
+    <code>
+     UInt64
+    </code>
+    if the number fits, e.g.
+    <code>
+     9223372036854775808
+    </code>
+    and
+    <code>
+     0x80000000_00000000
+    </code>
+    . This behavior is deprecated and will become an error in
+the future.
+   </p>
+   <p>
+    The underscore
+    <code>
+     _
+    </code>
+    before the suffix is optional.
+   </p>
+   <p>
+    Underscores can be used to make some numbers more readable:
+   </p>
+   <pre><code class="language-crystal"><span class="n">1_000_000</span> <span class="c"># better than 1000000</span></code></pre>
+   <p>
+    Binary numbers start with
+    <code>
+     0b
+    </code>
+    :
+   </p>
+   <pre><code class="language-crystal"><span class="n">0b1101</span> <span class="c"># == 13</span></code></pre>
+   <p>
+    Octal numbers start with
+    <code>
+     0o
+    </code>
+    :
+   </p>
+   <pre><code class="language-crystal"><span class="n">0o123</span> <span class="c"># == 83</span></code></pre>
+   <p>
+    Hexadecimal numbers start with
+    <code>
+     0x
+    </code>
+    :
+   </p>
+   <pre><code class="language-crystal"><span class="n">0xFE012D</span> <span class="c"># == 16646445</span>
+<span class="n">0xfe012d</span> <span class="c"># == 16646445</span></code></pre>
+   <p>
+    See
+    <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/integers.html">
+     <code>
+      Integer
+     </code>
+     literals
+    </a>
+    in the language reference.
+   </p>
+   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -173,29 +330,10 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/weighted-edge.cr#L2" target="_blank">
-    nglib/graph/weighted-edge.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L3" target="_blank">
+    nglib/grid/grid.cr
    </a>
    <br/>
-   <h2>
-    <a class="anchor" href="#constructors" id="constructors">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    Constructors
-   </h2>
-   <ul class="list-summary">
-    <li class="entry-summary">
-     <a class="signature" href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method">
-      <strong>
-       .new
-      </strong>
-      (t : Int64, w : Int64)
-     </a>
-    </li>
-   </ul>
    <h2>
     <a class="anchor" href="#class-method-summary" id="class-method-summary">
      <svg aria-hidden="true" class="octicon-link">
@@ -207,69 +345,14 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#to-class-method">
+     <a class="signature" href="#bar-class-method">
       <strong>
-       .to
+       .bar
       </strong>
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#weight-class-method">
-      <strong>
-       .weight
-      </strong>
-     </a>
-    </li>
-   </ul>
-   <h2>
-    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    Instance Method Summary
-   </h2>
-   <ul class="list-summary">
-    <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%28i%3AInt%29-instance-method">
-      <strong>
-       #[]
-      </strong>
-      (i : Int)
      </a>
     </li>
    </ul>
    <div class="methods-inherited">
-   </div>
-   <h2>
-    <a class="anchor" href="#constructor-detail" id="constructor-detail">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    Constructor Detail
-   </h2>
-   <div class="entry-detail" id="new(t:Int64,w:Int64)-class-method">
-    <div class="signature">
-     def self.
-     <strong>
-      new
-     </strong>
-     (t : Int64, w : Int64)
-     <a class="method-permalink" href="#new%28t%3AInt64%2Cw%3AInt64%29-class-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/weighted-edge.cr#L5" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
    </div>
    <h2>
     <a class="anchor" href="#class-method-detail" id="class-method-detail">
@@ -280,72 +363,20 @@
     </a>
     Class Method Detail
    </h2>
-   <div class="entry-detail" id="to-class-method">
+   <div class="entry-detail" id="bar-class-method">
     <div class="signature">
      def self.
      <strong>
-      to
+      bar
      </strong>
-     <a class="method-permalink" href="#to-class-method">
+     <a class="method-permalink" href="#bar-class-method">
       #
      </a>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/weighted-edge.cr#L9" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="weight-class-method">
-    <div class="signature">
-     def self.
-     <strong>
-      weight
-     </strong>
-     <a class="method-permalink" href="#weight-class-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/weighted-edge.cr#L13" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <h2>
-    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    Instance Method Detail
-   </h2>
-   <div class="entry-detail" id="[](i:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      []
-     </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#%5B%5D%28i%3AInt%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/weighted-edge.cr#L17" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L4" target="_blank">
       View source
      </a>
      ]

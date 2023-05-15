@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="compe-library-cr" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
+  </script>
+  <meta content="compe-library-cr" name="repository-name"/>
+  <title>
+   NgLib::Grid(T) - compe-library-cr main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
+    <div class="search-box">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
+    </div>
+    <div class="project-summary">
+     <h1 class="project-name">
+      <a href="../index.html">
+       compe-library-cr
+      </a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="compe-library-cr/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="" data-id="compe-library-cr/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="compe-library-cr/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
+     <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="compe-library-cr/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent open current" data-id="compe-library-cr/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="compe-library-cr/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::Grid(T)
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/Grid.html">
+      NgLib::Grid(T)
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#included-modules" id="included-modules">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Included Modules
+   </h2>
+   <ul class="other-types-list">
+    <li class="other-type">
+     Enumerable(T)
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L16" target="_blank">
+    nglib/grid/grid.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constant-summary" id="constant-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constant Summary
+   </h2>
+   <dl>
+    <dt class="entry-const" id="DOWN">
+     <strong>
+      DOWN
+     </strong>
+     =
+     <code>
+      {
+      <span class="n">
+       1
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }
+     </code>
+    </dt>
+    <dt class="entry-const" id="DYDX2">
+     <strong>
+      DYDX2
+     </strong>
+     =
+     <code>
+      [
+      <span class="t">
+       DOWN
+      </span>
+      ,
+      <span class="t">
+       RIGHT
+      </span>
+      ]
+     </code>
+    </dt>
+    <dt class="entry-const" id="DYDX4">
+     <strong>
+      DYDX4
+     </strong>
+     =
+     <code>
+      [
+      <span class="t">
+       UP
+      </span>
+      ,
+      <span class="t">
+       LEFT
+      </span>
+      ,
+      <span class="t">
+       DOWN
+      </span>
+      ,
+      <span class="t">
+       RIGHT
+      </span>
+      ]
+     </code>
+    </dt>
+    <dt class="entry-const" id="DYDX8">
+     <strong>
+      DYDX8
+     </strong>
+     =
+     <code>
+      [
+      <span class="t">
+       UP
+      </span>
+      , add(
+      <span class="t">
+       UP
+      </span>
+      ,
+      <span class="t">
+       RIGHT
+      </span>
+      ),
+      <span class="t">
+       RIGHT
+      </span>
+      , add(
+      <span class="t">
+       DOWN
+      </span>
+      ,
+      <span class="t">
+       RIGHT
+      </span>
+      ),
+      <span class="t">
+       DOWN
+      </span>
+      , add(
+      <span class="t">
+       DOWN
+      </span>
+      ,
+      <span class="t">
+       LEFT
+      </span>
+      ),
+      <span class="t">
+       LEFT
+      </span>
+      , add(
+      <span class="t">
+       UP
+      </span>
+      ,
+      <span class="t">
+       LEFT
+      </span>
+      )]
+     </code>
+    </dt>
+    <dt class="entry-const" id="LEFT">
+     <strong>
+      LEFT
+     </strong>
+     =
+     <code>
+      {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       -1
+      </span>
+      }
+     </code>
+    </dt>
+    <dt class="entry-const" id="RIGHT">
+     <strong>
+      RIGHT
+     </strong>
+     =
+     <code>
+      {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       1
+      </span>
+      }
+     </code>
+    </dt>
+    <dt class="entry-const" id="UP">
+     <strong>
+      UP
+     </strong>
+     =
+     <code>
+      {
+      <span class="n">
+       -1
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }
+     </code>
+    </dt>
+   </dl>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28s%3AArray%28Array%28T%29%29%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (s : Array(Array(T)), delta : Array(Tuple(Int32, Int32)))
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#class-method-summary" id="class-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#add%28v1%3ATuple%28Int%2CInt%29%2Cv2%3ATuple%28Int%2CInt%29%29-class-method">
+      <strong>
+       .add
+      </strong>
+      (v1 : Tuple(Int, Int), v2 : Tuple(Int, Int))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx2%28s%3AArray%28Array%28T%29%29%29-class-method">
+      <strong>
+       .dydx2
+      </strong>
+      (s : Array(Array(T)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx4%28s%3AArray%28Array%28T%29%29%29-class-method">
+      <strong>
+       .dydx4
+      </strong>
+      (s : Array(Array(T)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx8%28s%3AArray%28Array%28T%29%29%29-class-method">
+      <strong>
+       .dydx8
+      </strong>
+      (s : Array(Array(T)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#sub%28v1%3ATuple%28Int%2CInt%29%2Cv2%3ATuple%28Int%2CInt%29%29-class-method">
+      <strong>
+       .sub
+      </strong>
+      (v1 : Tuple(Int, Int), v2 : Tuple(Int, Int))
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%28y%3AInt%2Cx%3AInt%29-instance-method">
+      <strong>
+       #[]
+      </strong>
+      (y : Int, x : Int)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%28pos%3ATuple%28Int%2CInt%29%29-instance-method">
+      <strong>
+       #[]
+      </strong>
+      (pos : Tuple(Int, Int))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3D%28y%3AInt%2Cx%3AInt%2Cc%3AT%29-instance-method">
+      <strong>
+       #[]=
+      </strong>
+      (y : Int, x : Int, c : T)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3D%28pos%3ATuple%28Int%2CInt%29%2Cc%3AT%29-instance-method">
+      <strong>
+       #[]=
+      </strong>
+      (pos : Tuple(Int, Int), c : T)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#barred%3F%28y%3AInt%2Cx%3AInt%29%3ABool-instance-method">
+      <strong>
+       #barred?
+      </strong>
+      (y : Int, x : Int) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置 $(y, x)$ が進入禁止なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#barred%3F%28pos%29%3ABool-instance-method">
+      <strong>
+       #barred?
+      </strong>
+      (pos) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置
+       <code>
+        pos
+       </code>
+       が進入禁止なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#delta%3AArray%28Pos%29-instance-method">
+      <strong>
+       #delta
+      </strong>
+      : Array(Pos)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each%28%26%3AT-%3E%29-instance-method">
+      <strong>
+       #each
+      </strong>
+      (&amp; : T -&gt; )
+     </a>
+     <div class="summary">
+      <p>
+       Must yield this collection's elements to the block.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each_neighbor%28y%3AInt%2Cx%3AInt%2C%26%29-instance-method">
+      <strong>
+       #each_neighbor
+      </strong>
+      (y : Int, x : Int, &amp;)
+     </a>
+     <div class="summary">
+      <p>
+       位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each_neighbor_with_direction%28y%3AInt%2Cx%3AInt%2C%26%29-instance-method">
+      <strong>
+       #each_neighbor_with_direction
+      </strong>
+      (y : Int, x : Int, &amp;)
+     </a>
+     <div class="summary">
+      <p>
+       位置 $(y, x)$ の近傍で、侵入可能な位置を方向とともに列挙します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each_with_index%28%26%29-instance-method">
+      <strong>
+       #each_with_index
+      </strong>
+      (&amp;)
+     </a>
+     <div class="summary">
+      <p>
+       Iterates over the collection, yielding both the elements and their index.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#fetch%28y%3AInt%2Cx%3AInt%2Cdefault%3AT%29-instance-method">
+      <strong>
+       #fetch
+      </strong>
+      (y : Int, x : Int, default : T)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#free%3F%28y%3AInt%2Cx%3AInt%29%3ABool-instance-method">
+      <strong>
+       #free?
+      </strong>
+      (y : Int, x : Int) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置 $(y, x)$ が通行可能なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#free%3F%28pos%29%3ABool-instance-method">
+      <strong>
+       #free?
+      </strong>
+      (pos) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置
+       <code>
+        pos
+       </code>
+       が通行可能なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#h%3AInt32-instance-method">
+      <strong>
+       #h
+      </strong>
+      : Int32
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#index%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      <strong>
+       #index
+      </strong>
+      (&amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
+     </a>
+     <div class="summary">
+      <p>
+       Returns the index of the first element for which the passed block is truthy.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#index%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      <strong>
+       #index
+      </strong>
+      (obj) : Tuple(Int32, Int32) | Nil
+     </a>
+     <div class="summary">
+      <p>
+       Returns the first index of
+       <em>
+        obj
+       </em>
+       in the collection.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#index%21%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      <strong>
+       #index!
+      </strong>
+      (&amp; : T -&gt; ) : Tuple(Int32, Int32)
+     </a>
+     <div class="summary">
+      <p>
+       Returns the index of the first element for which the passed block is truthy.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#index%21%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      <strong>
+       #index!
+      </strong>
+      (obj) : Tuple(Int32, Int32) | Nil
+     </a>
+     <div class="summary">
+      <p>
+       Returns the first index of
+       <em>
+        obj
+       </em>
+       in the collection.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#over%3F%28y%2Cx%29%3ABool-instance-method">
+      <strong>
+       #over?
+      </strong>
+      (y, x) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置 $(y, x)$ がグリッドの範囲外なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#over%3F%28pos%29%3ABool-instance-method">
+      <strong>
+       #over?
+      </strong>
+      (pos) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       位置
+       <code>
+        pos
+       </code>
+       がグリッドの範囲外なら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Tuple, dest : Tuple) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%29%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Tuple) : Array(Array(Int64))
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(si, sj)$ から各マスへの最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%3AArray%28Array%28Int64%29%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      : Array(Array(Int64))
+     </a>
+     <div class="summary">
+      <p>
+       全マス間の最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#to_a%3AArray%28Array%28T%29%29-instance-method">
+      <strong>
+       #to_a
+      </strong>
+      : Array(Array(T))
+     </a>
+     <div class="summary">
+      <p>
+       Returns an
+       <code>
+        Array
+       </code>
+       with all the elements in the collection.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#to_s%28io%3AIO%29-instance-method">
+      <strong>
+       #to_s
+      </strong>
+      (io : IO)
+     </a>
+     <div class="summary">
+      <p>
+       Appends a short String representation of this object which includes its class name and its object address.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#w%3AInt32-instance-method">
+      <strong>
+       #w
+      </strong>
+      : Int32
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(s:Array(Array(T)),delta:Array(Tuple(Int32,Int32)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (s : Array(Array(T)), delta : Array(Tuple(Int32, Int32)))
+     <a class="method-permalink" href="#new%28s%3AArray%28Array%28T%29%29%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L63" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#class-method-detail" id="class-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Detail
+   </h2>
+   <div class="entry-detail" id="add(v1:Tuple(Int,Int),v2:Tuple(Int,Int))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      add
+     </strong>
+     (v1 : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ), v2 : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ))
+     <a class="method-permalink" href="#add%28v1%3ATuple%28Int%2CInt%29%2Cv2%3ATuple%28Int%2CInt%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L19" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx2(s:Array(Array(T)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx2
+     </strong>
+     (s : Array(Array(T)))
+     <a class="method-permalink" href="#dydx2%28s%3AArray%28Array%28T%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L51" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx4(s:Array(Array(T)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx4
+     </strong>
+     (s : Array(Array(T)))
+     <a class="method-permalink" href="#dydx4%28s%3AArray%28Array%28T%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L55" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx8(s:Array(Array(T)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx8
+     </strong>
+     (s : Array(Array(T)))
+     <a class="method-permalink" href="#dydx8%28s%3AArray%28Array%28T%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L59" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="sub(v1:Tuple(Int,Int),v2:Tuple(Int,Int))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      sub
+     </strong>
+     (v1 : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ), v2 : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ))
+     <a class="method-permalink" href="#sub%28v1%3ATuple%28Int%2CInt%29%2Cv2%3ATuple%28Int%2CInt%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L23" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Detail
+   </h2>
+   <div class="entry-detail" id="[](y:Int,x:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#%5B%5D%28y%3AInt%2Cx%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L303" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[](pos:Tuple(Int,Int))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []
+     </strong>
+     (pos : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ))
+     <a class="method-permalink" href="#%5B%5D%28pos%3ATuple%28Int%2CInt%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L299" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[]=(y:Int,x:Int,c:T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []=
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     , c : T)
+     <a class="method-permalink" href="#%5B%5D%3D%28y%3AInt%2Cx%3AInt%2Cc%3AT%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L311" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[]=(pos:Tuple(Int,Int),c:T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []=
+     </strong>
+     (pos : Tuple(
+     <a href="../Int.html">
+      Int
+     </a>
+     ,
+     <a href="../Int.html">
+      Int
+     </a>
+     ), c : T)
+     <a class="method-permalink" href="#%5B%5D%3D%28pos%3ATuple%28Int%2CInt%29%2Cc%3AT%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L307" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="barred?(y:Int,x:Int):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      barred?
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Bool
+     <a class="method-permalink" href="#barred%3F%28y%3AInt%2Cx%3AInt%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置 $(y, x)$ が進入禁止なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">..
+.<span class="c">#</span>
+
+grid.barrd?(<span class="n">0</span>, <span class="n">0</span>) <span class="c"># =&gt; false</span>
+grid.barrd?(<span class="n">1</span>, <span class="n">1</span>) <span class="c"># =&gt; true</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L118" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="barred?(pos):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      barred?
+     </strong>
+     (pos) : Bool
+     <a class="method-permalink" href="#barred%3F%28pos%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置
+      <code>
+       pos
+      </code>
+      が進入禁止なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">..
+.<span class="c">#</span>
+
+grid.barrd?({<span class="n">0</span>, <span class="n">0</span>}) <span class="c"># =&gt; false</span>
+grid.barrd?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"># =&gt; true</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L104" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="delta:Array(Pos)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      delta
+     </strong>
+     : Array(
+     <a href="../NgLib/Grid/Pos.html">
+      Pos
+     </a>
+     )
+     <a class="method-permalink" href="#delta%3AArray%28Pos%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L47" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each(&amp;:T-&gt;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each
+     </strong>
+     (&amp; : T -&gt; )
+     <a class="method-permalink" href="#each%28%26%3AT-%3E%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Must yield this collection's elements to the block.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L195" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each_neighbor(y:Int,x:Int,&amp;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each_neighbor
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#each_neighbor%28y%3AInt%2Cx%3AInt%2C%26%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。
+     </p>
+     <pre><code class="language-crystal">grid <span class="o">=</span> <span class="t">Grid</span>.dydx([<span class="s">".#."</span>, <span class="s">"..."</span>, <span class="s">"..."</span>)
+
+grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span class="k">do</span> <span class="o">|</span>ny, nx<span class="o">|</span>
+<span class="k">end</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L246" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each_neighbor_with_direction(y:Int,x:Int,&amp;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each_neighbor_with_direction
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#each_neighbor_with_direction%28y%3AInt%2Cx%3AInt%2C%26%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置 $(y, x)$ の近傍で、侵入可能な位置を方向とともに列挙します。
+     </p>
+     <pre><code class="language-crystal">grid <span class="o">=</span> <span class="t">Grid</span>.dydx([<span class="s">".#."</span>, <span class="s">"..."</span>, <span class="s">"..."</span>)
+
+grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span class="k">do</span> <span class="o">|</span>ny, nx, dir<span class="o">|</span>
+<span class="k">end</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L264" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each_with_index(&amp;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each_with_index
+     </strong>
+     (&amp;)
+     <a class="method-permalink" href="#each_with_index%28%26%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Iterates over the collection, yielding both the elements and their index.
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].each_with_index <span class="k">do</span> <span class="o">|</span>user, i<span class="o">|</span>
+  puts <span class="s">"User #</span><span class="i">#{</span>i<span class="i">}</span><span class="s">: </span><span class="i">#{</span>user<span class="i">}</span><span class="s">"</span>
+<span class="k">end</span></code></pre>
+     <p>
+      Prints:
+     </p>
+     <pre><code class="language-text">User # 0: Alice
+User # 1: Bob</code></pre>
+     <p>
+      Accepts an optional
+      <em>
+       offset
+      </em>
+      parameter, which tells it to start counting
+from there. So, a more human friendly version of the previous snippet would be:
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].each_with_index(<span class="n">1</span>) <span class="k">do</span> <span class="o">|</span>user, i<span class="o">|</span>
+  puts <span class="s">"User #</span><span class="i">#{</span>i<span class="i">}</span><span class="s">: </span><span class="i">#{</span>user<span class="i">}</span><span class="s">"</span>
+<span class="k">end</span></code></pre>
+     <p>
+      Which would print:
+     </p>
+     <pre><code class="language-text">User # 1: Alice
+User # 2: Bob</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L207" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="fetch(y:Int,x:Int,default:T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      fetch
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     , default : T)
+     <a class="method-permalink" href="#fetch%28y%3AInt%2Cx%3AInt%2Cdefault%3AT%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L274" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="free?(y:Int,x:Int):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      free?
+     </strong>
+     (y :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Bool
+     <a class="method-permalink" href="#free%3F%28y%3AInt%2Cx%3AInt%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置 $(y, x)$ が通行可能なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">..
+.<span class="c">#</span>
+
+grid.free?(<span class="n">0</span>, <span class="n">0</span>) <span class="c"># =&gt; true</span>
+grid.free?(<span class="n">1</span>, <span class="n">1</span>) <span class="c"># =&gt; false</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L146" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="free?(pos):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      free?
+     </strong>
+     (pos) : Bool
+     <a class="method-permalink" href="#free%3F%28pos%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置
+      <code>
+       pos
+      </code>
+      が通行可能なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">..
+.<span class="c">#</span>
+
+grid.free?({<span class="n">0</span>, <span class="n">0</span>}) <span class="c"># =&gt; true</span>
+grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"># =&gt; false</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L132" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="h:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      h
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#h%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L46" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="index(&amp;:T-&gt;):Tuple(Int32,Int32)|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      index
+     </strong>
+     (&amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns the index of the first element for which the passed block is truthy.
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].index { <span class="o">|</span>name<span class="o">|</span> name.size <span class="o">&lt;</span> <span class="n">4</span> } <span class="c"># =&gt; 1 (Bob's index)</span></code></pre>
+     <p>
+      Returns
+      <code>
+       nil
+      </code>
+      if the block is not truthy for any element.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L219" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="index(obj):Tuple(Int32,Int32)|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      index
+     </strong>
+     (obj) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns the first index of
+      <em>
+       obj
+      </em>
+      in the collection.
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].index(<span class="s">"Alice"</span>) <span class="c"># =&gt; 0</span></code></pre>
+     <p>
+      Returns
+      <code>
+       nil
+      </code>
+      if
+      <em>
+       obj
+      </em>
+      is not in the collection.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L226" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="index!(&amp;:T-&gt;):Tuple(Int32,Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      index!
+     </strong>
+     (&amp; : T -&gt; ) : Tuple(Int32, Int32)
+     <a class="method-permalink" href="#index%21%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns the index of the first element for which the passed block is truthy.
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].index! { <span class="o">|</span>name<span class="o">|</span> name.size <span class="o">&lt;</span> <span class="n">4</span> } <span class="c"># =&gt; 1 (Bob's index)</span></code></pre>
+     <p>
+      Raises
+      <code>
+       Enumerable::NotFoundError
+      </code>
+      if there is no element for which the block is truthy.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L230" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="index!(obj):Tuple(Int32,Int32)|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      index!
+     </strong>
+     (obj) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%21%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns the first index of
+      <em>
+       obj
+      </em>
+      in the collection.
+     </p>
+     <pre><code class="language-crystal">[<span class="s">"Alice"</span>, <span class="s">"Bob"</span>].index!(<span class="s">"Alice"</span>) <span class="c"># =&gt; 0</span></code></pre>
+     <p>
+      Raises
+      <code>
+       Enumerable::NotFoundError
+      </code>
+      if
+      <em>
+       obj
+      </em>
+      is not in the collection.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L234" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="over?(y,x):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      over?
+     </strong>
+     (y, x) : Bool
+     <a class="method-permalink" href="#over%3F%28y%2Cx%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置 $(y, x)$ がグリッドの範囲外なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">grid.over?(<span class="n">-1</span>, <span class="n">0</span>)          <span class="c"># =&gt; true</span>
+grid.over?(h <span class="o">+</span> <span class="n">10</span>, w <span class="o">+</span> <span class="n">10</span>) <span class="c"># =&gt; true</span>
+grid.over?(<span class="n">0</span>, <span class="n">0</span>)           <span class="c"># =&gt; false</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L90" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="over?(pos):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      over?
+     </strong>
+     (pos) : Bool
+     <a class="method-permalink" href="#over%3F%28pos%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      位置
+      <code>
+       pos
+      </code>
+      がグリッドの範囲外なら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">grid.over?({<span class="n">-1</span>, <span class="n">0</span>})          <span class="c"># =&gt; true</span>
+grid.over?({h <span class="o">+</span> <span class="n">10</span>, w <span class="o">+</span> <span class="n">10</span>}) <span class="c"># =&gt; true</span>
+grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span class="c"># =&gt; false</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L78" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Tuple,dest:Tuple):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Tuple, dest : Tuple) : Int64
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
+dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L191" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Tuple):Array(Array(Int64))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Tuple) : Array(Array(Int64))
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(si, sj)$ から各マスへの最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
+dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L170" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path:Array(Array(Int64))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     : Array(Array(Int64))
+     <a class="method-permalink" href="#shortest_path%3AArray%28Array%28Int64%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      全マス間の最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path
+dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L156" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="to_a:Array(Array(T))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      to_a
+     </strong>
+     : Array(Array(T))
+     <a class="method-permalink" href="#to_a%3AArray%28Array%28T%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns an
+      <code>
+       Array
+      </code>
+      with all the elements in the collection.
+     </p>
+     <pre><code class="language-crystal">(<span class="n">1</span>..<span class="n">5</span>).to_a <span class="c"># =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L278" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="to_s(io:IO)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      to_s
+     </strong>
+     (io : IO)
+     <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from class Reference
+     </div>
+     <p>
+      Appends a short String representation of this object
+which includes its class name and its object address.
+     </p>
+     <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">"John"</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L288" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="w:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      w
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#w%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L46" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

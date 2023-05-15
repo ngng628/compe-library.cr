@@ -65,6 +65,16 @@
        Top Level Namespace
       </a>
      </li>
+     <li class="" data-id="compe-library-cr/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="compe-library-cr/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
      <li class="parent open current" data-id="compe-library-cr/NgLib" data-name="nglib">
       <a href="../NgLib.html">
        NgLib
@@ -91,6 +101,18 @@
         <a href="../NgLib/Edge.html">
          Edge
         </a>
+       </li>
+       <li class="parent" data-id="compe-library-cr/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="compe-library-cr/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+        </ul>
        </li>
        <li class="parent" data-id="compe-library-cr/NgLib/LCA" data-name="nglib::lca">
         <a href="../NgLib/LCA.html">
@@ -148,7 +170,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L4" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L4" target="_blank">
     nglib/graph/bfs.cr
    </a>
    <br/>
@@ -287,7 +309,11 @@
      <strong>
       new
      </strong>
-     (n : Int)
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
      <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
       #
      </a>
@@ -301,7 +327,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L13" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L13" target="_blank">
       View source
      </a>
      ]
@@ -322,7 +348,15 @@
      <strong>
       add_edge
      </strong>
-     (u : Int, v : Int, directed : Bool =
+     (u :
+     <a href="../Int.html">
+      Int
+     </a>
+     , v :
+     <a href="../Int.html">
+      Int
+     </a>
+     , directed : Bool =
      <span class="n">
       false
      </span>
@@ -353,7 +387,7 @@ graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L28" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L28" target="_blank">
       View source
      </a>
      ]
@@ -373,7 +407,7 @@ graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L6" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L6" target="_blank">
       View source
      </a>
      ]
@@ -385,7 +419,15 @@ graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&
      <strong>
       shortest_path
      </strong>
-     (start : Int, dest : Int)
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , dest :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
      <a class="method-permalink" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
       #
      </a>
@@ -408,7 +450,7 @@ dist <span class="c"># =&gt; 12</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L69" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L69" target="_blank">
       View source
      </a>
      ]
@@ -420,7 +462,11 @@ dist <span class="c"># =&gt; 12</span></code></pre>
      <strong>
       shortest_path
      </strong>
-     (start : Int)
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
      <a class="method-permalink" href="#shortest_path%28start%3AInt%29-instance-method">
       #
      </a>
@@ -439,7 +485,7 @@ dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L49" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L49" target="_blank">
       View source
      </a>
      ]
@@ -465,7 +511,7 @@ dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></p
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L39" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L39" target="_blank">
       View source
      </a>
      ]
@@ -485,7 +531,7 @@ dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></p
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b442eb71071097fcfa219479eadbb73088e2b340/src/nglib/graph/bfs.cr#L5" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/graph/bfs.cr#L5" target="_blank">
       View source
      </a>
      ]

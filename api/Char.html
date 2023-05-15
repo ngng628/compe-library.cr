@@ -11,7 +11,7 @@
   </script>
   <meta content="compe-library-cr" name="repository-name"/>
   <title>
-   compe-library-cr main
+   Char - compe-library-cr main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "";
@@ -65,7 +65,7 @@
        Top Level Namespace
       </a>
      </li>
-     <li class="" data-id="compe-library-cr/Char" data-name="char">
+     <li class="current" data-id="compe-library-cr/Char" data-name="char">
       <a href="Char.html">
        Char
       </a>
@@ -142,71 +142,174 @@
    </div>
   </div>
   <div class="main-content">
-   <h1>
-    <a class="anchor" href="#compe-library-for-crystal" id="compe-library-for-crystal">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    compe library for crystal
+   <h1 class="type-name">
+    <span class="kind">
+     struct
+    </span>
+    Char
    </h1>
-   <p>
-    <a href="https://github.com/ngng628/compe-library.cr/actions">
-     <img alt="Actions Status" src="https://github.com/ngng628/compe-library.cr/workflows/verify/badge.svg"/>
-    </a>
-    <a href="https://ngng628.github.io/compe-library.cr/">
-     <img alt="GitHub Pages" src="https://img.shields.io/static/v1?label=GitHub+Pages&amp;message=+&amp;color=brightgreen&amp;logo=github"/>
-    </a>
-    <a href="http://creativecommons.org/publicdomain/zero/1.0/">
-     <img alt="License: CC0-1.0" src="https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg"/>
-    </a>
-   </p>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="Char.html">
+      Char
+     </a>
+    </li>
+    <li class="superclass">
+     Value
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
    <h2>
-    <a class="anchor" href="#これはなに" id="これはなに">
+    <a class="anchor" href="#overview" id="overview">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
       </use>
      </svg>
     </a>
-    これはなに？
+    Overview
    </h2>
    <p>
-    競技プログラミング用の Crystal ライブラリです。
+    A
+    <code>
+     <a href="Char.html">
+      Char
+     </a>
+    </code>
+    represents a
+    <a href="http://en.wikipedia.org/wiki/Unicode">
+     Unicode
+    </a>
+    <a href="http://en.wikipedia.org/wiki/Code_point">
+     code point
+    </a>
+    .
+It occupies 32 bits.
    </p>
    <p>
-    <a href="https://github.com/google/ac-library.cr">
-     google/ac-library.cr
+    It is created by enclosing an UTF-8 character in single quotes.
+   </p>
+   <pre><code class="language-crystal"><span class="s">'a'</span>
+<span class="s">'z'</span>
+<span class="s">'0'</span>
+<span class="s">'_'</span>
+<span class="s">'あ'</span></code></pre>
+   <p>
+    You can use a backslash to denote some characters:
+   </p>
+   <pre><code class="language-crystal"><span class="s">'\''</span> <span class="c"># single quote</span>
+<span class="s">'\\'</span> <span class="c"># backslash</span>
+<span class="s">'\e'</span> <span class="c"># escape</span>
+<span class="s">'\f'</span> <span class="c"># form feed</span>
+<span class="s">'\n'</span> <span class="c"># newline</span>
+<span class="s">'\r'</span> <span class="c"># carriage return</span>
+<span class="s">'\t'</span> <span class="c"># tab</span>
+<span class="s">'\v'</span> <span class="c"># vertical tab</span></code></pre>
+   <p>
+    You can use a backslash followed by an
+    <em>
+     u
+    </em>
+    and four hexadecimal characters to denote a unicode codepoint written:
+   </p>
+   <pre><code class="language-crystal"><span class="s">'\u0041'</span> <span class="c"># == 'A'</span></code></pre>
+   <p>
+    Or you can use curly braces and specify up to four hexadecimal numbers:
+   </p>
+   <pre><code class="language-crystal"><span class="s">'\u{41}'</span> <span class="c"># == 'A'</span></code></pre>
+   <p>
+    See
+    <a href="https://crystal-lang.org/reference/syntax_and_semantics/literals/char.html">
+     <code>
+      Char
+     </code>
+     literals
     </a>
-    に依存しています。
+    in the language reference.
    </p>
    <h2>
-    <a class="anchor" href="#link" id="link">
+    <a class="anchor" href="#included-modules" id="included-modules">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
       </use>
      </svg>
     </a>
-    Link
+    Included Modules
    </h2>
-   <p>
-    <strong>
-     Verify
-    </strong>
-    :
-    <a href="https://ngng628.github.io/compe-library.cr/docs">
-     https://ngng628.github.io/compe-library.cr/docs
+   <ul class="other-types-list">
+    <li class="other-type">
+     Comparable(
+     <a href="Char.html">
+      Char
+     </a>
+     )
+    </li>
+    <li class="other-type">
+     Steppable
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
     </a>
-   </p>
-   <p>
-    <strong>
-     API Reference
-    </strong>
-    :
-    <a href="https://ngng628.github.io/compe-library.cr/api">
-     https://ngng628.github.io/compe-library.cr/api
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L9" target="_blank">
+    nglib/grid/grid.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#class-method-summary" id="class-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
     </a>
-   </p>
+    Class Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#bar-class-method">
+      <strong>
+       .bar
+      </strong>
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#class-method-detail" id="class-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Detail
+   </h2>
+   <div class="entry-detail" id="bar-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      bar
+     </strong>
+     <a class="method-permalink" href="#bar-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/4cfc75c1a8e7b76a98a89bb0244ad1d416ac2490/src/nglib/grid/grid.cr#L10" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
   </div>
  </body>
 </html>
