@@ -45,7 +45,7 @@ module NgLib
     alias Pos = {Int32, Int32}
     getter h : Int32, w : Int32
     getter delta : Array(Pos)
-    @s : Array(T)
+    getter s : Array(T)
     @bar : T
 
     def self.dydx2(s : Array(Array(T)))
@@ -192,6 +192,109 @@ module NgLib
       shortest_path(start)[dest[0]][dest[1]]
     end
 
+    # グリッドを隣接リスト形式で無向グラフに変換します。
+    #
+    # あるマス $(i, j)$ の頂点番号は $Wi + j$ となります。
+    #
+    # - `:connect_free` : free 同士を結びます（デフォルト）
+    # - `:connect_bar` : bar 同士を結びます
+    # - `:connect_same_type` : bar 同士、free 同士を結びます
+    #
+    # ```
+    # s = [
+    #   "..#".chars,
+    #   ".#.".chars,
+    #   "##.".chars
+    # ]
+    # grid = Grid(Char).new(s)
+    # grid.to_graph # => [[3, 1], [0], [1, 5], [0], [1, 3, 5], [8], [3], [8], [5]]
+    # ```
+    def to_graph(type = :connect_free) : Array(Array(Int32))
+      graph = Array.new(@w * @h) { [] of Int32 }
+      each_with_coord do |c, (i, j)|
+        node = @w * i + j
+        @delta.each do |(di, dj)|
+          ni = i + di
+          nj = j + dj
+          next if over?(ni, nj)
+          node2 = @w * ni + nj
+          case type
+          when :connect_free
+            graph[node] << node2 if free?(i, j) && free?(ni, nj)
+          when :connect_bar
+            graph[node] << node2 if barred?(i, j) && barred?(ni, nj)
+          when :connect_same_type
+            graph[node] << node2 if barred?(i, j) && barred?(ni, nj) || free?(i, j) && free?(ni, nj)
+          end
+        end
+      end
+      graph
+    end
+
+    # 連結する free および bar を塗り分けたグリッドを返します。
+    #
+    # free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
+    #
+    # `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
+    #
+    # TODO: よりよい命名を考える
+    #
+    # ```
+    # s = [
+    #   "..#".chars,
+    #   ".#.".chars,
+    #   "##.".chars
+    # ]
+    # grid = Grid(Char).new(s)
+    # grid.label_grid # => [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
+    # ```
+    def label_grid
+      table = Array.new(@h) { [nil.as(Int32?)] * @w }
+
+      free_index, bar_index = 0, -1
+      each_with_coord do |c, (i, j)|
+        next unless table[i][j].nil?
+
+        label = 0
+        is_bar = barred?(i, j)
+        if is_bar
+          label = bar_index
+          bar_index -= 1
+        else
+          label = free_index
+          free_index += 1
+        end
+
+        queue = Deque({Int32, Int32}).new([{i, j}])
+        table[i][j] = label
+        until queue.empty?
+          y, x = queue.shift
+          @delta.each do |(dy, dx)|
+            ny = y + dy
+            nx = x + dx
+            next if over?(ny, nx)
+            next unless table[ny][nx].nil?
+            next if is_bar ^ barred?(ny, nx)
+            table[ny][nx] = label
+            queue << {ny, nx}
+          end
+        end
+      end
+
+      Grid(Int32).new(table.map { |line| line.map(&.not_nil!) }, @delta)
+    end
+
+    # グリッドの値を $(0, 0)$ から $(H, W)$ まで順に列挙します。
+    #
+    # ```
+    # s = [
+    #   "..#".chars,
+    #   ".#.".chars,
+    #   "##.".chars
+    # ]
+    # grid = Grid(Char).new(s)
+    # gird.each { |c| puts c } # => '.', '.', '#', '.', ..., '.'
+    # ```
     def each(& : T ->)
       i = 0
       while i < h
@@ -204,7 +307,33 @@ module NgLib
       end
     end
 
+    # グリッドの値を $(0, 0)$ から $(H, W)$ まで順に列挙します。
+    #
+    # index は $Wi + j$ を返します。通常は `each_with_coord` を利用することを推奨します。
     def each_with_index(&)
+      i = 0
+      while i < h
+        j = 0
+        while j < w
+          yield self[i, j], w*i + j
+          j += 1
+        end
+        i += 1
+      end
+    end
+
+    # グリッドの値を $(0, 0)$ から $(H, W)$ まで順に座標付きで列挙します。
+    #
+    # ```
+    # s = [
+    #   "..#".chars,
+    #   ".#.".chars,
+    #   "##.".chars
+    # ]
+    # grid = Grid(Char).new(s)
+    # gird.each { |c, (i, j)| c, {i, j} }
+    # ```
+    def each_with_coord(&)
       i = 0
       while i < h
         j = 0
@@ -217,7 +346,7 @@ module NgLib
     end
 
     def index(& : T ->) : {Int32, Int32}?
-      each_with_index do |c, (i, j)|
+      each_with_coord do |c, (i, j)|
         return {i, j} if yield c
       end
       nil

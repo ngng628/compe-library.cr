@@ -13,7 +13,7 @@ grid = NgLib::Grid(Char).dydx4(Array.new(h) { read_line.chomp.chars })
 
 positions = Array({Int32, Int32}).new(n + 1) { {0, 0} }
 positions[0] = grid.index!('S')
-grid.each_with_index do |c, (i, j)|
+grid.each_with_coord do |c, (i, j)|
   positions[c.ord - '0'.ord] = {i, j} if c.ascii_number?
 end
 
