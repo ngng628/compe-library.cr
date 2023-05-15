@@ -1,3 +1,4 @@
+exclude: ['scripts', 'lib', 'bin', 'dist', 'shard.lock', 'shard.yml']
 title: ngng628's Library
 theme: jekyll-theme-architect
 plugins:
