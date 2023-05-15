@@ -39,16 +39,14 @@ jobs:
       run: |
         shards install
 
-    - name: Run verify
+    - name: Run verify and generate docs
       run: |
         rm -rf lib/*/lib
         rm -rf lib/atcoder/verify/*
         oj-verify run --jobs 4
+        crystal docs --progress --stats --time -o dist/api
         rm -rf lib/atcoder/
         oj-verify docs --jobs 4
-
-    - name: Generate API docs
-      run: crystal docs --progress --stats --time -o dist/api
 
     - name: Build bundled docs
       run: |
