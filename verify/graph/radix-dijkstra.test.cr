@@ -1,7 +1,7 @@
 # verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
 
-require "../src/nglib/graph/radix-dijkstra-graph"
-require "../src/nglib/constants"
+require "../../src/nglib/graph/radix-dijkstra-graph"
+require "../../src/nglib/constants"
 
 n, m, r = read_line.split.map &.to_i64
 graph = NgLib::DijkstraGraph.new(n)

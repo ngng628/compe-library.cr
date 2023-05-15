@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/lca
 
-require "../src/nglib/graph/lca"
+require "../../src/nglib/graph/lca"
 
 n, q = read_line.split.map &.to_i64
 pars = read_line.split.map &.to_i64

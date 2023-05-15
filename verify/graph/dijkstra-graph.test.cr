@@ -1,7 +1,7 @@
 # verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
 
-require "../src/nglib/graph/dijkstra-graph.cr"
-require "../src/nglib/constants"
+require "../../src/nglib/graph/dijkstra-graph.cr"
+require "../../src/nglib/constants"
 
 struct W < NgLib::Weight
   getter weight : Int64

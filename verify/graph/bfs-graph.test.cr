@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_11_C
 
-require "../src/nglib/graph/bfs"
+require "../../src/nglib/graph/bfs"
 
 n = read_line.to_i64
 graph = NgLib::BfsGraph.new(n)
