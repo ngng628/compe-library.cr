@@ -42,7 +42,9 @@ jobs:
     - name: Run verify
       run: |
         rm -rf lib/*/lib
+        rm -rf lib/atcoder/verify/*
         oj-verify run --jobs 4
+        rm -rf lib/atcoder/
         oj-verify docs --jobs 4
 
     - name: Generate API docs
