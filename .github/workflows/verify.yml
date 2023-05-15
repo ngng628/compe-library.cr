@@ -34,6 +34,7 @@ jobs:
       run: |
         python3 -m pip install --upgrade pip
         python3 -m pip install -U online-judge-verify-helper
+        python3 -m pip install beautifulsoup4
 
     - name: Install crystal dependencies
       run: |
@@ -46,7 +47,9 @@ jobs:
         oj-verify run --jobs 4
         crystal docs --progress --stats --time -o dist/api
         rm -rf lib/
+        rm -rf bin/ameba.cr
         oj-verify docs --jobs 4
+        python3 ./scripts/insert-mathjax.py
 
     - name: Build bundled docs
       run: |

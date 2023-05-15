@@ -23,7 +23,7 @@ module NgLib
     getter size : Int32
     @graph : Array(Array(Edge(Weight)))
 
-    # n 頂点 0 辺からなるグラフを作成します。
+    # $n$ 頂点 $0$ 辺からなるグラフを作成します。
     #
     # ```
     # graph = Dijkstra.new(n)
@@ -33,10 +33,10 @@ module NgLib
       @graph = Array.new(@size) { Array(Edge(Weight)).new }
     end
 
-    # 非負整数の重み w の辺 (u, v) を追加します。
+    # 非負整数の重み $w$ の辺 $(u, v)$ を追加します。
     #
     # `directed` が `true` の場合、
-    # 有効グラフとみなして、u から v への辺のみ生やします。
+    # 有効グラフとみなして、$u$ から $v$ への辺のみ生やします。
     #
     # ```
     # graph = Dijkstra.new(n)

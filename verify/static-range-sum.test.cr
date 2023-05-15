@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/static_range_sum
 
-require "../src/nglib/static-range-sum"
+require "../src/nglib/data-structure/static-range-sum"
 
 q = read_line.split.map(&.to_i32)[1]
 a = read_line.split.map(&.to_i32)

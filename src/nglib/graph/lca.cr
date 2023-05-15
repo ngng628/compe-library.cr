@@ -29,7 +29,7 @@ module NgLib
       end
     end
 
-    # 頂点 `u` と 頂点 `v` の最近共通祖先を返します。
+    # 頂点 $u$ と 頂点 $v$ の最近共通祖先を返します。
     def ancestor(u : Int, v : Int) : Int64
       if @dist[u] < @dist[v]
         u, v = v, u
@@ -47,12 +47,12 @@ module NgLib
       @parent[0][u]
     end
 
-    # 頂点 `u` と頂点 `v` の距離を返します。
+    # 頂点 $u$ と頂点 $v$ の距離を返します。
     def distance_between(u : Int, v : Int) : Int64
       dist[u] + dist[v] - dist[ancestor(u, v)] * 2
     end
 
-    # 頂点 `u` から頂点 `v` までのパスに頂点 `a` が含まれているか返します。
+    # 頂点 $u$ から頂点 $v$ までのパスに頂点 $a$ が含まれているか返します。
     def on_path?(u : Int, v : Int, a : Int) : Bool
       distance_between(u, a) + distance_between(a, v) == distance_between(u, v)
     end

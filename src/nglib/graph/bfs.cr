@@ -5,20 +5,20 @@ module NgLib
     getter size : Int32
     getter graph : Array(Array(Int32))
 
-    # n 頂点 0 辺からなるグラフを作成します。
+    # $n$ 頂点 $0$ 辺からなるグラフを作成します。
     #
     # ```
     # graph = BfsGraph.new(n)
     # ```
     def initialize(n : Int)
-      @size = n.to_i32
+      @size = n.to_i64.to_i32
       @graph = Array.new(@size) { Array(Int32).new }
     end
 
-    # 辺 (u, v) を追加します。
+    # 辺 $(u, v)$ を追加します。
     #
     # `directed` が `true` の場合、
-    # 有向グラフとみなして、u から v への辺のみ生やします。
+    # 有向グラフとみなして、$u$ から $v$ への辺のみ生やします。
     #
     # ```
     # graph = BfsGraph.new(n)
