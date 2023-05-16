@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="nglib" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
+  </script>
+  <meta content="nglib" name="repository-name"/>
+  <title>
+   NgLib::MaxFlowGraph(Cap) - nglib main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
+    <div class="search-box">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
+    </div>
+    <div class="project-summary">
+     <h1 class="project-name">
+      <a href="../index.html">
+       nglib
+      </a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="nglib/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="" data-id="nglib/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="nglib/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
+     <li class="parent open current" data-id="nglib/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent open current" data-id="nglib/NgLib/MaxFlowGraph" data-name="nglib::maxflowgraph(cap)">
+        <a href="../NgLib/MaxFlowGraph.html">
+         MaxFlowGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/MaxFlowGraph/Edge" data-name="nglib::maxflowgraph::edge(t)">
+          <a href="../NgLib/MaxFlowGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::MaxFlowGraph(Cap)
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/MaxFlowGraph.html">
+      NgLib::MaxFlowGraph(Cap)
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L2" target="_blank">
+    nglib/graph/max-flow.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%3AInt%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n : Int)
+     </a>
+     <div class="summary">
+      <p>
+       n 頂点 0 辺のグラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new-class-method">
+      <strong>
+       .new
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       0 頂点 0 辺のグラフを作ります。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#add_edge%28from%3AInt%2Cto%3AInt%2Ccap%3ACap%29%3AInt32-instance-method">
+      <strong>
+       #add_edge
+      </strong>
+      (from : Int, to : Int, cap : Cap) : Int32
+     </a>
+     <div class="summary">
+      <p>
+       頂点 from から頂点 to へ最大容量 cap、流量 0 の辺を追加します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#change_edge%28i%3AInt%2Cnew_cap%3ACap%2Cnew_flow%3ACap%29-instance-method">
+      <strong>
+       #change_edge
+      </strong>
+      (i : Int, new_cap : Cap, new_flow : Cap)
+     </a>
+     <div class="summary">
+      <p>
+       i 番目に変更された辺の容量、流量をそれぞれ new_cap, new_flow に変更します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#edges-instance-method">
+      <strong>
+       #edges
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       今の内部の辺の状態を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#flow%28s%3AInt%2Ct%3AInt%2Cflow_limit%3ACap%29-instance-method">
+      <strong>
+       #flow
+      </strong>
+      (s : Int, t : Int, flow_limit : Cap)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#flow%28s%3AInt%2Ct%3AInt%29-instance-method">
+      <strong>
+       #flow
+      </strong>
+      (s : Int, t : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#get_edge%28i%3AInt%29-instance-method">
+      <strong>
+       #get_edge
+      </strong>
+      (i : Int)
+     </a>
+     <div class="summary">
+      <p>
+       今の内部の辺の状態を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#min_cut%28s%3AInt%29-instance-method">
+      <strong>
+       #min_cut
+      </strong>
+      (s : Int)
+     </a>
+     <div class="summary">
+      <p>
+       長さ n の配列を返します。 i 番目の要素には、頂点 s から i へ残余グラフで到達可能なとき、またその時のみ true を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%3AInt32-instance-method">
+      <strong>
+       #size
+      </strong>
+      : Int32
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(n:Int)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      n 頂点 0 辺のグラフを作ります。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+graph <span class="o">=</span> <span class="t">MaxFlowGraph</span>(<span class="t">Int64</span>).new(n)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L33" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     <a class="method-permalink" href="#new-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      0 頂点 0 辺のグラフを作ります。
+     </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">MaxFlowGraph</span>(<span class="t">Int64</span>).new</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L21" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Detail
+   </h2>
+   <div class="entry-detail" id="add_edge(from:Int,to:Int,cap:Cap):Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add_edge
+     </strong>
+     (from :
+     <a href="../Int.html">
+      Int
+     </a>
+     , to :
+     <a href="../Int.html">
+      Int
+     </a>
+     , cap : Cap) : Int32
+     <a class="method-permalink" href="#add_edge%28from%3AInt%2Cto%3AInt%2Ccap%3ACap%29%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 from から頂点 to へ最大容量 cap、流量 0 の辺を追加します。
+     </p>
+     <p>
+      何番目に追加された辺であるかを返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+graph <span class="o">=</span> <span class="t">MaxFlowGraph</span>(<span class="t">Int64</span>).new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>) <span class="c"># =&gt; 0</span>
+graph.add_edge(<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>) <span class="c"># =&gt; 1</span>
+graph.add_edge(<span class="n">5</span>, <span class="n">6</span>, <span class="n">8</span>) <span class="c"># =&gt; 2</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L50" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="change_edge(i:Int,new_cap:Cap,new_flow:Cap)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      change_edge
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     , new_cap : Cap, new_flow : Cap)
+     <a class="method-permalink" href="#change_edge%28i%3AInt%2Cnew_cap%3ACap%2Cnew_flow%3ACap%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      i 番目に変更された辺の容量、流量をそれぞれ new_cap, new_flow に変更します。
+     </p>
+     <p>
+      他の辺の容量、流量は変更しません。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L81" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="edges-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      edges
+     </strong>
+     <a class="method-permalink" href="#edges-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      今の内部の辺の状態を返します。
+     </p>
+     <p>
+      辺の順番は add_edge での追加順と同じです。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L74" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="flow(s:Int,t:Int,flow_limit:Cap)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      flow
+     </strong>
+     (s :
+     <a href="../Int.html">
+      Int
+     </a>
+     , t :
+     <a href="../Int.html">
+      Int
+     </a>
+     , flow_limit : Cap)
+     <a class="method-permalink" href="#flow%28s%3AInt%2Ct%3AInt%2Cflow_limit%3ACap%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+     </p>
+     <p>
+      複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
+挙動については以下を参考にしてください。
+     </p>
+     <ul>
+      <li>
+       https://atcoder.github.io/ac-library/document_ja/appendix.html
+      </li>
+     </ul>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">4</span>
+graph <span class="o">=</span> <span class="t">MaxFlowGraph</span>(<span class="t">Int64</span>).new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>) <span class="c"># =&gt; 0</span>
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">2</span>) <span class="c"># =&gt; 1</span>
+graph.add_edge(<span class="n">0</span>, <span class="n">2</span>, <span class="n">5</span>) <span class="c"># =&gt; 2</span>
+graph.add_edge(<span class="n">1</span>, <span class="n">3</span>, <span class="n">6</span>) <span class="c"># =&gt; 3</span>
+graph.add_edge(<span class="n">2</span>, <span class="n">3</span>, <span class="n">3</span>) <span class="c"># =&gt; 4</span>
+
+graph.flow(<span class="n">0</span>, <span class="n">3</span>, <span class="n">6</span>) <span class="c"># =&gt; 6</span>
+graph.flow(<span class="n">0</span>, <span class="n">3</span>, <span class="n">100</span>) <span class="c"># =&gt; 9  (本来の挙動であれば 3 を返します。)</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L126" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="flow(s:Int,t:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      flow
+     </strong>
+     (s :
+     <a href="../Int.html">
+      Int
+     </a>
+     , t :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#flow%28s%3AInt%2Ct%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+     </p>
+     <p>
+      複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
+挙動については以下を参考にしてください。
+     </p>
+     <ul>
+      <li>
+       https://atcoder.github.io/ac-library/document_ja/appendix.html
+      </li>
+     </ul>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">4</span>
+graph <span class="o">=</span> <span class="t">MaxFlowGraph</span>(<span class="t">Int64</span>).new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>) <span class="c"># =&gt; 0</span>
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">2</span>) <span class="c"># =&gt; 1</span>
+graph.add_edge(<span class="n">0</span>, <span class="n">2</span>, <span class="n">5</span>) <span class="c"># =&gt; 2</span>
+graph.add_edge(<span class="n">1</span>, <span class="n">3</span>, <span class="n">6</span>) <span class="c"># =&gt; 3</span>
+graph.add_edge(<span class="n">2</span>, <span class="n">3</span>, <span class="n">3</span>) <span class="c"># =&gt; 4</span>
+
+graph.flow(<span class="n">0</span>, <span class="n">3</span>) <span class="c"># =&gt; 9</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L104" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="get_edge(i:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      get_edge
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#get_edge%28i%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      今の内部の辺の状態を返します。
+     </p>
+     <p>
+      辺の順番は add_edge での追加順と同じです。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L64" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="min_cut(s:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      min_cut
+     </strong>
+     (s :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#min_cut%28s%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      長さ n の配列を返します。
+i 番目の要素には、頂点 s から i へ残余グラフで到達可能なとき、またその時のみ true を返します。
+     </p>
+     <p>
+      flow(s, t) を flow_limit なしでちょうど一回呼んだ後に呼ぶと、
+返り値は s, t 間の mincut に対応します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L182" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#size%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/69c141643e3f38047317fe489c7812b4aac29984/src/nglib/graph/max-flow.cr#L12" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
