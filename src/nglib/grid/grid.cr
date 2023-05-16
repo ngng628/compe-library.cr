@@ -94,11 +94,13 @@ module NgLib
     # 位置 `pos` が進入禁止なら `true` を返します。
     #
     # ```
-    # ..
-    # .#
+    # s = [
+    #   "..".chars,
+    #   ".#".chars
+    # ]
     #
-    # grid.barrd?({0, 0}) # => false
-    # grid.barrd?({1, 1}) # => true
+    # grid.barred?({0, 0}) # => false
+    # grid.barred?({1, 1}) # => true
     # ```
     @[AlwaysInline]
     def barred?(pos) : Bool
@@ -108,11 +110,13 @@ module NgLib
     # 位置 $(y, x)$ が進入禁止なら `true` を返します。
     #
     # ```
-    # ..
-    # .#
+    # s = [
+    #   "..".chars,
+    #   ".#".chars
+    # ]
     #
-    # grid.barrd?(0, 0) # => false
-    # grid.barrd?(1, 1) # => true
+    # grid.barred?(0, 0) # => false
+    # grid.barred?(1, 1) # => true
     # ```
     @[AlwaysInline]
     def barred?(y : Int, x : Int) : Bool
@@ -122,8 +126,10 @@ module NgLib
     # 位置 `pos` が通行可能なら `true` を返します。
     #
     # ```
-    # ..
-    # .#
+    # s = [
+    #   "..".chars,
+    #   ".#".chars
+    # ]
     #
     # grid.free?({0, 0}) # => true
     # grid.free?({1, 1}) # => false
@@ -136,8 +142,10 @@ module NgLib
     # 位置 $(y, x)$ が通行可能なら `true` を返します。
     #
     # ```
-    # ..
-    # .#
+    # s = [
+    #   "..".chars,
+    #   ".#".chars
+    # ]
     #
     # grid.free?(0, 0) # => true
     # grid.free?(1, 1) # => false
@@ -239,13 +247,13 @@ module NgLib
     end
 
     # 連結する free および bar を塗り分けたグリッドを返します。
-    #
+    
     # free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
-    #
+    
     # `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
-    #
+    
     # TODO: よりよい命名を考える
-    #
+    
     # ```
     # s = [
     #   "..#".chars,
@@ -340,7 +348,7 @@ module NgLib
     #   "##.".chars
     # ]
     # grid = Grid(Char).new(s)
-    # gird.each { |c, (i, j)| c, {i, j} }
+    # gird.each { |c, (i, j)| puts c, {i, j} }
     # ```
     def each_with_coord(&)
       i = 0
@@ -376,7 +384,7 @@ module NgLib
     # 位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。
     #
     # ```
-    # grid = Grid.dydx([".#.", "...", "...")
+    # grid = Grid.dydx([".#.", "...", "..."])
     #
     # grid.each_neighbor(1, 1) do |ny, nx|
     # end
@@ -394,7 +402,7 @@ module NgLib
     # 位置 $(y, x)$ の近傍で、侵入可能な位置を方向とともに列挙します。
     #
     # ```
-    # grid = Grid.dydx([".#.", "...", "...")
+    # grid = Grid.dydx4([".#.", "...", "..."])
     #
     # grid.each_neighbor(1, 1) do |ny, nx, dir|
     # end
