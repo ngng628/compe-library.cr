@@ -11,6 +11,8 @@
 
 [google/ac-library.cr](https://github.com/google/ac-library.cr) に依存しています。
 
+また、Crystal のバージョンは `1.7` を想定しています。`0.33.0` だと動かないコードが一部あるので注意してください。
+
 
 ## Link
 
