@@ -13,7 +13,7 @@ module NgLib
     @graph : Array(Array(Edge(Cap)))
     @pos : Array({Int32, Int32})
 
-    # 0 頂点 0 辺のグラフを作ります。
+    # $0$ 頂点 $0$ 辺のグラフを作ります。
     #
     # ```
     # graph = MaxFlowGraph(Int64).new
@@ -24,7 +24,7 @@ module NgLib
       @pos = [] of {Int32, Int32}
     end
 
-    # n 頂点 0 辺のグラフを作ります。
+    # $n$ 頂点 $0$ 辺のグラフを作ります。
     #
     # ```
     # n = 10
@@ -36,7 +36,7 @@ module NgLib
       @pos = [] of {Int32, Int32}
     end
 
-    # 頂点 from から頂点 to へ最大容量 cap、流量 0 の辺を追加します。
+    # 頂点 `from` から頂点 `to` へ最大容量 `cap`、流量 $0$ の辺を追加します。
     #
     # 何番目に追加された辺であるかを返します。
     #
@@ -60,7 +60,7 @@ module NgLib
 
     # 今の内部の辺の状態を返します。
     #
-    # 辺の順番は add_edge での追加順と同じです。
+    # 辺の順番は `add_edge` での追加順と同じです。
     def get_edge(i : Int)
       e = @graph[@pos[i][0]][@pos[i][1]]
       re = @graph[e.to][e.rev]
@@ -69,12 +69,12 @@ module NgLib
 
     # 今の内部の辺の状態を返します。
     #
-    # 辺の順番は add_edge での追加順と同じです。
+    # 辺の順番は `add_edge` での追加順と同じです。
     def edges
       Array.new(@pos.size) { |i| get_edge(i) }
     end
 
-    # i 番目に変更された辺の容量、流量をそれぞれ new_cap, new_flow に変更します。
+    # $i$ 番目に変更された辺の容量、流量をそれぞれ `new_cap`, `new_flow` に変更します。
     #
     # 他の辺の容量、流量は変更しません。
     def change_edge(i : Int, new_cap : Cap, new_flow : Cap)
@@ -82,7 +82,7 @@ module NgLib
       @graph[_e.to][_e.rev].cap = new_flow
     end
 
-    # 頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+    # 頂点 $s$ から頂点 $t$ へ流せるだけ流し、流せた量を返します。
     #
     # 複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
     # 挙動については以下を参考にしてください。
@@ -103,7 +103,7 @@ module NgLib
       flow(s, t, Cap::MAX)
     end
 
-    # 頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+    # 頂点 $s$ から頂点 $t$ へ流せるだけ流し、流せた量を返します。
     #
     # 複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
     # 挙動については以下を参考にしてください。
@@ -173,11 +173,11 @@ module NgLib
       res
     end
 
-    # 長さ n の配列を返します。
-    # i 番目の要素には、頂点 s から i へ残余グラフで到達可能なとき、またその時のみ true を返します。
+    # 長さ $n$ の配列を返します。
+    # $i$ 番目の要素には、頂点 $s$ から $i$ へ残余グラフで到達可能なとき、またその時のみ `true` を返します。
     #
-    # flow(s, t) を flow_limit なしでちょうど一回呼んだ後に呼ぶと、
-    # 返り値は s, t 間の mincut に対応します。
+    # `flow(s, t)` を `flow_limit` なしでちょうど一回呼んだ後に呼ぶと、
+    # 返り値は $s, t$ 間の `mincut` に対応します。
     def min_cut(s : Int)
       closed = [false] * @size
       que = Deque(Int32).new([s.to_i32])
