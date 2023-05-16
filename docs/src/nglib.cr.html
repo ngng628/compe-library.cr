@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-05-16 19:44:47+09:00</li>
+    <li>Last update: 2023-05-17 00:33:06+09:00</li>
     
     
     
@@ -99,6 +99,18 @@
     <ul>
     
         <li><a href="/compe-library.cr/docs/src/nglib/constants.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/constants.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/dynamic-range-sum.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/dynamic-range-sum.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/sparse-table.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/sparse-table.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/static-range-frequency.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/static-range-frequency.cr
             
         </a></li>
     
@@ -134,7 +146,11 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/utils/utils.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/utils/utils.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/utils/fastin.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/utils/fastin.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/utils/utils.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/utils/utils.cr
             
         </a></li>
     
@@ -174,7 +190,400 @@
 <figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># require "./nglib/**"
 </span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span>
 <span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nf">StaticRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+  <span class="k">class</span> <span class="nf">DynamicRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="err">@</span><span class="n">data</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="cp"># 長さが $n$ で各要素が $0$ の数列 $a$ を構築します。
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">data</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span> <span class="p">}</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">data</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 長さが $n$ で各要素が $val$ の数列 $a$ を構築します。
+</span>    <span class="n">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">val</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">data</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">val</span> <span class="p">}</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">data</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 長さが $n$ で $i$ 番目の要素が $elems_i$ の数列 $a$ を構築します。
+</span>    <span class="n">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">elems</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">to_i32</span>
+      <span class="err">@</span><span class="n">data</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span>
+      <span class="n">elems</span><span class="p">.</span><span class="n">each_with_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span> <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get(0, 5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">raise</span> <span class="n">IndexError</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="s">"`l` and `r` must be 0 &lt;= l &lt;= r &lt;= self.size (#{l}, #{r})"</span><span class="p">)</span> <span class="n">unless</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">sum</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">sum</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[0, 5] # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総和 $\sum_{i \in range} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get(0...5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">?</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総和 $\sum_{i \in range} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[0...5] # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">?</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq l \leq r \leq n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(0, 5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum.get?(7, 3) # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="k">return</span> <span class="n">nil</span> <span class="n">unless</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq l \leq r \leq n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[0, 5]? # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum[7, 3]? # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総和 $\sum_{i \in range} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq l \leq r \leq n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum.get?(7...3) # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">?</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総和 $\sum_{i \in range} a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq l \leq r \leq n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[0...5]? # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum[7...3]? # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">?</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get(5) # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[5] # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq i \lt n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(5) # =&gt; 8
+</span>    <span class="cp"># csum.get?(10)? # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を $O(\log{N})$ で返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq i \lt n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum[5]   # =&gt; 8
+</span>    <span class="cp"># csum[10]? # =&gt; nil
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ の値を $x$ に更新します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum[0] = 100
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 100 + 1 + 2 + 3 + 5 = 111
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ の値を $x$ に更新します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum.set(0, 100)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 100 + 1 + 2 + 3 + 5 = 111
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">set</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ に $x$ を加算します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># array = [1, 1, 2, 3, 5, 8, 13]
+</span>    <span class="cp"># csum = DynamicRangeSum(Int32).new(array)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 1 + 1 + 2 + 3 + 5 = 12
+</span>    <span class="cp"># csum.add(0, 99)
+</span>    <span class="cp"># csum.get?(0...5) # =&gt; 100 + 1 + 2 + 3 + 5 = 111
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">add</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="err">@</span><span class="n">size</span>
+        <span class="err">@</span><span class="n">data</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">i</span>
+      <span class="n">end</span>
+      <span class="n">x</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">sum</span><span class="p">(</span><span class="n">r</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">s</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="k">while</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="err">@</span><span class="n">data</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">r</span> <span class="o">-=</span> <span class="n">r</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">r</span>
+      <span class="n">end</span>
+      <span class="n">s</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="cp"># 不変な数列 $A$ について、以下の条件を満たす演算を、区間クエリとして処理します。
+</span>  <span class="cp"># - 結合則 : $(x \oplus y) \oplus z = x \oplus (y \oplus z)$
+</span>  <span class="cp"># - 冪等性 : $x \oplus x = x$
+</span>  <span class="cp">#
+</span>  <span class="cp"># 前計算は $O(N \log{N}) かかりますが、区間クエリには $O(1)$ で答えられます。
+</span>  <span class="k">class</span> <span class="nc">SparseTable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="err">@</span><span class="n">data</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">table</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+    <span class="err">@</span><span class="n">lookup</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">op</span> <span class="o">:</span> <span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span>
+
+    <span class="cp"># $\oplus = \max$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">max</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="k">new</span> <span class="n">elems</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $\oplus = \min$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="k">new</span> <span class="n">elems</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="o">?</span> <span class="n">x</span> <span class="o">:</span> <span class="n">y</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $\oplus = \mathrm{bitwise-or}$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">bitwise_or</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="k">new</span> <span class="n">elems</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">|</span> <span class="n">y</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $\oplus = \mathrm{bitwise-and}$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="k">new</span> <span class="n">elems</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $\oplus = \mathrm{gcd}$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="k">new</span> <span class="n">elems</span><span class="p">,</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="p">{</span> <span class="n">x</span><span class="p">.</span><span class="n">gcd</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $\oplus = op$ としてデータ構造を構築します。
+</span>    <span class="n">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">elems</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="err">@</span><span class="n">op</span> <span class="o">:</span> <span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">elems</span><span class="p">.</span><span class="n">size</span>
+      <span class="err">@</span><span class="n">data</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="k">new</span>
+      <span class="n">log</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">.).</span><span class="n">index</span><span class="o">!</span> <span class="p">{</span> <span class="o">|</span><span class="n">k</span><span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="err">@</span><span class="n">size</span> <span class="p">}</span>
+
+      <span class="err">@</span><span class="n">table</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">log</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">elems</span><span class="p">.</span><span class="n">each_with_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span> <span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span> <span class="err">@</span><span class="n">data</span> <span class="o">&lt;&lt;</span> <span class="n">e</span> <span class="p">}</span>
+
+      <span class="p">(</span><span class="mf">1.</span><span class="p">..</span><span class="n">log</span><span class="p">).</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">log</span><span class="p">)</span>
+          <span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="err">@</span><span class="n">op</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))])</span>
+          <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+
+      <span class="err">@</span><span class="n">lookup</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="p">(</span><span class="mf">2.</span><span class="p">.</span><span class="err">@</span><span class="n">size</span><span class="p">).</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">lookup</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="err">@</span><span class="n">lookup</span><span class="p">[</span><span class="n">i</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総積 $\bigoplus_{i \in range} a_i$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rmq = SparseTable(Int32).min([2, 7, 1, 8, 1])
+</span>    <span class="cp"># rmq.prod(0...3) # =&gt; 1
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="nf">prod</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="err">@</span><span class="n">size</span>
+          <span class="k">else</span>
+            <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">end</span>
+
+      <span class="n">b</span> <span class="o">=</span> <span class="err">@</span><span class="n">lookup</span><span class="p">[</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="p">]</span>
+      <span class="err">@</span><span class="n">op</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">l</span><span class="p">],</span> <span class="err">@</span><span class="n">table</span><span class="p">[</span><span class="n">b</span><span class="p">][</span><span class="n">r</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">)])</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す範囲の要素の総積 $\bigoplus_{i \in range} a_i$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $0 \leq l \leq r \leq n$ を満たさないとき、`nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rmq = SparseTable(Int32).min([2, 7, 1, 8, 1])
+</span>    <span class="cp"># rmq.prod(0...3) # =&gt; 1
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">prod</span><span class="o">?</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="err">@</span><span class="n">size</span>
+          <span class="k">else</span>
+            <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">end</span>
+
+      <span class="k">return</span> <span class="n">nil</span> <span class="n">unless</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&amp;&amp;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="err">@</span><span class="n">size</span>
+      <span class="n">prod</span><span class="p">(</span><span class="n">range</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を返します。
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">i</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># $a_i$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 添字が範囲外のとき、`nil` を返します。
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">?</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `prod` へのエイリアスです。
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
+      <span class="n">prod</span><span class="p">(</span><span class="n">range</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `prod?` へのエイリアスです。
+</span>    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
+      <span class="n">prod</span><span class="o">?</span><span class="p">(</span><span class="n">range</span><span class="p">)</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="cp"># 長さ $n$ の整数列 $a_0, a_1, \cdots, $a_{n-1}$ について、
+</span>  <span class="cp"># $[l, r)$ に $x$ が何回現れるかを $O(\log{N})$ で計算するクラスです。
+</span>  <span class="k">class</span> <span class="nc">StaticRangeFrequency</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="err">@</span><span class="n">map</span> <span class="o">:</span> <span class="n">Hash</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">))</span>
+
+    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">array</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span>
+      <span class="err">@</span><span class="n">map</span> <span class="o">=</span> <span class="n">Hash</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">)).</span><span class="k">new</span>
+      <span class="n">array</span><span class="p">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">map</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">Int32</span> <span class="n">unless</span> <span class="err">@</span><span class="n">map</span><span class="p">.</span><span class="n">has_key</span><span class="o">?</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="err">@</span><span class="n">map</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">i</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">query</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">).</span><span class="n">to_i32</span>
+      <span class="n">right</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+                <span class="err">@</span><span class="n">size</span>
+              <span class="k">else</span>
+                <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)).</span><span class="n">to_i32</span>
+              <span class="n">end</span>
+
+      <span class="n">v</span> <span class="o">=</span> <span class="err">@</span><span class="n">map</span><span class="p">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">Int32</span><span class="p">)</span>
+      <span class="n">lower_bound</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">-</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">left</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">v</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">),</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">)</span>
+      <span class="n">v</span><span class="p">.</span><span class="n">bsearch_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">vi</span><span class="o">|</span> <span class="n">vi</span> <span class="o">&gt;=</span> <span class="n">x</span> <span class="p">}</span> <span class="o">||</span> <span class="n">v</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="k">class</span> <span class="nc">StaticRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int64</span>
     <span class="n">getter</span> <span class="n">csum</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
@@ -1505,7 +1914,68 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-<span class="n">def</span> <span class="kt">int</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">module</span> <span class="n">FastIn</span>
+  <span class="n">extend</span> <span class="n">self</span>
+
+  <span class="n">lib</span> <span class="n">LibC</span>
+    <span class="n">fun</span> <span class="n">getchar</span> <span class="o">=</span> <span class="n">getchar_unlocked</span> <span class="o">:</span> <span class="n">Char</span>
+  <span class="n">end</span>
+
+  <span class="n">module</span> <span class="n">Scanner</span>
+    <span class="n">extend</span> <span class="n">self</span>
+
+    <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">int_t</span> <span class="n">in</span> <span class="n">Int</span><span class="o">::</span><span class="n">Primitive</span><span class="p">.</span><span class="n">union_types</span> <span class="o">%</span><span class="p">}</span>
+      <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">Int</span><span class="o">::</span><span class="n">Signed</span><span class="p">.</span><span class="n">union_types</span><span class="p">.</span><span class="n">includes</span><span class="o">?</span><span class="p">(</span><span class="n">int_t</span><span class="p">)</span> <span class="o">%</span><span class="p">}</span>
+      <span class="n">def</span> <span class="n">read_</span><span class="p">{{</span> <span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">downcase</span><span class="p">[</span><span class="mf">0..0</span><span class="p">]</span> <span class="p">}}{{</span> <span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">downcase</span><span class="p">[</span><span class="mf">3.</span><span class="p">..</span><span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">size</span><span class="p">]</span> <span class="p">}}(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">}</span>
+      <span class="n">def</span> <span class="n">read_</span><span class="p">{{</span> <span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">downcase</span><span class="p">[</span><span class="mf">0..0</span><span class="p">]</span> <span class="p">}}{{</span> <span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">downcase</span><span class="p">[</span><span class="mf">4.</span><span class="p">..</span><span class="n">int_t</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">size</span><span class="p">]</span> <span class="p">}}(</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span><span class="o">%</span> <span class="n">end</span> <span class="o">%</span><span class="p">}</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">next_char</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">int_t</span> <span class="p">}}.</span><span class="k">new</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">ord</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">.</span><span class="n">ord</span><span class="p">)</span>
+        <span class="n">sgn</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="k">case</span> <span class="n">c</span>
+        <span class="n">when</span> <span class="sc">'-'</span>
+          <span class="n">res</span> <span class="o">=</span> <span class="err">{{</span> <span class="n">int_t</span> <span class="err">}}</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">LibC</span><span class="p">.</span><span class="n">getchar</span><span class="p">.</span><span class="n">ord</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">.</span><span class="n">ord</span><span class="p">)</span>
+          <span class="n">sgn</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">when</span> <span class="sc">'+'</span>
+          <span class="n">res</span> <span class="o">=</span> <span class="err">{{</span> <span class="n">int_t</span> <span class="err">}}</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">LibC</span><span class="p">.</span><span class="n">getchar</span><span class="p">.</span><span class="n">ord</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">.</span><span class="n">ord</span><span class="p">)</span>
+        <span class="n">end</span>
+
+        <span class="n">until</span> <span class="n">ascii_voidchar</span><span class="o">?</span><span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">LibC</span><span class="p">.</span><span class="n">getchar</span><span class="p">)</span>
+          <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">ord</span> <span class="o">-</span> <span class="sc">'0'</span><span class="p">.</span><span class="n">ord</span><span class="p">)</span>
+        <span class="n">end</span>
+
+        <span class="n">res</span> <span class="o">*</span> <span class="n">sgn</span> <span class="o">+</span> <span class="n">offset</span>
+      <span class="n">end</span>
+    <span class="err">{</span><span class="o">%</span> <span class="n">end</span> <span class="o">%</span><span class="err">}</span>
+
+    <span class="n">def</span> <span class="n">read_char</span> <span class="p">:</span> <span class="n">Char</span>
+      <span class="n">next_char</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">read_word</span> <span class="o">:</span> <span class="n">String</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">next_char</span>
+      <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span>
+      <span class="n">until</span> <span class="n">ascii_voidchar</span><span class="o">?</span><span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">LibC</span><span class="p">.</span><span class="n">getchar</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">c</span>
+      <span class="n">end</span>
+      <span class="n">s</span><span class="p">.</span><span class="n">join</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">next_char</span> <span class="o">:</span> <span class="n">Char</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="sc">'_'</span>
+      <span class="k">while</span> <span class="n">ascii_voidchar</span><span class="o">?</span><span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">LibC</span><span class="p">.</span><span class="n">getchar</span><span class="p">)</span>
+      <span class="n">end</span>
+      <span class="n">c</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">ascii_voidchar</span><span class="o">?</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+      <span class="n">c</span><span class="p">.</span><span class="n">ascii_whitespace</span><span class="o">?</span> <span class="o">||</span> <span class="n">c</span><span class="p">.</span><span class="n">ord</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">def</span> <span class="nf">int</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
   <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span>
 <span class="n">end</span>
 
@@ -1518,13 +1988,15 @@
 <span class="n">end</span>
 
 <span class="n">macro</span> <span class="n">chmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
- <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&lt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
+ <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&lt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span>
+<span class="n">end</span>
 
 <span class="n">macro</span> <span class="n">chmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
- <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
+ <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span>
+<span class="n">end</span>
 
 <span class="n">macro</span> <span class="n">make_array</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-  <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}}){</span>
+  <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}})</span> <span class="p">{</span>
     <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">].</span><span class="n">empty</span><span class="o">?</span> <span class="o">%</span><span class="p">};</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}}</span>
     <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">};</span> <span class="n">make_array</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">]</span> <span class="p">}},</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}})</span> <span class="p">{</span><span class="o">%</span> <span class="n">end</span> <span class="o">%</span><span class="p">}</span>
   <span class="p">}</span>
