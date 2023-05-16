@@ -96,7 +96,7 @@ module NgLib
     # ```
     # s = [
     #   "..".chars,
-    #   ".#".chars
+    #   ".#".chars,
     # ]
     #
     # grid.barred?({0, 0}) # => false
@@ -112,7 +112,7 @@ module NgLib
     # ```
     # s = [
     #   "..".chars,
-    #   ".#".chars
+    #   ".#".chars,
     # ]
     #
     # grid.barred?(0, 0) # => false
@@ -128,7 +128,7 @@ module NgLib
     # ```
     # s = [
     #   "..".chars,
-    #   ".#".chars
+    #   ".#".chars,
     # ]
     #
     # grid.free?({0, 0}) # => true
@@ -144,7 +144,7 @@ module NgLib
     # ```
     # s = [
     #   "..".chars,
-    #   ".#".chars
+    #   ".#".chars,
     # ]
     #
     # grid.free?(0, 0) # => true
@@ -247,13 +247,13 @@ module NgLib
     end
 
     # 連結する free および bar を塗り分けたグリッドを返します。
-    
+
     # free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
-    
+
     # `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
-    
+
     # TODO: よりよい命名を考える
-    
+
     # ```
     # s = [
     #   "..#".chars,
@@ -345,7 +345,7 @@ module NgLib
     # s = [
     #   "..#".chars,
     #   ".#.".chars,
-    #   "##.".chars
+    #   "##.".chars,
     # ]
     # grid = Grid(Char).new(s)
     # gird.each { |c, (i, j)| puts c, {i, j} }
