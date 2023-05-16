@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::DijkstraGraph(Weight) - nglib main
+   NgLib::StaticRectangleSum(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -97,7 +97,7 @@
          BfsGraph
         </a>
        </li>
-       <li class="parent open current" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
         <a href="../NgLib/DijkstraGraph.html">
          DijkstraGraph
         </a>
@@ -175,7 +175,7 @@
          StaticRangeSum
         </a>
        </li>
-       <li class="" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
+       <li class="current" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
         <a href="../NgLib/StaticRectangleSum.html">
          StaticRectangleSum
         </a>
@@ -195,12 +195,12 @@
     <span class="kind">
      class
     </span>
-    NgLib::DijkstraGraph(Weight)
+    NgLib::StaticRectangleSum(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/DijkstraGraph.html">
-      NgLib::DijkstraGraph(Weight)
+     <a href="../NgLib/StaticRectangleSum.html">
+      NgLib::StaticRectangleSum(T)
      </a>
     </li>
     <li class="superclass">
@@ -219,12 +219,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/dijkstra-graph.cr#L20" target="_blank">
-    nglib/graph/dijkstra-graph.cr
-   </a>
-   <br/>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L4" target="_blank">
-    nglib/graph/radix-dijkstra-graph.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L2" target="_blank">
+    nglib/data-structure/static-rectangle-sum.cr
    </a>
    <br/>
    <h2>
@@ -238,17 +234,12 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%29-class-method">
+     <a class="signature" href="#new%28grid%3AArray%28Array%28T%29%29%29-class-method">
       <strong>
        .new
       </strong>
-      (n : Int)
+      (grid : Array(Array(T)))
      </a>
-     <div class="summary">
-      <p>
-       $n$ 頂点 $0$ 辺からなるグラフを作成します。
-      </p>
-     </div>
     </li>
    </ul>
    <h2>
@@ -262,135 +253,93 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     <a class="signature" href="#%5B%5D%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
       <strong>
-       #add_edge
+       #[]
       </strong>
-      (u : Int, v : Int, w : Int, directed : Bool =
-      <span class="n">
-       false
-      </span>
-      )
+      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
+      <strong>
+       #[]?
+      </strong>
+      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#csum%3AArray%28Array%28T%29%29-instance-method">
+      <strong>
+       #csum
+      </strong>
+      : Array(Array(T))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#get%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT-instance-method">
+      <strong>
+       #get
+      </strong>
+      (y_begin : Int, y_end : Int, x_begin : Int, x_end : Int) : T
      </a>
      <div class="summary">
       <p>
-       非負整数の重み $w$ の辺 $(u, v)$ を追加します。
+       累積和を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AWeight%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     <a class="signature" href="#get%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
       <strong>
-       #add_edge
+       #get
       </strong>
-      (u : Int, v : Int, w : Weight, directed : Bool =
-      <span class="n">
-       false
-      </span>
-      )
+      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T
      </a>
      <div class="summary">
       <p>
-       非負整数の重み $w$ の辺 $(u, v)$ を追加します。
+       累積和を取得します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
+     <a class="signature" href="#get%3F%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT%7CNil-instance-method">
       <strong>
-       #shortest_path
+       #get?
       </strong>
-      (start : Int, dest : Int)
+      (y_begin : Int, y_end : Int, x_begin : Int, x_end : Int) : T | Nil
      </a>
      <div class="summary">
       <p>
-       始点
-       <code>
-        start
-       </code>
-       から終点
-       <code>
-        dest
-       </code>
-       への最短経路長を返します。
+       累積和を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3AInt%29-instance-method">
+     <a class="signature" href="#get%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
       <strong>
-       #shortest_path
+       #get?
       </strong>
-      (start : Int)
+      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T | Nil
      </a>
      <div class="summary">
       <p>
-       始点
-       <code>
-        start
-       </code>
-       から各頂点への最短経路長を返します。
+       累積和を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path-instance-method">
+     <a class="signature" href="#height%3AInt32-instance-method">
       <strong>
-       #shortest_path
+       #height
       </strong>
+      : Int32
      </a>
-     <div class="summary">
-      <p>
-       全点対間の最短経路長を返します。
-      </p>
-     </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path_route%28start%2Cdest%29-instance-method">
+     <a class="signature" href="#width%3AInt32-instance-method">
       <strong>
-       #shortest_path_route
-      </strong>
-      (start, dest)
-     </a>
-     <div class="summary">
-      <p>
-       始点
-       <code>
-        start
-       </code>
-       から終点
-       <code>
-        dest
-       </code>
-       への最短経路の一例を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path_tree%28start%2Cdirected%3ABool%3Dtrue%29%3AArray%28Array%28Int32%29%29-instance-method">
-      <strong>
-       #shortest_path_tree
-      </strong>
-      (start, directed : Bool =
-      <span class="n">
-       true
-      </span>
-      ) : Array(Array(Int32))
-     </a>
-     <div class="summary">
-      <p>
-       始点
-       <code>
-        start
-       </code>
-       から最短路木を構築します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#size%3AInt32-instance-method">
-      <strong>
-       #size
+       #width
       </strong>
       : Int32
      </a>
@@ -407,31 +356,21 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(n:Int)-class-method">
+   <div class="entry-detail" id="new(grid:Array(Array(T)))-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (n :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+     (grid : Array(Array(T)))
+     <a class="method-permalink" href="#new%28grid%3AArray%28Array%28T%29%29%29-class-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      $n$ 頂点 $0$ 辺からなるグラフを作成します。
-     </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L73" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L7" target="_blank">
       View source
      </a>
      ]
@@ -446,308 +385,332 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="add_edge(u:Int,v:Int,w:Int,directed:Bool=false)-instance-method">
+   <div class="entry-detail" id="[](y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T-instance-method">
     <div class="signature">
      def
      <strong>
-      add_edge
+      []
      </strong>
-     (u :
+     (y_range : Range(
      <a href="../Int.html">
       Int
      </a>
-     , v :
+     | Nil,
      <a href="../Int.html">
       Int
      </a>
-     , w :
+     | Nil), x_range : Range(
      <a href="../Int.html">
       Int
      </a>
-     , directed : Bool =
-     <span class="n">
-      false
-     </span>
-     )
-     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil)) : T
+     <a class="method-permalink" href="#%5B%5D%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      非負整数の重み $w$ の辺 $(u, v)$ を追加します。
-     </p>
-     <p>
-      <code>
-       directed
-      </code>
-      が
-      <code>
-       true
-      </code>
-      の場合、
-有向グラフとみなして、$u$ から $v$ への辺のみ生やします。
-     </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)
-graph.add_edge(u, v, w)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
-graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L88" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L93" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="add_edge(u:Int,v:Int,w:Weight,directed:Bool=false)-instance-method">
+   <div class="entry-detail" id="[]?(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      add_edge
+      []?
      </strong>
-     (u :
+     (y_range : Range(
      <a href="../Int.html">
       Int
      </a>
-     , v :
+     | Nil,
      <a href="../Int.html">
       Int
      </a>
-     , w : Weight, directed : Bool =
-     <span class="n">
-      false
-     </span>
-     )
-     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AWeight%2Cdirected%3ABool%3Dfalse%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      非負整数の重み $w$ の辺 $(u, v)$ を追加します。
-     </p>
-     <p>
-      <code>
-       directed
-      </code>
-      が
-      <code>
-       true
-      </code>
-      の場合、
-有効グラフとみなして、$u$ から $v$ への辺のみ生やします。
-     </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)
-graph.add_edge(u, v, w)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
-graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/dijkstra-graph.cr#L46" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="shortest_path(start:Int,dest:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      shortest_path
-     </strong>
-     (start :
+     | Nil), x_range : Range(
      <a href="../Int.html">
       Int
      </a>
-     , dest :
+     | Nil,
      <a href="../Int.html">
       Int
      </a>
-     )
-     <a class="method-permalink" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
+     | Nil)) : T | Nil
+     <a class="method-permalink" href="#%5B%5D%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      始点
-      <code>
-       start
-      </code>
-      から終点
-      <code>
-       dest
-      </code>
-      への最短経路長を返します。
-     </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-dist <span class="c"># =&gt; 12</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L136" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L97" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path(start:Int)-instance-method">
+   <div class="entry-detail" id="csum:Array(Array(T))-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path
+      csum
      </strong>
-     (start :
+     : Array(Array(T))
+     <a class="method-permalink" href="#csum%3AArray%28Array%28T%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L5" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="get(y_begin:Int,y_end:Int,x_begin:Int,x_end:Int):T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      get
+     </strong>
+     (y_begin :
      <a href="../Int.html">
       Int
      </a>
-     )
-     <a class="method-permalink" href="#shortest_path%28start%3AInt%29-instance-method">
+     , y_end :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x_begin :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x_end :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T
+     <a class="method-permalink" href="#get%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      始点
-      <code>
-       start
-      </code>
-      から各頂点への最短経路長を返します。
+      累積和を返します。
      </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(<span class="n">2</span>)
-dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
+     <p>
+      [y_begin, y_end), [x_begin, x_end) で指定します。
+     </p>
+     <p>
+      <span class="flag purple">
+       NOTE
+      </span>
+      このAPIは非推奨です。Rangeで指定することが推奨されます。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L109" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L23" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path-instance-method">
+   <div class="entry-detail" id="get(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path
+      get
      </strong>
-     <a class="method-permalink" href="#shortest_path-instance-method">
+     (y_range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil), x_range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil)) : T
+     <a class="method-permalink" href="#get%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      全点対間の最短経路長を返します。
+      累積和を取得します。
      </p>
-     <pre><code class="language-crystal">dists <span class="o">=</span> graph.shortest_path
-dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></pre>
+     <p>
+      Range(y_begin, y_end), Range(x_begin, x_end) で指定します。
+     </p>
+     <pre><code class="language-crystal">csum <span class="o">=</span> <span class="t">StaticRectangleSum</span>.new(a)
+csum.get(<span class="n">0</span>...h, j..j <span class="o">+</span> <span class="n">2</span>) <span class="c"># =&gt; 28</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L99" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L50" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path_route(start,dest)-instance-method">
+   <div class="entry-detail" id="get?(y_begin:Int,y_end:Int,x_begin:Int,x_end:Int):T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path_route
+      get?
      </strong>
-     (start, dest)
-     <a class="method-permalink" href="#shortest_path_route%28start%2Cdest%29-instance-method">
+     (y_begin :
+     <a href="../Int.html">
+      Int
+     </a>
+     , y_end :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x_begin :
+     <a href="../Int.html">
+      Int
+     </a>
+     , x_end :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T | Nil
+     <a class="method-permalink" href="#get%3F%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT%7CNil-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      始点
-      <code>
-       start
-      </code>
-      から終点
-      <code>
-       dest
-      </code>
-      への最短経路の一例を返します。
+      累積和を返します。
      </p>
-     <pre><code class="language-crystal">route <span class="o">=</span> graph.shortest_path_route(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
+     <p>
+      [y_begin, y_end), [x_begin, x_end) で指定します。
+     </p>
+     <p>
+      範囲内に要素が存在しない場合 nil を返します。
+     </p>
+     <p>
+      <span class="flag purple">
+       NOTE
+      </span>
+      このAPIは非推奨です。Rangeで指定することが推奨されます。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L146" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L36" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path_tree(start,directed:Bool=true):Array(Array(Int32))-instance-method">
+   <div class="entry-detail" id="get?(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path_tree
+      get?
      </strong>
-     (start, directed : Bool =
-     <span class="n">
-      true
-     </span>
-     ) : Array(Array(Int32))
-     <a class="method-permalink" href="#shortest_path_tree%28start%2Cdirected%3ABool%3Dtrue%29%3AArray%28Array%28Int32%29%29-instance-method">
+     (y_range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil), x_range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil)) : T | Nil
+     <a class="method-permalink" href="#get%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      始点
-      <code>
-       start
-      </code>
-      から最短路木を構築します。
+      累積和を返します。
      </p>
      <p>
-      最短路木は
-      <code>
-       start
-      </code>
-      からの最短経路のみを残した全域木です。
+      [y_begin, y_end), [x_begin, x_end) で指定します。
      </p>
-     <pre><code class="language-crystal">route <span class="o">=</span> graph.shortest_path_route(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
+     <p>
+      範囲内に要素が存在しない場合 nil を返します。
+     </p>
+     <pre><code class="language-crystal">csum <span class="o">=</span> <span class="t">StaticRectangleSum</span>.new(a)
+csum.get?(<span class="n">0</span>...h, j..j <span class="o">+</span> <span class="n">2</span>)     <span class="c"># =&gt; 28</span>
+csum.get?(<span class="n">0</span>...<span class="n">100</span><span class="o">*</span>h, j..j <span class="o">+</span> <span class="n">2</span>) <span class="c"># =&gt; nil</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L167" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L77" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="size:Int32-instance-method">
+   <div class="entry-detail" id="height:Int32-instance-method">
     <div class="signature">
      def
      <strong>
-      size
+      height
      </strong>
      : Int32
-     <a class="method-permalink" href="#size%3AInt32-instance-method">
+     <a class="method-permalink" href="#height%3AInt32-instance-method">
       #
      </a>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/graph/radix-dijkstra-graph.cr#L65" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L3" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="width:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      width
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#width%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/932c9a524c87277411e1f82299eeadd39ec30ee0/src/nglib/data-structure/static-rectangle-sum.cr#L4" target="_blank">
       View source
      </a>
      ]
