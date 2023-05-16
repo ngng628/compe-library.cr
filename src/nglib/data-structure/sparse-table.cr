@@ -13,37 +13,37 @@ module NgLib
 
     # $\oplus = \max$ としてデータ構造を構築します。
     def self.max(elems : Enumerable(T))
-      new elems, ->(x : T, y : T){ x > y ? x : y }
+      new elems, ->(x : T, y : T) { x > y ? x : y }
     end
 
     # $\oplus = \min$ としてデータ構造を構築します。
     def self.min(elems : Enumerable(T))
-      new elems, ->(x : T, y : T){ x < y ? x : y }
+      new elems, ->(x : T, y : T) { x < y ? x : y }
     end
 
     # $\oplus = \mathrm{bitwise-or}$ としてデータ構造を構築します。
     def self.bitwise_or(elems : Enumerable(T))
-      new elems, ->(x : T, y : T){ x | y }
+      new elems, ->(x : T, y : T) { x | y }
     end
 
     # $\oplus = \mathrm{bitwise-and}$ としてデータ構造を構築します。
     def self.bitwise_and(elems : Enumerable(T))
-      new elems, ->(x : T, y : T){ x & y }
+      new elems, ->(x : T, y : T) { x & y }
     end
 
     # $\oplus = \mathrm{gcd}$ としてデータ構造を構築します。
     def self.gcd(elems : Enumerable(T))
-      new elems, ->(x : T, y : T){ x.gcd(y) }
+      new elems, ->(x : T, y : T) { x.gcd(y) }
     end
 
     # $\oplus = op$ としてデータ構造を構築します。
     def initialize(elems : Enumerable(T), @op : (T, T) -> T)
       @size = elems.size
       @data = Array(T).new
-      log = (0..).index{ |k| (1 << k) > @size }.not_nil!
+      log = (0..).index! { |k| (1 << k) > @size }
 
-      @table = Array.new(log){ Array(T).new(1 << log, T.zero) }
-      elems.each_with_index{ |e, i| @table[0][i] = e; @data << e }
+      @table = Array.new(log) { Array(T).new(1 << log, T.zero) }
+      elems.each_with_index { |e, i| @table[0][i] = e; @data << e }
 
       (1...log).each do |i|
         j = 0
@@ -68,10 +68,10 @@ module NgLib
     def prod(range : Range(Int?, Int?))
       l = (range.begin || 0)
       r = if range.end.nil?
-          @size
-        else
-          range.end.not_nil! + (range.exclusive? ? 0 : 1)
-        end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
 
       b = @lookup[r - l]
       @op.call(@table[b][l], @table[b][r - (1 << b)])
@@ -88,10 +88,10 @@ module NgLib
     def prod?(range : Range(Int?, Int?))
       l = (range.begin || 0)
       r = if range.end.nil?
-          @size
-        else
-          range.end.not_nil! + (range.exclusive? ? 0 : 1)
-        end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
 
       return nil unless 0 <= l && l <= r && r <= @size
       prod(range)

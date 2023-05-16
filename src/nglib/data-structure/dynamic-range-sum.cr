@@ -5,13 +5,13 @@ module NgLib
 
     # 長さが $n$ で各要素が $0$ の数列 $a$ を構築します。
     def initialize(n : Int)
-      @data = Array(T).new(n){ T.zero }
+      @data = Array(T).new(n) { T.zero }
       @size = @data.size
     end
 
     # 長さが $n$ で各要素が $val$ の数列 $a$ を構築します。
     def initialize(n : Int, val : T)
-      @data = Array(T).new(n){ val }
+      @data = Array(T).new(n) { val }
       @size = @data.size
     end
 
@@ -19,7 +19,7 @@ module NgLib
     def initialize(elems : Enumerable(T))
       @size = elems.size.to_i32
       @data = Array(T).new(@size, T.zero)
-      elems.each_with_index{ |x, i| add(i, x) }
+      elems.each_with_index { |x, i| add(i, x) }
     end
 
     # $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(\log{N})$ で返します。
@@ -175,7 +175,7 @@ module NgLib
     # ```
     # array = [1, 1, 2, 3, 5, 8, 13]
     # csum = DynamicRangeSum(Int32).new(array)
-    # csum[5] # => 8
+    # csum[5]   # => 8
     # csum[10]? # => nil
     # ```
     def []?(i) : T?
@@ -219,7 +219,7 @@ module NgLib
     # ```
     def add(i : Int, x : T)
       i += 1
-      while (i <= @size)
+      while i <= @size
         @data[i - 1] += x
         i += i & -i
       end

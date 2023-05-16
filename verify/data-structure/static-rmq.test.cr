@@ -3,7 +3,7 @@
 require "../../src/nglib/utils"
 require "../../src/nglib/data-structure/sparse-table"
 
-n, q = ints
+_n, q = ints
 a = ints
 
 rmq = NgLib::SparseTable(Int64).min(a)

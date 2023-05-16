@@ -17,10 +17,10 @@ module NgLib
     def query(range : Range(Int?, Int?), x : T)
       left = (range.begin || 0).to_i32
       right = if range.end.nil?
-          @size
-        else
-          (range.end.not_nil! + (range.exclusive? ? 0 : 1)).to_i32
-        end
+                @size
+              else
+                (range.end.not_nil! + (range.exclusive? ? 0 : 1)).to_i32
+              end
 
       v = @map.fetch(x, [] of Int32)
       lower_bound(v, right) - lower_bound(v, left)

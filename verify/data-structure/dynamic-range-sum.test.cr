@@ -3,7 +3,7 @@
 require "../../src/nglib/utils"
 require "../../src/nglib/data-structure/dynamic-range-sum"
 
-n, q = ints
+_n, q = ints
 a = ints
 
 csum = NgLib::DynamicRangeSum(Int64).new(a)
