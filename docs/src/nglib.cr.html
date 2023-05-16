@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-05-16 19:04:46+09:00</li>
+    <li>Last update: 2023-05-16 19:44:47+09:00</li>
     
     
     
@@ -98,7 +98,7 @@
     <h2>Depends on</h2>
     <ul>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/constants.cr"><img class="emoji" title=":question:" alt=":question:" src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png" height="20" width="20"> src/nglib/constants.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/constants.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/constants.cr
             
         </a></li>
     
@@ -106,11 +106,11 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/graph/bfs.cr"><img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> src/nglib/graph/bfs.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/bfs.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/bfs.cr
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/graph/dijkstra-graph.cr"><img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> src/nglib/graph/dijkstra-graph.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/dijkstra-graph.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/dijkstra-graph.cr
             
         </a></li>
     
@@ -173,7 +173,6 @@
 
 <figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># require "./nglib/**"
 </span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span>
-
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">class</span> <span class="nf">StaticRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int64</span>
@@ -277,9 +276,9 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="cp"># require "../constants"
 </span>
+
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">class</span> <span class="nc">BfsGraph</span>
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
@@ -351,7 +350,6 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="n">require</span> <span class="s">"atcoder/priority_queue"</span>
 
 <span class="n">module</span> <span class="n">NgLib</span>
@@ -533,9 +531,9 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="cp"># require "../constants.cr"
 </span>
+
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">class</span> <span class="nc">LCA</span>
     <span class="n">alias</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
@@ -603,7 +601,6 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">class</span> <span class="nc">MaxFlowGraph</span><span class="p">(</span><span class="n">Cap</span><span class="p">)</span>
     <span class="k">class</span> <span class="nc">Edge</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -619,7 +616,7 @@
     <span class="err">@</span><span class="n">graph</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Edge</span><span class="p">(</span><span class="n">Cap</span><span class="p">)))</span>
     <span class="err">@</span><span class="n">pos</span> <span class="o">:</span> <span class="n">Array</span><span class="p">({</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">})</span>
 
-    <span class="cp"># 0 頂点 0 辺のグラフを作ります。
+    <span class="cp"># $0$ 頂点 $0$ 辺のグラフを作ります。
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
 </span>    <span class="cp"># graph = MaxFlowGraph(Int64).new
@@ -630,7 +627,7 @@
       <span class="err">@</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span>
     <span class="n">end</span>
 
-    <span class="cp"># n 頂点 0 辺のグラフを作ります。
+    <span class="cp"># $n$ 頂点 $0$ 辺のグラフを作ります。
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
 </span>    <span class="cp"># n = 10
@@ -642,7 +639,7 @@
       <span class="err">@</span><span class="n">pos</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span>
     <span class="n">end</span>
 
-    <span class="cp"># 頂点 from から頂点 to へ最大容量 cap、流量 0 の辺を追加します。
+    <span class="cp"># 頂点 `from` から頂点 `to` へ最大容量 `cap`、流量 $0$ の辺を追加します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 何番目に追加された辺であるかを返します。
 </span>    <span class="cp">#
@@ -666,7 +663,7 @@
 
     <span class="cp"># 今の内部の辺の状態を返します。
 </span>    <span class="cp">#
-</span>    <span class="cp"># 辺の順番は add_edge での追加順と同じです。
+</span>    <span class="cp"># 辺の順番は `add_edge` での追加順と同じです。
 </span>    <span class="n">def</span> <span class="n">get_edge</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">e</span> <span class="o">=</span> <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="err">@</span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]][</span><span class="err">@</span><span class="n">pos</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
       <span class="n">re</span> <span class="o">=</span> <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">][</span><span class="n">e</span><span class="p">.</span><span class="n">rev</span><span class="p">]</span>
@@ -675,12 +672,12 @@
 
     <span class="cp"># 今の内部の辺の状態を返します。
 </span>    <span class="cp">#
-</span>    <span class="cp"># 辺の順番は add_edge での追加順と同じです。
+</span>    <span class="cp"># 辺の順番は `add_edge` での追加順と同じです。
 </span>    <span class="n">def</span> <span class="n">edges</span>
       <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">pos</span><span class="p">.</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">get_edge</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">}</span>
     <span class="n">end</span>
 
-    <span class="cp"># i 番目に変更された辺の容量、流量をそれぞれ new_cap, new_flow に変更します。
+    <span class="cp"># $i$ 番目に変更された辺の容量、流量をそれぞれ `new_cap`, `new_flow` に変更します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 他の辺の容量、流量は変更しません。
 </span>    <span class="n">def</span> <span class="nf">change_edge</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">new_cap</span> <span class="o">:</span> <span class="n">Cap</span><span class="p">,</span> <span class="n">new_flow</span> <span class="o">:</span> <span class="n">Cap</span><span class="p">)</span>
@@ -688,7 +685,7 @@
       <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="n">_e</span><span class="p">.</span><span class="n">to</span><span class="p">][</span><span class="n">_e</span><span class="p">.</span><span class="n">rev</span><span class="p">].</span><span class="n">cap</span> <span class="o">=</span> <span class="n">new_flow</span>
     <span class="n">end</span>
 
-    <span class="cp"># 頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+    <span class="cp"># 頂点 $s$ から頂点 $t$ へ流せるだけ流し、流せた量を返します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
 </span>    <span class="cp"># 挙動については以下を参考にしてください。
@@ -709,7 +706,7 @@
       <span class="n">flow</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">Cap</span><span class="o">::</span><span class="n">MAX</span><span class="p">)</span>
     <span class="n">end</span>
 
-    <span class="cp"># 頂点 s から頂点 t へ流せるだけ流し、流せた量を返します。
+    <span class="cp"># 頂点 $s$ から頂点 $t$ へ流せるだけ流し、流せた量を返します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 複数回呼ぶことも可能ですが、同じ結果を返すわけではありません。
 </span>    <span class="cp"># 挙動については以下を参考にしてください。
@@ -779,11 +776,11 @@
       <span class="n">res</span>
     <span class="n">end</span>
 
-    <span class="cp"># 長さ n の配列を返します。
-</span>    <span class="cp"># i 番目の要素には、頂点 s から i へ残余グラフで到達可能なとき、またその時のみ true を返します。
+    <span class="cp"># 長さ $n$ の配列を返します。
+</span>    <span class="cp"># $i$ 番目の要素には、頂点 $s$ から $i$ へ残余グラフで到達可能なとき、またその時のみ `true` を返します。
 </span>    <span class="cp">#
-</span>    <span class="cp"># flow(s, t) を flow_limit なしでちょうど一回呼んだ後に呼ぶと、
-</span>    <span class="cp"># 返り値は s, t 間の mincut に対応します。
+</span>    <span class="cp"># `flow(s, t)` を `flow_limit` なしでちょうど一回呼んだ後に呼ぶと、
+</span>    <span class="cp"># 返り値は $s, t$ 間の `mincut` に対応します。
 </span>    <span class="n">def</span> <span class="nf">min_cut</span><span class="p">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">closed</span> <span class="o">=</span> <span class="p">[</span><span class="nb">false</span><span class="p">]</span> <span class="o">*</span> <span class="err">@</span><span class="n">size</span>
       <span class="n">que</span> <span class="o">=</span> <span class="n">Deque</span><span class="p">(</span><span class="n">Int32</span><span class="p">).</span><span class="k">new</span><span class="p">([</span><span class="n">s</span><span class="p">.</span><span class="n">to_i32</span><span class="p">])</span>
@@ -801,9 +798,9 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="cp"># require "../constants.cr"
 </span>
+
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">class</span> <span class="nc">DijkstraGraph</span>
     <span class="n">record</span> <span class="n">Edge</span><span class="p">,</span> <span class="n">target</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">UInt64</span>
@@ -1025,7 +1022,6 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">struct</span> <span class="nc">Edge</span>
     <span class="err">@</span><span class="n">data</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int64</span><span class="p">,</span> <span class="n">Int64</span><span class="p">}</span>
@@ -1047,9 +1043,9 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="cp"># require "../constants.cr"
 </span>
+
 <span class="k">struct</span> <span class="nc">Int</span>
   <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">bar</span>
     <span class="o">-</span><span class="mi">1</span>
@@ -1509,7 +1505,6 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
-
 <span class="n">def</span> <span class="kt">int</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
   <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span>
 <span class="n">end</span>
