@@ -11,13 +11,15 @@ def str
 end
 
 macro chmax(a, b)
- ({{a}} < {{b}} && ({{a}} = {{b}})) end
+ ({{a}} < {{b}} && ({{a}} = {{b}}))
+end
 
 macro chmin(a, b)
- ({{a}} > {{b}} && ({{a}} = {{b}})) end
+ ({{a}} > {{b}} && ({{a}} = {{b}}))
+end
 
 macro make_array(s, x)
-  Array.new({{ s[0] }}){
+  Array.new({{ s[0] }}) {
     {% if s[1..s.size].empty? %}; {{ x }}
     {% else %}; make_array({{ s[1..s.size] }}, {{ x }}) {% end %}
   }
