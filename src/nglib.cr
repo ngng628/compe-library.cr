@@ -1,1 +1,1 @@
-require "./nglib/*"
+require "./nglib/**"
