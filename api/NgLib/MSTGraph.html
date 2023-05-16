@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::LCA - nglib main
+   NgLib::MSTGraph(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -136,7 +136,7 @@
          </li>
         </ul>
        </li>
-       <li class="parent open current" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
+       <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
         <a href="../NgLib/LCA.html">
          LCA
         </a>
@@ -160,7 +160,7 @@
          </li>
         </ul>
        </li>
-       <li class="" data-id="nglib/NgLib/MSTGraph" data-name="nglib::mstgraph(t)">
+       <li class="current" data-id="nglib/NgLib/MSTGraph" data-name="nglib::mstgraph(t)">
         <a href="../NgLib/MSTGraph.html">
          MSTGraph
         </a>
@@ -200,12 +200,12 @@
     <span class="kind">
      class
     </span>
-    NgLib::LCA
+    NgLib::MSTGraph(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/LCA.html">
-      NgLib::LCA
+     <a href="../NgLib/MSTGraph.html">
+      NgLib::MSTGraph(T)
      </a>
     </li>
     <li class="superclass">
@@ -216,6 +216,21 @@
     </li>
    </ul>
    <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    $n$ 頂点の重み付きグラフについて、最小/最大全域木を構築します。
+   </p>
+   <p>
+    Kruskal 法による実装です。
+   </p>
+   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -224,8 +239,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L4" target="_blank">
-    nglib/graph/lca.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L7" target="_blank">
+    nglib/graph/mst-graph.cr
    </a>
    <br/>
    <h2>
@@ -239,27 +254,55 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method">
+     <a class="signature" href="#new%28n%29-class-method">
       <strong>
        .new
       </strong>
-      (graph : Graph, root =
-      <span class="n">
-       0_i64
-      </span>
-      )
+      (n)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%2C%26cmp%3AT%2CT-%3EInt32%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n, &amp;cmp : T, T -&gt; Int32)
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#class-method-summary" id="class-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#max%28n%29-class-method">
+      <strong>
+       .max
+      </strong>
+      (n)
      </a>
      <div class="summary">
       <p>
-       木構造グラフ
-       <code>
-        graph
-       </code>
-       に対して、
-       <code>
-        root
-       </code>
-       を根とする LCA を構築します。
+       $n$ 頂点 $0$ 辺のグラフを生成します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#min%28n%29-class-method">
+      <strong>
+       .min
+      </strong>
+      (n)
+     </a>
+     <div class="summary">
+      <p>
+       $n$ 頂点 $0$ 辺のグラフを生成します。
       </p>
      </div>
     </li>
@@ -275,59 +318,37 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AT%29-instance-method">
       <strong>
-       #ancestor
+       #add_edge
       </strong>
-      (u : Int, v : Int) : Int64
+      (u : Int, v : Int, w : T)
      </a>
      <div class="summary">
       <p>
-       頂点 $u$ と 頂点 $v$ の最近共通祖先を返します。
+       グラフに辺 $(u, v, w)$ を追加します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#dist%3AArray%28Int64%29-instance-method">
+     <a class="signature" href="#size%3AInt64-instance-method">
       <strong>
-       #dist
+       #size
       </strong>
-      : Array(Int64)
+      : Int64
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+     <a class="signature" href="#sum-instance-method">
       <strong>
-       #distance_between
+       #sum
       </strong>
-      (u : Int, v : Int) : Int64
      </a>
      <div class="summary">
       <p>
-       頂点 $u$ と頂点 $v$ の距離を返します。
+       最小全域木を構成したときの辺の重みの総和求めます。
       </p>
      </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method">
-      <strong>
-       #on_path?
-      </strong>
-      (u : Int, v : Int, a : Int) : Bool
-     </a>
-     <div class="summary">
-      <p>
-       頂点 $u$ から頂点 $v$ までのパスに頂点 $a$ が含まれているか返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#parent%3AArray%28Array%28Int64%29%29-instance-method">
-      <strong>
-       #parent
-      </strong>
-      : Array(Array(Int64))
-     </a>
     </li>
    </ul>
    <div class="methods-inherited">
@@ -341,42 +362,106 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(graph:Graph,root=0_i64)-class-method">
+   <div class="entry-detail" id="new(n)-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (graph :
-     <a href="../NgLib/LCA/Graph.html">
-      Graph
+     (n)
+     <a class="method-permalink" href="#new%28n%29-class-method">
+      #
      </a>
-     , root =
-     <span class="n">
-      0_i64
-     </span>
-     )
-     <a class="method-permalink" href="#new%28graph%3AGraph%2Croot%3D0_i64%29-class-method">
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L11" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(n,&amp;cmp:T,T-&gt;Int32)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n, &amp;cmp : T, T -&gt; Int32)
+     <a class="method-permalink" href="#new%28n%2C%26cmp%3AT%2CT-%3EInt32%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L17" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#class-method-detail" id="class-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Detail
+   </h2>
+   <div class="entry-detail" id="max(n)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      max
+     </strong>
+     (n)
+     <a class="method-permalink" href="#max%28n%29-class-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      木構造グラフ
-      <code>
-       graph
-      </code>
-      に対して、
-      <code>
-       root
-      </code>
-      を根とする LCA を構築します。
+      $n$ 頂点 $0$ 辺のグラフを生成します。
+     </p>
+     <p>
+      最大全域木を構築します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L11" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L32" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="min(n)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      min
+     </strong>
+     (n)
+     <a class="method-permalink" href="#min%28n%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      $n$ 頂点 $0$ 辺のグラフを生成します。
+     </p>
+     <p>
+      最小全域木を構築します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L25" target="_blank">
       View source
      </a>
      ]
@@ -391,11 +476,11 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="ancestor(u:Int,v:Int):Int64-instance-method">
+   <div class="entry-detail" id="add_edge(u:Int,v:Int,w:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      ancestor
+      add_edge
      </strong>
      (u :
      <a href="../Int.html">
@@ -405,130 +490,69 @@
      <a href="../Int.html">
       Int
      </a>
-     ) : Int64
-     <a class="method-permalink" href="#ancestor%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+     , w : T)
+     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AT%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      頂点 $u$ と 頂点 $v$ の最近共通祖先を返します。
+      グラフに辺 $(u, v, w)$ を追加します。
      </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">MSTGraph</span>(<span class="t">Int64</span>).new(n) { <span class="o">|</span>a, b<span class="o">|</span> a <span class="o">&lt;</span> b }
+m.times { graph.add_edge(u, v, w) }</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L33" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L42" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="dist:Array(Int64)-instance-method">
+   <div class="entry-detail" id="size:Int64-instance-method">
     <div class="signature">
      def
      <strong>
-      dist
+      size
      </strong>
-     : Array(Int64)
-     <a class="method-permalink" href="#dist%3AArray%28Int64%29-instance-method">
+     : Int64
+     <a class="method-permalink" href="#size%3AInt64-instance-method">
       #
      </a>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L7" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L8" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="distance_between(u:Int,v:Int):Int64-instance-method">
+   <div class="entry-detail" id="sum-instance-method">
     <div class="signature">
      def
      <strong>
-      distance_between
+      sum
      </strong>
-     (u :
-     <a href="../Int.html">
-      Int
-     </a>
-     , v :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : Int64
-     <a class="method-permalink" href="#distance_between%28u%3AInt%2Cv%3AInt%29%3AInt64-instance-method">
+     <a class="method-permalink" href="#sum-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      頂点 $u$ と頂点 $v$ の距離を返します。
+      最小全域木を構成したときの辺の重みの総和求めます。
      </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">MSTGraph</span>(<span class="t">Int64</span>).new(n) { <span class="o">|</span>a, b<span class="o">|</span> a <span class="o">&lt;</span> b }
+m.times { graph.add_edge(u, v, w) }
+graph.sum</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L51" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="on_path?(u:Int,v:Int,a:Int):Bool-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      on_path?
-     </strong>
-     (u :
-     <a href="../Int.html">
-      Int
-     </a>
-     , v :
-     <a href="../Int.html">
-      Int
-     </a>
-     , a :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : Bool
-     <a class="method-permalink" href="#on_path%3F%28u%3AInt%2Cv%3AInt%2Ca%3AInt%29%3ABool-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      頂点 $u$ から頂点 $v$ までのパスに頂点 $a$ が含まれているか返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L56" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="parent:Array(Array(Int64))-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      parent
-     </strong>
-     : Array(Array(Int64))
-     <a class="method-permalink" href="#parent%3AArray%28Array%28Int64%29%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/lca.cr#L6" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e101d1ad260d627d94b67d3a8a2069e91e8ea867/src/nglib/graph/mst-graph.cr#L53" target="_blank">
       View source
      </a>
      ]
