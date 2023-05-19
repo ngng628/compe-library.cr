@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::Weight - nglib main
+   NgLib::SlideMinmax(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -165,7 +165,7 @@
          MSTGraph
         </a>
        </li>
-       <li class="" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
+       <li class="current" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
         <a href="../NgLib/SlideMinmax.html">
          SlideMinmax
         </a>
@@ -190,7 +190,7 @@
          StaticRectangleSum
         </a>
        </li>
-       <li class="current" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
+       <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
         <a href="../NgLib/Weight.html">
          Weight
         </a>
@@ -203,44 +203,61 @@
   <div class="main-content">
    <h1 class="type-name">
     <span class="kind">
-     abstract struct
+     class
     </span>
-    NgLib::Weight
+    NgLib::SlideMinmax(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/Weight.html">
-      NgLib::Weight
+     <a href="../NgLib/SlideMinmax.html">
+      NgLib::SlideMinmax(T)
      </a>
     </li>
     <li class="superclass">
-     Struct
-    </li>
-    <li class="superclass">
-     Value
+     Reference
     </li>
     <li class="superclass">
      Object
     </li>
    </ul>
    <h2>
-    <a class="anchor" href="#included-modules" id="included-modules">
+    <a class="anchor" href="#overview" id="overview">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
       </use>
      </svg>
     </a>
-    Included Modules
+    Overview
    </h2>
-   <ul class="other-types-list">
-    <li class="other-type">
-     Comparable(
-     <a href="../NgLib/Weight.html">
-      NgLib::Weight
-     </a>
-     )
-    </li>
-   </ul>
+   <p>
+    データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造です。
+   </p>
+   <p>
+    セグメント木やSparseTableと異なり、区間長が固定の範囲でしかクエリに答えられませんが、
+計算量が前計算 $O(N)$ で、クエリが $O(1)$ なので高速です。
+   </p>
+   <p>
+    query(i) で $[i, i + \mathrm{length} - 1})$ が配列の範囲を超えたとき、$[i, \mathrm{a.size})$ だと思って計算します。
+   </p>
+   <p>
+    もし、query(i) で $[i - \mathrm{length}, i)$ が求まってほしい場合は、
+    <code>
+     a = ([eins] * length) + a
+    </code>
+    としておけば良いです。
+範囲外の場合は $[0, i)$ だと思って計算されます。
+   </p>
+   <p>
+    なお、$[0, 0)$ の場合は単位元が返ります。
+   </p>
+   <p>
+    もし、query(i) で $[i - \mathrm{length}, i]$ が求まってほしい場合は、
+    <code>
+     a = ([eins] * (length - 1)) + a
+    </code>
+    としておけば良いです。
+範囲外の場合は $[0, i]$ だと思って計算されます。
+   </p>
    <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
@@ -250,8 +267,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L4" target="_blank">
-    nglib/graph/dijkstra-graph.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L16" target="_blank">
+    nglib/data-structure/slide-minmax.cr
    </a>
    <br/>
    <h2>
@@ -265,33 +282,54 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#inf%3Aself-class-method">
-      <strong>
-       .inf
-      </strong>
-      :
-      <span class="k">
-       self
-      </span>
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#new-class-method">
+     <a class="signature" href="#new%28a%3AArray%28T%29%2Clength%3AInt%2Ceins%3AT%2C%26cmp%3AT%2CT-%3EBool%29-class-method">
       <strong>
        .new
       </strong>
+      (a : Array(T), length : Int, eins : T, &amp;cmp : T, T -&gt; Bool)
      </a>
+     <div class="summary">
+      <p>
+       データ列 $a$ に対して、$cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#class-method-summary" id="class-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#max%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
+      <strong>
+       .max
+      </strong>
+      (a : Array(T), length : Int)
+     </a>
+     <div class="summary">
+      <p>
+       データ列 $a$ に対して、$\max(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#zero%3Aself-class-method">
+     <a class="signature" href="#min%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
       <strong>
-       .zero
+       .min
       </strong>
-      :
-      <span class="k">
-       self
-      </span>
+      (a : Array(T), length : Int)
      </a>
+     <div class="summary">
+      <p>
+       データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+      </p>
+     </div>
     </li>
    </ul>
    <h2>
@@ -305,35 +343,17 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#%2B%28other%3Aself%29-instance-method">
+     <a class="signature" href="#query%28i%3AInt%29%3AT%7CNil-instance-method">
       <strong>
-       #+
+       #query
       </strong>
-      (other :
-      <span class="k">
-       self
-      </span>
-      )
+      (i : Int) : T | Nil
      </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#%3C%3D%3E%28other%3Aself%29-instance-method">
-      <strong>
-       #&lt;=&gt;
-      </strong>
-      (other :
-      <span class="k">
-       self
-      </span>
-      )
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#initialize-instance-method">
-      <strong>
-       #initialize
-      </strong>
-     </a>
+     <div class="summary">
+      <p>
+       $[i, i + \mathrm{length})$ の範囲の総積 $cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めます。
+      </p>
+     </div>
     </li>
    </ul>
    <div class="methods-inherited">
@@ -347,66 +367,127 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="inf:self-class-method">
-    <div class="signature">
-     def self.
-     <strong>
-      inf
-     </strong>
-     :
-     <span class="k">
-      self
-     </span>
-     <a class="method-permalink" href="#inf%3Aself-class-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L10" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="new-class-method">
+   <div class="entry-detail" id="new(a:Array(T),length:Int,eins:T,&amp;cmp:T,T-&gt;Bool)-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     <a class="method-permalink" href="#new-class-method">
+     (a : Array(T), length :
+     <a href="../Int.html">
+      Int
+     </a>
+     , eins : T, &amp;cmp : T, T -&gt; Bool)
+     <a class="method-permalink" href="#new%28a%3AArray%28T%29%2Clength%3AInt%2Ceins%3AT%2C%26cmp%3AT%2CT-%3EBool%29-class-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      データ列 $a$ に対して、$cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+     </p>
+     <p>
+      <code>
+       eins
+      </code>
+      には
+      <code>
+       @cmp
+      </code>
+      に対する単位元を渡してください。
+     </p>
+     <p>
+      この API は非推奨です。
+      <code>
+       self
+       <a href="../NgLib/SlideMinmax.html#min%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
+        .min
+       </a>
+      </code>
+      または
+      <code>
+       self
+       <a href="../NgLib/SlideMinmax.html#max%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
+        .max
+       </a>
+      </code>
+      を使用してください。
+     </p>
+     <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).new([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>) { <span class="o">|</span>a, b<span class="o">|</span> a <span class="o">&lt;=</span> b } <span class="c"># =&gt; min query</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L47" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="zero:self-class-method">
+   <h2>
+    <a class="anchor" href="#class-method-detail" id="class-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Class Method Detail
+   </h2>
+   <div class="entry-detail" id="max(a:Array(T),length:Int)-class-method">
     <div class="signature">
      def self.
      <strong>
-      zero
+      max
      </strong>
-     :
-     <span class="k">
-      self
-     </span>
-     <a class="method-permalink" href="#zero%3Aself-class-method">
+     (a : Array(T), length :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#max%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      データ列 $a$ に対して、$\max(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+     </p>
+     <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).max([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>)</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L7" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L34" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="min(a:Array(T),length:Int)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      min
+     </strong>
+     (a : Array(T), length :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#min%28a%3AArray%28T%29%2Clength%3AInt%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造を構築します。
+     </p>
+     <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).min([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L25" target="_blank">
       View source
      </a>
      ]
@@ -421,68 +502,46 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="+(other:self)-instance-method">
+   <div class="entry-detail" id="query(i:Int):T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      +
+      query
      </strong>
-     (other :
-     <span class="k">
-      self
-     </span>
-     )
-     <a class="method-permalink" href="#%2B%28other%3Aself%29-instance-method">
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T | Nil
+     <a class="method-permalink" href="#query%28i%3AInt%29%3AT%7CNil-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      $[i, i + \mathrm{length})$ の範囲の総積 $cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めます。
+     </p>
+     <p>
+      $i + \mathrm{length}$ が $a$ のサイズを超える場合は、$[i, \mathrm{a.size})$ で求めます。
+     </p>
+     <p>
+      配列外参照の場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).min([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>)
+rmq.query(<span class="n">0</span>) <span class="c"># =&gt; 2</span>
+rmq.query(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
+rmq.query(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
+rmq.query(<span class="n">3</span>) <span class="c"># =&gt; 4</span>
+rmq.query(<span class="n">4</span>) <span class="c"># =&gt; 6</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L13" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="&lt;=&gt;(other:self)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      &lt;=&gt;
-     </strong>
-     (other :
-     <span class="k">
-      self
-     </span>
-     )
-     <a class="method-permalink" href="#%3C%3D%3E%28other%3Aself%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L16" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="initialize-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      initialize
-     </strong>
-     <a class="method-permalink" href="#initialize-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/graph/dijkstra-graph.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L97" target="_blank">
       View source
      </a>
      ]
