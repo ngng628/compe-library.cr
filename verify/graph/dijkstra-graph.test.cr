@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
 
-require "../../src/nglib/graph/dijkstra-graph.cr"
+require "../../src/nglib/graph/dijkstra"
 require "../../src/nglib/constants"
 
 struct W < NgLib::Weight
