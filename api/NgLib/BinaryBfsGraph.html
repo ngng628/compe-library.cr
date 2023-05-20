@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::DijkstraGraph(Weight) - nglib main
+   NgLib::BinaryBfsGraph - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -97,12 +97,12 @@
          BfsGraph
         </a>
        </li>
-       <li class="" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
+       <li class="current" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
         <a href="../NgLib/BinaryBfsGraph.html">
          BinaryBfsGraph
         </a>
        </li>
-       <li class="parent open current" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
         <a href="../NgLib/DijkstraGraph.html">
          DijkstraGraph
         </a>
@@ -210,12 +210,12 @@
     <span class="kind">
      class
     </span>
-    NgLib::DijkstraGraph(Weight)
+    NgLib::BinaryBfsGraph
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/DijkstraGraph.html">
-      NgLib::DijkstraGraph(Weight)
+     <a href="../NgLib/BinaryBfsGraph.html">
+      NgLib::BinaryBfsGraph
      </a>
     </li>
     <li class="superclass">
@@ -234,12 +234,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/dijkstra.cr#L20" target="_blank">
-    nglib/graph/dijkstra.cr
-   </a>
-   <br/>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L4" target="_blank">
-    nglib/graph/radix-dijkstra.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L4" target="_blank">
+    nglib/graph/binary-bfs.cr
    </a>
    <br/>
    <h2>
@@ -289,26 +285,17 @@
      </a>
      <div class="summary">
       <p>
-       非負整数の重み $w$ の辺 $(u, v)$ を追加します。
+       辺 $(u, v, w)$ を追加します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AWeight%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     <a class="signature" href="#graph%3AArray%28Array%28Edge%29%29-instance-method">
       <strong>
-       #add_edge
+       #graph
       </strong>
-      (u : Int, v : Int, w : Weight, directed : Bool =
-      <span class="n">
-       false
-      </span>
-      )
+      : Array(Array(Edge))
      </a>
-     <div class="summary">
-      <p>
-       非負整数の重み $w$ の辺 $(u, v)$ を追加します。
-      </p>
-     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
@@ -361,48 +348,6 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path_route%28start%2Cdest%29-instance-method">
-      <strong>
-       #shortest_path_route
-      </strong>
-      (start, dest)
-     </a>
-     <div class="summary">
-      <p>
-       始点
-       <code>
-        start
-       </code>
-       から終点
-       <code>
-        dest
-       </code>
-       への最短経路の一例を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path_tree%28start%2Cdirected%3ABool%3Dtrue%29%3AArray%28Array%28Int32%29%29-instance-method">
-      <strong>
-       #shortest_path_tree
-      </strong>
-      (start, directed : Bool =
-      <span class="n">
-       true
-      </span>
-      ) : Array(Array(Int32))
-     </a>
-     <div class="summary">
-      <p>
-       始点
-       <code>
-        start
-       </code>
-       から最短路木を構築します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
      <a class="signature" href="#size%3AInt32-instance-method">
       <strong>
        #size
@@ -441,12 +386,12 @@
      <p>
       $n$ 頂点 $0$ 辺からなるグラフを作成します。
      </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)</code></pre>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L73" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L23" target="_blank">
       View source
      </a>
      ]
@@ -490,7 +435,10 @@
     </div>
     <div class="doc">
      <p>
-      非負整数の重み $w$ の辺 $(u, v)$ を追加します。
+      辺 $(u, v, w)$ を追加します。
+     </p>
+     <p>
+      $w$ は $0$ または $1$ である必要があります。
      </p>
      <p>
       <code>
@@ -503,65 +451,34 @@
       の場合、
 有向グラフとみなして、$u$ から $v$ への辺のみ生やします。
      </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)
-graph.add_edge(u, v, w)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
-graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)
+graph.add_edge(u, v)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
+graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L88" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L40" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="add_edge(u:Int,v:Int,w:Weight,directed:Bool=false)-instance-method">
+   <div class="entry-detail" id="graph:Array(Array(Edge))-instance-method">
     <div class="signature">
      def
      <strong>
-      add_edge
+      graph
      </strong>
-     (u :
-     <a href="../Int.html">
-      Int
-     </a>
-     , v :
-     <a href="../Int.html">
-      Int
-     </a>
-     , w : Weight, directed : Bool =
-     <span class="n">
-      false
-     </span>
-     )
-     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cw%3AWeight%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     : Array(Array(Edge))
+     <a class="method-permalink" href="#graph%3AArray%28Array%28Edge%29%29-instance-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      非負整数の重み $w$ の辺 $(u, v)$ を追加します。
-     </p>
-     <p>
-      <code>
-       directed
-      </code>
-      が
-      <code>
-       true
-      </code>
-      の場合、
-有効グラフとみなして、$u$ から $v$ への辺のみ生やします。
-     </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">Dijkstra</span>.new(n)
-graph.add_edge(u, v, w)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
-graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/dijkstra.cr#L46" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L16" target="_blank">
       View source
      </a>
      ]
@@ -604,7 +521,7 @@ dist <span class="c"># =&gt; 12</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L136" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L88" target="_blank">
       View source
      </a>
      ]
@@ -633,13 +550,13 @@ dist <span class="c"># =&gt; 12</span></code></pre>
       </code>
       から各頂点への最短経路長を返します。
      </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(<span class="n">2</span>)
+     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>)
 dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L109" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -665,84 +582,7 @@ dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></p
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L99" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="shortest_path_route(start,dest)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      shortest_path_route
-     </strong>
-     (start, dest)
-     <a class="method-permalink" href="#shortest_path_route%28start%2Cdest%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      始点
-      <code>
-       start
-      </code>
-      から終点
-      <code>
-       dest
-      </code>
-      への最短経路の一例を返します。
-     </p>
-     <pre><code class="language-crystal">route <span class="o">=</span> graph.shortest_path_route(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L146" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="shortest_path_tree(start,directed:Bool=true):Array(Array(Int32))-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      shortest_path_tree
-     </strong>
-     (start, directed : Bool =
-     <span class="n">
-      true
-     </span>
-     ) : Array(Array(Int32))
-     <a class="method-permalink" href="#shortest_path_tree%28start%2Cdirected%3ABool%3Dtrue%29%3AArray%28Array%28Int32%29%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      始点
-      <code>
-       start
-      </code>
-      から最短路木を構築します。
-     </p>
-     <p>
-      最短路木は
-      <code>
-       start
-      </code>
-      からの最短経路のみを残した全域木です。
-     </p>
-     <pre><code class="language-crystal">route <span class="o">=</span> graph.shortest_path_route(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L167" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L52" target="_blank">
       View source
      </a>
      ]
@@ -762,7 +602,7 @@ route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/radix-dijkstra.cr#L65" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/graph/binary-bfs.cr#L15" target="_blank">
       View source
      </a>
      ]

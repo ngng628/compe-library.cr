@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-05-20 20:23:42+09:00</li>
+    <li>Last update: 2023-05-21 03:26:11+09:00</li>
     
     
     
@@ -110,7 +110,7 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/slide-minmax.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/data-structure/slide-minmax.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/slide-minmax.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/slide-minmax.cr
             
         </a></li>
     
@@ -118,11 +118,11 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/static-range-frequency.cr"><img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> src/nglib/data-structure/static-range-frequency.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/static-range-frequency.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/static-range-frequency.cr
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/static-range-sum.cr"><img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> src/nglib/data-structure/static-range-sum.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/data-structure/static-range-sum.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data-structure/static-range-sum.cr
             
         </a></li>
     
@@ -134,7 +134,11 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/graph/dijkstra-graph.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/dijkstra-graph.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/binary-bfs.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/graph/binary-bfs.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/dijkstra.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/dijkstra.cr
             
         </a></li>
     
@@ -150,7 +154,7 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/graph/radix-dijkstra-graph.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/radix-dijkstra-graph.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/radix-dijkstra.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/radix-dijkstra.cr
             
         </a></li>
     
@@ -706,11 +710,11 @@
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
 </span>    <span class="cp"># rmq = SlideMinmax(Int32).min([2, 7, 3, 4, 6], 3)
-</span>    <span class="cp"># rmq.query?(0) # =&gt; 2
-</span>    <span class="cp"># rmq.query?(1) # =&gt; 3
-</span>    <span class="cp"># rmq.query?(2) # =&gt; 3
-</span>    <span class="cp"># rmq.query?(3) # =&gt; 4
-</span>    <span class="cp"># rmq.query?(4) # =&gt; 6
+</span>    <span class="cp"># rmq.query?(0)   # =&gt; 2
+</span>    <span class="cp"># rmq.query?(1)   # =&gt; 3
+</span>    <span class="cp"># rmq.query?(2)   # =&gt; 3
+</span>    <span class="cp"># rmq.query?(3)   # =&gt; 4
+</span>    <span class="cp"># rmq.query?(4)   # =&gt; 6
 </span>    <span class="cp"># rmq.query?(100) # =&gt; nil
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">query</span><span class="o">?</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
@@ -1135,6 +1139,99 @@
           <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">to</span><span class="p">]</span> <span class="o">!=</span> <span class="n">OO</span>
           <span class="n">dist</span><span class="p">[</span><span class="n">to</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
           <span class="n">queue</span> <span class="o">&lt;&lt;</span> <span class="n">to</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">dist</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 始点 `start` から終点 `dest` への最短経路長を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># dist = graph.shortest_path(start: 2, dest: 0)
+</span>    <span class="cp"># dist # =&gt; 12
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="nf">shortest_path</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">dest</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span><span class="p">)[</span><span class="n">dest</span><span class="p">]</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="cp"># require "../constants"
+</span>
+
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="k">class</span> <span class="nc">BinaryBfsGraph</span>
+    <span class="k">private</span> <span class="k">struct</span> <span class="nc">Edge</span>
+      <span class="n">getter</span> <span class="n">to</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">getter</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">Int32</span>
+
+      <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+        <span class="err">@</span><span class="n">to</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">to_i32</span>
+        <span class="err">@</span><span class="n">weight</span> <span class="o">=</span> <span class="n">w</span><span class="p">.</span><span class="n">to_i32</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="n">getter</span> <span class="n">graph</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Edge</span><span class="p">))</span>
+
+    <span class="cp"># $n$ 頂点 $0$ 辺からなるグラフを作成します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># graph = BfsGraph.new(n)
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i64</span><span class="p">.</span><span class="n">to_i32</span>
+      <span class="err">@</span><span class="n">graph</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">Edge</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 辺 $(u, v, w)$ を追加します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $w$ は $0$ または $1$ である必要があります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `directed` が `true` の場合、
+</span>    <span class="cp"># 有向グラフとみなして、$u$ から $v$ への辺のみ生やします。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># graph = BfsGraph.new(n)
+</span>    <span class="cp"># graph.add_edge(u, v)                 # =&gt; (u) &lt;---w---&gt; (v)
+</span>    <span class="cp"># graph.add_edge(u, v, directed: true) # =&gt; (u) ----w---&gt; (v)
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+      <span class="n">raise</span> <span class="n">Exception</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="s">"w should be 0 or 1"</span><span class="p">)</span> <span class="n">unless</span> <span class="n">w</span><span class="p">.</span><span class="n">in</span><span class="o">?</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">})</span>
+      <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">.</span><span class="n">to_i32</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">Edge</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="n">v</span><span class="p">.</span><span class="n">to_i32</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">Edge</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="n">unless</span> <span class="n">directed</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 全点対間の最短経路長を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># dists = graph.shortest_path
+</span>    <span class="cp"># dists # =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">shortest_path</span>
+      <span class="p">(</span><span class="mf">0.</span><span class="p">..</span><span class="err">@</span><span class="n">size</span><span class="p">).</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">shortest_path</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 始点 `start` から各頂点への最短経路長を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># dist = graph.shortest_path(start: 2)
+</span>    <span class="cp"># dist # =&gt; [3, 8, 0, 7, 1]
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="n">deque</span> <span class="o">=</span> <span class="n">Deque</span><span class="p">.</span><span class="k">new</span><span class="p">([</span><span class="n">start</span><span class="p">.</span><span class="n">to_i32</span><span class="p">])</span>
+      <span class="n">dist</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">i</span> <span class="o">==</span> <span class="n">start</span> <span class="o">?</span> <span class="mi">0</span><span class="n">_i64</span> <span class="o">:</span> <span class="n">OO</span> <span class="p">}</span>
+      <span class="n">until</span> <span class="n">deque</span><span class="p">.</span><span class="n">empty</span><span class="o">?</span>
+        <span class="n">from</span> <span class="o">=</span> <span class="n">deque</span><span class="p">.</span><span class="n">shift</span>
+        <span class="err">@</span><span class="n">graph</span><span class="p">[</span><span class="n">from</span><span class="p">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+          <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">from</span><span class="p">]</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">weight</span>
+          <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">]</span>
+            <span class="n">dist</span><span class="p">[</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">weight</span> <span class="o">==</span> <span class="mi">0</span>
+              <span class="n">deque</span><span class="p">.</span><span class="n">unshift</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">to</span><span class="p">)</span>
+            <span class="k">else</span>
+              <span class="n">deque</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">to</span>
+            <span class="n">end</span>
+          <span class="n">end</span>
         <span class="n">end</span>
       <span class="n">end</span>
       <span class="n">dist</span>
