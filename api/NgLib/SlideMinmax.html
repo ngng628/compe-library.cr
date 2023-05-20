@@ -267,7 +267,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L16" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L16" target="_blank">
     nglib/data-structure/slide-minmax.cr
    </a>
    <br/>
@@ -343,9 +343,22 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#query%28i%3AInt%29%3AT%7CNil-instance-method">
+     <a class="signature" href="#query%28i%3AInt%29%3AT-instance-method">
       <strong>
        #query
+      </strong>
+      (i : Int) : T
+     </a>
+     <div class="summary">
+      <p>
+       $[i, i + \mathrm{length})$ の範囲の総積 $cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めます。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#query%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+      <strong>
+       #query?
       </strong>
       (i : Int) : T | Nil
      </a>
@@ -418,7 +431,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L47" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L47" target="_blank">
       View source
      </a>
      ]
@@ -457,7 +470,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L34" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L34" target="_blank">
       View source
      </a>
      ]
@@ -487,7 +500,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L25" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L25" target="_blank">
       View source
      </a>
      ]
@@ -502,7 +515,7 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="query(i:Int):T|Nil-instance-method">
+   <div class="entry-detail" id="query(i:Int):T-instance-method">
     <div class="signature">
      def
      <strong>
@@ -512,8 +525,46 @@
      <a href="../Int.html">
       Int
      </a>
+     ) : T
+     <a class="method-permalink" href="#query%28i%3AInt%29%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      $[i, i + \mathrm{length})$ の範囲の総積 $cmp(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めます。
+     </p>
+     <p>
+      $i + \mathrm{length}$ が $a$ のサイズを超える場合は、$[i, \mathrm{a.size})$ で求めます。
+     </p>
+     <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).min([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>)
+rmq.query(<span class="n">0</span>) <span class="c"># =&gt; 2</span>
+rmq.query(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
+rmq.query(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
+rmq.query(<span class="n">3</span>) <span class="c"># =&gt; 4</span>
+rmq.query(<span class="n">4</span>) <span class="c"># =&gt; 6</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L79" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="query?(i:Int):T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      query?
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
      ) : T | Nil
-     <a class="method-permalink" href="#query%28i%3AInt%29%3AT%7CNil-instance-method">
+     <a class="method-permalink" href="#query%3F%28i%3AInt%29%3AT%7CNil-instance-method">
       #
      </a>
     </div>
@@ -532,16 +583,17 @@
       を返します。
      </p>
      <pre><code class="language-crystal">rmq <span class="o">=</span> <span class="t">SlideMinmax</span>(<span class="t">Int32</span>).min([<span class="n">2</span>, <span class="n">7</span>, <span class="n">3</span>, <span class="n">4</span>, <span class="n">6</span>], <span class="n">3</span>)
-rmq.query(<span class="n">0</span>) <span class="c"># =&gt; 2</span>
-rmq.query(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
-rmq.query(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
-rmq.query(<span class="n">3</span>) <span class="c"># =&gt; 4</span>
-rmq.query(<span class="n">4</span>) <span class="c"># =&gt; 6</span></code></pre>
+rmq.query?(<span class="n">0</span>) <span class="c"># =&gt; 2</span>
+rmq.query?(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
+rmq.query?(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
+rmq.query?(<span class="n">3</span>) <span class="c"># =&gt; 4</span>
+rmq.query?(<span class="n">4</span>) <span class="c"># =&gt; 6</span>
+rmq.query?(<span class="n">100</span>) <span class="c"># =&gt; nil</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/49260c0450490640c136dbd898231c137922802f/src/nglib/data-structure/slide-minmax.cr#L97" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/d4a174acb0d9bae33a291c9b033bdf8f708b9138/src/nglib/data-structure/slide-minmax.cr#L98" target="_blank">
       View source
      </a>
      ]
