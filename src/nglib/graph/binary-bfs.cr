@@ -5,6 +5,7 @@ module NgLib
     private struct Edge
       getter to : Int32
       getter weight : Int32
+
       def initialize(t : Int, w : Int)
         @to = t.to_i32
         @weight = w.to_i32

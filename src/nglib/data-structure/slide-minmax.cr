@@ -88,11 +88,11 @@ module NgLib
     #
     # ```
     # rmq = SlideMinmax(Int32).min([2, 7, 3, 4, 6], 3)
-    # rmq.query?(0) # => 2
-    # rmq.query?(1) # => 3
-    # rmq.query?(2) # => 3
-    # rmq.query?(3) # => 4
-    # rmq.query?(4) # => 6
+    # rmq.query?(0)   # => 2
+    # rmq.query?(1)   # => 3
+    # rmq.query?(2)   # => 3
+    # rmq.query?(3)   # => 4
+    # rmq.query?(4)   # => 6
     # rmq.query?(100) # => nil
     # ```
     def query?(i : Int) : T?
