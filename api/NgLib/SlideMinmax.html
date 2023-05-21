@@ -235,11 +235,11 @@
     Overview
    </h2>
    <p>
-    データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造です。
+    データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を、
+前計算 $O(N)$ クエリが $O(1)$ 求めるためのデータ構造です。
    </p>
    <p>
-    セグメント木やSparseTableと異なり、区間長が固定の範囲でしかクエリに答えられませんが、
-計算量が前計算 $O(N)$ で、クエリが $O(1)$ なので高速です。
+    セグメント木やSparseTableと異なり、区間長が固定の範囲でしかクエリに答えられませんが高速です。
    </p>
    <p>
     <code>
@@ -247,7 +247,7 @@
       #query(i)
      </a>
     </code>
-    で $[i, i + \mathrm{length} - 1)$ が配列の範囲を超えたとき、$[i, \mathrm{a.size})$ だと思って計算します。
+    で $[i, i + \mathrm{length})$ が配列の範囲を超えたとき、$[i, \mathrm{a.size})$ だと思って計算します。
    </p>
    <p>
     もし、
@@ -283,7 +283,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L16" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L16" target="_blank">
     nglib/data-structure/slide-minmax.cr
    </a>
    <br/>
@@ -447,7 +447,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L47" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L47" target="_blank">
       View source
      </a>
      ]
@@ -486,7 +486,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L34" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L34" target="_blank">
       View source
      </a>
      ]
@@ -516,7 +516,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L25" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L25" target="_blank">
       View source
      </a>
      ]
@@ -563,7 +563,7 @@ rmq.query(<span class="n">4</span>) <span class="c"># =&gt; 6</span></code></pre
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L79" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L79" target="_blank">
       View source
      </a>
      ]
@@ -609,7 +609,7 @@ rmq.query?(<span class="n">100</span>) <span class="c"># =&gt; nil</span></code>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/15e5aa206d97ddb24ade4755291023876714d375/src/nglib/data-structure/slide-minmax.cr#L98" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/afc3de843e224e3d587d95fd3f3a39599065e2f7/src/nglib/data-structure/slide-minmax.cr#L98" target="_blank">
       View source
      </a>
      ]
