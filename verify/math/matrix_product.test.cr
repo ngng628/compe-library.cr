@@ -35,4 +35,3 @@ b = Matrix.rows(Array.new(m) { Array.new(k) { ModInt.new(NgLib::FastIn::Scanner.
 
 c = a * b
 puts c
-
