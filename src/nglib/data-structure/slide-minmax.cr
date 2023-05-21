@@ -1,10 +1,10 @@
 module NgLib
-  # データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を求めるためのデータ構造です。
+  # データ列 $a$ に対して、$\min(a_i, a_{i + 1}, \dots, a_{i + \mathrm{length} - 1})$ を、
+  # 前計算 $O(N)$ クエリが $O(1)$ 求めるためのデータ構造です。
   #
-  # セグメント木やSparseTableと異なり、区間長が固定の範囲でしかクエリに答えられませんが、
-  # 計算量が前計算 $O(N)$ で、クエリが $O(1)$ なので高速です。
+  # セグメント木やSparseTableと異なり、区間長が固定の範囲でしかクエリに答えられませんが高速です。
   #
-  # `query(i)` で $[i, i + \mathrm{length} - 1)$ が配列の範囲を超えたとき、$[i, \mathrm{a.size})$ だと思って計算します。
+  # `query(i)` で $[i, i + \mathrm{length})$ が配列の範囲を超えたとき、$[i, \mathrm{a.size})$ だと思って計算します。
   #
   # もし、`query(i)` で $[i - \mathrm{length}, i)$ が求まってほしい場合は、`a = ([eins] * length) + a` としておけば良いです。
   # 範囲外の場合は $[0, i)$ だと思って計算されます。
