@@ -1,4 +1,5 @@
 module NgLib
+  # 不変な数列 $A$ に対して、$\sum_{i=l}^{r-1} A_i$ を前計算 $O(N)$ クエリ $O(1)$ で求めます。
   class StaticRangeSum(T)
     getter size : Int64
     getter csum : Array(T)
