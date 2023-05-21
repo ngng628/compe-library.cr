@@ -1,7 +1,7 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/staticrmq
 
 require "../../src/nglib/utils"
-require "../../src/nglib/data-structure/sparse-table"
+require "../../src/nglib/data_structure/sparse_table"
 
 _n, q = ints
 a = ints

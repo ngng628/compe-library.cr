@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
 
-require "../../src/nglib/graph/max-flow"
+require "../../src/nglib/graph/max_flow"
 
 n, m = read_line.split.map &.to_i
 

@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_3_D
 
-require "../../src/nglib/data-structure/slide-minmax"
+require "../../src/nglib/data_structure/slide_minmax"
 
 n, l = read_line.split.map &.to_i
 a = read_line.split.map &.to_i

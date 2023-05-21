@@ -16,5 +16,8 @@ dependencies:
   atcoder:
     github: google/ac-library.cr
     branch: master
+  matrix:
+    github: ngng628/matrix-cr
+    branch: main
 
 license: CC0

@@ -1,6 +1,6 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/static_range_frequency
 
-require "../../src/nglib/data-structure/static-range-frequency"
+require "../../src/nglib/data_structure/static_range_frequency"
 
 _n, q = read_line.split.map &.to_i64
 a = read_line.split.map &.to_i64

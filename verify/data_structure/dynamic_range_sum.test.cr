@@ -1,7 +1,7 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/point_add_range_sum
 
 require "../../src/nglib/utils"
-require "../../src/nglib/data-structure/dynamic-range-sum"
+require "../../src/nglib/data_structure/dynamic_range_sum"
 
 _n, q = ints
 a = ints
