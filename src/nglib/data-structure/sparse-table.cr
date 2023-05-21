@@ -3,7 +3,7 @@ module NgLib
   # - 結合則 : $(x \oplus y) \oplus z = x \oplus (y \oplus z)$
   # - 冪等性 : $x \oplus x = x$
   #
-  # 前計算は $O(N \log{N}) かかりますが、区間クエリには $O(1)$ で答えられます。
+  # 前計算は $O(N \log{N})$ かかりますが、区間クエリには $O(1)$ で答えられます。
   class SparseTable(T)
     getter size : Int32
     @data : Array(T)
