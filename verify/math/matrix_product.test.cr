@@ -1,6 +1,5 @@
 # verification-helper: PROBLEM https://judge.yosupo.jp/problem/matrix_product
 
-require "../../src/nglib/math/matrix"
 require "../../src/nglib/utils/fastin"
 require "atcoder/mod_int"
 require "matrix"
