@@ -14,5 +14,5 @@ shards:
 
   matrix:
     git: https://github.com/ngng628/matrix-cr.git
-    version: 0.1.0+git.commit.f5211ecd675b12d3b1bd516b5ea44f49d7156e47
+    version: 0.1.0+git.commit.a4723c747b3d3ec8653fde54bb329e9afee42c88
 
