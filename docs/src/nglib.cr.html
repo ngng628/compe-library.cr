@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-06-04 20:11:27+09:00</li>
+    <li>Last update: 2023-06-04 20:59:36+09:00</li>
     
     
     
@@ -163,6 +163,10 @@
         </a></li>
     
         <li><a href="/compe-library.cr/docs/src/nglib/grid/grid.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/grid/grid.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/string/rolling_hash.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/string/rolling_hash.cr
             
         </a></li>
     
@@ -2466,6 +2470,288 @@
 
     <span class="n">def</span> <span class="p">[]</span><span class="o">=</span><span class="p">(</span><span class="n">y</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">c</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
       <span class="err">@</span><span class="n">s</span><span class="p">[</span><span class="n">y</span><span class="o">*</span><span class="err">@</span><span class="n">w</span> <span class="o">+</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="k">class</span> <span class="nc">RollingHash</span>
+    <span class="n">MOD</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_u64</span> <span class="o">&lt;&lt;</span> <span class="mi">61</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
+  
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="err">@</span><span class="n">base</span> <span class="o">:</span> <span class="n">UInt64</span>
+    <span class="err">@</span><span class="n">power</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">UInt64</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">hash</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">UInt64</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">selfhash</span> <span class="o">:</span> <span class="n">UInt64</span>
+  
+    <span class="cp"># 配列 $a$ に対する、基数が `base` のロリハを構築します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `base` は指定しない場合、ランダムに生成されます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new([1, 2, 5, 1, 2])
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int</span><span class="p">),</span> <span class="n">base</span> <span class="o">:</span> <span class="n">UInt64</span><span class="o">?</span> <span class="o">=</span> <span class="n">nil</span><span class="p">)</span>
+      <span class="n">initialize</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 文字列 $s$ に対する、基数が `base` のロリハを構築します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `base` は指定しない場合、ランダムに生成されます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">base</span> <span class="o">:</span> <span class="n">UInt64</span><span class="o">?</span> <span class="o">=</span> <span class="n">nil</span><span class="p">)</span>
+      <span class="n">initialize</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># Enumerable な列 $a$ に対する、基数が base のロリハを構築します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `base` は指定しない場合、ランダムに生成されます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new(5, [1, 2, 5, 1, 2])
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">,</span> <span class="n">a</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">,</span> <span class="n">base</span> <span class="o">:</span> <span class="n">UInt64</span><span class="o">?</span> <span class="o">=</span> <span class="n">nil</span><span class="p">)</span>
+      <span class="n">base</span> <span class="o">=</span> <span class="n">RollingHash</span><span class="p">.</span><span class="n">create_base</span> <span class="k">if</span> <span class="n">base</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span>
+  
+      <span class="err">@</span><span class="n">power</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="n">_u64</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">hash</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="n">_u64</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+  
+      <span class="n">a</span><span class="p">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">power</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="err">@</span><span class="n">power</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span>
+        <span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="p">.</span><span class="n">to_u64</span>
+        <span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">MOD</span> <span class="k">if</span> <span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">MOD</span>
+      <span class="n">end</span>
+  
+      <span class="err">@</span><span class="n">selfhash</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># ランダムに基底を生成します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># base = RollingHash.create_base
+</span>    <span class="cp"># base # =&gt; 1729
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">create_base</span>
+      <span class="n">rand</span><span class="p">(</span><span class="mi">628</span><span class="n">_u64</span><span class="p">..</span><span class="n">MOD</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 初期化時に使用した列に対するハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh.hash # =&gt; 339225237399054811
+</span>    <span class="cp"># rh.hash("missisippi") # =&gt; 339225237399054811
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">hash</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="err">@</span><span class="n">selfhash</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 文字列 $s$ のハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh.hash("is") # =&gt; 339225237399054811
+</span>    <span class="cp"># rh.hash("abc") # =&gt; 496222201481864933
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">hash</span><span class="p">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">String</span><span class="p">)</span>
+      <span class="n">hash</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">bytes</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 列 $s$ のハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh.hash("is") # =&gt; 339225237399054811
+</span>    <span class="cp"># rh.hash("abc") # =&gt; 496222201481864933
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">hash</span><span class="p">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">)</span>
+      <span class="n">s</span><span class="p">.</span><span class="n">reduce</span><span class="p">(</span><span class="mi">0</span><span class="n">_u64</span><span class="p">){</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">ti</span><span class="o">|</span> <span class="n">mul</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">ti</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># `s[start...start + length]` のハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh.substr(4, length: 2) # =&gt; 339225237399054811
+</span>    <span class="cp"># rh.substr(5, length: 2) # =&gt; 339225237399054811
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="nf">substr</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">length</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span> <span class="o">+</span> <span class="n">MOD</span> <span class="o">-</span> <span class="n">mul</span><span class="p">(</span><span class="err">@</span><span class="n">hash</span><span class="p">[</span><span class="n">start</span><span class="p">],</span> <span class="err">@</span><span class="n">power</span><span class="p">[</span><span class="n">length</span><span class="p">])</span>
+      <span class="n">res</span> <span class="o">&lt;</span> <span class="n">MOD</span> <span class="o">?</span> <span class="n">res</span> <span class="o">:</span> <span class="n">res</span> <span class="o">-</span> <span class="n">MOD</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># `range` で指定した範囲 `s[range]` のハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh.slice(4..5) # =&gt; 339225237399054811
+</span>    <span class="cp"># rh.slice(5..6) # =&gt; 339225237399054811
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">slice</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">right</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+          <span class="err">@</span><span class="n">size</span>
+        <span class="k">else</span>
+          <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">end</span>
+    
+      <span class="n">length</span> <span class="o">=</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span>
+  
+      <span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="o">:</span> <span class="n">left</span><span class="p">,</span> <span class="n">length</span><span class="o">:</span> <span class="n">length</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># `range` で指定した範囲 `s[range]` のハッシュを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh[4..5] # =&gt; 339225237399054811
+</span>    <span class="cp"># rh[5..6] # =&gt; 339225237399054811
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="p">[](</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="n">slice</span><span class="p">(</span><span class="n">range</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># ハッシュ値 $h_1$ とハッシュ値 $h_2$ を結合したときのハッシュ値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ハッシュ値 $h_2$ の元々の長さを渡す必要があります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi")
+</span>    <span class="cp"># h1 = rh[1..2] # "is"
+</span>    <span class="cp"># h2 = rh[5..6] # "si"
+</span>    <span class="cp"># h = rh.concat(h1, h2, h2_len: 2)
+</span>    <span class="cp"># h == rh.[1..4] # =&gt; true
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">concat</span><span class="p">(</span><span class="n">h1</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">h2</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">h2_len</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span> <span class="err">@</span><span class="n">power</span><span class="p">[</span><span class="n">h2_len</span><span class="p">])</span> <span class="o">+</span> <span class="n">h2</span>
+      <span class="n">res</span> <span class="o">&lt;</span> <span class="n">MOD</span> <span class="o">?</span> <span class="n">res</span> <span class="o">:</span> <span class="n">res</span> <span class="o">-</span> <span class="n">MOD</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># `s[i...]` と `other[j...]` の最長共通接頭辞の長さを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `other` はデフォルトで自分自身を渡しています。
+</span>    <span class="cp"># 自分自身以外を渡す場合は $(mod, base)$ が一致している必要があります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh1 = RollingHash.new("missisippi")
+</span>    <span class="cp"># rh1 = rh1.lcp(3, 5) # =&gt; 2
+</span>    <span class="cp"># rh1 = rh1.lcp(0, 1) # =&gt; 0
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">lcp</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">j</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">other</span> <span class="o">=</span> <span class="n">self</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">length</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="err">@</span><span class="n">hash</span><span class="p">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="err">@</span><span class="n">hash</span><span class="p">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">j</span><span class="p">)</span>
+  
+      <span class="n">ok</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="p">(</span><span class="mf">1.</span><span class="p">.</span><span class="n">length</span><span class="p">).</span><span class="n">bsearch</span><span class="p">{</span> <span class="o">|</span><span class="n">len</span><span class="o">|</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="n">len</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="o">:</span> <span class="n">i</span><span class="p">,</span> <span class="n">length</span><span class="o">:</span> <span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="n">other</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">start</span><span class="o">:</span> <span class="n">j</span><span class="p">,</span> <span class="n">length</span><span class="o">:</span> <span class="n">l</span><span class="p">)</span>
+      <span class="p">}.</span><span class="n">not_nil</span><span class="o">!</span>
+  
+      <span class="k">return</span> <span class="n">ok</span><span class="p">.</span><span class="n">to_i32</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># `s[i...]` と `t[j...]` の最長共通接頭辞の長さを返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># $i, j$ はデフォルトで $0$ を渡しています。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh1 = RollingHash.new("missisippi", base: 628)
+</span>    <span class="cp"># rh2 = RollingHash.new("thisisapen", base: 628)
+</span>    <span class="cp"># RollingHash.lcp(rh1, rh2) # =&gt; 0
+</span>    <span class="cp"># RollingHash.lcp(rh1, rh2, 4, 2) # =&gt; 3
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="n">lcp</span><span class="p">(</span><span class="n">rh1</span> <span class="o">:</span> <span class="n">self</span><span class="p">,</span> <span class="n">rh2</span> <span class="o">:</span> <span class="n">self</span><span class="p">,</span> <span class="n">i</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">rh1</span><span class="p">.</span><span class="n">lcp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">rh2</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 文字列検索を行います。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `s[offset..]` から `t` と一致する初めての添字を返します。
+</span>    <span class="cp"># 添字は `s` が基準です。また、`offset` が加算された値が返ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は `nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi", base: 628)
+</span>    <span class="cp"># rh.index("is") # =&gt; 1
+</span>    <span class="cp"># rh.index("is", offset: 4) # =&gt; 4
+</span>    <span class="cp"># rh.index("mid") # =&gt; nil
+</span>    <span class="cp"># rh.index("i") # =&gt; 1
+</span>    <span class="cp"># rh.index("pi") # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">index</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span><span class="o">?</span>
+      <span class="n">index</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 検索を行います。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `s[offset..]` から `t` と一致する初めての添字を返します。
+</span>    <span class="cp"># 添字は `s` が基準です。また、`offset` が加算された値が返ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は `nil` を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi", base: 628)
+</span>    <span class="cp"># rh.index("is") # =&gt; 1
+</span>    <span class="cp"># rh.index("is", offset: 4) # =&gt; 4
+</span>    <span class="cp"># rh.index("mid") # =&gt; nil
+</span>    <span class="cp"># rh.index("i") # =&gt; 1
+</span>    <span class="cp"># rh.index("pi") # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">index</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">,</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span><span class="o">?</span>
+      <span class="n">ths</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+      <span class="n">t_len</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">offset</span><span class="p">..</span><span class="err">@</span><span class="n">size</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span><span class="p">).</span><span class="n">index</span><span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">ths</span> <span class="o">==</span> <span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">t_len</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">res</span> <span class="o">?</span> <span class="n">res</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 文字列検索を行います。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `s[offset..]` から `t` と一致する初めての添字を返します。
+</span>    <span class="cp"># 添字は `s` が基準です。また、`offset` が加算された値が返ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は例外を投げます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi", base: 628)
+</span>    <span class="cp"># rh.index!("is") # =&gt; 1
+</span>    <span class="cp"># rh.index!("is", offset: 4) # =&gt; 4
+</span>    <span class="cp"># rh.index!("mid") # =&gt; Enumerable::NotFoundError
+</span>    <span class="cp"># rh.index!("i") # =&gt; 1
+</span>    <span class="cp"># rh.index!("pi") # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">String</span><span class="p">,</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">bytes</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+    <span class="n">end</span>
+  
+    <span class="cp"># 検索を行います。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `s[offset..]` から `t` と一致する初めての添字を返します。
+</span>    <span class="cp"># 添字は `s` が基準です。また、`offset` が加算された値が返ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は例外を投げます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># rh = RollingHash.new("missisippi", base: 628)
+</span>    <span class="cp"># rh.index!("is") # =&gt; 1
+</span>    <span class="cp"># rh.index!("is", offset: 4) # =&gt; 4
+</span>    <span class="cp"># rh.index!("mid") # =&gt; Enumerable::NotFoundError
+</span>    <span class="cp"># rh.index!("i") # =&gt; 1
+</span>    <span class="cp"># rh.index!("pi") # =&gt; 8
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">,</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">ths</span> <span class="o">=</span> <span class="mi">0</span><span class="n">_u64</span>
+      <span class="n">t</span><span class="p">.</span><span class="n">each</span><span class="p">{</span> <span class="o">|</span><span class="n">ti</span><span class="o">|</span> <span class="n">ths</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">ths</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">ti</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
+      <span class="n">t_len</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span>
+      <span class="p">(</span><span class="n">offset</span><span class="p">..</span><span class="err">@</span><span class="n">size</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span><span class="p">).</span><span class="n">index</span><span class="o">!</span><span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">ths</span> <span class="o">==</span> <span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">t_len</span><span class="p">)</span> <span class="p">}</span> <span class="o">+</span> <span class="n">offset</span>
+    <span class="n">end</span>
+  
+    <span class="err">@</span><span class="p">[</span><span class="n">AlwaysInline</span><span class="p">]</span>
+    <span class="k">private</span> <span class="n">def</span> <span class="n">mul</span><span class="p">(</span><span class="n">a</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">,</span> <span class="n">b</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">)</span> <span class="o">:</span> <span class="n">UInt64</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">to_u128</span> <span class="o">*</span> <span class="n">b</span>
+      <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;&gt;</span> <span class="mi">61</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">t</span> <span class="o">&amp;</span> <span class="n">MOD</span><span class="p">)</span>
+      <span class="p">(</span><span class="n">t</span> <span class="o">&lt;</span> <span class="n">MOD</span> <span class="o">?</span> <span class="n">t</span> <span class="o">:</span> <span class="n">t</span> <span class="o">-</span> <span class="n">MOD</span><span class="p">).</span><span class="n">to_u64</span>
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
