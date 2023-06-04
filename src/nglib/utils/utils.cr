@@ -25,4 +25,10 @@ macro make_array(s, x)
   }
 end
 
+struct Int
+  def div_ceil(other : Int)
+    (self + other - 1) // other
+  end
+end
+
 require "../constants"
