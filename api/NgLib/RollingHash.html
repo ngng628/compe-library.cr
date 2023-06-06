@@ -239,7 +239,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L2" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L2" target="_blank">
     nglib/string/rolling_hash.cr
    </a>
    <br/>
@@ -676,7 +676,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L18" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L18" target="_blank">
       View source
      </a>
      ]
@@ -716,7 +716,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L29" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L29" target="_blank">
       View source
      </a>
      ]
@@ -752,7 +752,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L40" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L40" target="_blank">
       View source
      </a>
      ]
@@ -787,7 +787,7 @@ base <span class="c"># =&gt; 1729</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L62" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -844,13 +844,13 @@ base <span class="c"># =&gt; 1729</span></code></pre>
      </p>
      <pre><code class="language-crystal">rh1 <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>, base: <span class="n">628</span>)
 rh2 <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"thisisapen"</span>, base: <span class="n">628</span>)
-<span class="t">RollingHash</span>.lcp(rh1, rh2) <span class="c"># =&gt; 0</span>
+<span class="t">RollingHash</span>.lcp(rh1, rh2)       <span class="c"># =&gt; 0</span>
 <span class="t">RollingHash</span>.lcp(rh1, rh2, <span class="n">4</span>, <span class="n">2</span>) <span class="c"># =&gt; 3</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L189" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L189" target="_blank">
       View source
      </a>
      ]
@@ -902,7 +902,7 @@ rh[<span class="n">5</span>..<span class="n">6</span>] <span class="c"># =&gt; 3
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L138" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L138" target="_blank">
       View source
      </a>
      ]
@@ -939,7 +939,7 @@ h <span class="o">==</span> rh.[<span class="n">1</span>..<span class="n">4</spa
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L153" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L153" target="_blank">
       View source
      </a>
      ]
@@ -961,13 +961,13 @@ h <span class="o">==</span> rh.[<span class="n">1</span>..<span class="n">4</spa
       文字列 $s$ のハッシュを返します。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>)
-rh.hash(<span class="s">"is"</span>) <span class="c"># =&gt; 339225237399054811</span>
+rh.hash(<span class="s">"is"</span>)  <span class="c"># =&gt; 339225237399054811</span>
 rh.hash(<span class="s">"abc"</span>) <span class="c"># =&gt; 496222201481864933</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L84" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L84" target="_blank">
       View source
      </a>
      ]
@@ -989,13 +989,13 @@ rh.hash(<span class="s">"abc"</span>) <span class="c"># =&gt; 496222201481864933
       列 $s$ のハッシュを返します。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>)
-rh.hash(<span class="s">"is"</span>) <span class="c"># =&gt; 339225237399054811</span>
+rh.hash(<span class="s">"is"</span>)  <span class="c"># =&gt; 339225237399054811</span>
 rh.hash(<span class="s">"abc"</span>) <span class="c"># =&gt; 496222201481864933</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L95" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L95" target="_blank">
       View source
      </a>
      ]
@@ -1017,13 +1017,13 @@ rh.hash(<span class="s">"abc"</span>) <span class="c"># =&gt; 496222201481864933
       初期化時に使用した列に対するハッシュを返します。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>)
-rh.hash <span class="c"># =&gt; 339225237399054811</span>
+rh.hash               <span class="c"># =&gt; 339225237399054811</span>
 rh.hash(<span class="s">"missisippi"</span>) <span class="c"># =&gt; 339225237399054811</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L73" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L73" target="_blank">
       View source
      </a>
      ]
@@ -1079,16 +1079,16 @@ rh.hash(<span class="s">"missisippi"</span>) <span class="c"># =&gt; 33922523739
       を返します。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>, base: <span class="n">628</span>)
-rh.index(<span class="s">"is"</span>) <span class="c"># =&gt; 1</span>
+rh.index(<span class="s">"is"</span>)            <span class="c"># =&gt; 1</span>
 rh.index(<span class="s">"is"</span>, offset: <span class="n">4</span>) <span class="c"># =&gt; 4</span>
-rh.index(<span class="s">"mid"</span>) <span class="c"># =&gt; nil</span>
-rh.index(<span class="s">"i"</span>) <span class="c"># =&gt; 1</span>
-rh.index(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></pre>
+rh.index(<span class="s">"mid"</span>)           <span class="c"># =&gt; nil</span>
+rh.index(<span class="s">"i"</span>)             <span class="c"># =&gt; 1</span>
+rh.index(<span class="s">"pi"</span>)            <span class="c"># =&gt; 8</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L208" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L208" target="_blank">
       View source
      </a>
      ]
@@ -1144,16 +1144,16 @@ rh.index(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></p
       を返します。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>, base: <span class="n">628</span>)
-rh.index(<span class="s">"is"</span>) <span class="c"># =&gt; 1</span>
+rh.index(<span class="s">"is"</span>)            <span class="c"># =&gt; 1</span>
 rh.index(<span class="s">"is"</span>, offset: <span class="n">4</span>) <span class="c"># =&gt; 4</span>
-rh.index(<span class="s">"mid"</span>) <span class="c"># =&gt; nil</span>
-rh.index(<span class="s">"i"</span>) <span class="c"># =&gt; 1</span>
-rh.index(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></pre>
+rh.index(<span class="s">"mid"</span>)           <span class="c"># =&gt; nil</span>
+rh.index(<span class="s">"i"</span>)             <span class="c"># =&gt; 1</span>
+rh.index(<span class="s">"pi"</span>)            <span class="c"># =&gt; 8</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L227" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L227" target="_blank">
       View source
      </a>
      ]
@@ -1205,16 +1205,16 @@ rh.index(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></p
       存在しない場合は例外を投げます。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>, base: <span class="n">628</span>)
-rh.index!(<span class="s">"is"</span>) <span class="c"># =&gt; 1</span>
+rh.index!(<span class="s">"is"</span>)            <span class="c"># =&gt; 1</span>
 rh.index!(<span class="s">"is"</span>, offset: <span class="n">4</span>) <span class="c"># =&gt; 4</span>
-rh.index!(<span class="s">"mid"</span>) <span class="c"># =&gt; Enumerable::NotFoundError</span>
-rh.index!(<span class="s">"i"</span>) <span class="c"># =&gt; 1</span>
-rh.index!(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></pre>
+rh.index!(<span class="s">"mid"</span>)           <span class="c"># =&gt; Enumerable::NotFoundError</span>
+rh.index!(<span class="s">"i"</span>)             <span class="c"># =&gt; 1</span>
+rh.index!(<span class="s">"pi"</span>)            <span class="c"># =&gt; 8</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L249" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L249" target="_blank">
       View source
      </a>
      ]
@@ -1266,16 +1266,16 @@ rh.index!(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></
       存在しない場合は例外を投げます。
      </p>
      <pre><code class="language-crystal">rh <span class="o">=</span> <span class="t">RollingHash</span>.new(<span class="s">"missisippi"</span>, base: <span class="n">628</span>)
-rh.index!(<span class="s">"is"</span>) <span class="c"># =&gt; 1</span>
+rh.index!(<span class="s">"is"</span>)            <span class="c"># =&gt; 1</span>
 rh.index!(<span class="s">"is"</span>, offset: <span class="n">4</span>) <span class="c"># =&gt; 4</span>
-rh.index!(<span class="s">"mid"</span>) <span class="c"># =&gt; Enumerable::NotFoundError</span>
-rh.index!(<span class="s">"i"</span>) <span class="c"># =&gt; 1</span>
-rh.index!(<span class="s">"pi"</span>) <span class="c"># =&gt; 8</span></code></pre>
+rh.index!(<span class="s">"mid"</span>)           <span class="c"># =&gt; Enumerable::NotFoundError</span>
+rh.index!(<span class="s">"i"</span>)             <span class="c"># =&gt; 1</span>
+rh.index!(<span class="s">"pi"</span>)            <span class="c"># =&gt; 8</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L268" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L268" target="_blank">
       View source
      </a>
      ]
@@ -1329,7 +1329,7 @@ rh1 <span class="o">=</span> rh1.lcp(<span class="n">0</span>, <span class="n">1
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L168" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L168" target="_blank">
       View source
      </a>
      ]
@@ -1349,7 +1349,7 @@ rh1 <span class="o">=</span> rh1.lcp(<span class="n">0</span>, <span class="n">1
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L5" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L5" target="_blank">
       View source
      </a>
      ]
@@ -1392,7 +1392,7 @@ rh.slice(<span class="n">5</span>..<span class="n">6</span>) <span class="c"># =
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L118" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L118" target="_blank">
       View source
      </a>
      ]
@@ -1431,7 +1431,7 @@ rh.substr(<span class="n">5</span>, length: <span class="n">2</span>) <span clas
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6998ab53a6be64d9a038bda48b1b1150cb976d32/src/nglib/string/rolling_hash.cr#L106" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5d2083705351bd3a243cce199906e99d439257f0/src/nglib/string/rolling_hash.cr#L106" target="_blank">
       View source
      </a>
      ]
