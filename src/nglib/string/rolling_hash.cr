@@ -1,4 +1,5 @@
 module NgLib
+  # 文字列 $S$ に対して、上手なハッシュを作ることで、比較やLCPを高速に求めます。
   class RollingHash
     MOD = (1_u64 << 61) - 1
 

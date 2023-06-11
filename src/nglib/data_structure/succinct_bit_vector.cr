@@ -1,15 +1,13 @@
 module NgLib
   # `SuccinctBitVector` は簡易ビットベクトル（簡易辞書、Succinct Indexable Dictionary）を提供するクラスです。
   #
-  # 前計算 $O(n / 32)$ で次の操作ができます。
+  # 前計算 $O(n / 32)$ で次の操作が $O(1)$ くらいでできます。
   #
-  # |メソッド|内容|時間計算量|
-  # |:-:|:-|:-:|
-  # | `.[i]` | $i$ 番目のビットにアクセスする | $O(1)$ |
-  # | `.sum(r)` | $[0, r)$ にある $1$ の個数を求める | $O(1)$ |
-  # | `.kth_bit_index(k)` | $k$ 番目に現れる $1$ の位置を求める | $O(\log{n})$ |
+  # - `.[i]` # => $i$ 番目のビットにアクセスする （$O(1)$）
+  # - `.sum(r)` # =>  $[0, r)$ にある $1$ の個数を求める （$O(1)$）
+  # - `.kth_bit_index(k)` # => $k$ 番目に現れる $1$ の位置を求める （$O(\log{n})$）
   #
-  # 例えばこの問題が解けます。 => [D - Sleep Log](https://atcoder.jp/contests/abc305/tasks/abc305_d)
+  # 例えばこの問題が解けます → [D - Sleep Log](https://atcoder.jp/contests/abc305/tasks/abc305_d)
   class SuccinctBitVector
     getter size : UInt32
     @blocks : UInt32

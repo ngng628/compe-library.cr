@@ -1,6 +1,12 @@
 require "../constants.cr"
 
 module NgLib
+  # $n$ 頂点 $m$ 辺の重み付きグラフに対して、最短経路を求めます。
+  #
+  # 経路の復元も可能です。
+  #
+  # このクラスは辺の重みが非負整数であるときのみ使えます。
+  # 辺の重みに非負整数以外を使いたい場合は `nglib/graph/dijkstra` を `require` してください。
   class DijkstraGraph
     record Edge, target : Int32, weight : UInt64
 

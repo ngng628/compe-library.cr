@@ -17,6 +17,11 @@ module NgLib
     end
   end
 
+  # $n$ 頂点 $m$ 辺の重み付きグラフに対して、最短経路を求めます。
+  #
+  # 経路の復元も可能です。
+  #
+  # 辺の重みが非負整数で表せる場合は `nglib/graph/radix_dijkstra` を使ったほうが高速です。
   class DijkstraGraph(Weight)
     record Edge(W), target : Int32, weight : W
 

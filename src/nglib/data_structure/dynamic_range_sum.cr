@@ -1,4 +1,9 @@
 module NgLib
+  # 動的な数列 $a$ に対して累積和を求めます。
+  #
+  # 累積和クエリは $O(\log{N})$ で処理することができます。
+  #
+  # 実装は BIT (Fenwick Tree) です。
   class DynamicRangeSum(T)
     getter size : Int32
     @data : Array(T)

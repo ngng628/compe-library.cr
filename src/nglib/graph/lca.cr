@@ -1,6 +1,7 @@
 require "../constants.cr"
 
 module NgLib
+  # 最近共通祖先を求めるライブラリです。
   class LCA
     alias Graph = Array(Array(Int64))
     getter parent : Array(Array(Int64))

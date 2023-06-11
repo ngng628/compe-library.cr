@@ -1,6 +1,9 @@
 require "../constants"
 
 module NgLib
+  # $n$ 頂点 $m$ 辺からなるグラフに対して、幅優先探索によって最短経路を求めます。
+  #
+  # 経路の復元も可能です。
   class BfsGraph
     getter size : Int32
     getter graph : Array(Array(Int32))
