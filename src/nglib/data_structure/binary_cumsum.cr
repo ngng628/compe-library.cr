@@ -75,23 +75,23 @@ module NgLib
     def sum(r) : UInt32
       @sums[r >> 5] + (@bits[r >> 5] & ((1_u32 << (r & 31)) - 1)).popcount
     end
-    
+
     # $[l, r)$ の総和を返します。
     def sum(l, r) : UInt32
       sum(r) - sum(l)
     end
-    
+
     # `range` の範囲で総和を返します。
     def sum(range : Range(Int?, Int?))
       l = (range.begin || 0)
       r = if range.end.nil?
-        @size
-      else
-        range.end.not_nil! + (range.exclusive? ? 0 : 1)
-      end
+            @size
+          else
+            range.end.not_nil! + (range.exclusive? ? 0 : 1)
+          end
       sum(l, r)
     end
-    
+
     # $i$ 番目のビットを返します。
     def [](i) : UInt32
       ((@bits[i >> 5] >> (i & 31)) & 1) > 0 ? 1_u32 : 0_u32
@@ -119,5 +119,3 @@ module NgLib
     end
   end
 end
-
-
