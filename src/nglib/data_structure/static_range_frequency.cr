@@ -1,5 +1,5 @@
 module NgLib
-  # 長さ $n$ の整数列 $a_0, a_1, \cdots, $a_{n-1}$ について、
+  # 長さ $n$ の整数列 $a_0, a_1, \cdots, a_{n-1}$ について、
   # $[l, r)$ に $x$ が何回現れるかを $O(\log{N})$ で計算するクラスです。
   class StaticRangeFrequency(T)
     @size : Int32
