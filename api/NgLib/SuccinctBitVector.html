@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::StaticRectangleSum(T) - nglib main
+   NgLib::SuccinctBitVector - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -195,12 +195,12 @@
          StaticRangeSum
         </a>
        </li>
-       <li class="current" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
+       <li class="" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
         <a href="../NgLib/StaticRectangleSum.html">
          StaticRectangleSum
         </a>
        </li>
-       <li class="" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
+       <li class="current" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
         <a href="../NgLib/SuccinctBitVector.html">
          SuccinctBitVector
         </a>
@@ -220,12 +220,12 @@
     <span class="kind">
      class
     </span>
-    NgLib::StaticRectangleSum(T)
+    NgLib::SuccinctBitVector
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/StaticRectangleSum.html">
-      NgLib::StaticRectangleSum(T)
+     <a href="../NgLib/SuccinctBitVector.html">
+      NgLib::SuccinctBitVector
      </a>
     </li>
     <li class="superclass">
@@ -236,6 +236,55 @@
     </li>
    </ul>
    <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    <code>
+     <a href="../NgLib/SuccinctBitVector.html">
+      SuccinctBitVector
+     </a>
+    </code>
+    は簡易ビットベクトル（簡易辞書、Succinct Indexable Dictionary）を提供するクラスです。
+   </p>
+   <p>
+    前計算 $O(n / 32)$ で次の操作ができます。
+   </p>
+   <p>
+    |メソッド|内容|時間計算量|
+|:-:|:-|:-:|
+|
+    <code>
+     .[i]
+    </code>
+    | $i$ 番目のビットにアクセスする | $O(1)$ |
+|
+    <code>
+     <a href="../NgLib/SuccinctBitVector.html#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
+      .sum(r)
+     </a>
+    </code>
+    | $[0, r)$ にある $1$ の個数を求める | $O(1)$ |
+|
+    <code>
+     <a href="../NgLib/SuccinctBitVector.html#kth_bit_index%28k%29%3AUInt32-instance-method">
+      .kth_bit_index(k)
+     </a>
+    </code>
+    | $k$ 番目に現れる $1$ の位置を求める | $O(\log{n})$ |
+   </p>
+   <p>
+    例えばこの問題が解けます。 =&gt;
+    <a href="https://atcoder.jp/contests/abc305/tasks/abc305_d">
+     D - Sleep Log
+    </a>
+   </p>
+   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -244,8 +293,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L2" target="_blank">
-    nglib/data_structure/static_rectangle_sum.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L13" target="_blank">
+    nglib/data_structure/binary_cumsum.cr
    </a>
    <br/>
    <h2>
@@ -259,12 +308,30 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28grid%3AArray%28Array%28T%29%29%29-class-method">
+     <a class="signature" href="#new%28n%3AInt%29-class-method">
       <strong>
        .new
       </strong>
-      (grid : Array(Array(T)))
+      (n : Int)
      </a>
+     <div class="summary">
+      <p>
+       長さ $n$ のビット列を構築します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%3AInt%2C%26%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n : Int, &amp;)
+     </a>
+     <div class="summary">
+      <p>
+       長さ $n$ のビット列を構築します。
+      </p>
+     </div>
     </li>
    </ul>
    <h2>
@@ -278,96 +345,146 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
+     <a class="signature" href="#%5B%5D%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AUInt32-instance-method">
       <strong>
        #[]
       </strong>
-      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
-      <strong>
-       #[]?
-      </strong>
-      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T | Nil
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#csum%3AArray%28Array%28T%29%29-instance-method">
-      <strong>
-       #csum
-      </strong>
-      : Array(Array(T))
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#get%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT-instance-method">
-      <strong>
-       #get
-      </strong>
-      (y_begin : Int, y_end : Int, x_begin : Int, x_end : Int) : T
+      (range : Range(Int | Nil, Int | Nil)) : UInt32
      </a>
      <div class="summary">
       <p>
-       累積和を返します。
+       <code>
+        range
+       </code>
+       の範囲の総和を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
+     <a class="signature" href="#%5B%5D%28i%29%3AUInt32-instance-method">
       <strong>
-       #get
+       #[]
       </strong>
-      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T
+      (i) : UInt32
      </a>
      <div class="summary">
       <p>
-       累積和を取得します。
+       $i$ 番目のビットを返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%3F%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT%7CNil-instance-method">
+     <a class="signature" href="#build-instance-method">
       <strong>
-       #get?
+       #build
       </strong>
-      (y_begin : Int, y_end : Int, x_begin : Int, x_end : Int) : T | Nil
      </a>
      <div class="summary">
       <p>
-       累積和を返します。
+       総和が計算できるようにデータ構造を構築します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
+     <a class="signature" href="#kth_bit_index%28k%29%3AUInt32-instance-method">
       <strong>
-       #get?
+       #kth_bit_index
       </strong>
-      (y_range : Range(Int | Nil, Int | Nil), x_range : Range(Int | Nil, Int | Nil)) : T | Nil
+      (k) : UInt32
      </a>
      <div class="summary">
       <p>
-       累積和を返します。
+       $k$ 番目に出現する $1$ の位置を求めます。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#height%3AInt32-instance-method">
+     <a class="signature" href="#reset%28i%3AInt%29-instance-method">
       <strong>
-       #height
+       #reset
       </strong>
-      : Int32
+      (i : Int)
+     </a>
+     <div class="summary">
+      <p>
+       左から $i$ 番目のビットを 0 にします。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#set%28i%3AInt%29-instance-method">
+      <strong>
+       #set
+      </strong>
+      (i : Int)
+     </a>
+     <div class="summary">
+      <p>
+       左から $i$ 番目のビットを 1 にします。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%3AUInt32-instance-method">
+      <strong>
+       #size
+      </strong>
+      : UInt32
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#width%3AInt32-instance-method">
+     <a class="signature" href="#sum%28l%2Cr%29%3AUInt32-instance-method">
       <strong>
-       #width
+       #sum
       </strong>
-      : Int32
+      (l, r) : UInt32
      </a>
+     <div class="summary">
+      <p>
+       $[l, r)$ の総和を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
+      <strong>
+       #sum
+      </strong>
+      (range : Range(Int | Nil, Int | Nil))
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        range
+       </code>
+       の範囲で総和を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#sum%28r%29%3AUInt32-instance-method">
+      <strong>
+       #sum
+      </strong>
+      (r) : UInt32
+     </a>
+     <div class="summary">
+      <p>
+       $[0, r)$ の総和を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#sum-instance-method">
+      <strong>
+       #sum
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       $[0, n)$ の総和を返します。
+      </p>
+     </div>
     </li>
    </ul>
    <div class="methods-inherited">
@@ -381,21 +498,68 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(grid:Array(Array(T)))-class-method">
+   <div class="entry-detail" id="new(n:Int)-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (grid : Array(Array(T)))
-     <a class="method-permalink" href="#new%28grid%3AArray%28Array%28T%29%29%29-class-method">
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      長さ $n$ のビット列を構築します。
+     </p>
+     <p>
+      計算量は $O(n / 32)$ です。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L7" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L22" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(n:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#new%28n%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      長さ $n$ のビット列を構築します。
+     </p>
+     <p>
+      ブロックでは $i$ 番目のビットの値を返してください。
+     </p>
+     <p>
+      計算量は $O(n)$ です。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L34" target="_blank">
       View source
      </a>
      ]
@@ -410,13 +574,13 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="[](y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T-instance-method">
+   <div class="entry-detail" id="[](range:Range(Int|Nil,Int|Nil)):UInt32-instance-method">
     <div class="signature">
      def
      <strong>
       []
      </strong>
-     (y_range : Range(
+     (range : Range(
      <a href="../Int.html">
       Int
      </a>
@@ -424,240 +588,231 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil), x_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil)) : T
-     <a class="method-permalink" href="#%5B%5D%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L93" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="[]?(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T|Nil-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      []?
-     </strong>
-     (y_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), x_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil)) : T | Nil
-     <a class="method-permalink" href="#%5B%5D%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L97" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="csum:Array(Array(T))-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      csum
-     </strong>
-     : Array(Array(T))
-     <a class="method-permalink" href="#csum%3AArray%28Array%28T%29%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L5" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="get(y_begin:Int,y_end:Int,x_begin:Int,x_end:Int):T-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      get
-     </strong>
-     (y_begin :
-     <a href="../Int.html">
-      Int
-     </a>
-     , y_end :
-     <a href="../Int.html">
-      Int
-     </a>
-     , x_begin :
-     <a href="../Int.html">
-      Int
-     </a>
-     , x_end :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T
-     <a class="method-permalink" href="#get%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT-instance-method">
+     | Nil)) : UInt32
+     <a class="method-permalink" href="#%5B%5D%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AUInt32-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      累積和を返します。
-     </p>
-     <p>
-      [y_begin, y_end), [x_begin, x_end) で指定します。
-     </p>
-     <p>
-      <span class="flag purple">
-       NOTE
-      </span>
-      このAPIは非推奨です。Rangeで指定することが推奨されます。
+      <code>
+       range
+      </code>
+      の範囲の総和を返します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L23" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L101" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T-instance-method">
+   <div class="entry-detail" id="[](i):UInt32-instance-method">
     <div class="signature">
      def
      <strong>
-      get
+      []
      </strong>
-     (y_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), x_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil)) : T
-     <a class="method-permalink" href="#get%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT-instance-method">
+     (i) : UInt32
+     <a class="method-permalink" href="#%5B%5D%28i%29%3AUInt32-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      累積和を取得します。
+      $i$ 番目のビットを返します。
      </p>
-     <p>
-      Range(y_begin, y_end), Range(x_begin, x_end) で指定します。
-     </p>
-     <pre><code class="language-crystal">csum <span class="o">=</span> <span class="t">StaticRectangleSum</span>.new(a)
-csum.get(<span class="n">0</span>...h, j..j <span class="o">+</span> <span class="n">2</span>) <span class="c"># =&gt; 28</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L50" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L96" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get?(y_begin:Int,y_end:Int,x_begin:Int,x_end:Int):T|Nil-instance-method">
+   <div class="entry-detail" id="build-instance-method">
     <div class="signature">
      def
      <strong>
-      get?
+      build
      </strong>
-     (y_begin :
-     <a href="../Int.html">
-      Int
-     </a>
-     , y_end :
-     <a href="../Int.html">
-      Int
-     </a>
-     , x_begin :
-     <a href="../Int.html">
-      Int
-     </a>
-     , x_end :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T | Nil
-     <a class="method-permalink" href="#get%3F%28y_begin%3AInt%2Cy_end%3AInt%2Cx_begin%3AInt%2Cx_end%3AInt%29%3AT%7CNil-instance-method">
+     <a class="method-permalink" href="#build-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      累積和を返します。
-     </p>
-     <p>
-      [y_begin, y_end), [x_begin, x_end) で指定します。
-     </p>
-     <p>
-      範囲内に要素が存在しない場合 nil を返します。
-     </p>
-     <p>
-      <span class="flag purple">
-       NOTE
-      </span>
-      このAPIは非推奨です。Rangeで指定することが推奨されます。
+      総和が計算できるようにデータ構造を構築します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L36" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L62" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get?(y_range:Range(Int|Nil,Int|Nil),x_range:Range(Int|Nil,Int|Nil)):T|Nil-instance-method">
+   <div class="entry-detail" id="kth_bit_index(k):UInt32-instance-method">
     <div class="signature">
      def
      <strong>
-      get?
+      kth_bit_index
      </strong>
-     (y_range : Range(
+     (k) : UInt32
+     <a class="method-permalink" href="#kth_bit_index%28k%29%3AUInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      $k$ 番目に出現する $1$ の位置を求めます。
+     </p>
+     <p>
+      言い換えると、$sum(i) = k$ となるような最小の $i$ を返します。
+     </p>
+     <p>
+      存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+     <p>
+      本当は $O(1)$ にできるらしいですが、面倒なので $O(\log{n})$ です。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L112" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="reset(i:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      reset
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#reset%28i%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      左から $i$ 番目のビットを 0 にします。
+     </p>
+     <p>
+      計算量は $O(1)$ です。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L57" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="set(i:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      set
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#set%28i%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      左から $i$ 番目のビットを 1 にします。
+     </p>
+     <p>
+      計算量は $O(1)$ です。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L50" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size:UInt32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : UInt32
+     <a class="method-permalink" href="#size%3AUInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L14" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="sum(l,r):UInt32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      sum
+     </strong>
+     (l, r) : UInt32
+     <a class="method-permalink" href="#sum%28l%2Cr%29%3AUInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      $[l, r)$ の総和を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L80" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="sum(range:Range(Int|Nil,Int|Nil))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      sum
+     </strong>
+     (range : Range(
      <a href="../Int.html">
       Int
      </a>
@@ -665,77 +820,72 @@ csum.get(<span class="n">0</span>...h, j..j <span class="o">+</span> <span class
      <a href="../Int.html">
       Int
      </a>
-     | Nil), x_range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil)) : T | Nil
-     <a class="method-permalink" href="#get%3F%28y_range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cx_range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AT%7CNil-instance-method">
+     | Nil))
+     <a class="method-permalink" href="#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      累積和を返します。
+      <code>
+       range
+      </code>
+      の範囲で総和を返します。
      </p>
-     <p>
-      [y_begin, y_end), [x_begin, x_end) で指定します。
-     </p>
-     <p>
-      範囲内に要素が存在しない場合 nil を返します。
-     </p>
-     <pre><code class="language-crystal">csum <span class="o">=</span> <span class="t">StaticRectangleSum</span>.new(a)
-csum.get?(<span class="n">0</span>...h, j..j <span class="o">+</span> <span class="n">2</span>)     <span class="c"># =&gt; 28</span>
-csum.get?(<span class="n">0</span>...<span class="n">100</span><span class="o">*</span>h, j..j <span class="o">+</span> <span class="n">2</span>) <span class="c"># =&gt; nil</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L77" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L85" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="height:Int32-instance-method">
+   <div class="entry-detail" id="sum(r):UInt32-instance-method">
     <div class="signature">
      def
      <strong>
-      height
+      sum
      </strong>
-     : Int32
-     <a class="method-permalink" href="#height%3AInt32-instance-method">
+     (r) : UInt32
+     <a class="method-permalink" href="#sum%28r%29%3AUInt32-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      $[0, r)$ の総和を返します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L3" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L75" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="width:Int32-instance-method">
+   <div class="entry-detail" id="sum-instance-method">
     <div class="signature">
      def
      <strong>
-      width
+      sum
      </strong>
-     : Int32
-     <a class="method-permalink" href="#width%3AInt32-instance-method">
+     <a class="method-permalink" href="#sum-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      $[0, n)$ の総和を返します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/static_rectangle_sum.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L70" target="_blank">
       View source
      </a>
      ]
