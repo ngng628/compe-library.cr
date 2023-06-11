@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/string/rolling_hash.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-06-12 01:25:25+09:00</li>
+    <li>Last update: 2023-06-12 01:45:03+09:00</li>
     
     <li>Problem: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
 </li>
@@ -151,7 +151,8 @@
 </span>
 <span class="cp"># require "../../src/nglib/string/rolling_hash"
 </span><span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nc">RollingHash</span>
+  <span class="cp"># 文字列 $S$ に対して、上手なハッシュを作ることで、比較やLCPを高速に求めます。
+</span>  <span class="k">class</span> <span class="nc">RollingHash</span>
     <span class="n">MOD</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_u64</span> <span class="o">&lt;&lt;</span> <span class="mi">61</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>

@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/graph/lca.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-06-12 01:25:25+09:00</li>
+    <li>Last update: 2023-06-12 01:45:03+09:00</li>
     
     
     
@@ -145,7 +145,8 @@
 <figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">require</span> <span class="s">"../constants.cr"</span>
 
 <span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nc">LCA</span>
+  <span class="cp"># 最近共通祖先を求めるライブラリです。
+</span>  <span class="k">class</span> <span class="nc">LCA</span>
     <span class="n">alias</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
     <span class="n">getter</span> <span class="n">parent</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
     <span class="n">getter</span> <span class="n">dist</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">)</span>
@@ -225,7 +226,8 @@
 </span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span>
 
 <span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nc">LCA</span>
+  <span class="cp"># 最近共通祖先を求めるライブラリです。
+</span>  <span class="k">class</span> <span class="nc">LCA</span>
     <span class="n">alias</span> <span class="n">Graph</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
     <span class="n">getter</span> <span class="n">parent</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
     <span class="n">getter</span> <span class="n">dist</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">)</span>

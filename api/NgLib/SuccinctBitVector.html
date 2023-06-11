@@ -253,33 +253,34 @@
     は簡易ビットベクトル（簡易辞書、Succinct Indexable Dictionary）を提供するクラスです。
    </p>
    <p>
-    前計算 $O(n / 32)$ で次の操作ができます。
+    前計算 $O(n / 32)$ で次の操作が $O(1)$ くらいでできます。
    </p>
+   <ul>
+    <li>
+     <code>
+      .[i]
+     </code>
+     # =&gt; $i$ 番目のビットにアクセスする （$O(1)$）
+    </li>
+    <li>
+     <code>
+      <a href="../NgLib/SuccinctBitVector.html#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
+       .sum(r)
+      </a>
+     </code>
+     # =&gt;  $[0, r)$ にある $1$ の個数を求める （$O(1)$）
+    </li>
+    <li>
+     <code>
+      <a href="../NgLib/SuccinctBitVector.html#kth_bit_index%28k%29%3AUInt32-instance-method">
+       .kth_bit_index(k)
+      </a>
+     </code>
+     # =&gt; $k$ 番目に現れる $1$ の位置を求める （$O(\log{n})$）
+    </li>
+   </ul>
    <p>
-    |メソッド|内容|時間計算量|
-|:-:|:-|:-:|
-|
-    <code>
-     .[i]
-    </code>
-    | $i$ 番目のビットにアクセスする | $O(1)$ |
-|
-    <code>
-     <a href="../NgLib/SuccinctBitVector.html#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
-      .sum(r)
-     </a>
-    </code>
-    | $[0, r)$ にある $1$ の個数を求める | $O(1)$ |
-|
-    <code>
-     <a href="../NgLib/SuccinctBitVector.html#kth_bit_index%28k%29%3AUInt32-instance-method">
-      .kth_bit_index(k)
-     </a>
-    </code>
-    | $k$ 番目に現れる $1$ の位置を求める | $O(\log{n})$ |
-   </p>
-   <p>
-    例えばこの問題が解けます。 =&gt;
+    例えばこの問題が解けます →
     <a href="https://atcoder.jp/contests/abc305/tasks/abc305_d">
      D - Sleep Log
     </a>
@@ -293,8 +294,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L13" target="_blank">
-    nglib/data_structure/binary_cumsum.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L11" target="_blank">
+    nglib/data_structure/succinct_bit_vector.cr
    </a>
    <br/>
    <h2>
@@ -524,7 +525,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L22" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L20" target="_blank">
       View source
      </a>
      ]
@@ -559,7 +560,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L34" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L32" target="_blank">
       View source
      </a>
      ]
@@ -604,7 +605,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L101" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L99" target="_blank">
       View source
      </a>
      ]
@@ -629,7 +630,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L96" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L94" target="_blank">
       View source
      </a>
      ]
@@ -653,7 +654,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L62" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L60" target="_blank">
       View source
      </a>
      ]
@@ -691,7 +692,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L112" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L110" target="_blank">
       View source
      </a>
      ]
@@ -723,7 +724,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L57" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L55" target="_blank">
       View source
      </a>
      ]
@@ -755,7 +756,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L50" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L48" target="_blank">
       View source
      </a>
      ]
@@ -775,7 +776,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L14" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L12" target="_blank">
       View source
      </a>
      ]
@@ -800,7 +801,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L80" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L78" target="_blank">
       View source
      </a>
      ]
@@ -836,7 +837,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L85" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L83" target="_blank">
       View source
      </a>
      ]
@@ -861,7 +862,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L75" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L73" target="_blank">
       View source
      </a>
      ]
@@ -885,7 +886,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/3aa06428b3088d53afa44528123664698da3a9fb/src/nglib/data_structure/binary_cumsum.cr#L70" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/cf94fadc14c2081483e4e7249ab643b4837a1414/src/nglib/data_structure/succinct_bit_vector.cr#L68" target="_blank">
       View source
      </a>
      ]

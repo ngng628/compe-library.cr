@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/data_structure/dynamic_range_sum.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-06-12 01:25:25+09:00</li>
+    <li>Last update: 2023-06-12 01:45:03+09:00</li>
     
     <li>Problem: <a href="https://judge.yosupo.jp/problem/point_add_range_sum">https://judge.yosupo.jp/problem/point_add_range_sum</a>
 </li>
@@ -204,7 +204,12 @@
 </span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span>
 <span class="cp"># require "../../src/nglib/data_structure/dynamic_range_sum"
 </span><span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nc">DynamicRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+  <span class="cp"># 動的な数列 $a$ に対して累積和を求めます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 累積和クエリは $O(\log{N})$ で処理することができます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 実装は BIT (Fenwick Tree) です。
+</span>  <span class="k">class</span> <span class="nc">DynamicRangeSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="err">@</span><span class="n">data</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 

@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/graph/dijkstra.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-06-12 01:25:25+09:00</li>
+    <li>Last update: 2023-06-12 01:45:03+09:00</li>
     
     
     
@@ -152,7 +152,12 @@
     <span class="n">end</span>
   <span class="n">end</span>
 
-  <span class="k">class</span> <span class="nc">DijkstraGraph</span><span class="p">(</span><span class="n">Weight</span><span class="p">)</span>
+  <span class="cp"># $n$ 頂点 $m$ 辺の重み付きグラフに対して、最短経路を求めます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 経路の復元も可能です。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 辺の重みが非負整数で表せる場合は `nglib/graph/radix_dijkstra` を使ったほうが高速です。
+</span>  <span class="k">class</span> <span class="nc">DijkstraGraph</span><span class="p">(</span><span class="n">Weight</span><span class="p">)</span>
     <span class="n">record</span> <span class="n">Edge</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="n">target</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">W</span>
 
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
@@ -343,7 +348,12 @@
     <span class="n">end</span>
   <span class="n">end</span>
 
-  <span class="k">class</span> <span class="nc">DijkstraGraph</span><span class="p">(</span><span class="n">Weight</span><span class="p">)</span>
+  <span class="cp"># $n$ 頂点 $m$ 辺の重み付きグラフに対して、最短経路を求めます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 経路の復元も可能です。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 辺の重みが非負整数で表せる場合は `nglib/graph/radix_dijkstra` を使ったほうが高速です。
+</span>  <span class="k">class</span> <span class="nc">DijkstraGraph</span><span class="p">(</span><span class="n">Weight</span><span class="p">)</span>
     <span class="n">record</span> <span class="n">Edge</span><span class="p">(</span><span class="n">W</span><span class="p">),</span> <span class="n">target</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">W</span>
 
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
