@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="nglib" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
+  </script>
+  <meta content="nglib" name="repository-name"/>
+  <title>
+   NgLib::AATreeMap(K, V) - nglib main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <div class="sidebar">
+   <div class="sidebar-header">
+    <div class="search-box">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
+    </div>
+    <div class="project-summary">
+     <h1 class="project-name">
+      <a href="../index.html">
+       nglib
+      </a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="nglib/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="" data-id="nglib/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="nglib/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
+     <li class="parent open current" data-id="nglib/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="current" data-id="nglib/NgLib/AATreeMap" data-name="nglib::aatreemap(k, v)">
+        <a href="../NgLib/AATreeMap.html">
+         AATreeMap
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeMultiset" data-name="nglib::aatreemultiset(t)">
+        <a href="../NgLib/AATreeMultiset.html">
+         AATreeMultiset
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeSet" data-name="nglib::aatreeset(t)">
+        <a href="../NgLib/AATreeSet.html">
+         AATreeSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
+        <a href="../NgLib/BinaryBfsGraph.html">
+         BinaryBfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRangeSum" data-name="nglib::dynamicrangesum(t)">
+        <a href="../NgLib/DynamicRangeSum.html">
+         DynamicRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRectangleSum" data-name="nglib::dynamicrectanglesum(t)">
+        <a href="../NgLib/DynamicRectangleSum.html">
+         DynamicRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/FastIn" data-name="nglib::fastin">
+        <a href="../NgLib/FastIn.html">
+         FastIn
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/FastIn/Scanner" data-name="nglib::fastin::scanner">
+          <a href="../NgLib/FastIn/Scanner.html">
+           Scanner
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/MaxFlowGraph" data-name="nglib::maxflowgraph(cap)">
+        <a href="../NgLib/MaxFlowGraph.html">
+         MaxFlowGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/MaxFlowGraph/Edge" data-name="nglib::maxflowgraph::edge(t)">
+          <a href="../NgLib/MaxFlowGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/MSTGraph" data-name="nglib::mstgraph(t)">
+        <a href="../NgLib/MSTGraph.html">
+         MSTGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/PrioritySum" data-name="nglib::prioritysum(t)">
+        <a href="../NgLib/PrioritySum.html">
+         PrioritySum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/RollingHash" data-name="nglib::rollinghash">
+        <a href="../NgLib/RollingHash.html">
+         RollingHash
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
+        <a href="../NgLib/SlideMinmax.html">
+         SlideMinmax
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SparseTable" data-name="nglib::sparsetable(t)">
+        <a href="../NgLib/SparseTable.html">
+         SparseTable
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeFrequency" data-name="nglib::staticrangefrequency(t)">
+        <a href="../NgLib/StaticRangeFrequency.html">
+         StaticRangeFrequency
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
+        <a href="../NgLib/StaticRectangleSum.html">
+         StaticRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
+        <a href="../NgLib/SuccinctBitVector.html">
+         SuccinctBitVector
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::AATreeMap(K, V)
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/AATreeMap.html">
+      NgLib::AATreeMap(K, V)
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    順序付き連想配列です。
+   </p>
+   <p>
+    平衡二分探索木として
+    <a href="https://ja.wikipedia.org/wiki/AA%E6%9C%A8">
+     AA木
+    </a>
+    を使用しています。
+性能は赤黒木の方が良いことが多い気がします。
+   </p>
+   <p>
+    C++の標準ライブラリの
+    <code>
+     multiset
+    </code>
+    と違って、$k$ 番目の値が取り出せることなどが魅力的です。
+   </p>
+   <h2>
+    <a class="anchor" href="#included-modules" id="included-modules">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Included Modules
+   </h2>
+   <ul class="other-types-list">
+    <li class="other-type">
+     Enumerable({K, V})
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L8" target="_blank">
+    nglib/data_structure/aatree_map.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28enumerable%3AEnumerable%28Tuple%28K%2CV%29%29%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (enumerable : Enumerable(Tuple(K, V)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28default%3AV%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (default : V)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new-class-method">
+      <strong>
+       .new
+      </strong>
+     </a>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#%3C%3C%28item%3ATuple%28K%2CV%29%29%3ANil-instance-method">
+      <strong>
+       #&lt;&lt;
+      </strong>
+      (item : Tuple(K, V)) : Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%28key%3AK%29%3AV-instance-method">
+      <strong>
+       #[]
+      </strong>
+      (key : K) : V
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3D%28key%3AK%2Cvalue%3AV%29%3AV-instance-method">
+      <strong>
+       #[]=
+      </strong>
+      (key : K, value : V) : V
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3F%28key%3AK%29%3AV%7CNil-instance-method">
+      <strong>
+       #[]?
+      </strong>
+      (key : K) : V | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#at%28k%3AInt%29%3ATuple%28K%2CV%29-instance-method">
+      <strong>
+       #at
+      </strong>
+      (k : Int) : Tuple(K, V)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#at%3F%28k%3AInt%29%3ATuple%28K%2CV%29%7CNil-instance-method">
+      <strong>
+       #at?
+      </strong>
+      (k : Int) : Tuple(K, V) | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#clear-instance-method">
+      <strong>
+       #clear
+      </strong>
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#concat%28elems%29%3Aself-instance-method">
+      <strong>
+       #concat
+      </strong>
+      (elems) :
+      <span class="k">
+       self
+      </span>
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#delete_at%28k%3AInt%29-instance-method">
+      <strong>
+       #delete_at
+      </strong>
+      (k : Int)
+     </a>
+     <div class="summary">
+      <p>
+       <span class="flag orange">
+        TODO
+       </span>
+       Improve performance
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#delete_key%28key%3AK%29%3ABool-instance-method">
+      <strong>
+       #delete_key
+      </strong>
+      (key : K) : Bool
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each%28%26%3ATuple%28K%2CV%29-%3E%29-instance-method">
+      <strong>
+       #each
+      </strong>
+      (&amp; : Tuple(K, V) -&gt; )
+     </a>
+     <div class="summary">
+      <p>
+       Must yield this collection's elements to the block.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each_key%28%26%3AK-%3E%29-instance-method">
+      <strong>
+       #each_key
+      </strong>
+      (&amp; : K -&gt; )
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each_value%28%26%3AV-%3E%29-instance-method">
+      <strong>
+       #each_value
+      </strong>
+      (&amp; : V -&gt; )
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#empty%3F%3ABool-instance-method">
+      <strong>
+       #empty?
+      </strong>
+      : Bool
+     </a>
+     <div class="summary">
+      <p>
+       Returns
+       <code>
+        true
+       </code>
+       if
+       <code>
+        self
+       </code>
+       is empty,
+       <code>
+        false
+       </code>
+       otherwise.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#greater_equal_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      <strong>
+       #greater_equal_index
+      </strong>
+      (key : K) : Int32 | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#greater_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      <strong>
+       #greater_index
+      </strong>
+      (key : K) : Int32 | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#has_key%3F%28key%3AK%29%3ABool-instance-method">
+      <strong>
+       #has_key?
+      </strong>
+      (key : K) : Bool
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#includes%3F%28key%3AK%2Cvalue%3AV%29%3ABool-instance-method">
+      <strong>
+       #includes?
+      </strong>
+      (key : K, value : V) : Bool
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#inspect%28io%3AIO%29-instance-method">
+      <strong>
+       #inspect
+      </strong>
+      (io : IO)
+     </a>
+     <div class="summary">
+      <p>
+       Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#key_at%28k%3AInt%29%3AK-instance-method">
+      <strong>
+       #key_at
+      </strong>
+      (k : Int) : K
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#key_at%3F%28k%3AInt%29%3AK%7CNil-instance-method">
+      <strong>
+       #key_at?
+      </strong>
+      (k : Int) : K | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#keys%3AArray%28K%29-instance-method">
+      <strong>
+       #keys
+      </strong>
+      : Array(K)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#less_equal_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      <strong>
+       #less_equal_index
+      </strong>
+      (key : K) : Int32 | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#less_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      <strong>
+       #less_index
+      </strong>
+      (key : K) : Int32 | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#lower_bound_index%28key%3AK%29%3AInt32-instance-method">
+      <strong>
+       #lower_bound_index
+      </strong>
+      (key : K) : Int32
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%3AInt32-instance-method">
+      <strong>
+       #size
+      </strong>
+      : Int32
+     </a>
+     <div class="summary">
+      <p>
+       Returns the number of elements in the collection.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#to_a%3AArray%28Tuple%28K%2CV%29%29-instance-method">
+      <strong>
+       #to_a
+      </strong>
+      : Array(Tuple(K, V))
+     </a>
+     <div class="summary">
+      <p>
+       Returns an
+       <code>
+        Array
+       </code>
+       with all the elements in the collection.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#to_s%28io%3AIO%29%3ANil-instance-method">
+      <strong>
+       #to_s
+      </strong>
+      (io : IO) : Nil
+     </a>
+     <div class="summary">
+      <p>
+       Appends a short String representation of this object which includes its class name and its object address.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#upper_bound_index%28key%3AK%29%3AInt32-instance-method">
+      <strong>
+       #upper_bound_index
+      </strong>
+      (key : K) : Int32
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#value_at%28k%3AInt%29%3AV-instance-method">
+      <strong>
+       #value_at
+      </strong>
+      (k : Int) : V
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#value_at%3F%28k%3AInt%29%3AV%7CNil-instance-method">
+      <strong>
+       #value_at?
+      </strong>
+      (k : Int) : V | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#values%3AArray%28V%29-instance-method">
+      <strong>
+       #values
+      </strong>
+      : Array(V)
+     </a>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(enumerable:Enumerable(Tuple(K,V)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (enumerable : Enumerable(Tuple(K, V)))
+     <a class="method-permalink" href="#new%28enumerable%3AEnumerable%28Tuple%28K%2CV%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L195" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(default:V)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (default : V)
+     <a class="method-permalink" href="#new%28default%3AV%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L190" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     <a class="method-permalink" href="#new-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L184" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Detail
+   </h2>
+   <div class="entry-detail" id="&lt;&lt;(item:Tuple(K,V)):Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      &lt;&lt;
+     </strong>
+     (item : Tuple(K, V)) : Nil
+     <a class="method-permalink" href="#%3C%3C%28item%3ATuple%28K%2CV%29%29%3ANil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L441" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[](key:K):V-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []
+     </strong>
+     (key : K) : V
+     <a class="method-permalink" href="#%5B%5D%28key%3AK%29%3AV-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L445" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[]=(key:K,value:V):V-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []=
+     </strong>
+     (key : K, value : V) : V
+     <a class="method-permalink" href="#%5B%5D%3D%28key%3AK%2Cvalue%3AV%29%3AV-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L461" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[]?(key:K):V|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []?
+     </strong>
+     (key : K) : V | Nil
+     <a class="method-permalink" href="#%5B%5D%3F%28key%3AK%29%3AV%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L454" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="at(k:Int):Tuple(K,V)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      at
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Tuple(K, V)
+     <a class="method-permalink" href="#at%28k%3AInt%29%3ATuple%28K%2CV%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L219" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="at?(k:Int):Tuple(K,V)|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      at?
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Tuple(K, V) | Nil
+     <a class="method-permalink" href="#at%3F%28k%3AInt%29%3ATuple%28K%2CV%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L238" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="clear-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      clear
+     </strong>
+     <a class="method-permalink" href="#clear-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L211" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="concat(elems):self-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      concat
+     </strong>
+     (elems) :
+     <span class="k">
+      self
+     </span>
+     <a class="method-permalink" href="#concat%28elems%29%3Aself-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L201" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="delete_at(k:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      delete_at
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#delete_at%28k%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <span class="flag orange">
+       TODO
+      </span>
+      Improve performance
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L353" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="delete_key(key:K):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      delete_key
+     </strong>
+     (key : K) : Bool
+     <a class="method-permalink" href="#delete_key%28key%3AK%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L297" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each(&amp;:Tuple(K,V)-&gt;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each
+     </strong>
+     (&amp; : Tuple(K, V) -&gt; )
+     <a class="method-permalink" href="#each%28%26%3ATuple%28K%2CV%29-%3E%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable({K, V})
+     </div>
+     <p>
+      Must yield this collection's elements to the block.
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L272" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each_key(&amp;:K-&gt;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each_key
+     </strong>
+     (&amp; : K -&gt; )
+     <a class="method-permalink" href="#each_key%28%26%3AK-%3E%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L260" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="each_value(&amp;:V-&gt;)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      each_value
+     </strong>
+     (&amp; : V -&gt; )
+     <a class="method-permalink" href="#each_value%28%26%3AV-%3E%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L266" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="empty?:Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      empty?
+     </strong>
+     : Bool
+     <a class="method-permalink" href="#empty%3F%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable({K, V})
+     </div>
+     <p>
+      Returns
+      <code>
+       true
+      </code>
+      if
+      <code>
+       self
+      </code>
+      is empty,
+      <code>
+       false
+      </code>
+      otherwise.
+     </p>
+     <pre><code class="language-crystal">(<span class="o">[]</span> <span class="k">of</span> <span class="t">Int32</span>).empty? <span class="c"># =&gt; true</span>
+([<span class="n">1</span>]).empty?         <span class="c"># =&gt; false</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L215" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="greater_equal_index(key:K):Int32|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      greater_equal_index
+     </strong>
+     (key : K) : Int32 | Nil
+     <a class="method-permalink" href="#greater_equal_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L410" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="greater_index(key:K):Int32|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      greater_index
+     </strong>
+     (key : K) : Int32 | Nil
+     <a class="method-permalink" href="#greater_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L405" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="has_key?(key:K):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      has_key?
+     </strong>
+     (key : K) : Bool
+     <a class="method-permalink" href="#has_key%3F%28key%3AK%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L359" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="includes?(key:K,value:V):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      includes?
+     </strong>
+     (key : K, value : V) : Bool
+     <a class="method-permalink" href="#includes%3F%28key%3AK%2Cvalue%3AV%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L206" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="inspect(io:IO)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      inspect
+     </strong>
+     (io : IO)
+     <a class="method-permalink" href="#inspect%28io%3AIO%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from class Reference
+     </div>
+     <p>
+      Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.
+     </p>
+     <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">"John"</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name="John", @age=32&gt;</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L437" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="key_at(k:Int):K-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      key_at
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : K
+     <a class="method-permalink" href="#key_at%28k%3AInt%29%3AK-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L244" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="key_at?(k:Int):K|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      key_at?
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : K | Nil
+     <a class="method-permalink" href="#key_at%3F%28k%3AInt%29%3AK%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L248" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="keys:Array(K)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      keys
+     </strong>
+     : Array(K)
+     <a class="method-permalink" href="#keys%3AArray%28K%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L281" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="less_equal_index(key:K):Int32|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      less_equal_index
+     </strong>
+     (key : K) : Int32 | Nil
+     <a class="method-permalink" href="#less_equal_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L400" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="less_index(key:K):Int32|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      less_index
+     </strong>
+     (key : K) : Int32 | Nil
+     <a class="method-permalink" href="#less_index%28key%3AK%29%3AInt32%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L395" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="lower_bound_index(key:K):Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      lower_bound_index
+     </strong>
+     (key : K) : Int32
+     <a class="method-permalink" href="#lower_bound_index%28key%3AK%29%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L365" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#size%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable({K, V})
+     </div>
+     <p>
+      Returns the number of elements in the collection.
+     </p>
+     <pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].size <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L415" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="to_a:Array(Tuple(K,V))-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      to_a
+     </strong>
+     : Array(Tuple(K, V))
+     <a class="method-permalink" href="#to_a%3AArray%28Tuple%28K%2CV%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable({K, V})
+     </div>
+     <p>
+      Returns an
+      <code>
+       Array
+      </code>
+      with all the elements in the collection.
+     </p>
+     <pre><code class="language-crystal">(<span class="n">1</span>..<span class="n">5</span>).to_a <span class="c"># =&gt; [1, 2, 3, 4, 5]</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L419" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="to_s(io:IO):Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      to_s
+     </strong>
+     (io : IO) : Nil
+     <a class="method-permalink" href="#to_s%28io%3AIO%29%3ANil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from class Reference
+     </div>
+     <p>
+      Appends a short String representation of this object
+which includes its class name and its object address.
+     </p>
+     <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">"John"</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L433" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="upper_bound_index(key:K):Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      upper_bound_index
+     </strong>
+     (key : K) : Int32
+     <a class="method-permalink" href="#upper_bound_index%28key%3AK%29%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L380" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="value_at(k:Int):V-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      value_at
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : V
+     <a class="method-permalink" href="#value_at%28k%3AInt%29%3AV-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L252" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="value_at?(k:Int):V|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      value_at?
+     </strong>
+     (k :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : V | Nil
+     <a class="method-permalink" href="#value_at%3F%28k%3AInt%29%3AV%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L256" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="values:Array(V)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      values
+     </strong>
+     : Array(V)
+     <a class="method-permalink" href="#values%3AArray%28V%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/data_structure/aatree_map.cr#L289" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
