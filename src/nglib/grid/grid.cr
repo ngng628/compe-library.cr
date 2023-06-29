@@ -169,7 +169,7 @@ module NgLib
       }
     end
 
-    # 始点 $(si, sj)$ から各マスへの最短経路長を返します。
+    # 始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
     #
     # ```
     # dist = grid.shortest_path(start: {si, sj})
@@ -190,11 +190,10 @@ module NgLib
       dist
     end
 
-    # 始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+    # 始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
     #
     # ```
-    # dist = grid.shortest_path(start: {si, sj})
-    # dist[gi][gj] # => 4
+    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) # => 4
     # ```
     def shortest_path(start : Tuple, dest : Tuple) : Int64
       shortest_path(start)[dest[0]][dest[1]]
@@ -214,8 +213,8 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
-    # grid.to_graph # => [[3, 1], [0], [1, 5], [0], [1, 3, 5], [8], [3], [8], [5]]
+    # grid = Grid(Char).dydx4(s)
+    # grid.to_graph # => [[3, 1], [0], [], [0], [], [8], [], [], [5]]
     # ```
     def to_graph(type = :connect_free) : Array(Array(Int32))
       graph = Array.new(@w * @h) { [] of Int32 }
@@ -260,7 +259,7 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
+    # grid = Grid(Char).dydx4(s)
     # grid.label_grid # => [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
     # ```
     def label_grid
@@ -309,7 +308,7 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
+    # grid = Grid(Char).dydx4(s)
     # gird.each { |c| puts c } # => '.', '.', '#', '.', ..., '.'
     # ```
     def each(& : T ->)
