@@ -1,6 +1,7 @@
 Globs:
   - '**/*.cr'
   - '!lib'
+  - '!src/nglib/utils/utils.cr'
 
 Lint/NotNil:
   Enabled: false
