@@ -1,4 +1,5 @@
 require "../constants.cr"
+require "atcoder/priority_queue"
 
 struct Int
   def self.bar
@@ -169,7 +170,7 @@ module NgLib
       }
     end
 
-    # 始点 $(si, sj)$ から各マスへの最短経路長を返します。
+    # 始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
     #
     # ```
     # dist = grid.shortest_path(start: {si, sj})
@@ -190,14 +191,127 @@ module NgLib
       dist
     end
 
-    # 始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+    # 始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
     #
     # ```
-    # dist = grid.shortest_path(start: {si, sj})
-    # dist[gi][gj] # => 4
+    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) # => 4
     # ```
     def shortest_path(start : Tuple, dest : Tuple) : Int64
       shortest_path(start)[dest[0]][dest[1]]
+    end
+
+    # 全マス間の最短経路長を返します。
+    #
+    # 内部で利用するアルゴリズムをタグで指定します。
+    # - `:bfs` : 侵入不可能な場合は U::MAX を返してください。
+    # - `:binary_bfs` : 重みは $0$ または $1$ である必要があります。
+    # - `:dijkstra` : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+    #
+    # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+    #
+    # ```
+    # dist = grid.shortest_path { |i, j, ni, nj| f(i, j, ni, nj) }
+    # dist[si][sj][gi][gj] # => 4
+    # ```
+    def shortest_path(tag = :dijkstra, & : Int32, Int32, Int32, Int32 -> U) : Array(Array(Int64)) forall U
+      Array.new(@h) { |si|
+        Array.new(@w) { |sj|
+          shortest_path(si, sj) { |i, j, ni, nj| yield i, j, ni, nj }
+        }
+      }
+    end
+
+    # 始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
+    #
+    # 内部で利用するアルゴリズムをタグで指定します。
+    # - `:bfs` : 侵入不可能な場合は U::MAX を返してください。
+    # - `:binary_bfs` : 重みは $0$ または $1$ である必要があります。
+    # - `:dijkstra` : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+    #
+    # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+    #
+    # ```
+    # dist = grid.shortest_path(start: {0, 0}) { |i, j, ni, nj| f(i, j, ni, nj) }
+    # dist[gi][gj] # => 4
+    # ```
+    # ameba:disable Metrics/CyclomaticComplexity
+    def shortest_path(start : Tuple, tag = :dijkstra, & : Int32, Int32, Int32, Int32 -> U) : Array(Array(U)) forall U
+      case tag
+      when :bfs
+        next_node = Deque({Int32, Int32}).new([start])
+        dist = Array.new(@h) { Array.new(@w) { U::MAX } }
+        dist[start[0]][start[1]] = U.zero
+        until next_node.empty?
+          i, j = next_node.shift
+          each_neighbor(i, j) do |ni, nj|
+            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+            raise "Weight error" unless weight == U.zero.succ || weight == U::MAX
+            next if weight == U::MAX
+            next if dist[ni][nj] != U::MAX
+            dist[ni][nj] = dist[i][j] + U.zero.succ
+            next_node << {ni, nj}
+          end
+        end
+        return dist
+      when :binary_bfs
+        next_node = Deque({Int32, Int32}).new([start])
+        dist = Array.new(@h) { Array.new(@w) { U::MAX } }
+        dist[start[0]][start[1]] = U.zero
+        until next_node.empty?
+          i, j = next_node.shift
+          each_neighbor(i, j) do |ni, nj|
+            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+            raise "Weight error" unless weight.in?({U.zero, U.zero.succ})
+            next_cost = dist[i][j] <= U::MAX - weight ? dist[i][j] + weight : U::MAX
+            if next_cost < dist[ni][nj]
+              dist[ni][nj] = next_cost
+              if weight == 0
+                next_node.unshift({ni.to_i32, nj.to_i32})
+              else
+                next_node << {ni.to_i32, nj.to_i32}
+              end
+            end
+          end
+        end
+        return dist
+      when :dijkstra
+        next_node = AtCoder::PriorityQueue.new([{U.zero, start}])
+        dist = Array.new(@h) { Array.new(@w) { U::MAX } }
+        dist[start[0]][start[1]] = U.zero
+        until next_node.empty?
+          d, pos = next_node.pop.not_nil!
+          i, j = pos
+          next if dist[i][j] < d
+          each_neighbor(i, j) do |ni, nj|
+            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+            next_cost = dist[i][j] <= U::MAX - weight ? dist[i][j] + weight : U::MAX
+            if next_cost < dist[ni][nj]
+              dist[ni][nj] = next_cost
+              next_node << {next_cost, {ni.to_i32, nj.to_i32}}
+            end
+          end
+        end
+        return dist
+      end
+      raise "Tag Error"
+    end
+
+    # 始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+    #
+    # 内部で利用するアルゴリズムをタグで指定します。
+    # - `:bfs` : 侵入不可能な場合は U::MAX を返してください。
+    # - `:binary_bfs` : 重みは $0$ または $1$ である必要があります。
+    # - `:dijkstra` : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+    #
+    # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+    #
+    # ```
+    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) { |i, j, ni, nj|
+    #   f(i, j, ni, nj)
+    # } # => 4
+    # ```
+    def shortest_path(start : Tuple, dest : Tuple, tag = :dijkstra, & : Int32, Int32, Int32, Int32 -> U) : Int64 forall U
+      shortest_path(start, tag) { |i, j, ni, nj| yield i, j, ni, nj }[dest[0]][dest[1]]
     end
 
     # グリッドを隣接リスト形式で無向グラフに変換します。
@@ -214,8 +328,8 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
-    # grid.to_graph # => [[3, 1], [0], [1, 5], [0], [1, 3, 5], [8], [3], [8], [5]]
+    # grid = Grid(Char).dydx4(s)
+    # grid.to_graph # => [[3, 1], [0], [], [0], [], [8], [], [], [5]]
     # ```
     def to_graph(type = :connect_free) : Array(Array(Int32))
       graph = Array.new(@w * @h) { [] of Int32 }
@@ -260,7 +374,7 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
+    # grid = Grid(Char).dydx4(s)
     # grid.label_grid # => [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
     # ```
     def label_grid
@@ -309,7 +423,7 @@ module NgLib
     #   ".#.".chars,
     #   "##.".chars,
     # ]
-    # grid = Grid(Char).new(s)
+    # grid = Grid(Char).dydx4(s)
     # gird.each { |c| puts c } # => '.', '.', '#', '.', ..., '.'
     # ```
     def each(& : T ->)
