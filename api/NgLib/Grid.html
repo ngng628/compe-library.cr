@@ -278,7 +278,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L16" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L17" target="_blank">
     nglib/grid/grid.cr
    </a>
    <br/>
@@ -814,7 +814,11 @@
         <a href="../Char.html">
          Char
         </a>
-        ).new(s) grid.label_grid # =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
+        )
+        <a href="../NgLib/Grid.html#dydx4%28s%3AArray%28Array%28T%29%29%29-class-method">
+         .dydx4(s)
+        </a>
+        grid.label_grid # =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
        </code>
       </p>
      </div>
@@ -866,7 +870,7 @@
      </a>
      <div class="summary">
       <p>
-       始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+       始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
       </p>
      </div>
     </li>
@@ -879,7 +883,7 @@
      </a>
      <div class="summary">
       <p>
-       始点 $(si, sj)$ から各マスへの最短経路長を返します。
+       始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
       </p>
      </div>
     </li>
@@ -889,6 +893,57 @@
        #shortest_path
       </strong>
       : Array(Array(Int64))
+     </a>
+     <div class="summary">
+      <p>
+       全マス間の最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%2Ctag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AInt64forallU-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Tuple, dest : Tuple, tag =
+      <span class="n">
+       :dijkstra
+      </span>
+      , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Int64 forall U
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3ATuple%2Ctag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AArray%28Array%28U%29%29forallU-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Tuple, tag =
+      <span class="n">
+       :dijkstra
+      </span>
+      , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Array(Array(U)) forall U
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28tag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AArray%28Array%28Int64%29%29forallU-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (tag =
+      <span class="n">
+       :dijkstra
+      </span>
+      , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Array(Array(Int64)) forall U
      </a>
      <div class="summary">
       <p>
@@ -977,7 +1032,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L63" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L64" target="_blank">
       View source
      </a>
      ]
@@ -1022,7 +1077,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L19" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L20" target="_blank">
       View source
      </a>
      ]
@@ -1042,7 +1097,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L51" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L52" target="_blank">
       View source
      </a>
      ]
@@ -1062,7 +1117,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L55" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L56" target="_blank">
       View source
      </a>
      ]
@@ -1082,7 +1137,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L59" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L60" target="_blank">
       View source
      </a>
      ]
@@ -1118,7 +1173,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L23" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L24" target="_blank">
       View source
      </a>
      ]
@@ -1155,7 +1210,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L449" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L563" target="_blank">
       View source
      </a>
      ]
@@ -1183,7 +1238,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L445" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L559" target="_blank">
       View source
      </a>
      ]
@@ -1211,7 +1266,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L457" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L571" target="_blank">
       View source
      </a>
      ]
@@ -1239,7 +1294,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L453" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L567" target="_blank">
       View source
      </a>
      ]
@@ -1283,7 +1338,7 @@ grid.barred?(<span class="n">1</span>, <span class="n">1</span>) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L122" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L123" target="_blank">
       View source
      </a>
      ]
@@ -1323,7 +1378,7 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L106" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L107" target="_blank">
       View source
      </a>
      ]
@@ -1347,7 +1402,7 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L47" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L48" target="_blank">
       View source
      </a>
      ]
@@ -1373,13 +1428,13 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
   <span class="s">".#."</span>.chars,
   <span class="s">"##."</span>.chars,
 ]
-grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).new(s)
+grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).dydx4(s)
 gird.each { <span class="o">|</span>c<span class="o">|</span> puts c } <span class="c"># =&gt; '.', '.', '#', '.', ..., '.'</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L315" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L429" target="_blank">
       View source
      </a>
      ]
@@ -1416,7 +1471,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L392" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L506" target="_blank">
       View source
      </a>
      ]
@@ -1453,7 +1508,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L410" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L524" target="_blank">
       View source
      </a>
      ]
@@ -1485,7 +1540,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L353" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L467" target="_blank">
       View source
      </a>
      ]
@@ -1519,7 +1574,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L330" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L444" target="_blank">
       View source
      </a>
      ]
@@ -1547,7 +1602,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L420" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L534" target="_blank">
       View source
      </a>
      ]
@@ -1591,7 +1646,7 @@ grid.free?(<span class="n">1</span>, <span class="n">1</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L154" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L155" target="_blank">
       View source
      </a>
      ]
@@ -1631,7 +1686,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L138" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L139" target="_blank">
       View source
      </a>
      ]
@@ -1651,7 +1706,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L46" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L47" target="_blank">
       View source
      </a>
      ]
@@ -1687,7 +1742,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L365" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L479" target="_blank">
       View source
      </a>
      ]
@@ -1731,7 +1786,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L372" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L486" target="_blank">
       View source
      </a>
      ]
@@ -1767,7 +1822,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L376" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L490" target="_blank">
       View source
      </a>
      ]
@@ -1811,7 +1866,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L380" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L494" target="_blank">
       View source
      </a>
      ]
@@ -1833,13 +1888,13 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
   <span class="s">".#."</span>.chars,
   <span class="s">"##."</span>.chars,
 ]
-grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).new(s)
+grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).dydx4(s)
 grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L266" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L380" target="_blank">
       View source
      </a>
      ]
@@ -1871,7 +1926,7 @@ grid.over?(<span class="n">0</span>, <span class="n">0</span>)           <span c
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L90" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L91" target="_blank">
       View source
      </a>
      ]
@@ -1907,7 +1962,7 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L78" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L79" target="_blank">
       View source
      </a>
      ]
@@ -1926,15 +1981,14 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
     </div>
     <div class="doc">
      <p>
-      始点 $(si, sj)$ から終点 $(gi, gj)$ への最短経路長を返します。
+      始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
      </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
-dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+     <pre><code class="language-crystal">grid.shortest_path(start: {si, sj}, dest: {gi, gj}) <span class="c"># =&gt; 4</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L199" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L199" target="_blank">
       View source
      </a>
      ]
@@ -1953,7 +2007,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     </div>
     <div class="doc">
      <p>
-      始点 $(si, sj)$ から各マスへの最短経路長を返します。
+      始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
      </p>
      <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
 dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
@@ -1961,7 +2015,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L178" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L179" target="_blank">
       View source
      </a>
      ]
@@ -1988,7 +2042,182 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L164" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L165" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Tuple,dest:Tuple,tag=:dijkstra,&amp;:Int32,Int32,Int32,Int32-&gt;U):Int64forallU-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Tuple, dest : Tuple, tag =
+     <span class="n">
+      :dijkstra
+     </span>
+     , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Int64 forall U
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%2Ctag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AInt64forallU-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+     </p>
+     <p>
+      内部で利用するアルゴリズムをタグで指定します。
+     </p>
+     <ul>
+      <li>
+       <code>
+        :bfs
+       </code>
+       : 侵入不可能な場合は U::MAX を返してください。
+      </li>
+      <li>
+       <code>
+        :binary_bfs
+       </code>
+       : 重みは $0$ または $1$ である必要があります。
+      </li>
+      <li>
+       <code>
+        :dijkstra
+       </code>
+       : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+      </li>
+     </ul>
+     <p>
+      $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+     </p>
+     <pre><code class="language-crystal">grid.shortest_path(start: {si, sj}, dest: {gi, gj}) { <span class="o">|</span>i, j, ni, nj<span class="o">|</span>
+  f(i, j, ni, nj)
+} <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L313" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Tuple,tag=:dijkstra,&amp;:Int32,Int32,Int32,Int32-&gt;U):Array(Array(U))forallU-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Tuple, tag =
+     <span class="n">
+      :dijkstra
+     </span>
+     , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Array(Array(U)) forall U
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%2Ctag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AArray%28Array%28U%29%29forallU-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
+     </p>
+     <p>
+      内部で利用するアルゴリズムをタグで指定します。
+     </p>
+     <ul>
+      <li>
+       <code>
+        :bfs
+       </code>
+       : 侵入不可能な場合は U::MAX を返してください。
+      </li>
+      <li>
+       <code>
+        :binary_bfs
+       </code>
+       : 重みは $0$ または $1$ である必要があります。
+      </li>
+      <li>
+       <code>
+        :dijkstra
+       </code>
+       : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+      </li>
+     </ul>
+     <p>
+      $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {<span class="n">0</span>, <span class="n">0</span>}) { <span class="o">|</span>i, j, ni, nj<span class="o">|</span> f(i, j, ni, nj) }
+dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+     <p>
+      ameba:disable Metrics/CyclomaticComplexity
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L238" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(tag=:dijkstra,&amp;:Int32,Int32,Int32,Int32-&gt;U):Array(Array(Int64))forallU-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (tag =
+     <span class="n">
+      :dijkstra
+     </span>
+     , &amp; : Int32, Int32, Int32, Int32 -&gt; U) : Array(Array(Int64)) forall U
+     <a class="method-permalink" href="#shortest_path%28tag%3D%3Adijkstra%2C%26%3AInt32%2CInt32%2CInt32%2CInt32-%3EU%29%3AArray%28Array%28Int64%29%29forallU-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      全マス間の最短経路長を返します。
+     </p>
+     <p>
+      内部で利用するアルゴリズムをタグで指定します。
+     </p>
+     <ul>
+      <li>
+       <code>
+        :bfs
+       </code>
+       : 侵入不可能な場合は U::MAX を返してください。
+      </li>
+      <li>
+       <code>
+        :binary_bfs
+       </code>
+       : 重みは $0$ または $1$ である必要があります。
+      </li>
+      <li>
+       <code>
+        :dijkstra
+       </code>
+       : デフォルト値です。$\infty = U::MAX$ です。負の数には気をつけてください。
+      </li>
+     </ul>
+     <p>
+      $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path { <span class="o">|</span>i, j, ni, nj<span class="o">|</span> f(i, j, ni, nj) }
+dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L216" target="_blank">
       View source
      </a>
      ]
@@ -2021,7 +2250,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L424" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L538" target="_blank">
       View source
      </a>
      ]
@@ -2074,13 +2303,13 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
   <span class="s">".#."</span>.chars,
   <span class="s">"##."</span>.chars,
 ]
-grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).new(s)
-grid.to_graph <span class="c"># =&gt; [[3, 1], [0], [1, 5], [0], [1, 3, 5], [8], [3], [8], [5]]</span></code></pre>
+grid <span class="o">=</span> <span class="t">Grid</span>(<span class="t">Char</span>).dydx4(s)
+grid.to_graph <span class="c"># =&gt; [[3, 1], [0], [], [0], [], [8], [], [], [5]]</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L220" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L334" target="_blank">
       View source
      </a>
      ]
@@ -2115,7 +2344,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L434" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L548" target="_blank">
       View source
      </a>
      ]
@@ -2135,7 +2364,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e92b28377afc785a9f90b14fcd05cffdf6394d40/src/nglib/grid/grid.cr#L46" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/999bbd70e6cc874b1c35a8b32d2fd9cf37ff0002/src/nglib/grid/grid.cr#L47" target="_blank">
       View source
      </a>
      ]
