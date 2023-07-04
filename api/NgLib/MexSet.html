@@ -11,7 +11,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::BfsGraph - nglib main
+   NgLib::MexSet(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -95,7 +95,7 @@
          AATreeSet
         </a>
        </li>
-       <li class="current" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+       <li class="" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
         <a href="../NgLib/BfsGraph.html">
          BfsGraph
         </a>
@@ -180,7 +180,7 @@
          </li>
         </ul>
        </li>
-       <li class="" data-id="nglib/NgLib/MexSet" data-name="nglib::mexset(t)">
+       <li class="current" data-id="nglib/NgLib/MexSet" data-name="nglib::mexset(t)">
         <a href="../NgLib/MexSet.html">
          MexSet
         </a>
@@ -245,12 +245,12 @@
     <span class="kind">
      class
     </span>
-    NgLib::BfsGraph
+    NgLib::MexSet(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/BfsGraph.html">
-      NgLib::BfsGraph
+     <a href="../NgLib/MexSet.html">
+      NgLib::MexSet(T)
      </a>
     </li>
     <li class="superclass">
@@ -261,21 +261,6 @@
     </li>
    </ul>
    <h2>
-    <a class="anchor" href="#overview" id="overview">
-     <svg aria-hidden="true" class="octicon-link">
-      <use href="#octicon-link">
-      </use>
-     </svg>
-    </a>
-    Overview
-   </h2>
-   <p>
-    $n$ 頂点 $m$ 辺からなるグラフに対して、幅優先探索によって最短経路を求めます。
-   </p>
-   <p>
-    経路の復元も可能です。
-   </p>
-   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -284,8 +269,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L7" target="_blank">
-    nglib/graph/bfs.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L5" target="_blank">
+    nglib/data_structure/mex_set.cr
    </a>
    <br/>
    <h2>
@@ -299,17 +284,38 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%29-class-method">
+     <a class="signature" href="#new%28inf%3AT%2Csup%3AT%29-class-method">
       <strong>
        .new
       </strong>
-      (n : Int)
+      (inf : T, sup : T)
      </a>
      <div class="summary">
       <p>
-       $n$ 頂点 $0$ 辺からなるグラフを作成します。
+       下限値
+       <code>
+        inf
+       </code>
+       で、上限値が
+       <code>
+        sup
+       </code>
+       の
+       <code>
+        <a href="../NgLib/MexSet.html">
+         MexSet
+        </a>
+       </code>
+       を構築します。
       </p>
      </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new-class-method">
+      <strong>
+       .new
+      </strong>
+     </a>
     </li>
    </ul>
    <h2>
@@ -323,87 +329,111 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     <a class="signature" href="#%3C%3C%28x%3AT%29-instance-method">
       <strong>
-       #add_edge
+       #&lt;&lt;
       </strong>
-      (u : Int, v : Int, directed : Bool =
-      <span class="n">
-       false
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        <a href="../NgLib/MexSet.html#add%28x%3AT%29-instance-method">
+         #add
+        </a>
+       </code>
+       へのエイリアスです。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#add%28x%3AT%29-instance-method">
+      <strong>
+       #add
+      </strong>
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       集合に $x$ を追加します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#add%3F%28x%3AT%29-instance-method">
+      <strong>
+       #add?
+      </strong>
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       集合に $x$ を追加します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#delete%28x%3AT%29-instance-method">
+      <strong>
+       #delete
+      </strong>
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       集合から $x$ を削除します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#delete%3F%28x%3AT%29-instance-method">
+      <strong>
+       #delete?
+      </strong>
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       集合から $x$ を削除します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#includes%3F%28x%3AT%29-instance-method">
+      <strong>
+       #includes?
+      </strong>
+      (x : T)
+     </a>
+     <div class="summary">
+      <p>
+       集合に $x$ が含まれるなら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#mex%28inf%3AT%3DT.zero%29-instance-method">
+      <strong>
+       #mex
+      </strong>
+      (inf : T =
+      <span class="t">
+       T
       </span>
-      )
+      .zero)
      </a>
      <div class="summary">
       <p>
-       辺 $(u, v)$ を追加します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#graph%3AArray%28Array%28Int32%29%29-instance-method">
-      <strong>
-       #graph
-      </strong>
-      : Array(Array(Int32))
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
-      <strong>
-       #shortest_path
-      </strong>
-      (start : Int, dest : Int)
-     </a>
-     <div class="summary">
-      <p>
-       始点
        <code>
-        start
+        inf
        </code>
-       から終点
-       <code>
-        dest
-       </code>
-       への最短経路長を返します。
+       を下限値として $\mathrm{mex}$ を求めます。
       </p>
      </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3AInt%29-instance-method">
-      <strong>
-       #shortest_path
-      </strong>
-      (start : Int)
-     </a>
-     <div class="summary">
-      <p>
-       始点
-       <code>
-        start
-       </code>
-       から各頂点への最短経路長を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path-instance-method">
-      <strong>
-       #shortest_path
-      </strong>
-     </a>
-     <div class="summary">
-      <p>
-       全点対間の最短経路長を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#size%3AInt32-instance-method">
-      <strong>
-       #size
-      </strong>
-      : Int32
-     </a>
     </li>
    </ul>
    <div class="methods-inherited">
@@ -417,31 +447,71 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(n:Int)-class-method">
+   <div class="entry-detail" id="new(inf:T,sup:T)-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (n :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+     (inf : T, sup : T)
+     <a class="method-permalink" href="#new%28inf%3AT%2Csup%3AT%29-class-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      $n$ 頂点 $0$ 辺からなるグラフを作成します。
+      下限値
+      <code>
+       inf
+      </code>
+      で、上限値が
+      <code>
+       sup
+      </code>
+      の
+      <code>
+       <a href="../NgLib/MexSet.html">
+        MexSet
+       </a>
+      </code>
+      を構築します。
      </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)</code></pre>
+     <p>
+      <span class="flag purple">
+       NOTE
+      </span>
+      非推奨の API です。mex を求めるときに
+      <code>
+       inf
+      </code>
+      のみ指定する方法を推奨します。
+     </p>
+     <pre><code class="language-crystal"><span class="c"># 非負整数に対する MexSet</span>
+set <span class="o">=</span> <span class="t">MexSet</span>(<span class="t">Int64</span>).new(<span class="n">0_i64</span>, <span class="t">Int64</span><span class="t">::</span><span class="t">MAX</span>)</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L16" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L25" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     <a class="method-permalink" href="#new-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L9" target="_blank">
       View source
      </a>
      ]
@@ -456,196 +526,209 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="add_edge(u:Int,v:Int,directed:Bool=false)-instance-method">
+   <div class="entry-detail" id="&lt;&lt;(x:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      add_edge
+      &lt;&lt;
      </strong>
-     (u :
-     <a href="../Int.html">
-      Int
-     </a>
-     , v :
-     <a href="../Int.html">
-      Int
-     </a>
-     , directed : Bool =
-     <span class="n">
-      false
-     </span>
-     )
-     <a class="method-permalink" href="#add_edge%28u%3AInt%2Cv%3AInt%2Cdirected%3ABool%3Dfalse%29-instance-method">
+     (x : T)
+     <a class="method-permalink" href="#%3C%3C%28x%3AT%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      辺 $(u, v)$ を追加します。
+      <code>
+       <a href="../NgLib/MexSet.html#add%28x%3AT%29-instance-method">
+        #add
+       </a>
+      </code>
+      へのエイリアスです。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L173" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="add(x:T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add
+     </strong>
+     (x : T)
+     <a class="method-permalink" href="#add%28x%3AT%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      集合に $x$ を追加します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L41" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="add?(x:T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add?
+     </strong>
+     (x : T)
+     <a class="method-permalink" href="#add%3F%28x%3AT%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      集合に $x$ を追加します。
      </p>
      <p>
-      <code>
-       directed
-      </code>
-      が
+      mex の値に変更があったとき
       <code>
        true
       </code>
-      の場合、
-有向辺とみなして、$u$ から $v$ への辺のみ生やします。
+      を返します。
      </p>
-     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">BfsGraph</span>.new(n)
-graph.add_edge(u, v)                 <span class="c"># =&gt; (u) &lt;---w---&gt; (v)</span>
-graph.add_edge(u, v, directed: <span class="n">true</span>) <span class="c"># =&gt; (u) ----w---&gt; (v)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L31" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L75" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="graph:Array(Array(Int32))-instance-method">
+   <div class="entry-detail" id="delete(x:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      graph
+      delete
      </strong>
-     : Array(Array(Int32))
-     <a class="method-permalink" href="#graph%3AArray%28Array%28Int32%29%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L9" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="shortest_path(start:Int,dest:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      shortest_path
-     </strong>
-     (start :
-     <a href="../Int.html">
-      Int
-     </a>
-     , dest :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#shortest_path%28start%3AInt%2Cdest%3AInt%29-instance-method">
+     (x : T)
+     <a class="method-permalink" href="#delete%28x%3AT%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      始点
-      <code>
-       start
-      </code>
-      から終点
-      <code>
-       dest
-      </code>
-      への最短経路長を返します。
+      集合から $x$ を削除します。
      </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>, dest: <span class="n">0</span>)
-dist <span class="c"># =&gt; 12</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L72" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L107" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path(start:Int)-instance-method">
+   <div class="entry-detail" id="delete?(x:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path
+      delete?
      </strong>
-     (start :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#shortest_path%28start%3AInt%29-instance-method">
+     (x : T)
+     <a class="method-permalink" href="#delete%3F%28x%3AT%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      始点
-      <code>
-       start
-      </code>
-      から各頂点への最短経路長を返します。
+      集合から $x$ を削除します。
      </p>
-     <pre><code class="language-crystal">dist <span class="o">=</span> graph.shortest_path(start: <span class="n">2</span>)
-dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
+     <p>
+      実際に値が削除された場合
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L52" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L135" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path-instance-method">
+   <div class="entry-detail" id="includes?(x:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      shortest_path
+      includes?
      </strong>
-     <a class="method-permalink" href="#shortest_path-instance-method">
+     (x : T)
+     <a class="method-permalink" href="#includes%3F%28x%3AT%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      全点対間の最短経路長を返します。
+      集合に $x$ が含まれるなら
+      <code>
+       true
+      </code>
+      を返します。
      </p>
-     <pre><code class="language-crystal">dists <span class="o">=</span> graph.shortest_path
-dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L42" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L34" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="size:Int32-instance-method">
+   <div class="entry-detail" id="mex(inf:T=T.zero)-instance-method">
     <div class="signature">
      def
      <strong>
-      size
+      mex
      </strong>
-     : Int32
-     <a class="method-permalink" href="#size%3AInt32-instance-method">
+     (inf : T =
+     <span class="t">
+      T
+     </span>
+     .zero)
+     <a class="method-permalink" href="#mex%28inf%3AT%3DT.zero%29-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       inf
+      </code>
+      を下限値として $\mathrm{mex}$ を求めます。
+     </p>
+     <p>
+      非負整数に対する $\mathrm{mex}$ はデフォルト値の T.zero を使用すれば良いです。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/graph/bfs.cr#L8" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/mex_set.cr#L163" target="_blank">
       View source
      </a>
      ]
