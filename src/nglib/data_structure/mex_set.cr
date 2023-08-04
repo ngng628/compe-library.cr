@@ -34,7 +34,7 @@ module NgLib
     def includes?(x : T)
       i = @set.greater_equal_index({x.succ, x.succ}).not_nil! - 1
       l, u = @set[i]
-      return l <= x && x <= u
+      l <= x && x <= u
     end
 
     # 集合に $x$ を追加します。
@@ -126,7 +126,7 @@ module NgLib
         @set << {x + 1, u}
       end
 
-      return self
+      self
     end
 
     # 集合から $x$ を削除します。
@@ -154,7 +154,7 @@ module NgLib
         @set << {x + 1, u}
       end
 
-      return true
+      true
     end
 
     # `inf` を下限値として $\mathrm{mex}$ を求めます。
