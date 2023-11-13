@@ -476,6 +476,38 @@ module NgLib
       end
     end
 
+    # グリッドの各要素に対して、ブロックを実行した結果に変換したグリッドを返します。
+    def map(& : T -> U) : Grid(U) forall U
+      ret = Array.new(h) { Array(U).new(w) }
+      i = 0
+      while i < h
+        j = 0
+        line = Array(U).new(w)
+        while j < w
+          line << yield self[i, j]
+          j += 1
+        end
+        ret[i] = line
+        i += 1
+      end
+      Grid(U).new(ret, @delta)
+    end
+
+    # グリッドの各要素に対して、ブロックを実行した結果に変換したグリッドを返します。
+    def map_with_coord(& : T, {Int32, Int32} -> U) : Grid(U) forall U
+      ret = Array.new(h) { Array(U).new(w) }
+      i = 0
+      while i < h
+        j = 0
+        line = Array(U).new(w)
+        while j < w
+          line << yield self[i, j], {i, j}
+        end
+        ret[i] = line
+      end
+      Grid(U).new(ret, @delta)
+    end
+
     def index(& : T ->) : {Int32, Int32}?
       each_with_coord do |c, (i, j)|
         return {i, j} if yield c
