@@ -117,10 +117,10 @@ module NgLib
       end
 
       @set.delete_at(i)
-      if x == l && l < u
-        @set << {l + 1, u}
-      elsif x == u && l < u
-        @set << {l, u - 1}
+      if x == l
+        @set << {l + 1, u} if l < u
+      elsif x == u
+        @set << {l, u - 1} if l < u
       else
         @set << {l, x - 1}
         @set << {x + 1, u}
@@ -145,10 +145,10 @@ module NgLib
       end
 
       @set.delete_at(i)
-      if x == l && l < u
-        @set << {l + 1, u}
-      elsif x == u && l < u
-        @set << {l, u - 1}
+      if x == l
+        @set << {l + 1, u} if l < u
+      elsif x == u
+        @set << {l, u - 1} if l < u
       else
         @set << {l, x - 1}
         @set << {x + 1, u}
