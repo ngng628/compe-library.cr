@@ -563,6 +563,10 @@ module NgLib
       end
     end
 
+    def node_index(y : Int, x : Int)
+      y * @w + x
+    end
+
     def fetch(y : Int, x : Int, default : T)
       over?(y, x) ? default : self[y, x]
     end
