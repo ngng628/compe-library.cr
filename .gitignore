@@ -3,3 +3,4 @@ dist
 lib
 toy
 .sass-cache
+shard.lock
