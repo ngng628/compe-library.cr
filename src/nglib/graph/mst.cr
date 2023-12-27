@@ -23,14 +23,14 @@ module NgLib
     #
     # 最小全域木を構築します。
     def self.min(n)
-      new(n) { |a, b| a <=> b }
+      new(n) { |lhs, rhs| lhs <=> rhs }
     end
 
     # $n$ 頂点 $0$ 辺のグラフを生成します。
     #
     # 最大全域木を構築します。
     def self.max(n)
-      new(n) { |a, b| b <=> a }
+      new(n) { |lhs, rhs| rhs <=> lhs }
     end
 
     # グラフに辺 $(u, v, w)$ を追加します。
@@ -51,7 +51,7 @@ module NgLib
     # graph.sum
     # ```
     def sum
-      @edges.sort! { |a, b| @cmp.call(a[2], b[2]) }
+      @edges.sort! { |lhs, rhs| @cmp.call(lhs[2], rhs[2]) }
       ut = AtCoder::DSU.new(@size)
       res = T.zero
       @edges.each do |(u, v, w)|

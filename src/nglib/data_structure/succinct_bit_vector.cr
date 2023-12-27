@@ -111,8 +111,8 @@ module NgLib
       return 0_u32 if k == 0
       return nil if sum < k
 
-      (0..length).bsearch { |r|
-        sum(r) >= k
+      (0..length).bsearch { |right|
+        sum(right) >= k
       }.not_nil!
     end
   end

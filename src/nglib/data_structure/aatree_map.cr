@@ -343,13 +343,11 @@ module NgLib
       true
     end
 
-    # TODO: Improve performance
     def delete_at(k : Int)
       key = key_at(k)
       delete_key(key)
     end
 
-    # TODO: Improve performance
     def delete_at(k : Int)
       key = key_at?(k)
       return if key.nil?

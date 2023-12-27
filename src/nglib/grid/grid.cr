@@ -61,7 +61,7 @@ module NgLib
       new(s, DYDX8)
     end
 
-    def initialize(s : Array(Array(T)), @delta)
+    def ii_adjtialize(s : Array(Array(T)), @delta)
       @h = s.size
       @w = s[0].size
       @s = s.flatten
@@ -163,9 +163,9 @@ module NgLib
     # dist[si][sj][gi][gj] # => 4
     # ```
     def shortest_path : Array(Array(Int64))
-      Array.new(@h) { |si|
-        Array.new(@w) { |sj|
-          shortest_path(si, sj)
+      Array.new(@h) { |start_i|
+        Array.new(@w) { |start_j|
+          shortest_path(start_i, start_j)
         }
       }
     end
@@ -182,10 +182,10 @@ module NgLib
       dist[start[0]][start[1]] = 0
       until queue.empty?
         i, j = queue.shift
-        each_neighbor(i, j) do |ni, nj|
-          next if dist[ni][nj] != OO
-          dist[ni][nj] = dist[i][j] + 1
-          queue << {ni, nj}
+        each_neighbor(i, j) do |i_adj, j_adj|
+          next if dist[i_adj][j_adj] != OO
+          dist[i_adj][j_adj] = dist[i][j] + 1
+          queue << {i_adj, j_adj}
         end
       end
       dist
@@ -210,13 +210,13 @@ module NgLib
     # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
     #
     # ```
-    # dist = grid.shortest_path { |i, j, ni, nj| f(i, j, ni, nj) }
+    # dist = grid.shortest_path { |i, j, i_adj, j_adj| f(i, j, i_adj, j_adj) }
     # dist[si][sj][gi][gj] # => 4
     # ```
     def shortest_path(tag = :dijkstra, & : Int32, Int32, Int32, Int32 -> U) : Array(Array(Int64)) forall U
-      Array.new(@h) { |si|
-        Array.new(@w) { |sj|
-          shortest_path(si, sj) { |i, j, ni, nj| yield i, j, ni, nj }
+      Array.new(@h) { |start_i|
+        Array.new(@w) { |start_j|
+          shortest_path(start_i, start_j) { |i, j, i_adj, j_adj| yield i, j, i_adj, j_adj }
         }
       }
     end
@@ -231,7 +231,7 @@ module NgLib
     # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
     #
     # ```
-    # dist = grid.shortest_path(start: {0, 0}) { |i, j, ni, nj| f(i, j, ni, nj) }
+    # dist = grid.shortest_path(start: {0, 0}) { |i, j, i_adj, j_adj| f(i, j, i_adj, j_adj) }
     # dist[gi][gj] # => 4
     # ```
     # ameba:disable Metrics/CyclomaticComplexity
@@ -243,13 +243,13 @@ module NgLib
         dist[start[0]][start[1]] = U.zero
         until next_node.empty?
           i, j = next_node.shift
-          each_neighbor(i, j) do |ni, nj|
-            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+          each_neighbor(i, j) do |i_adj, j_adj|
+            weight = yield i.to_i32, j.to_i32, i_adj.to_i32, j_adj.to_i32
             raise "Weight error" unless weight == U.zero.succ || weight == U::MAX
             next if weight == U::MAX
-            next if dist[ni][nj] != U::MAX
-            dist[ni][nj] = dist[i][j] + U.zero.succ
-            next_node << {ni, nj}
+            next if dist[i_adj][j_adj] != U::MAX
+            dist[i_adj][j_adj] = dist[i][j] + U.zero.succ
+            next_node << {i_adj, j_adj}
           end
         end
         return dist
@@ -259,16 +259,16 @@ module NgLib
         dist[start[0]][start[1]] = U.zero
         until next_node.empty?
           i, j = next_node.shift
-          each_neighbor(i, j) do |ni, nj|
-            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+          each_neighbor(i, j) do |i_adj, j_adj|
+            weight = yield i.to_i32, j.to_i32, i_adj.to_i32, j_adj.to_i32
             raise "Weight error" unless weight.in?({U.zero, U.zero.succ})
             next_cost = dist[i][j] <= U::MAX - weight ? dist[i][j] + weight : U::MAX
-            if next_cost < dist[ni][nj]
-              dist[ni][nj] = next_cost
+            if next_cost < dist[i_adj][j_adj]
+              dist[i_adj][j_adj] = next_cost
               if weight == 0
-                next_node.unshift({ni.to_i32, nj.to_i32})
+                next_node.unshift({i_adj.to_i32, j_adj.to_i32})
               else
-                next_node << {ni.to_i32, nj.to_i32}
+                next_node << {i_adj.to_i32, j_adj.to_i32}
               end
             end
           end
@@ -279,15 +279,15 @@ module NgLib
         dist = Array.new(@h) { Array.new(@w) { U::MAX } }
         dist[start[0]][start[1]] = U.zero
         until next_node.empty?
-          d, pos = next_node.pop.not_nil!
+          d, pos = next_node.pop.not_i_adjl!
           i, j = pos
           next if dist[i][j] < d
-          each_neighbor(i, j) do |ni, nj|
-            weight = yield i.to_i32, j.to_i32, ni.to_i32, nj.to_i32
+          each_neighbor(i, j) do |i_adj, j_adj|
+            weight = yield i.to_i32, j.to_i32, i_adj.to_i32, j_adj.to_i32
             next_cost = dist[i][j] <= U::MAX - weight ? dist[i][j] + weight : U::MAX
-            if next_cost < dist[ni][nj]
-              dist[ni][nj] = next_cost
-              next_node << {next_cost, {ni.to_i32, nj.to_i32}}
+            if next_cost < dist[i_adj][j_adj]
+              dist[i_adj][j_adj] = next_cost
+              next_node << {next_cost, {i_adj.to_i32, j_adj.to_i32}}
             end
           end
         end
@@ -306,12 +306,12 @@ module NgLib
     # $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
     #
     # ```
-    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) { |i, j, ni, nj|
-    #   f(i, j, ni, nj)
+    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) { |i, j, i_adj, j_adj|
+    #   f(i, j, i_adj, j_adj)
     # } # => 4
     # ```
     def shortest_path(start : Tuple, dest : Tuple, tag = :dijkstra, & : Int32, Int32, Int32, Int32 -> U) : Int64 forall U
-      shortest_path(start, tag) { |i, j, ni, nj| yield i, j, ni, nj }[dest[0]][dest[1]]
+      shortest_path(start, tag) { |i, j, i_adj, j_adj| yield i, j, i_adj, j_adj }[dest[0]][dest[1]]
     end
 
     # グリッドを隣接リスト形式で無向グラフに変換します。
@@ -338,13 +338,13 @@ module NgLib
         @w.times do |j|
           node = @w * i + j
           @delta.each do |(di, dj)|
-            ni = i + di
-            nj = j + dj
-            next if over?(ni, nj)
-            node2 = @w * ni + nj
+            i_adj = i + di
+            j_adj = j + dj
+            next if over?(i_adj, j_adj)
+            node2 = @w * i_adj + j_adj
 
-            both_frees = free?(i, j) & free?(ni, nj)
-            both_bars = barred?(i, j) & barred?(ni, nj)
+            both_frees = free?(i, j) & free?(i_adj, j_adj)
+            both_bars = barred?(i, j) & barred?(i_adj, j_adj)
 
             case type
             when :connect_free
@@ -361,13 +361,9 @@ module NgLib
     end
 
     # 連結する free および bar を塗り分けたグリッドを返します。
-
     # free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
-
     # `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
-
-    # TODO: よりよい命名を考える
-
+    #
     # ```
     # s = [
     #   "..#".chars,
@@ -378,12 +374,12 @@ module NgLib
     # grid.label_grid # => [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
     # ```
     def label_grid
-      table = Array.new(@h) { [nil.as(Int32?)] * @w }
+      table = Array.new(@h) { [i_adjl.as(Int32?)] * @w }
 
       free_index, bar_index = 0, -1
       @h.times do |i|
         @w.times do |j|
-          next unless table[i][j].nil?
+          next unless table[i][j].i_adjl?
 
           label = 0
           is_bar = barred?(i, j)
@@ -403,7 +399,7 @@ module NgLib
               ny = y + dy
               nx = x + dx
               next if over?(ny, nx)
-              next unless table[ny][nx].nil?
+              next unless table[ny][nx].i_adjl?
               next if is_bar ^ barred?(ny, nx)
               table[ny][nx] = label
               queue << {ny, nx}
@@ -412,7 +408,7 @@ module NgLib
         end
       end
 
-      Grid(Int32).new(table.map { |line| line.map(&.not_nil!) }, @delta)
+      Grid(Int32).new(table.map { |line| line.map(&.not_i_adjl!) }, @delta)
     end
 
     # グリッドの値を $(0, 0)$ から $(H, W)$ まで順に列挙します。
@@ -509,22 +505,22 @@ module NgLib
     end
 
     def index(& : T ->) : {Int32, Int32}?
-      each_with_coord do |c, (i, j)|
-        return {i, j} if yield c
+      each_with_coord do |elem, (i, j)|
+        return {i, j} if yield elem
       end
-      nil
+      i_adjl
     end
 
     def index(obj) : {Int32, Int32}?
-      index { |c| c == obj }
+      index { |elem| elem == obj }
     end
 
     def index!(& : T ->) : {Int32, Int32}
-      index { |c| yield c } || raise Exception.new("Not found.")
+      index { |elem| yield elem } || raise Exception.new("Not found.")
     end
 
     def index!(obj) : {Int32, Int32}?
-      index! { |c| c == obj }
+      index! { |elem| elem == obj }
     end
 
     # 位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。

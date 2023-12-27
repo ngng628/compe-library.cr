@@ -67,7 +67,7 @@ module NgLib
     # $k$ の値を変更します。
     #
     # 計算量は $\Delta k \log{\Delta k}$
-    def set_k(k : Int)
+    def k=(k : Int)
       if @k < k
         (k - @k).times do |i|
           break if k + i >= size

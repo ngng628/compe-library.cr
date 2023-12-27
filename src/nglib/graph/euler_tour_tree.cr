@@ -106,7 +106,7 @@ module NgLib
       @size.times do |v|
         t = @login[v]
         cost = yield v
-        costs[t]
+        costs[t] = cost
       end
     end
 
@@ -187,7 +187,6 @@ module NgLib
     # tree.edge_costs_on_root_path { |u, v| edge_cost[{u, v}] }
     # ```
     def edge_costs_on_root_path(zero = U.zero, & : Int32, Int32 -> U) forall U
-      root = itinerary[0]
       costs = Array(U).new(itinerary.size + 1)
       costs << U.zero
       (itinerary.size - 1).times do |i|
@@ -288,7 +287,7 @@ module NgLib
         @itinerary << v
         @depths << d
       end
-      
+
       @logout[v] = @time
       @time += 1
     end

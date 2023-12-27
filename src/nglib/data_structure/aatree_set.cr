@@ -373,7 +373,7 @@ module NgLib
     end
 
     def size : Int32
-      @root ? @root.not_nil!.size : 0
+      @root.try &.size || 0
     end
 
     def to_a : Array(T)
@@ -381,9 +381,11 @@ module NgLib
       return res unless @root
       dfs = uninitialized Node(T) -> Nil
       dfs = ->(node : Node(T)) do
-        dfs.call(node.left.not_nil!) if node.left
+        left = node.left
+        right = node.right
+        dfs.call(left) if left
         res << node.key
-        dfs.call(node.right.not_nil!) if node.right
+        dfs.call(right) if right
         nil
       end
       dfs.call(@root.not_nil!)

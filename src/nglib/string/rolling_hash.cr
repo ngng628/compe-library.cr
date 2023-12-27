@@ -94,7 +94,7 @@ module NgLib
     # rh.hash("abc") # => 496222201481864933
     # ```
     def hash(s : Enumerable)
-      s.reduce(0_u64) { |acc, ti| mul(acc, @base) + ti.to_u64 }
+      s.reduce(0_u64) { |acc, elem| mul(acc, @base) + elem.to_u64 }
     end
 
     # `s[start...start + length]` のハッシュを返します。
@@ -268,7 +268,7 @@ module NgLib
     # ```
     def index!(t : Enumerable, offset : Int = 0) : Int32
       ths = 0_u64
-      t.each { |ti| ths = mul(ths, @base) + ti.to_u64 }
+      t.each { |elem| ths = mul(ths, @base) + elem.to_u64 }
       t_len = t.size
       (offset..@size - t.size).index! { |i| ths == substr(i, t_len) } + offset
     end

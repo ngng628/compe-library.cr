@@ -16,7 +16,7 @@ module NgLib
       @n = @fwd.size.to_i64
       @order = Array(Int64).new(@n)
       @leader = Array.new(@n, -1_i64)
-      @bwd = Array.new(@n){ Array(Int64).new }
+      @bwd = Array.new(@n) { Array(Int64).new }
       @n.times do |i|
         @fwd[i].each do |j|
           @bwd[j] << i
@@ -24,12 +24,12 @@ module NgLib
       end
 
       @closed = Array(Bool).new(@n, false)
-      @n.times{ |i| dfs(i) }
+      @n.times { |i| dfs(i) }
       @order = @order.reverse
       ptr = rdfs
 
-      @graph = Array.new(ptr){ Array(Int64).new }
-      @groups = Array.new(ptr){ Array(Int64).new }
+      @graph = Array.new(ptr) { Array(Int64).new }
+      @groups = Array.new(ptr) { Array(Int64).new }
       @n.times do |i|
         @groups[@leader[i]] << i
         @fwd[i].each do |j|
@@ -59,9 +59,9 @@ module NgLib
     #
     # NOTE: 自己ループがある場合、サイズ 1 のサイクルが出現することに注意してください。
     def cycles
-      groups.each do |g|
-        root = g[0]
-        if g.size == 1
+      groups.each do |group|
+        root = group[0]
+        if group.size == 1
           cycles << [root.to_i64] if @fwd[root].includes?(root)
           next
         end
@@ -71,19 +71,19 @@ module NgLib
     private def dfs(i : Int)
       return if @closed[i]
       @closed[i] = true
-      @fwd[i].each{ |j| dfs(j) }
+      @fwd[i].each { |j| dfs(j) }
       @order << i
     end
 
     private def rdfs
       ptr = 0_i64
       closed = Array.new(@n, false)
-      @order.each do |s|
-        next if closed[s]
+      @order.each do |start|
+        next if closed[start]
         que = Deque(Int64).new
-        que << s
-        closed[s] = true
-        @leader[s] = ptr
+        que << start
+        closed[start] = true
+        @leader[start] = ptr
         until que.empty?
           now = que.shift
           @bwd[now].each do |nxt|

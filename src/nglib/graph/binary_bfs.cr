@@ -50,7 +50,7 @@ module NgLib
     # dists # => [[0, 1, 3], [1, 0, 2], [1, 1, 0]]
     # ```
     def shortest_path
-      (0...@size).map { |s| shortest_path(s) }
+      (0...@size).map { |start| shortest_path(start) }
     end
 
     # 始点 `start` から各頂点への最短経路長を返します。

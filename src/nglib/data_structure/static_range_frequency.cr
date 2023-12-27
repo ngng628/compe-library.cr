@@ -8,9 +8,9 @@ module NgLib
     def initialize(array : Array(T))
       @size = array.size
       @map = Hash(T, Array(Int32)).new
-      array.each_with_index do |a, i|
-        @map[a] = [] of Int32 unless @map.has_key?(a)
-        @map[a] << i
+      array.each_with_index do |elem, i|
+        @map[elem] = [] of Int32 unless @map.has_key?(elem)
+        @map[elem] << i
       end
     end
 
@@ -27,7 +27,7 @@ module NgLib
     end
 
     private def lower_bound(v : Array(Int32), x : Int32)
-      v.bsearch_index { |vi| vi >= x } || v.size
+      v.bsearch_index { |elem| elem >= x } || v.size
     end
   end
 end
