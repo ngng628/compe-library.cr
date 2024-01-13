@@ -31,11 +31,7 @@ module NgLib
     # :ditto:
     def get(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = if range.end.nil?
-            @size
-          else
-            range.end.not_nil! + (range.exclusive? ? 0 : 1)
-          end
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get(l, r)
     end
 
@@ -57,11 +53,7 @@ module NgLib
     # :ditto:
     def get?(range : Range(Int?, Int?)) : T?
       l = (range.begin || 0)
-      r = if range.end.nil?
-            @size
-          else
-            range.end.not_nil! + (range.exclusive? ? 0 : 1)
-          end
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get?(l, r)
     end
 
@@ -73,11 +65,7 @@ module NgLib
     # :ditto:
     def get!(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = if range.end.nil?
-            @size
-          else
-            range.end.not_nil! + (range.exclusive? ? 0 : 1)
-          end
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get!(l, r)
     end
 

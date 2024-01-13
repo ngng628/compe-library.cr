@@ -1,4 +1,5 @@
 module NgLib
+  # 変更されうる二次元配列 $A$ に対して、累積和 $\sum_{i=l_i}^{r_i-1} \sum_{j=l_j}^{r_j-1} A_i$ を計算します。
   class DynamicRectangleSum(T)
     getter height : Int32
     getter width : Int32
@@ -103,17 +104,9 @@ module NgLib
     # ```
     def get(y_range : Range(Int?, Int?), x_range : Range(Int?, Int?)) : T
       y_begin = (y_range.begin || 0)
-      y_end = if y_range.end.nil?
-                @height
-              else
-                y_range.end.not_nil! + (y_range.exclusive? ? 0 : 1)
-              end
+      y_end = (y_range.end || @height) + (y_range.exclusive? || y_range.end.nil? ? 0 : 1)
       x_begin = (x_range.begin || 0)
-      x_end = if x_range.end.nil?
-                @width
-              else
-                x_range.end.not_nil! + (x_range.exclusive? ? 0 : 1)
-              end
+      x_end = (x_range.end || @height) + (x_range.exclusive? || x_range.end.nil? ? 0 : 1)
       get(y_begin, y_end, x_begin, x_end)
     end
 
@@ -130,17 +123,9 @@ module NgLib
     # ```
     def get?(y_range : Range(Int?, Int?), x_range : Range(Int?, Int?)) : T?
       y_begin = (y_range.begin || 0)
-      y_end = if y_range.end.nil?
-                @height
-              else
-                y_range.end.not_nil! + (y_range.exclusive? ? 0 : 1)
-              end
+      y_end = (y_range.end || @height) + (y_range.exclusive? || y_range.end.nil? ? 0 : 1)
       x_begin = (x_range.begin || 0)
-      x_end = if x_range.end.nil?
-                @width
-              else
-                x_range.end.not_nil! + (x_range.exclusive? ? 0 : 1)
-              end
+      x_end = (x_range.end || @height) + (x_range.exclusive? || x_range.end.nil? ? 0 : 1)
       get?(y_begin, y_end, x_begin, x_end)
     end
 

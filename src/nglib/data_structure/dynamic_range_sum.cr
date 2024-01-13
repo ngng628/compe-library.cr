@@ -59,7 +59,7 @@ module NgLib
     # ```
     def get(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = range.end ? range.end.not_nil! + (range.exclusive? ? 0 : 1) : @size
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get(l, r)
     end
 
@@ -72,7 +72,7 @@ module NgLib
     # ```
     def [](range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = range.end ? range.end.not_nil! + (range.exclusive? ? 0 : 1) : @size
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get(l, r)
     end
 
@@ -117,7 +117,7 @@ module NgLib
     # ```
     def get?(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = range.end ? range.end.not_nil! + (range.exclusive? ? 0 : 1) : @size
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get?(l, r)
     end
 
@@ -133,7 +133,7 @@ module NgLib
     # ```
     def []?(range : Range(Int?, Int?)) : T
       l = (range.begin || 0)
-      r = range.end ? range.end.not_nil! + (range.exclusive? ? 0 : 1) : @size
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       get?(l, r)
     end
 

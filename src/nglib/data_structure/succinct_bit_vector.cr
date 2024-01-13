@@ -82,11 +82,7 @@ module NgLib
     # `range` の範囲で総和を返します。
     def sum(range : Range(Int?, Int?))
       l = (range.begin || 0)
-      r = if range.end.nil?
-            @size
-          else
-            range.end.not_nil! + (range.exclusive? ? 0 : 1)
-          end
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       sum(l, r)
     end
 
@@ -113,7 +109,7 @@ module NgLib
 
       (0..length).bsearch { |right|
         sum(right) >= k
-      }.not_nil!
+      } || raise "Not found"
     end
   end
 end

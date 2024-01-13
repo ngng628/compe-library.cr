@@ -2,6 +2,7 @@ Globs:
   - '**/*.cr'
   - '!lib'
   - '!src/nglib/utils/utils.cr'
+  - '!src/nglib/data_structure/aatree_*.cr'
 
 Lint/NotNil:
   Enabled: false
