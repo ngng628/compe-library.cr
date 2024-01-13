@@ -14,7 +14,7 @@ development_dependencies:
 
 dependencies:
   atcoder:
-    github: google/ac-library.cr
+    github: hakatashi/ac-library.cr
     branch: master
   matrix:
     github: ngng628/matrix-cr
