@@ -4,26 +4,6 @@ require "../../src/nglib/utils/fastin"
 require "atcoder/mod_int"
 require "matrix"
 
-module AtCoder
-  macro static_modint(name, modulo)
-    module AtCoder
-      # Implements atcoder::modint{{modulo}}.
-      #
-      # ```
-      # alias Mint = AtCoder::{{name}}
-      # Mint.new(30_i64) // Mint.new(7_i64)
-      # ```
-      struct {{name}}
-        def clone
-          self.class.new(@value)
-        end
-      end
-    end
-  end
-end
-
-AtCoder.static_modint(ModInt998244353, 998_244_353_i64)
-
 alias ModInt = AtCoder::ModInt998244353
 
 n = NgLib::FastIn::Scanner.read_i32
