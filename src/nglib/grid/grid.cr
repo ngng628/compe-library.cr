@@ -61,7 +61,7 @@ module NgLib
       new(s, DYDX8)
     end
 
-    def ii_adjtialize(s : Array(Array(T)), @delta)
+    def initialize(s : Array(Array(T)), @delta)
       @h = s.size
       @w = s[0].size
       @s = s.flatten
@@ -279,7 +279,7 @@ module NgLib
         dist = Array.new(@h) { Array.new(@w) { U::MAX } }
         dist[start[0]][start[1]] = U.zero
         until next_node.empty?
-          d, pos = next_node.pop.not_i_adjl!
+          d, pos = next_node.pop.not_nil!
           i, j = pos
           next if dist[i][j] < d
           each_neighbor(i, j) do |i_adj, j_adj|
@@ -374,12 +374,12 @@ module NgLib
     # grid.label_grid # => [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]
     # ```
     def label_grid
-      table = Array.new(@h) { [i_adjl.as(Int32?)] * @w }
+      table = Array.new(@h) { [nil.as(Int32?)] * @w }
 
       free_index, bar_index = 0, -1
       @h.times do |i|
         @w.times do |j|
-          next unless table[i][j].i_adjl?
+          next unless table[i][j].nil?
 
           label = 0
           is_bar = barred?(i, j)
@@ -399,7 +399,7 @@ module NgLib
               ny = y + dy
               nx = x + dx
               next if over?(ny, nx)
-              next unless table[ny][nx].i_adjl?
+              next unless table[ny][nx].nil?
               next if is_bar ^ barred?(ny, nx)
               table[ny][nx] = label
               queue << {ny, nx}
@@ -408,7 +408,7 @@ module NgLib
         end
       end
 
-      Grid(Int32).new(table.map { |line| line.map(&.not_i_adjl!) }, @delta)
+      Grid(Int32).new(table.map { |line| line.map(&.not_nil!) }, @delta)
     end
 
     # グリッドの値を $(0, 0)$ から $(H, W)$ まで順に列挙します。
@@ -508,7 +508,7 @@ module NgLib
       each_with_coord do |elem, (i, j)|
         return {i, j} if yield elem
       end
-      i_adjl
+      nil
     end
 
     def index(obj) : {Int32, Int32}?
