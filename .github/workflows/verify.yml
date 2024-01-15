@@ -22,7 +22,7 @@ jobs:
 
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.6'
+        ruby-version: '3.3.0'
       env:
         ImageOS: ubuntu18
 
@@ -53,7 +53,7 @@ jobs:
 
     - name: Build bundled docs
       run: |
-        gem install bundler
+        gem install bundler -v 2.4.22
         bundle install --gemfile=.verify-helper/markdown/Gemfile --path .vendor/bundle
         bundle exec --gemfile=.verify-helper/markdown/Gemfile jekyll build --source .verify-helper/markdown --destination dist/docs --baseurl compe-library.cr/docs
 
@@ -69,7 +69,7 @@ jobs:
       image: crystallang/crystal:1.10.1
       options: --security-opt seccomp=unconfined
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install Crystal dependencies
         run: |
           shards install --ignore-crystal-version
