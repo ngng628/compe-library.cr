@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/succinct_bit_vector.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -208,11 +208,7 @@
     <span class="cp"># `range` の範囲で総和を返します。
 </span>    <span class="n">def</span> <span class="n">sum</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
       <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">r</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-            <span class="err">@</span><span class="n">size</span>
-          <span class="k">else</span>
-            <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-          <span class="n">end</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">sum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -237,9 +233,9 @@
       <span class="k">return</span> <span class="mi">0</span><span class="n">_u32</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span>
       <span class="k">return</span> <span class="n">nil</span> <span class="k">if</span> <span class="n">sum</span> <span class="o">&lt;</span> <span class="n">k</span>
 
-      <span class="p">(</span><span class="mf">0.</span><span class="p">.</span><span class="n">length</span><span class="p">).</span><span class="n">bsearch</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span>
-        <span class="n">sum</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span>
-      <span class="p">}.</span><span class="n">not_nil</span><span class="o">!</span>
+      <span class="p">(</span><span class="mf">0.</span><span class="p">.</span><span class="n">length</span><span class="p">).</span><span class="n">bsearch</span> <span class="p">{</span> <span class="o">|</span><span class="n">right</span><span class="o">|</span>
+        <span class="n">sum</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span>
+      <span class="p">}</span> <span class="o">||</span> <span class="n">raise</span> <span class="s">"Not found"</span>
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span></code></pre></figure>
@@ -337,11 +333,7 @@
     <span class="cp"># `range` の範囲で総和を返します。
 </span>    <span class="n">def</span> <span class="n">sum</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span>
       <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">r</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-            <span class="err">@</span><span class="n">size</span>
-          <span class="k">else</span>
-            <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-          <span class="n">end</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">sum</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -366,9 +358,9 @@
       <span class="k">return</span> <span class="mi">0</span><span class="n">_u32</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span>
       <span class="k">return</span> <span class="n">nil</span> <span class="k">if</span> <span class="n">sum</span> <span class="o">&lt;</span> <span class="n">k</span>
 
-      <span class="p">(</span><span class="mf">0.</span><span class="p">.</span><span class="n">length</span><span class="p">).</span><span class="n">bsearch</span> <span class="p">{</span> <span class="o">|</span><span class="n">r</span><span class="o">|</span>
-        <span class="n">sum</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span>
-      <span class="p">}.</span><span class="n">not_nil</span><span class="o">!</span>
+      <span class="p">(</span><span class="mf">0.</span><span class="p">.</span><span class="n">length</span><span class="p">).</span><span class="n">bsearch</span> <span class="p">{</span> <span class="o">|</span><span class="n">right</span><span class="o">|</span>
+        <span class="n">sum</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span>
+      <span class="p">}</span> <span class="o">||</span> <span class="n">raise</span> <span class="s">"Not found"</span>
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span></code></pre></figure>

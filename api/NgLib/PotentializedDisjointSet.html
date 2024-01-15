@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Crystal Docs 1.9.2" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="nglib" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
+  </script>
+  <meta content="nglib" name="repository-name"/>
+  <title>
+   NgLib::PotentializedDisjointSet(Abel) - nglib main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentColor" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <input id="sidebar-btn" type="checkbox"/>
+  <label for="sidebar-btn" id="sidebar-btn-label">
+   <svg class="open" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Open Sidebar
+    </title>
+    <path d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z" fill="currentColor">
+    </path>
+   </svg>
+   <svg class="close" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Close Sidebar
+    </title>
+    <path d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z" fill="currentColor">
+    </path>
+   </svg>
+  </label>
+  <div class="sidebar">
+   <div class="sidebar-header">
+    <div class="search-box">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
+    </div>
+    <div class="project-summary">
+     <h1 class="project-name">
+      <a href="../index.html">
+       nglib
+      </a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="nglib/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="" data-id="nglib/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="nglib/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
+     <li class="parent open current" data-id="nglib/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="nglib/NgLib/AATreeMap" data-name="nglib::aatreemap(k, v)">
+        <a href="../NgLib/AATreeMap.html">
+         AATreeMap
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeMultiset" data-name="nglib::aatreemultiset(t)">
+        <a href="../NgLib/AATreeMultiset.html">
+         AATreeMultiset
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeSet" data-name="nglib::aatreeset(t)">
+        <a href="../NgLib/AATreeSet.html">
+         AATreeSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
+        <a href="../NgLib/BinaryBfsGraph.html">
+         BinaryBfsGraph
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRangeSum" data-name="nglib::dynamicrangesum(t)">
+        <a href="../NgLib/DynamicRangeSum.html">
+         DynamicRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRectangleSum" data-name="nglib::dynamicrectanglesum(t)">
+        <a href="../NgLib/DynamicRectangleSum.html">
+         DynamicRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/EulerTourTree" data-name="nglib::eulertourtree">
+        <a href="../NgLib/EulerTourTree.html">
+         EulerTourTree
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/FastIn" data-name="nglib::fastin">
+        <a href="../NgLib/FastIn.html">
+         FastIn
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/FastIn/Scanner" data-name="nglib::fastin::scanner">
+          <a href="../NgLib/FastIn/Scanner.html">
+           Scanner
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/MaxFlowGraph" data-name="nglib::maxflowgraph(cap)">
+        <a href="../NgLib/MaxFlowGraph.html">
+         MaxFlowGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/MaxFlowGraph/Edge" data-name="nglib::maxflowgraph::edge(t)">
+          <a href="../NgLib/MaxFlowGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/MexSet" data-name="nglib::mexset(t)">
+        <a href="../NgLib/MexSet.html">
+         MexSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/MSTGraph" data-name="nglib::mstgraph(t)">
+        <a href="../NgLib/MSTGraph.html">
+         MSTGraph
+        </a>
+       </li>
+       <li class="current" data-id="nglib/NgLib/PotentializedDisjointSet" data-name="nglib::potentializeddisjointset(abel)">
+        <a href="../NgLib/PotentializedDisjointSet.html">
+         PotentializedDisjointSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/PrioritySum" data-name="nglib::prioritysum(t)">
+        <a href="../NgLib/PrioritySum.html">
+         PrioritySum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/RollingHash" data-name="nglib::rollinghash">
+        <a href="../NgLib/RollingHash.html">
+         RollingHash
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/SCC" data-name="nglib::scc">
+        <a href="../NgLib/SCC.html">
+         SCC
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/SCC/Graph" data-name="nglib::scc::graph">
+          <a href="../NgLib/SCC/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
+        <a href="../NgLib/SlideMinmax.html">
+         SlideMinmax
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SparseTable" data-name="nglib::sparsetable(t)">
+        <a href="../NgLib/SparseTable.html">
+         SparseTable
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeFrequency" data-name="nglib::staticrangefrequency(t)">
+        <a href="../NgLib/StaticRangeFrequency.html">
+         StaticRangeFrequency
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
+        <a href="../NgLib/StaticRectangleSum.html">
+         StaticRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
+        <a href="../NgLib/SuccinctBitVector.html">
+         SuccinctBitVector
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::
+    <wbr/>
+    PotentializedDisjointSet(Abel)
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/PotentializedDisjointSet.html">
+      NgLib::PotentializedDisjointSet(Abel)
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    重み付き DSU (Union-Find) などと呼ばれるデータ構造です。
+   </p>
+   <p>
+    Abel 群を載せることができます。すなわち、次のメソッドが実装されているオブジェクトが載ります。
+   </p>
+   <ul>
+    <li>
+     <code>
+      #zero
+     </code>
+    </li>
+    <li>
+     <code>
+      +
+     </code>
+    </li>
+    <li>
+     <code>
+      -
+     </code>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L8" target="_blank">
+    nglib/data_structure/potentialized_disjoint_set.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28size%3AInt%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (size : Int)
+     </a>
+     <div class="summary">
+      <p>
+       n 頂点 0 辺の無向グラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new-class-method">
+      <strong>
+       .new
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       0 頂点 0 辺の無向グラフを作ります。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#diff%28low%3AInt%2Chigh%3AInt%29%3AAbel-instance-method">
+      <strong>
+       #diff
+      </strong>
+      (low : Int, high : Int) : Abel
+     </a>
+     <div class="summary">
+      <p>
+       w[high] - w[low] を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#diff%3F%28low%3AInt%2Chigh%3AInt%29%3AAbel%7CNil-instance-method">
+      <strong>
+       #diff?
+      </strong>
+      (low : Int, high : Int) : Abel | Nil
+     </a>
+     <div class="summary">
+      <p>
+       w[high] - w[low] を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#equiv%3F%28a%3AInt%2Cb%3AInt%29%3ABool-instance-method">
+      <strong>
+       #equiv?
+      </strong>
+      (a : Int, b : Int) : Bool
+     </a>
+     <div class="summary">
+      <p>
+       頂点 a と頂点 b が同じ連結成分に属しているなら
+       <code>
+        true
+       </code>
+       を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#groups%3AArray%28Array%28Int64%29%29%7CNil-instance-method">
+      <strong>
+       #groups
+      </strong>
+      : Array(Array(Int64)) | Nil
+     </a>
+     <div class="summary">
+      <p>
+       グラフを連結成分に分け、その情報を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#leader%28a%3AInt%29%3AInt64-instance-method">
+      <strong>
+       #leader
+      </strong>
+      (a : Int) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       頂点 a の属する連結成分のリーダーを返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%28a%3AInt%29%3AInt64-instance-method">
+      <strong>
+       #size
+      </strong>
+      (a : Int) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       頂点 a が属する連結成分の大きさを返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#unite%28low%3AInt%2Chigh%3AInt%2Cdiff%3AAbel%29%3AInt64-instance-method">
+      <strong>
+       #unite
+      </strong>
+      (low : Int, high : Int, diff : Abel) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       w[high] - w[low] = diff となるように、 頂点 low と頂点 high を接続します。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(size:Int)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (size :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#new%28size%3AInt%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      n 頂点 0 辺の無向グラフを作ります。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> int
+ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(n)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L30" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     <a class="method-permalink" href="#new-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      0 頂点 0 辺の無向グラフを作ります。
+     </p>
+     <pre><code class="language-crystal">ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L18" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Detail
+   </h2>
+   <div class="entry-detail" id="diff(low:Int,high:Int):Abel-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      diff
+     </strong>
+     (low :
+     <a href="../Int.html">
+      Int
+     </a>
+     , high :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Abel
+     <a class="method-permalink" href="#diff%28low%3AInt%2Chigh%3AInt%29%3AAbel-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      w[high] - w[low] を返します。
+     </p>
+     <p>
+      low と high が同じ連結成分に属していない場合 Abel.zero を返します。
+     </p>
+     <pre><code class="language-crystal">ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(size: <span class="n">10</span>)
+ut.unite(<span class="n">2</span>, <span class="n">1</span>, <span class="n">1</span>)
+ut.unite(<span class="n">2</span>, <span class="n">3</span>, <span class="n">5</span>)
+ut.unite(<span class="n">3</span>, <span class="n">4</span>, <span class="n">2</span>)
+ut.diff(<span class="n">1</span>, <span class="n">2</span>) <span class="c"># =&gt; -1</span>
+ut.diff(<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 1</span>
+ut.diff(<span class="n">2</span>, <span class="n">3</span>) <span class="c"># =&gt; 5</span>
+ut.diff(<span class="n">2</span>, <span class="n">4</span>) <span class="c"># =&gt; 7</span>
+ut.diff(<span class="n">0</span>, <span class="n">9</span>) <span class="c"># =&gt; Abel.zero</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L109" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="diff?(low:Int,high:Int):Abel|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      diff?
+     </strong>
+     (low :
+     <a href="../Int.html">
+      Int
+     </a>
+     , high :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Abel | Nil
+     <a class="method-permalink" href="#diff%3F%28low%3AInt%2Chigh%3AInt%29%3AAbel%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      w[high] - w[low] を返します。
+     </p>
+     <p>
+      low と high が同じ連結成分に属していない場合 nil を返します。
+     </p>
+     <pre><code class="language-crystal">ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(size: <span class="n">10</span>)
+ut.unite(<span class="n">2</span>, <span class="n">1</span>, <span class="n">1</span>)
+ut.unite(<span class="n">2</span>, <span class="n">3</span>, <span class="n">5</span>)
+ut.unite(<span class="n">3</span>, <span class="n">4</span>, <span class="n">2</span>)
+ut.diff(<span class="n">1</span>, <span class="n">2</span>) <span class="c"># =&gt; -1</span>
+ut.diff(<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 1</span>
+ut.diff(<span class="n">2</span>, <span class="n">3</span>) <span class="c"># =&gt; 5</span>
+ut.diff(<span class="n">2</span>, <span class="n">4</span>) <span class="c"># =&gt; 7</span>
+ut.diff(<span class="n">0</span>, <span class="n">9</span>) <span class="c"># =&gt; nil</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L128" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="equiv?(a:Int,b:Int):Bool-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      equiv?
+     </strong>
+     (a :
+     <a href="../Int.html">
+      Int
+     </a>
+     , b :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Bool
+     <a class="method-permalink" href="#equiv%3F%28a%3AInt%2Cb%3AInt%29%3ABool-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 a と頂点 b が同じ連結成分に属しているなら
+      <code>
+       true
+      </code>
+      を返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> int
+ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(n)
+ut.equiv?(u, v) <span class="c"># =&gt; true</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L73" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="groups:Array(Array(Int64))|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      groups
+     </strong>
+     : Array(Array(Int64)) | Nil
+     <a class="method-permalink" href="#groups%3AArray%28Array%28Int64%29%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      グラフを連結成分に分け、その情報を返します。
+     </p>
+     <p>
+      返り値は「「一つの連結成分の頂点番号のリスト」のリスト」です。
+（内側外側限らず）Array 内でどの順番で頂点が格納されているかは未定義です。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L142" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="leader(a:Int):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      leader
+     </strong>
+     (a :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Int64
+     <a class="method-permalink" href="#leader%28a%3AInt%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 a の属する連結成分のリーダーを返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> int
+ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(n)
+ut.unite(<span class="n">2</span>, <span class="n">3</span>, <span class="n">0</span>)
+ut.leader(<span class="n">0</span>) <span class="c"># =&gt; 0</span>
+ut.leader(<span class="n">3</span>) <span class="c"># =&gt; 2  (3 の可能性もある)</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L86" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size(a:Int):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     (a :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Int64
+     <a class="method-permalink" href="#size%28a%3AInt%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 a が属する連結成分の大きさを返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L134" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="unite(low:Int,high:Int,diff:Abel):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      unite
+     </strong>
+     (low :
+     <a href="../Int.html">
+      Int
+     </a>
+     , high :
+     <a href="../Int.html">
+      Int
+     </a>
+     , diff : Abel) : Int64
+     <a class="method-permalink" href="#unite%28low%3AInt%2Chigh%3AInt%2Cdiff%3AAbel%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      w[high] - w[low] = diff となるように、
+頂点 low と頂点 high を接続します。
+     </p>
+     <p>
+      （w[low] + diff = w[high] と捉えても良いです。）
+     </p>
+     <p>
+      接続後のリーダーを返します。
+     </p>
+     <p>
+      diff は符号付きであることに注意してください。
+また、low と high がすでに接続されている場合の動作は未定義です。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> int
+ut <span class="o">=</span> <span class="t">PotentializedDisjointSet</span>(<span class="t">Abel</span>).new(n)
+ut.unite(low: a, high: b, diff: w) <span class="c"># =&gt; leader(a) or leader(b)</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/potentialized_disjoint_set.cr#L51" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
+</html>

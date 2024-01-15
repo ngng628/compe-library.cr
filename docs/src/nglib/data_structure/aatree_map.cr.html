@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/aatree_map.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -469,14 +469,12 @@
       <span class="nb">true</span>
     <span class="n">end</span>
 
-    <span class="cp"># TODO: Improve performance
-</span>    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">key_at</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
       <span class="n">delete_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="n">end</span>
 
-    <span class="cp"># TODO: Improve performance
-</span>    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">key_at</span><span class="o">?</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
       <span class="k">return</span> <span class="k">if</span> <span class="n">key</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
       <span class="n">delete_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
@@ -945,14 +943,12 @@
       <span class="nb">true</span>
     <span class="n">end</span>
 
-    <span class="cp"># TODO: Improve performance
-</span>    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">key_at</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
       <span class="n">delete_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="n">end</span>
 
-    <span class="cp"># TODO: Improve performance
-</span>    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+    <span class="n">def</span> <span class="n">delete_at</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">key</span> <span class="o">=</span> <span class="n">key_at</span><span class="o">?</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
       <span class="k">return</span> <span class="k">if</span> <span class="n">key</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
       <span class="n">delete_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>

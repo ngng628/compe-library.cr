@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/string/rolling_hash.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     <li>Problem: <a href="https://judge.yosupo.jp/problem/zalgorithm">https://judge.yosupo.jp/problem/zalgorithm</a>
 </li>
@@ -246,7 +246,7 @@
 </span>    <span class="cp"># rh.hash("abc") # =&gt; 496222201481864933
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">hash</span><span class="p">(</span><span class="n">s</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">)</span>
-      <span class="n">s</span><span class="p">.</span><span class="n">reduce</span><span class="p">(</span><span class="mi">0</span><span class="n">_u64</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">ti</span><span class="o">|</span> <span class="n">mul</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">ti</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
+      <span class="n">s</span><span class="p">.</span><span class="n">reduce</span><span class="p">(</span><span class="mi">0</span><span class="n">_u64</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">acc</span><span class="p">,</span> <span class="n">elem</span><span class="o">|</span> <span class="n">mul</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">elem</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
     <span class="n">end</span>
 
     <span class="cp"># `s[start...start + length]` のハッシュを返します。
@@ -420,7 +420,7 @@
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">,</span> <span class="n">offset</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
       <span class="n">ths</span> <span class="o">=</span> <span class="mi">0</span><span class="n">_u64</span>
-      <span class="n">t</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ti</span><span class="o">|</span> <span class="n">ths</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">ths</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">ti</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
+      <span class="n">t</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">ths</span> <span class="o">=</span> <span class="n">mul</span><span class="p">(</span><span class="n">ths</span><span class="p">,</span> <span class="err">@</span><span class="n">base</span><span class="p">)</span> <span class="o">+</span> <span class="n">elem</span><span class="p">.</span><span class="n">to_u64</span> <span class="p">}</span>
       <span class="n">t_len</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span>
       <span class="p">(</span><span class="n">offset</span><span class="p">..</span><span class="err">@</span><span class="n">size</span> <span class="o">-</span> <span class="n">t</span><span class="p">.</span><span class="n">size</span><span class="p">).</span><span class="n">index</span><span class="o">!</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">ths</span> <span class="o">==</span> <span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">t_len</span><span class="p">)</span> <span class="p">}</span> <span class="o">+</span> <span class="n">offset</span>
     <span class="n">end</span>

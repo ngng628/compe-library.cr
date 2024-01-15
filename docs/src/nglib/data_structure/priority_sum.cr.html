@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/priority_sum.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -202,9 +202,7 @@
     <span class="cp"># $k$ の値を変更します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 計算量は $\Delta k \log{\Delta k}$
-</span>    <span class="cp">#
-</span>    <span class="cp"># 未 verify なので壊れているかもしれません。
-</span>    <span class="n">def</span> <span class="n">set_k</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+</span>    <span class="n">def</span> <span class="n">k</span><span class="o">=</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">k</span>
         <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="err">@</span><span class="n">k</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
           <span class="k">break</span> <span class="k">if</span> <span class="n">k</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">size</span>
@@ -212,8 +210,9 @@
         <span class="n">end</span>
       <span class="n">elsif</span> <span class="err">@</span><span class="n">k</span> <span class="o">&gt;</span> <span class="n">k</span>
         <span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">k</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-          <span class="k">break</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span>
-          <span class="err">@</span><span class="n">sum</span> <span class="o">-=</span> <span class="err">@</span><span class="n">mset</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">kth_index</span><span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span>
+          <span class="n">next</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">size</span>
+          <span class="k">break</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span>
+          <span class="err">@</span><span class="n">sum</span> <span class="o">-=</span> <span class="err">@</span><span class="n">mset</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">kth_index</span><span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
         <span class="n">end</span>
       <span class="n">end</span>
       <span class="err">@</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">.</span><span class="n">to_i32</span>
@@ -758,9 +757,7 @@
     <span class="cp"># $k$ の値を変更します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 計算量は $\Delta k \log{\Delta k}$
-</span>    <span class="cp">#
-</span>    <span class="cp"># 未 verify なので壊れているかもしれません。
-</span>    <span class="n">def</span> <span class="n">set_k</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+</span>    <span class="n">def</span> <span class="n">k</span><span class="o">=</span><span class="p">(</span><span class="n">k</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">&lt;</span> <span class="n">k</span>
         <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="err">@</span><span class="n">k</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
           <span class="k">break</span> <span class="k">if</span> <span class="n">k</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">size</span>
@@ -768,8 +765,9 @@
         <span class="n">end</span>
       <span class="n">elsif</span> <span class="err">@</span><span class="n">k</span> <span class="o">&gt;</span> <span class="n">k</span>
         <span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">k</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-          <span class="k">break</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span>
-          <span class="err">@</span><span class="n">sum</span> <span class="o">-=</span> <span class="err">@</span><span class="n">mset</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">kth_index</span><span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span>
+          <span class="n">next</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="n">size</span>
+          <span class="k">break</span> <span class="k">if</span> <span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1</span>
+          <span class="err">@</span><span class="n">sum</span> <span class="o">-=</span> <span class="err">@</span><span class="n">mset</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">kth_index</span><span class="p">(</span><span class="err">@</span><span class="n">k</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
         <span class="n">end</span>
       <span class="n">end</span>
       <span class="err">@</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">.</span><span class="n">to_i32</span>

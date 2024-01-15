@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/grid/to_graph.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     <li>Problem: <a href="https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1160">https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1160</a>
 </li>
@@ -336,9 +336,9 @@
 </span>    <span class="cp"># dist[si][sj][gi][gj] # =&gt; 4
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">shortest_path</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span>
-      <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">si</span><span class="o">|</span>
-        <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">sj</span><span class="o">|</span>
-          <span class="n">shortest_path</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">sj</span><span class="p">)</span>
+      <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">start_i</span><span class="o">|</span>
+        <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">start_j</span><span class="o">|</span>
+          <span class="n">shortest_path</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">start_j</span><span class="p">)</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="n">end</span>
@@ -355,10 +355,10 @@
       <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">0</span>
       <span class="n">until</span> <span class="n">queue</span><span class="p">.</span><span class="n">empty</span><span class="o">?</span>
         <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">shift</span>
-        <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span>
-          <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">!=</span> <span class="n">OO</span>
-          <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-          <span class="n">queue</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="p">}</span>
+        <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span>
+          <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">!=</span> <span class="n">OO</span>
+          <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+          <span class="n">queue</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">}</span>
         <span class="n">end</span>
       <span class="n">end</span>
       <span class="n">dist</span>
@@ -383,13 +383,13 @@
 </span>    <span class="cp"># $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
-</span>    <span class="cp"># dist = grid.shortest_path { |i, j, ni, nj| f(i, j, ni, nj) }
+</span>    <span class="cp"># dist = grid.shortest_path { |i, j, i_adj, j_adj| f(i, j, i_adj, j_adj) }
 </span>    <span class="cp"># dist[si][sj][gi][gj] # =&gt; 4
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">shortest_path</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="o">:</span><span class="n">dijkstra</span><span class="p">,</span> <span class="o">&amp;</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int64</span><span class="p">))</span> <span class="n">forall</span> <span class="n">U</span>
-      <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">si</span><span class="o">|</span>
-        <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">sj</span><span class="o">|</span>
-          <span class="n">shortest_path</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">sj</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span> <span class="n">yield</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nj</span> <span class="p">}</span>
+      <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">start_i</span><span class="o">|</span>
+        <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">start_j</span><span class="o">|</span>
+          <span class="n">shortest_path</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">start_j</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span> <span class="n">yield</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span> <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="n">end</span>
@@ -404,7 +404,7 @@
 </span>    <span class="cp"># $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
-</span>    <span class="cp"># dist = grid.shortest_path(start: {0, 0}) { |i, j, ni, nj| f(i, j, ni, nj) }
+</span>    <span class="cp"># dist = grid.shortest_path(start: {0, 0}) { |i, j, i_adj, j_adj| f(i, j, i_adj, j_adj) }
 </span>    <span class="cp"># dist[gi][gj] # =&gt; 4
 </span>    <span class="cp"># ```
 </span>    <span class="cp"># ameba:disable Metrics/CyclomaticComplexity
@@ -416,13 +416,13 @@
         <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span>
         <span class="n">until</span> <span class="n">next_node</span><span class="p">.</span><span class="n">empty</span><span class="o">?</span>
           <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">next_node</span><span class="p">.</span><span class="n">shift</span>
-          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span>
-            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span>
+          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span>
             <span class="n">raise</span> <span class="s">"Weight error"</span> <span class="n">unless</span> <span class="n">weight</span> <span class="o">==</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span><span class="p">.</span><span class="n">succ</span> <span class="o">||</span> <span class="n">weight</span> <span class="o">==</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
             <span class="n">next</span> <span class="k">if</span> <span class="n">weight</span> <span class="o">==</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
-            <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">!=</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
-            <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span><span class="p">.</span><span class="n">succ</span>
-            <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="p">}</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">!=</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
+            <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span><span class="p">.</span><span class="n">succ</span>
+            <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">}</span>
           <span class="n">end</span>
         <span class="n">end</span>
         <span class="k">return</span> <span class="n">dist</span>
@@ -432,16 +432,16 @@
         <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span>
         <span class="n">until</span> <span class="n">next_node</span><span class="p">.</span><span class="n">empty</span><span class="o">?</span>
           <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">next_node</span><span class="p">.</span><span class="n">shift</span>
-          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span>
-            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span>
+          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span>
             <span class="n">raise</span> <span class="s">"Weight error"</span> <span class="n">unless</span> <span class="n">weight</span><span class="p">.</span><span class="n">in</span><span class="o">?</span><span class="p">({</span><span class="n">U</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span> <span class="n">U</span><span class="p">.</span><span class="n">zero</span><span class="p">.</span><span class="n">succ</span><span class="p">})</span>
             <span class="n">next_cost</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">weight</span> <span class="o">?</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
-            <span class="k">if</span> <span class="n">next_cost</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span>
-              <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_cost</span>
+            <span class="k">if</span> <span class="n">next_cost</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span>
+              <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_cost</span>
               <span class="k">if</span> <span class="n">weight</span> <span class="o">==</span> <span class="mi">0</span>
-                <span class="n">next_node</span><span class="p">.</span><span class="n">unshift</span><span class="p">({</span><span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">})</span>
+                <span class="n">next_node</span><span class="p">.</span><span class="n">unshift</span><span class="p">({</span><span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">})</span>
               <span class="k">else</span>
-                <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">}</span>
+                <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">}</span>
               <span class="n">end</span>
             <span class="n">end</span>
           <span class="n">end</span>
@@ -455,12 +455,12 @@
           <span class="n">d</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">next_node</span><span class="p">.</span><span class="n">pop</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span>
           <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">pos</span>
           <span class="n">next</span> <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">d</span>
-          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span>
-            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span>
+          <span class="nf">each_neighbor</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span>
+            <span class="n">weight</span> <span class="o">=</span> <span class="n">yield</span> <span class="n">i</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span>
             <span class="n">next_cost</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">weight</span> <span class="o">?</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span> <span class="o">:</span> <span class="n">U</span><span class="o">::</span><span class="n">MAX</span>
-            <span class="k">if</span> <span class="n">next_cost</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span>
-              <span class="n">dist</span><span class="p">[</span><span class="n">ni</span><span class="p">][</span><span class="n">nj</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_cost</span>
-              <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">next_cost</span><span class="p">,</span> <span class="p">{</span><span class="n">ni</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">nj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">}}</span>
+            <span class="k">if</span> <span class="n">next_cost</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span>
+              <span class="n">dist</span><span class="p">[</span><span class="n">i_adj</span><span class="p">][</span><span class="n">j_adj</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_cost</span>
+              <span class="n">next_node</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">next_cost</span><span class="p">,</span> <span class="p">{</span><span class="n">i_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">.</span><span class="n">to_i32</span><span class="p">}}</span>
             <span class="n">end</span>
           <span class="n">end</span>
         <span class="n">end</span>
@@ -479,12 +479,12 @@
 </span>    <span class="cp"># $(i, j)$ から $(i', j')$ への移動時の重みをブロックで指定します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># ```
-</span>    <span class="cp"># grid.shortest_path(start: {si, sj}, dest: {gi, gj})</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span>
-    <span class="cp">#   f(i, j, ni, nj)
+</span>    <span class="cp"># grid.shortest_path(start: {si, sj}, dest: {gi, gj})</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span>
+    <span class="cp">#   f(i, j, i_adj, j_adj)
 </span>    <span class="cp"># } # =&gt; 4
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">dest</span> <span class="o">:</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">tag</span> <span class="o">=</span> <span class="o">:</span><span class="n">dijkstra</span><span class="p">,</span> <span class="o">&amp;</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int64</span> <span class="n">forall</span> <span class="n">U</span>
-      <span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="o">|</span> <span class="n">yield</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">ni</span><span class="p">,</span> <span class="n">nj</span> <span class="p">}[</span><span class="n">dest</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">dest</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+      <span class="n">shortest_path</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="o">|</span> <span class="n">yield</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span> <span class="p">}[</span><span class="n">dest</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">dest</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
     <span class="n">end</span>
 
     <span class="cp"># グリッドを隣接リスト形式で無向グラフに変換します。
@@ -511,13 +511,13 @@
         <span class="err">@</span><span class="n">w</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">j</span><span class="o">|</span>
           <span class="n">node</span> <span class="o">=</span> <span class="err">@</span><span class="n">w</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
           <span class="err">@</span><span class="n">delta</span><span class="p">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dj</span><span class="p">)</span><span class="o">|</span>
-            <span class="n">ni</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">di</span>
-            <span class="n">nj</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">dj</span>
-            <span class="n">next</span> <span class="k">if</span> <span class="n">over</span><span class="o">?</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="p">)</span>
-            <span class="n">node2</span> <span class="o">=</span> <span class="err">@</span><span class="n">w</span> <span class="o">*</span> <span class="n">ni</span> <span class="o">+</span> <span class="n">nj</span>
+            <span class="n">i_adj</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">di</span>
+            <span class="n">j_adj</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">dj</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">over</span><span class="o">?</span><span class="p">(</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">)</span>
+            <span class="n">node2</span> <span class="o">=</span> <span class="err">@</span><span class="n">w</span> <span class="o">*</span> <span class="n">i_adj</span> <span class="o">+</span> <span class="n">j_adj</span>
 
-            <span class="n">both_frees</span> <span class="o">=</span> <span class="n">free</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">free</span><span class="o">?</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="p">)</span>
-            <span class="n">both_bars</span> <span class="o">=</span> <span class="n">barred</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">barred</span><span class="o">?</span><span class="p">(</span><span class="n">ni</span><span class="p">,</span> <span class="n">nj</span><span class="p">)</span>
+            <span class="n">both_frees</span> <span class="o">=</span> <span class="n">free</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">free</span><span class="o">?</span><span class="p">(</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">)</span>
+            <span class="n">both_bars</span> <span class="o">=</span> <span class="n">barred</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">barred</span><span class="o">?</span><span class="p">(</span><span class="n">i_adj</span><span class="p">,</span> <span class="n">j_adj</span><span class="p">)</span>
 
             <span class="k">case</span> <span class="n">type</span>
             <span class="n">when</span> <span class="p">:</span><span class="n">connect_free</span>
@@ -534,14 +534,10 @@
     <span class="n">end</span>
 
     <span class="cp"># 連結する free および bar を塗り分けたグリッドを返します。
-</span>
-    <span class="cp"># free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
-</span>
-    <span class="cp"># `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
-</span>
-    <span class="cp"># TODO: よりよい命名を考える
-</span>
-    <span class="cp"># ```
+</span>    <span class="cp"># free のマスは非負整数の連番でラベル付けされ、bar は負の連番でラベル付けされます。
+</span>    <span class="cp"># `label_grid.max` は `(島の数 - 1)` を返すことに注意してください。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
 </span>    <span class="cp"># s = [
 </span>    <span class="cp">#   "..#".chars,
 </span>    <span class="cp">#   ".#.".chars,
@@ -649,23 +645,55 @@
       <span class="n">end</span>
     <span class="n">end</span>
 
+    <span class="cp"># グリッドの各要素に対して、ブロックを実行した結果に変換したグリッドを返します。
+</span>    <span class="n">def</span> <span class="n">map</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">:</span> <span class="n">Grid</span><span class="p">(</span><span class="n">U</span><span class="p">)</span> <span class="n">forall</span> <span class="n">U</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">h</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">w</span>
+          <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">yield</span> <span class="n">self</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+          <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">end</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+      <span class="n">end</span>
+      <span class="n">Grid</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="err">@</span><span class="n">delta</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># グリッドの各要素に対して、ブロックを実行した結果に変換したグリッドを返します。
+</span>    <span class="n">def</span> <span class="n">map_with_coord</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">:</span> <span class="n">Grid</span><span class="p">(</span><span class="n">U</span><span class="p">)</span> <span class="n">forall</span> <span class="n">U</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">h</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">w</span>
+          <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">yield</span> <span class="n">self</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">}</span>
+        <span class="n">end</span>
+        <span class="n">ret</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">line</span>
+      <span class="n">end</span>
+      <span class="n">Grid</span><span class="p">(</span><span class="n">U</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="err">@</span><span class="n">delta</span><span class="p">)</span>
+    <span class="n">end</span>
+
     <span class="n">def</span> <span class="n">index</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">T</span> <span class="o">-&gt;</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span><span class="o">?</span>
-      <span class="n">each_with_coord</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="o">|</span>
-        <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">}</span> <span class="k">if</span> <span class="n">yield</span> <span class="n">c</span>
+      <span class="n">each_with_coord</span> <span class="k">do</span> <span class="o">|</span><span class="n">elem</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span><span class="o">|</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">}</span> <span class="k">if</span> <span class="n">yield</span> <span class="n">elem</span>
       <span class="n">end</span>
       <span class="n">nil</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">index</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span><span class="o">?</span>
-      <span class="n">index</span> <span class="p">{</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="n">c</span> <span class="o">==</span> <span class="n">obj</span> <span class="p">}</span>
+      <span class="n">index</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">elem</span> <span class="o">==</span> <span class="n">obj</span> <span class="p">}</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">T</span> <span class="o">-&gt;</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span>
-      <span class="n">index</span> <span class="p">{</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="n">yield</span> <span class="n">c</span> <span class="p">}</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">Exception</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="s">"Not found."</span><span class="p">)</span>
+      <span class="n">index</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">yield</span> <span class="n">elem</span> <span class="p">}</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">Exception</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="s">"Not found."</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">index</span><span class="o">!</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span><span class="o">?</span>
-      <span class="n">index</span><span class="o">!</span> <span class="p">{</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span> <span class="n">c</span> <span class="o">==</span> <span class="n">obj</span> <span class="p">}</span>
+      <span class="n">index</span><span class="o">!</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">elem</span> <span class="o">==</span> <span class="n">obj</span> <span class="p">}</span>
     <span class="n">end</span>
 
     <span class="cp"># 位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。
@@ -702,6 +730,10 @@
         <span class="n">yield</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">i</span> <span class="k">if</span> <span class="n">free</span><span class="o">?</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
       <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">node_index</span><span class="p">(</span><span class="n">y</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="n">y</span> <span class="o">*</span> <span class="err">@</span><span class="n">w</span> <span class="o">+</span> <span class="n">x</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">fetch</span><span class="p">(</span><span class="n">y</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="k">default</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>

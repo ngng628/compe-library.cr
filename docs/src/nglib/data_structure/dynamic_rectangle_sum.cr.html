@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/dynamic_rectangle_sum.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -125,7 +125,8 @@
 
 
 <figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nf">DynamicRectangleSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+  <span class="cp"># 変更されうる二次元配列 $A$ に対して、累積和 $\sum_{i=l_i}^{r_i-1} \sum_{j=l_j}^{r_j-1} A_i$ を計算します。
+</span>  <span class="k">class</span> <span class="nf">DynamicRectangleSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">height</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="n">getter</span> <span class="n">width</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="n">getter</span> <span class="n">csum</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
@@ -229,17 +230,9 @@
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">y_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">x_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
       <span class="n">y_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">y_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">height</span>
-              <span class="k">else</span>
-                <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">y_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">x_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">x_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">width</span>
-              <span class="k">else</span>
-                <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">x_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">get</span><span class="p">(</span><span class="n">y_begin</span><span class="p">,</span> <span class="n">y_end</span><span class="p">,</span> <span class="n">x_begin</span><span class="p">,</span> <span class="n">x_end</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -256,17 +249,9 @@
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">y_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">x_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
       <span class="n">y_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">y_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">height</span>
-              <span class="k">else</span>
-                <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">y_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">x_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">x_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">width</span>
-              <span class="k">else</span>
-                <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">x_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">y_begin</span><span class="p">,</span> <span class="n">y_end</span><span class="p">,</span> <span class="n">x_begin</span><span class="p">,</span> <span class="n">x_end</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -308,7 +293,8 @@
 
 
 <figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nf">DynamicRectangleSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+  <span class="cp"># 変更されうる二次元配列 $A$ に対して、累積和 $\sum_{i=l_i}^{r_i-1} \sum_{j=l_j}^{r_j-1} A_i$ を計算します。
+</span>  <span class="k">class</span> <span class="nf">DynamicRectangleSum</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">height</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="n">getter</span> <span class="n">width</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="n">getter</span> <span class="n">csum</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
@@ -412,17 +398,9 @@
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">y_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">x_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span>
       <span class="n">y_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">y_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">height</span>
-              <span class="k">else</span>
-                <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">y_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">x_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">x_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">width</span>
-              <span class="k">else</span>
-                <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">x_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">get</span><span class="p">(</span><span class="n">y_begin</span><span class="p">,</span> <span class="n">y_end</span><span class="p">,</span> <span class="n">x_begin</span><span class="p">,</span> <span class="n">x_end</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -439,17 +417,9 @@
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">y_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">x_range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
       <span class="n">y_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">y_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">height</span>
-              <span class="k">else</span>
-                <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">y_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">y_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">x_begin</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">x_end</span> <span class="o">=</span> <span class="k">if</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-                <span class="err">@</span><span class="n">width</span>
-              <span class="k">else</span>
-                <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-              <span class="n">end</span>
+      <span class="n">x_end</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="err">@</span><span class="n">height</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x_range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">x_range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
       <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">y_begin</span><span class="p">,</span> <span class="n">y_end</span><span class="p">,</span> <span class="n">x_begin</span><span class="p">,</span> <span class="n">x_end</span><span class="p">)</span>
     <span class="n">end</span>
 

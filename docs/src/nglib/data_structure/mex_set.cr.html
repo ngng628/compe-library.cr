@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/mex_set.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -173,7 +173,7 @@
 </span>    <span class="n">def</span> <span class="n">includes</span><span class="o">?</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
       <span class="n">i</span> <span class="o">=</span> <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">greater_equal_index</span><span class="p">({</span><span class="n">x</span><span class="p">.</span><span class="n">succ</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">succ</span><span class="p">}).</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">-</span> <span class="mi">1</span>
       <span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="err">@</span><span class="n">set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-      <span class="k">return</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">u</span>
+      <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">u</span>
     <span class="n">end</span>
 
     <span class="cp"># 集合に $x$ を追加します。
@@ -256,16 +256,16 @@
       <span class="n">end</span>
 
       <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">delete_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
-      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
+      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
       <span class="k">else</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
       <span class="n">end</span>
 
-      <span class="k">return</span> <span class="n">self</span>
+      <span class="n">self</span>
     <span class="n">end</span>
 
     <span class="cp"># 集合から $x$ を削除します。
@@ -284,16 +284,16 @@
       <span class="n">end</span>
 
       <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">delete_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
-      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
+      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
       <span class="k">else</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
       <span class="n">end</span>
 
-      <span class="k">return</span> <span class="nb">true</span>
+      <span class="nb">true</span>
     <span class="n">end</span>
 
     <span class="cp"># `inf` を下限値として $\mathrm{mex}$ を求めます。
@@ -700,7 +700,7 @@
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
-      <span class="err">@</span><span class="n">root</span> <span class="o">?</span> <span class="err">@</span><span class="n">root</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span><span class="p">.</span><span class="n">size</span> <span class="o">:</span> <span class="mi">0</span>
+      <span class="err">@</span><span class="n">root</span><span class="p">.</span><span class="k">try</span> <span class="o">&amp;</span><span class="p">.</span><span class="n">size</span> <span class="o">||</span> <span class="mi">0</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">to_a</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -708,9 +708,11 @@
       <span class="k">return</span> <span class="n">res</span> <span class="n">unless</span> <span class="err">@</span><span class="n">root</span>
       <span class="n">dfs</span> <span class="o">=</span> <span class="n">uninitialized</span> <span class="n">Node</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Nil</span>
       <span class="n">dfs</span> <span class="o">=</span> <span class="o">-&gt;</span><span class="p">(</span><span class="n">node</span> <span class="o">:</span> <span class="n">Node</span><span class="p">(</span><span class="n">T</span><span class="p">))</span> <span class="k">do</span>
-        <span class="n">dfs</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">left</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span><span class="p">)</span> <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">left</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span>
+        <span class="n">dfs</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="k">if</span> <span class="n">left</span>
         <span class="n">res</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="p">.</span><span class="n">key</span>
-        <span class="n">dfs</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">right</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span><span class="p">)</span> <span class="k">if</span> <span class="n">node</span><span class="p">.</span><span class="n">right</span>
+        <span class="n">dfs</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">right</span><span class="p">)</span> <span class="k">if</span> <span class="n">right</span>
         <span class="n">nil</span>
       <span class="n">end</span>
       <span class="n">dfs</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="err">@</span><span class="n">root</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span><span class="p">)</span>
@@ -1216,7 +1218,7 @@
 </span>    <span class="n">def</span> <span class="n">includes</span><span class="o">?</span><span class="p">(</span><span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
       <span class="n">i</span> <span class="o">=</span> <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">greater_equal_index</span><span class="p">({</span><span class="n">x</span><span class="p">.</span><span class="n">succ</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">succ</span><span class="p">}).</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">-</span> <span class="mi">1</span>
       <span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="err">@</span><span class="n">set</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-      <span class="k">return</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">u</span>
+      <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&amp;&amp;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">u</span>
     <span class="n">end</span>
 
     <span class="cp"># 集合に $x$ を追加します。
@@ -1299,16 +1301,16 @@
       <span class="n">end</span>
 
       <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">delete_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
-      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
+      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
       <span class="k">else</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
       <span class="n">end</span>
 
-      <span class="k">return</span> <span class="n">self</span>
+      <span class="n">self</span>
     <span class="n">end</span>
 
     <span class="cp"># 集合から $x$ を削除します。
@@ -1327,16 +1329,16 @@
       <span class="n">end</span>
 
       <span class="err">@</span><span class="n">set</span><span class="p">.</span><span class="n">delete_at</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
-      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span> <span class="o">&amp;&amp;</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
-        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
+      <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">l</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
+      <span class="n">elsif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">u</span>
+        <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">u</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span> <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">u</span>
       <span class="k">else</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}</span>
         <span class="err">@</span><span class="n">set</span> <span class="o">&lt;&lt;</span> <span class="p">{</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">u</span><span class="p">}</span>
       <span class="n">end</span>
 
-      <span class="k">return</span> <span class="nb">true</span>
+      <span class="nb">true</span>
     <span class="n">end</span>
 
     <span class="cp"># `inf` を下限値として $\mathrm{mex}$ を求めます。

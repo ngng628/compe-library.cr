@@ -3,7 +3,8 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-  <meta content="Crystal Docs 1.6.2" name="generator"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Crystal Docs 1.9.2" name="generator"/>
   <meta content="main" name="crystal_docs.project_version"/>
   <meta content="nglib" name="crystal_docs.project_name"/>
   <link href="../css/style.css" rel="stylesheet" type="text/css"/>
@@ -34,10 +35,27 @@
  <body>
   <svg class="hidden">
    <symbol id="octicon-link" viewbox="0 0 16 16">
-    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill-rule="evenodd">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentColor" fill-rule="evenodd">
     </path>
    </symbol>
   </svg>
+  <input id="sidebar-btn" type="checkbox"/>
+  <label for="sidebar-btn" id="sidebar-btn-label">
+   <svg class="open" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Open Sidebar
+    </title>
+    <path d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z" fill="currentColor">
+    </path>
+   </svg>
+   <svg class="close" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Close Sidebar
+    </title>
+    <path d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z" fill="currentColor">
+    </path>
+   </svg>
+  </label>
   <div class="sidebar">
    <div class="sidebar-header">
     <div class="search-box">
@@ -132,6 +150,11 @@
          Edge
         </a>
        </li>
+       <li class="" data-id="nglib/NgLib/EulerTourTree" data-name="nglib::eulertourtree">
+        <a href="../NgLib/EulerTourTree.html">
+         EulerTourTree
+        </a>
+       </li>
        <li class="parent" data-id="nglib/NgLib/FastIn" data-name="nglib::fastin">
         <a href="../NgLib/FastIn.html">
          FastIn
@@ -190,6 +213,11 @@
          MSTGraph
         </a>
        </li>
+       <li class="" data-id="nglib/NgLib/PotentializedDisjointSet" data-name="nglib::potentializeddisjointset(abel)">
+        <a href="../NgLib/PotentializedDisjointSet.html">
+         PotentializedDisjointSet
+        </a>
+       </li>
        <li class="" data-id="nglib/NgLib/PrioritySum" data-name="nglib::prioritysum(t)">
         <a href="../NgLib/PrioritySum.html">
          PrioritySum
@@ -199,6 +227,18 @@
         <a href="../NgLib/RollingHash.html">
          RollingHash
         </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/SCC" data-name="nglib::scc">
+        <a href="../NgLib/SCC.html">
+         SCC
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/SCC/Graph" data-name="nglib::scc::graph">
+          <a href="../NgLib/SCC/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
        </li>
        <li class="" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
         <a href="../NgLib/SlideMinmax.html">
@@ -245,7 +285,9 @@
     <span class="kind">
      class
     </span>
-    NgLib::AATreeMultiset(T)
+    NgLib::
+    <wbr/>
+    AATreeMultiset(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
@@ -310,7 +352,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L8" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L8" target="_blank">
     nglib/data_structure/aatree_multiset.cr
    </a>
    <br/>
@@ -682,7 +724,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L176" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L176" target="_blank">
       View source
      </a>
      ]
@@ -701,7 +743,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L171" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L171" target="_blank">
       View source
      </a>
      ]
@@ -730,7 +772,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L427" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L427" target="_blank">
       View source
      </a>
      ]
@@ -754,7 +796,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L423" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L423" target="_blank">
       View source
      </a>
      ]
@@ -778,7 +820,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L431" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L431" target="_blank">
       View source
      </a>
      ]
@@ -802,7 +844,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L435" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L435" target="_blank">
       View source
      </a>
      ]
@@ -822,7 +864,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L231" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L231" target="_blank">
       View source
      </a>
      ]
@@ -842,7 +884,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L236" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L236" target="_blank">
       View source
      </a>
      ]
@@ -866,7 +908,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L200" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L200" target="_blank">
       View source
      </a>
      ]
@@ -890,7 +932,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L218" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L218" target="_blank">
       View source
      </a>
      ]
@@ -909,7 +951,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L192" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L192" target="_blank">
       View source
      </a>
      ]
@@ -932,7 +974,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L182" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L182" target="_blank">
       View source
      </a>
      ]
@@ -952,7 +994,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L393" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L393" target="_blank">
       View source
      </a>
      ]
@@ -972,7 +1014,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L265" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L265" target="_blank">
       View source
      </a>
      ]
@@ -996,7 +1038,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L314" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L314" target="_blank">
       View source
      </a>
      ]
@@ -1020,7 +1062,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L318" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L318" target="_blank">
       View source
      </a>
      ]
@@ -1048,7 +1090,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L223" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L223" target="_blank">
       View source
      </a>
      ]
@@ -1090,7 +1132,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L196" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L196" target="_blank">
       View source
      </a>
      ]
@@ -1124,7 +1166,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L377" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L377" target="_blank">
       View source
      </a>
      ]
@@ -1159,7 +1201,7 @@ When the collection is empty, returns
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L381" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L381" target="_blank">
       View source
      </a>
      ]
@@ -1179,7 +1221,7 @@ When the collection is empty, returns
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L372" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L372" target="_blank">
       View source
      </a>
      ]
@@ -1199,7 +1241,7 @@ When the collection is empty, returns
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L367" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L367" target="_blank">
       View source
      </a>
      ]
@@ -1219,7 +1261,7 @@ When the collection is empty, returns
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L187" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L187" target="_blank">
       View source
      </a>
      ]
@@ -1255,7 +1297,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L419" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L419" target="_blank">
       View source
      </a>
      ]
@@ -1275,7 +1317,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L385" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L385" target="_blank">
       View source
      </a>
      ]
@@ -1295,7 +1337,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L389" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L389" target="_blank">
       View source
      </a>
      ]
@@ -1315,7 +1357,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L362" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L362" target="_blank">
       View source
      </a>
      ]
@@ -1335,7 +1377,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L357" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L357" target="_blank">
       View source
      </a>
      ]
@@ -1355,7 +1397,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L327" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L327" target="_blank">
       View source
      </a>
      ]
@@ -1384,7 +1426,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L397" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L397" target="_blank">
       View source
      </a>
      ]
@@ -1417,7 +1459,7 @@ and the values of all instance variables.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L401" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L401" target="_blank">
       View source
      </a>
      ]
@@ -1452,7 +1494,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L415" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L415" target="_blank">
       View source
      </a>
      ]
@@ -1472,7 +1514,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/113aa7d94c75bccdefff91680caac3d4ce35d780/src/nglib/data_structure/aatree_multiset.cr#L342" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/5e909b1d3896e2f909ae20bd5a2cb71b313f90cf/src/nglib/data_structure/aatree_multiset.cr#L342" target="_blank">
       View source
      </a>
      ]

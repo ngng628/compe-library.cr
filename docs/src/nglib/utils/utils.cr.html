@@ -75,13 +75,13 @@
 
 
 <h1>
-<img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/utils/utils.cr
+<img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/utils/utils.cr
     
 </h1>
 
 <ul>
     <li><a href="/blob/master/src/nglib/utils/utils.cr">View this file on GitHub</a></li>
-    <li>Last update: 2023-07-04 13:13:37+09:00</li>
+    <li>Last update: 2024-01-16 04:28:44+09:00</li>
     
     
     
@@ -119,23 +119,6 @@
 
 
 
-    <h2>Verified with</h2>
-    <ul>
-    
-        <li><a href="/compe-library.cr/docs/verify/data_structure/dynamic_range_sum.test.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> verify/data_structure/dynamic_range_sum.test.cr
-            
-        </a></li>
-    
-        <li><a href="/compe-library.cr/docs/verify/data_structure/static_rmq.test.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> verify/data_structure/static_rmq.test.cr
-            
-        </a></li>
-    
-        <li><a href="/compe-library.cr/docs/verify/graph/mst.test.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> verify/graph/mst.test.cr
-            
-        </a></li>
-    
-    </ul>
-
 
 
 <h2>Code</h2>
@@ -150,23 +133,9 @@
 
 
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">def</span> <span class="nf">int</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span> <span class="n">end</span>
-<span class="n">def</span> <span class="nf">ints</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span> <span class="p">}</span> <span class="n">end</span>
-<span class="n">def</span> <span class="n">str</span><span class="p">;</span> <span class="n">read_line</span><span class="p">.</span><span class="n">chomp</span> <span class="n">end</span>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">require</span> <span class="s">"../constants"</span>
 <span class="n">macro</span> <span class="nf">chmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&lt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
-<span class="n">macro</span> <span class="nf">chmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
-<span class="k">struct</span> <span class="nc">Int</span>
-  <span class="n">def</span> <span class="nf">div_ceil</span><span class="p">(</span><span class="n">other</span> <span class="o">:</span> <span class="n">Int</span><span class="p">);</span> <span class="p">(</span><span class="n">self</span> <span class="o">+</span> <span class="n">other</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// other end</span>
-<span class="n">end</span>
-
-<span class="n">macro</span> <span class="nf">make_array</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-  <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}})</span> <span class="p">{</span>
-    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">].</span><span class="n">empty</span><span class="o">?</span> <span class="o">%</span><span class="p">};</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}}</span>
-    <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">};</span> <span class="n">make_array</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">]</span> <span class="p">}},</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}})</span> <span class="p">{</span><span class="o">%</span> <span class="n">end</span> <span class="o">%</span><span class="p">}</span>
-  <span class="p">}</span>
-<span class="n">end</span>
-
-<span class="n">require</span> <span class="s">"../constants"</span></code></pre></figure>
+<span class="n">macro</span> <span class="nf">chmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span></code></pre></figure>
 
 
 
@@ -177,24 +146,10 @@
 
 
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="n">def</span> <span class="nf">int</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span> <span class="n">end</span>
-<span class="n">def</span> <span class="nf">ints</span><span class="p">(</span><span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span> <span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="n">to_i64</span> <span class="o">+</span> <span class="n">b</span> <span class="p">}</span> <span class="n">end</span>
-<span class="n">def</span> <span class="n">str</span><span class="p">;</span> <span class="n">read_line</span><span class="p">.</span><span class="n">chomp</span> <span class="n">end</span>
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># require "../constants"
+</span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span>
 <span class="n">macro</span> <span class="nf">chmax</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&lt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
-<span class="n">macro</span> <span class="nf">chmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span>
-<span class="k">struct</span> <span class="nc">Int</span>
-  <span class="n">def</span> <span class="nf">div_ceil</span><span class="p">(</span><span class="n">other</span> <span class="o">:</span> <span class="n">Int</span><span class="p">);</span> <span class="p">(</span><span class="n">self</span> <span class="o">+</span> <span class="n">other</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">// other end</span>
-<span class="n">end</span>
-
-<span class="n">macro</span> <span class="nf">make_array</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-  <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">}})</span> <span class="p">{</span>
-    <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">].</span><span class="n">empty</span><span class="o">?</span> <span class="o">%</span><span class="p">};</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}}</span>
-    <span class="p">{</span><span class="o">%</span> <span class="k">else</span> <span class="o">%</span><span class="p">};</span> <span class="n">make_array</span><span class="p">({{</span> <span class="n">s</span><span class="p">[</span><span class="mf">1.</span><span class="p">.</span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">]</span> <span class="p">}},</span> <span class="p">{{</span> <span class="n">x</span> <span class="p">}})</span> <span class="p">{</span><span class="o">%</span> <span class="n">end</span> <span class="o">%</span><span class="p">}</span>
-  <span class="p">}</span>
-<span class="n">end</span>
-
-<span class="cp"># require "../constants"
-</span><span class="n">OO</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">62</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="n">_i64</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">)</span></code></pre></figure>
+<span class="n">macro</span> <span class="nf">chmin</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">&gt;</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}</span> <span class="o">&amp;&amp;</span> <span class="p">({{</span><span class="n">a</span><span class="p">}}</span> <span class="o">=</span> <span class="p">{{</span><span class="n">b</span><span class="p">}}))</span> <span class="n">end</span></code></pre></figure>
 
 
 
