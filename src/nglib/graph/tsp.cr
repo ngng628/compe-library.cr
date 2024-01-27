@@ -23,11 +23,11 @@ module NgLib
       dp = Array.new(1 << @size) { Array.new(@size) { nil.as(T?) } }
 
       if should_back
+        dp[0][0] = T.zero
+      else
         @size.times do |i|
           dp[1 << i][i] = T.zero
         end
-      else
-        dp[0][0] = T.zero
       end
 
       dist = fw.shortest_path
