@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/graph/tsp_dp.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-01-28 05:10:43+09:00</li>
+    <li>Last update: 2024-01-28 05:13:44+09:00</li>
     
     <li>Problem: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A</a>
 </li>
@@ -227,11 +227,11 @@
       <span class="n">dp</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
 
       <span class="k">if</span> <span class="n">should_back</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="k">else</span>
         <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
           <span class="n">dp</span><span class="p">[</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
         <span class="n">end</span>
-      <span class="k">else</span>
-        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
       <span class="n">end</span>
 
       <span class="n">dist</span> <span class="o">=</span> <span class="n">fw</span><span class="p">.</span><span class="n">shortest_path</span>
