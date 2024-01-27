@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-01-16 04:28:44+09:00</li>
+    <li>Last update: 2024-01-28 01:23:00+09:00</li>
     
     
     
@@ -174,6 +174,10 @@
             
         </a></li>
     
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/floyd_warshall.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/graph/floyd_warshall.cr
+            
+        </a></li>
+    
         <li><a href="/compe-library.cr/docs/src/nglib/graph/lca.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/graph/lca.cr
             
         </a></li>
@@ -191,6 +195,10 @@
         </a></li>
     
         <li><a href="/compe-library.cr/docs/src/nglib/graph/scc.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/graph/scc.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/graph/tsp.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/graph/tsp.cr
             
         </a></li>
     
@@ -3617,6 +3625,51 @@
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="k">class</span> <span class="nc">FloydWarshallGraph</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="n">getter</span> <span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">))</span>
+
+    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i32</span>
+      <span class="err">@</span><span class="n">mat</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+      <span class="n">n</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="err">@</span><span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)))</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span>
+      <span class="n">n</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
+      <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span> <span class="n">unless</span> <span class="n">directed</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">shortest_path</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">))</span>
+      <span class="n">dist</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">.</span><span class="n">clone</span>
+      <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">via</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">from</span><span class="o">|</span>
+          <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">dest</span><span class="o">|</span>
+            <span class="n">d1</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">from</span><span class="p">][</span><span class="n">via</span><span class="p">]</span>
+            <span class="n">d2</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">via</span><span class="p">][</span><span class="n">dest</span><span class="p">]</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">d1</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">d2</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">from</span><span class="p">][</span><span class="n">dest</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">d</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">||</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span>
+              <span class="n">dist</span><span class="p">[</span><span class="n">from</span><span class="p">][</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">+</span> <span class="n">d2</span>
+            <span class="n">end</span>
+          <span class="n">end</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">dist</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
 <span class="cp"># require "../constants.cr"
 </span>
 
@@ -4282,10 +4335,53 @@
   <span class="n">end</span>
 <span class="n">end</span>
 <span class="n">module</span> <span class="n">NgLib</span>
+  <span class="k">class</span> <span class="nc">TSPGraph</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="n">getter</span> <span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">))</span>
+
+    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i32</span>
+      <span class="err">@</span><span class="n">mat</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+      <span class="n">n</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
+      <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span> <span class="n">unless</span> <span class="n">directed</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">shortest_route</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">dp</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+      <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">visited</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">dest</span><span class="o">|</span>
+          <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">from</span><span class="o">|</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">visited</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">visited</span><span class="p">.</span><span class="n">bit</span><span class="p">(</span><span class="n">from</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">visited</span><span class="p">.</span><span class="n">bit</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">from</span> <span class="o">==</span> <span class="n">dest</span>
+            <span class="n">now</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">visited</span><span class="p">][</span><span class="n">from</span><span class="p">]</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">from</span><span class="p">][</span><span class="n">dest</span><span class="p">]</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">now</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="n">next</span> <span class="k">if</span> <span class="n">d</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">now</span> <span class="o">+</span> <span class="n">d</span>
+            <span class="n">nxt</span> <span class="o">=</span> <span class="n">dp</span><span class="p">[</span><span class="n">visited</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">dest</span><span class="p">)][</span><span class="n">dest</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">nxt</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">||</span> <span class="n">nxt</span> <span class="o">&gt;</span> <span class="n">d</span>
+              <span class="n">dp</span><span class="p">[</span><span class="n">visited</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">dest</span><span class="p">)][</span><span class="n">dest</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span>
+            <span class="n">end</span>
+          <span class="n">end</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">dp</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
   <span class="k">struct</span> <span class="nc">Edge</span>
     <span class="err">@</span><span class="n">data</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int64</span><span class="p">,</span> <span class="n">Int64</span><span class="p">}</span>
 
-    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">Int64</span><span class="p">)</span>
+    <span class="n">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">t</span> <span class="o">:</span> <span class="n">Int64</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">Int64</span><span class="p">)</span>
       <span class="err">@</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">,</span> <span class="n">w</span><span class="p">}</span>
     <span class="n">end</span>
 
