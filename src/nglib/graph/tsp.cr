@@ -19,7 +19,7 @@ module NgLib
     end
 
     def shortest_route(should_back : Bool = true)
-      fw = NgLib::FloydWarshall(Int64).new(@mat)
+      fw = NgLib::FloydWarshallGraph(Int64).new(@mat)
       dp = Array.new(1 << @size) { Array.new(@size) { nil.as(T?) } }
 
       if should_back
