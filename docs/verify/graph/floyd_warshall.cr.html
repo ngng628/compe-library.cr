@@ -81,9 +81,9 @@
 
 <ul>
     <li><a href="/blob/master/verify/graph/floyd_warshall.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-01-28 01:23:00+09:00</li>
+    <li>Last update: 2024-01-28 05:10:43+09:00</li>
     
-    <li>Problem: <a href="https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A">https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A</a>
+    <li>Problem: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A</a>
 </li>
     
     
@@ -127,7 +127,7 @@
 
 
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
 </span>
 <span class="n">require</span> <span class="s">"../../src/nglib/graph/floyd_warshall.cr"</span>
 
@@ -152,7 +152,7 @@
 
 
 
-<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
+<figure class="highlight"><pre><code class="language-cpp" data-lang="cpp"><span class="cp"># verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
 </span>
 <span class="cp"># require "../../src/nglib/graph/floyd_warshall.cr"
 </span><span class="n">module</span> <span class="n">NgLib</span>
@@ -163,14 +163,14 @@
     <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i32</span>
       <span class="err">@</span><span class="n">mat</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
-      <span class="n">n</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+      <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
         <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
       <span class="n">end</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="err">@</span><span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)))</span>
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span>
-      <span class="n">n</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+      <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
         <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
       <span class="n">end</span>
     <span class="n">end</span>
