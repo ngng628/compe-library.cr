@@ -6,14 +6,14 @@ module NgLib
     def initialize(n : Int)
       @size = n.to_i32
       @mat = Array.new(n) { Array.new(n) { nil.as(T?) } }
-      n.times do |i|
+      @size.times do |i|
         @mat[i][i] = T.zero
       end
     end
 
     def initialize(@mat : Array(Array(T?)))
       @size = @mat.size
-      n.times do |i|
+      @size.times do |i|
         @mat[i][i] = T.zero
       end
     end

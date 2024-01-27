@@ -1,4 +1,4 @@
-# verification-helper: PROBLEM https://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/7/ITP2_7_D
+# verification-helper: PROBLEM http://onlinejudge.u-aizu.ac.jp/courses/lesson/8/ITP2/7/ITP2_7_D
 
 require "../../src/nglib/data_structure/aatree_multiset"
 

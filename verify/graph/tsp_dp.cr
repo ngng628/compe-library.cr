@@ -1,4 +1,4 @@
-# verification-helper: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
+# verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
 
 require "../../src/nglib/graph/tsp.cr"
 
@@ -9,5 +9,5 @@ m.times do
   graph.add_edge(u, v, w, directed: true)
 end
 
-dp = graph.shortest_route(start: 0)
+dp = graph.shortest_route
 puts dp.last[0] || -1
