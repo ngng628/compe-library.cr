@@ -72,8 +72,19 @@ module NgLib
     # end
     # ```
     def add_edge(u : Int, v : Int, w : T, directed : Bool = false)
-      @mat[u][v] = w
-      @mat[v][u] = w unless directed
+      uv = @mat[u][v]
+      if uv.nil?
+        @mat[u][v] = w
+      else
+        @mat[u][v] = {uv, w}.min
+      end
+
+      vu = @mat[v][u]
+      if uv.nil?
+        @mat[v][u] = w
+      else
+        @mat[v][u] = {vu, w}.min
+      end
     end
 
     # `dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長` を
