@@ -67,11 +67,13 @@ module NgLib
         @mat[u][v] = {uv, w}.min
       end
 
-      vu = @mat[v][u]
-      if vu.nil?
-        @mat[v][u] = w
-      else
-        @mat[v][u] = {vu, w}.min
+      if directed
+        vu = @mat[v][u]
+        if vu.nil?
+          @mat[v][u] = w
+        else
+          @mat[v][u] = {vu, w}.min
+        end
       end
     end
 
