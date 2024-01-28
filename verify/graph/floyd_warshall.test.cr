@@ -1,5 +1,4 @@
-# verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
-
+# verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
 require "../../src/nglib/graph/floyd_warshall.cr"
 
 n, m = read_line.split.map &.to_i64
