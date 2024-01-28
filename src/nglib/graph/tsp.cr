@@ -10,6 +10,10 @@ module NgLib
   # 始点を指定したいという特殊な場合は、
   # `#shortest_route(start : Int, should_back : Bool = true)` を利用してください。
   #
+  # オリジナルの巡回セールスマン問題は各頂点に一度しか訪れることができません。
+  # 同じ頂点を複数回訪れられる場合は、`NgLib::FloydWarshall` などで、全点対最短経路長を求め、
+  # それを隣接行列として渡してください。
+  #
   # 計算量は $O(N^2 2^N)$ です。
   class TSPGraph(T)
     getter size : Int32
