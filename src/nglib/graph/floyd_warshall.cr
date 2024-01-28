@@ -68,7 +68,7 @@ module NgLib
       end
 
       vu = @mat[v][u]
-      if uv.nil?
+      if vu.nil?
         @mat[v][u] = w
       else
         @mat[v][u] = {vu, w}.min
