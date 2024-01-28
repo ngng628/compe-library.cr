@@ -9,7 +9,6 @@ m.times do
   graph.add_edge(u, v, w, directed: true)
 end
 
-
 d = graph.shortest_path
 if n.times.any? { |i| d[i][i] || Int64::MAX < 0 }
   puts "NEGATIVE CYCLE"
