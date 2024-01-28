@@ -55,7 +55,7 @@ module NgLib
     # graph = NgLib::FloydWarshallGraph.new(n)
     # m.times do
     #   u, v, w = read_line.split.map &.to_i64
-    #   u -= 1; v -= 1  # 0-index
+    #   u -= 1; v -= 1 # 0-index
     #   graph.add_edge(u, v, w, directed: true)
     # end
     # ```
@@ -72,7 +72,7 @@ module NgLib
     # mat = [[0, 3, 1], [-2, 0, 4], [nil, nil, 0]]
     # graph = NgLib::FloydWarshallGraph.new(mat)
     # d = graph.shortest_path # => [[0, 3, 1], [-2, 0, -1], [nil, nil, 0]]
-    # d[0][1] # => 3  (i から j への最短経路長)
+    # d[0][1]                 # => 3  (i から j への最短経路長)
     # ```
     def shortest_path
       dist = @mat.clone

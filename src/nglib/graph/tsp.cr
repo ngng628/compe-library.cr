@@ -67,7 +67,7 @@ module NgLib
     # graph = NgLib::TSPGraph.new(n)
     # m.times do
     #   u, v, w = read_line.split.map &.to_i64
-    #   u -= 1; v -= 1  # 0-index
+    #   u -= 1; v -= 1 # 0-index
     #   graph.add_edge(u, v, w, directed: true)
     # end
     # ```
@@ -85,14 +85,14 @@ module NgLib
     # `should_back` が `false` なら通常の巡回セールスマン問題の答えです。
     # 始点が頂点 $0$ であることに注意してください。
     # つまり、`dp[(1 << n) - 1][0]` が答えです。
-    # 
+    #
     # どのような順でも到達できない場合は `nil` が格納されます。
     #
     # ```
     # graph = TSPGraph(Int64).new(n)
     # dist = graph.shortest_route
     # dist[(1 << n) - 1][0] # => ans
-    # dist.last.first # => ans
+    # dist.last.first       # => ans
     # ```
     def shortest_route(should_back : Bool = true)
       dp = Array.new(1 << @size) { Array.new(@size) { nil.as(T?) } }
@@ -117,7 +117,7 @@ module NgLib
     # `should_back` が `false` なら通常の巡回セールスマン問題の答えです。
     # 始点が頂点 `start` であることに注意してください。
     # つまり、`dp[(1 << n) - 1][start]` が答えです。
-    # 
+    #
     # どのような順でも到達できない場合は `nil` が格納されます。
     #
     # ```
