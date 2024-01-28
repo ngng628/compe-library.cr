@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/graph/tsp_dp.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-01-28 05:34:01+09:00</li>
+    <li>Last update: 2024-01-28 15:56:30+09:00</li>
     
     <li>Problem: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A</a>
 </li>
@@ -154,11 +154,29 @@
 </span>
 <span class="cp"># require "../../src/nglib/graph/tsp.cr"
 </span><span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nf">TSPGraph</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+  <span class="cp"># 巡回セールスマン問題を解きます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 内部では BitDP を用いているため、
+</span>  <span class="cp"># 頂点数が大きいグラフには対応できません。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 通常の巡回セールスマン問題を解きたい場合は、
+</span>  <span class="cp"># `#shortest_route(should_back : Bool = true)` を利用してください。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 始点を指定したいという特殊な場合は、
+</span>  <span class="cp"># `#shortest_route(start : Int, should_back : Bool = true)` を利用してください。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 計算量は $O(N^2 2^N)$ です。
+</span>  <span class="k">class</span> <span class="nf">TSPGraph</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="n">getter</span> <span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">))</span>
 
-    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+    <span class="cp"># $n$ 頂点 $0$ 辺のグラフを作ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># n = 10
+</span>    <span class="cp"># NgLib::TSPGraph(Int64).new(n)
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i32</span>
       <span class="err">@</span><span class="n">mat</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
       <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
@@ -166,12 +184,68 @@
       <span class="n">end</span>
     <span class="n">end</span>
 
-    <span class="n">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+    <span class="cp"># 隣接行列に従ってグラフを作ります。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `nil` は辺が存在しないことを表します。
+</span>    <span class="cp"># 無限大の重みを持つ辺と捉えても良いです。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># mat = [[0, 3, 1], [-2, 0, 4], [nil, nil, 0]]
+</span>    <span class="cp"># NgLib::TSPGraph(Int32).new(mat)
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="err">@</span><span class="n">mat</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)))</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span>
+      <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="cp"># :ditto:
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">matrix</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="o">|</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span>
+      <span class="err">@</span><span class="n">mat</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span> <span class="n">v</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">.</span><span class="n">size</span>
+      <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+        <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 重みが $w$ の辺 $(u, v)$ を追加します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `directed` が `true` である場合、有向辺として追加します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># n, m = read_line.split.map &amp;.to_i
+</span>    <span class="cp"># graph = NgLib::TSPGraph.new(n)
+</span>    <span class="cp"># m.times do
+</span>    <span class="cp">#   u, v, w = read_line.split.map &amp;.to_i64
+</span>    <span class="cp">#   u -= 1; v -= 1  # 0-index
+</span>    <span class="cp">#   graph.add_edge(u, v, w, directed: true)
+</span>    <span class="cp"># end
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
       <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
       <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span> <span class="n">unless</span> <span class="n">directed</span>
     <span class="n">end</span>
 
-    <span class="n">def</span> <span class="n">shortest_route</span><span class="p">(</span><span class="n">should_back</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
+    <span class="cp"># `dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長` を
+</span>    <span class="cp"># 返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `should_back` が `true` なら、始点の頂点に戻ってこない場合の最小経路長を計算します。
+</span>    <span class="cp"># また、任意の始点に対しての答えを求める点に注意してください。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `should_back` が `false` なら通常の巡回セールスマン問題の答えです。
+</span>    <span class="cp"># 始点が頂点 $0$ であることに注意してください。
+</span>    <span class="cp"># つまり、`dp[(1 &lt;&lt; n) - 1][0]` が答えです。
+</span>    <span class="cp"># 
+</span>    <span class="cp"># どのような順でも到達できない場合は `nil` が格納されます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># graph = TSPGraph(Int64).new(n)
+</span>    <span class="cp"># dist = graph.shortest_route
+</span>    <span class="cp"># dist[(1 &lt;&lt; n) - 1][0] # =&gt; ans
+</span>    <span class="cp"># dist.last.first # =&gt; ans
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">shortest_route</span><span class="p">(</span><span class="n">should_back</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
       <span class="n">dp</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
 
       <span class="k">if</span> <span class="n">should_back</span>
@@ -182,6 +256,39 @@
         <span class="n">end</span>
       <span class="n">end</span>
 
+      <span class="nf">calc</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長` を
+</span>    <span class="cp"># 返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `should_back` が `true` なら、始点の頂点に戻ってこない場合の最小経路長を計算します。
+</span>    <span class="cp"># また、始点が `start` であることに注意してください。
+</span>    <span class="cp">#
+</span>    <span class="cp"># `should_back` が `false` なら通常の巡回セールスマン問題の答えです。
+</span>    <span class="cp"># 始点が頂点 `start` であることに注意してください。
+</span>    <span class="cp"># つまり、`dp[(1 &lt;&lt; n) - 1][start]` が答えです。
+</span>    <span class="cp"># 
+</span>    <span class="cp"># どのような順でも到達できない場合は `nil` が格納されます。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># graph = TSPGraph(Int64).new(n)
+</span>    <span class="cp"># dist = graph.shortest_route(start: 2)
+</span>    <span class="cp"># dist[(1 &lt;&lt; n) - 1][2]
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">shortest_route</span><span class="p">(</span><span class="n">start</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">should_back</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
+      <span class="n">dp</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span><span class="p">.</span><span class="n">as</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span> <span class="p">}</span> <span class="p">}</span>
+
+      <span class="k">if</span> <span class="n">should_back</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="k">else</span>
+        <span class="n">dp</span><span class="p">[</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">start</span><span class="p">][</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">end</span>
+
+      <span class="n">calc</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">calc</span><span class="p">(</span><span class="n">dp</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)))</span>
       <span class="n">dist</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span>
 
       <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">size</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">visited</span><span class="o">|</span>

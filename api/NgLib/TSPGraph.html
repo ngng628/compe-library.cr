@@ -313,6 +313,43 @@
     </li>
    </ul>
    <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    巡回セールスマン問題を解きます。
+   </p>
+   <p>
+    内部では BitDP を用いているため、
+頂点数が大きいグラフには対応できません。
+   </p>
+   <p>
+    通常の巡回セールスマン問題を解きたい場合は、
+    <code>
+     <a href="../NgLib/TSPGraph.html#shortest_route%28should_back%3ABool%3Dtrue%29-instance-method">
+      #shortest_route(should_back : Bool = true)
+     </a>
+    </code>
+    を利用してください。
+   </p>
+   <p>
+    始点を指定したいという特殊な場合は、
+    <code>
+     <a href="../NgLib/TSPGraph.html#shortest_route%28start%3AInt%2Cshould_back%3ABool%3Dtrue%29-instance-method">
+      #shortest_route(start : Int, should_back : Bool = true)
+     </a>
+    </code>
+    を利用してください。
+   </p>
+   <p>
+    計算量は $O(N^2 2^N)$ です。
+   </p>
+   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -321,7 +358,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L2" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L14" target="_blank">
     nglib/graph/tsp.cr
    </a>
    <br/>
@@ -336,12 +373,43 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
+     <a class="signature" href="#new%28matrix%3AArray%28Array%28T%7CNil%29%7CArray%28T%29%29%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (matrix : Array(Array(T | Nil) | Array(T)))
+     </a>
+     <div class="summary">
+      <p>
+       隣接行列に従ってグラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28mat%3AArray%28Array%28T%7CNil%29%29%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (mat : Array(Array(T | Nil)))
+     </a>
+     <div class="summary">
+      <p>
+       隣接行列に従ってグラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#new%28n%3AInt%29-class-method">
       <strong>
        .new
       </strong>
       (n : Int)
      </a>
+     <div class="summary">
+      <p>
+       $n$ 頂点 $0$ 辺のグラフを作ります。
+      </p>
+     </div>
     </li>
    </ul>
    <h2>
@@ -365,6 +433,11 @@
       </span>
       )
      </a>
+     <div class="summary">
+      <p>
+       重みが $w$ の辺 $(u, v)$ を追加します。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#mat%3AArray%28Array%28T%7CNil%29%29-instance-method">
@@ -385,6 +458,34 @@
       </span>
       )
      </a>
+     <div class="summary">
+      <p>
+       <code>
+        dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長
+       </code>
+       を 返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_route%28start%3AInt%2Cshould_back%3ABool%3Dtrue%29-instance-method">
+      <strong>
+       #shortest_route
+      </strong>
+      (start : Int, should_back : Bool =
+      <span class="n">
+       true
+      </span>
+      )
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長
+       </code>
+       を 返します。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#size%3AInt32-instance-method">
@@ -406,6 +507,74 @@
     </a>
     Constructor Detail
    </h2>
+   <div class="entry-detail" id="new(matrix:Array(Array(T|Nil)|Array(T)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (matrix : Array(Array(T | Nil) | Array(T)))
+     <a class="method-permalink" href="#new%28matrix%3AArray%28Array%28T%7CNil%29%7CArray%28T%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      隣接行列に従ってグラフを作ります。
+     </p>
+     <p>
+      <code>
+       nil
+      </code>
+      は辺が存在しないことを表します。
+無限大の重みを持つ辺と捉えても良いです。
+     </p>
+     <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
+<span class="t">NgLib</span><span class="t">::</span><span class="t">TSPGraph</span>(<span class="t">Int32</span>).new(mat)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L49" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(mat:Array(Array(T|Nil)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (mat : Array(Array(T | Nil)))
+     <a class="method-permalink" href="#new%28mat%3AArray%28Array%28T%7CNil%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      隣接行列に従ってグラフを作ります。
+     </p>
+     <p>
+      <code>
+       nil
+      </code>
+      は辺が存在しないことを表します。
+無限大の重みを持つ辺と捉えても良いです。
+     </p>
+     <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
+<span class="t">NgLib</span><span class="t">::</span><span class="t">TSPGraph</span>(<span class="t">Int32</span>).new(mat)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L41" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
    <div class="entry-detail" id="new(n:Int)-class-method">
     <div class="signature">
      def self.
@@ -421,10 +590,17 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      $n$ 頂点 $0$ 辺のグラフを作ります。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+<span class="t">NgLib</span><span class="t">::</span><span class="t">TSPGraph</span>(<span class="t">Int64</span>).new(n)</code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L6" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L24" target="_blank">
       View source
      </a>
      ]
@@ -462,10 +638,32 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      重みが $w$ の辺 $(u, v)$ を追加します。
+     </p>
+     <p>
+      <code>
+       directed
+      </code>
+      が
+      <code>
+       true
+      </code>
+      である場合、有向辺として追加します。
+     </p>
+     <pre><code class="language-crystal">n, m <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i
+graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">TSPGraph</span>.new(n)
+m.times <span class="k">do</span>
+  u, v, w <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i64
+  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span>  <span class="c"># 0-index</span>
+  graph.add_edge(u, v, w, directed: <span class="n">true</span>)
+<span class="k">end</span></code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L14" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L70" target="_blank">
       View source
      </a>
      ]
@@ -485,7 +683,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L16" target="_blank">
       View source
      </a>
      ]
@@ -506,10 +704,139 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      <code>
+       dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長
+      </code>
+      を
+返します。
+     </p>
+     <p>
+      <code>
+       should_back
+      </code>
+      が
+      <code>
+       true
+      </code>
+      なら、始点の頂点に戻ってこない場合の最小経路長を計算します。
+また、任意の始点に対しての答えを求める点に注意してください。
+     </p>
+     <p>
+      <code>
+       should_back
+      </code>
+      が
+      <code>
+       false
+      </code>
+      なら通常の巡回セールスマン問題の答えです。
+始点が頂点 $0$ であることに注意してください。
+つまり、
+      <code>
+       dp[(1 &lt;&lt; n) - 1][0]
+      </code>
+      が答えです。
+     </p>
+     <p>
+      どのような順でも到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">TSPGraph</span>(<span class="t">Int64</span>).new(n)
+dist <span class="o">=</span> graph.shortest_route
+dist[(<span class="n">1</span> <span class="o">&lt;&lt;</span> n) <span class="o">-</span> <span class="n">1</span>][<span class="n">0</span>] <span class="c"># =&gt; ans</span>
+dist.last.first <span class="c"># =&gt; ans</span></code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L19" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L93" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_route(start:Int,should_back:Bool=true)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_route
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , should_back : Bool =
+     <span class="n">
+      true
+     </span>
+     )
+     <a class="method-permalink" href="#shortest_route%28start%3AInt%2Cshould_back%3ABool%3Dtrue%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       dp[S][i] := 今まで訪問した頂点の集合が S で、最後に訪れた頂点が i であるときの最小経路長
+      </code>
+      を
+返します。
+     </p>
+     <p>
+      <code>
+       should_back
+      </code>
+      が
+      <code>
+       true
+      </code>
+      なら、始点の頂点に戻ってこない場合の最小経路長を計算します。
+また、始点が
+      <code>
+       start
+      </code>
+      であることに注意してください。
+     </p>
+     <p>
+      <code>
+       should_back
+      </code>
+      が
+      <code>
+       false
+      </code>
+      なら通常の巡回セールスマン問題の答えです。
+始点が頂点
+      <code>
+       start
+      </code>
+      であることに注意してください。
+つまり、
+      <code>
+       dp[(1 &lt;&lt; n) - 1][start]
+      </code>
+      が答えです。
+     </p>
+     <p>
+      どのような順でも到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
+     <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">TSPGraph</span>(<span class="t">Int64</span>).new(n)
+dist <span class="o">=</span> graph.shortest_route(start: <span class="n">2</span>)
+dist[(<span class="n">1</span> <span class="o">&lt;&lt;</span> n) <span class="o">-</span> <span class="n">1</span>][<span class="n">2</span>]</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L124" target="_blank">
       View source
      </a>
      ]
@@ -529,7 +856,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/tsp.cr#L3" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/tsp.cr#L15" target="_blank">
       View source
      </a>
      ]

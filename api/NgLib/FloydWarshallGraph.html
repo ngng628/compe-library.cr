@@ -313,6 +313,22 @@
     </li>
    </ul>
    <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    ワーシャル・フロイド法の実装です。
+   </p>
+   <p>
+    （負を含む）重み付きグラフに対して、
+全点対最短経路長が $O(V^3)$ で求まります。
+   </p>
+   <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
@@ -321,7 +337,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L2" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L6" target="_blank">
     nglib/graph/floyd_warshall.cr
    </a>
    <br/>
@@ -336,12 +352,30 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
+     <a class="signature" href="#new%28matrix%3AArray%28Array%28T%7CNil%29%7CArray%28T%29%29%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (matrix : Array(Array(T | Nil) | Array(T)))
+     </a>
+     <div class="summary">
+      <p>
+       隣接行列に従ってグラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#new%28mat%3AArray%28Array%28T%7CNil%29%29%29-class-method">
       <strong>
        .new
       </strong>
       (mat : Array(Array(T | Nil)))
      </a>
+     <div class="summary">
+      <p>
+       隣接行列に従ってグラフを作ります。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#new%28n%3AInt%29-class-method">
@@ -350,6 +384,11 @@
       </strong>
       (n : Int)
      </a>
+     <div class="summary">
+      <p>
+       $n$ 頂点 $0$ 辺のグラフを作ります。
+      </p>
+     </div>
     </li>
    </ul>
    <h2>
@@ -373,6 +412,11 @@
       </span>
       )
      </a>
+     <div class="summary">
+      <p>
+       重みが $w$ の辺 $(u, v)$ を追加します。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#mat%3AArray%28Array%28T%7CNil%29%29-instance-method">
@@ -383,12 +427,16 @@
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path%3AArray%28Array%28T%7CNil%29%29-instance-method">
+     <a class="signature" href="#shortest_path-instance-method">
       <strong>
        #shortest_path
       </strong>
-      : Array(Array(T | Nil))
      </a>
+     <div class="summary">
+      <p>
+       全点対最短経路長を返します。
+      </p>
+     </div>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#size%3AInt32-instance-method">
@@ -410,6 +458,40 @@
     </a>
     Constructor Detail
    </h2>
+   <div class="entry-detail" id="new(matrix:Array(Array(T|Nil)|Array(T)))-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (matrix : Array(Array(T | Nil) | Array(T)))
+     <a class="method-permalink" href="#new%28matrix%3AArray%28Array%28T%7CNil%29%7CArray%28T%29%29%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      隣接行列に従ってグラフを作ります。
+     </p>
+     <p>
+      <code>
+       nil
+      </code>
+      は辺が存在しないことを表します。
+無限大の重みを持つ辺と捉えても良いです。
+     </p>
+     <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
+<span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>(<span class="t">Int32</span>).new(mat)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L41" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
    <div class="entry-detail" id="new(mat:Array(Array(T|Nil)))-class-method">
     <div class="signature">
      def self.
@@ -421,10 +503,24 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      隣接行列に従ってグラフを作ります。
+     </p>
+     <p>
+      <code>
+       nil
+      </code>
+      は辺が存在しないことを表します。
+無限大の重みを持つ辺と捉えても良いです。
+     </p>
+     <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
+<span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>(<span class="t">Int32</span>).new(mat)</code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L14" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L33" target="_blank">
       View source
      </a>
      ]
@@ -445,10 +541,17 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      $n$ 頂点 $0$ 辺のグラフを作ります。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+<span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>(<span class="t">Int64</span>).new(n)</code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L6" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L16" target="_blank">
       View source
      </a>
      ]
@@ -486,10 +589,32 @@
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      重みが $w$ の辺 $(u, v)$ を追加します。
+     </p>
+     <p>
+      <code>
+       directed
+      </code>
+      が
+      <code>
+       true
+      </code>
+      である場合、有向辺として追加します。
+     </p>
+     <pre><code class="language-crystal">n, m <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i
+graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>.new(n)
+m.times <span class="k">do</span>
+  u, v, w <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i64
+  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span>  <span class="c"># 0-index</span>
+  graph.add_edge(u, v, w, directed: <span class="n">true</span>)
+<span class="k">end</span></code></pre>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L21" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -509,27 +634,42 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L8" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path:Array(Array(T|Nil))-instance-method">
+   <div class="entry-detail" id="shortest_path-instance-method">
     <div class="signature">
      def
      <strong>
       shortest_path
      </strong>
-     : Array(Array(T | Nil))
-     <a class="method-permalink" href="#shortest_path%3AArray%28Array%28T%7CNil%29%29-instance-method">
+     <a class="method-permalink" href="#shortest_path-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      全点対最短経路長を返します。
+     </p>
+     <p>
+      どのような経路を辿っても到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
+     <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
+graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>.new(mat)
+d <span class="o">=</span> graph.shortest_path <span class="c"># =&gt; [[0, 3, 1], [-2, 0, -1], [nil, nil, 0]]</span>
+d[<span class="n">0</span>][<span class="n">1</span>] <span class="c"># =&gt; 3  (i から j への最短経路長)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L26" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L77" target="_blank">
       View source
      </a>
      ]
@@ -549,7 +689,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/65118ba35be08ad4d7c2cdfe1267b81fad93f11a/src/nglib/graph/floyd_warshall.cr#L3" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/8303abc783218a9115f508829014b3b430029ed6/src/nglib/graph/floyd_warshall.cr#L7" target="_blank">
       View source
      </a>
      ]
