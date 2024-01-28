@@ -1,12 +1,13 @@
 # verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
 
 require "../../src/nglib/graph/floyd_warshall.cr"
+require "big"
 
 n, m = read_line.split.map &.to_i64
-graph = NgLib::FloydWarshallGraph(Int64).new(n)
+graph = NgLib::FloydWarshallGraph(BigInt).new(n)
 m.times do
   u, v, w = read_line.split.map &.to_i64
-  graph.add_edge(u, v, w, directed: true)
+  graph.add_edge(u, v, BigInt.new(w), directed: true)
 end
 
 d = graph.shortest_path
