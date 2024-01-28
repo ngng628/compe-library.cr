@@ -367,7 +367,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L18" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L18" target="_blank">
     nglib/graph/tsp.cr
    </a>
    <br/>
@@ -544,7 +544,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L53" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L53" target="_blank">
       View source
      </a>
      ]
@@ -578,7 +578,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L45" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L45" target="_blank">
       View source
      </a>
      ]
@@ -609,7 +609,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L28" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L28" target="_blank">
       View source
      </a>
      ]
@@ -665,14 +665,14 @@
 graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">TSPGraph</span>.new(n)
 m.times <span class="k">do</span>
   u, v, w <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i64
-  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span>  <span class="c"># 0-index</span>
+  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span> <span class="c"># 0-index</span>
   graph.add_edge(u, v, w, directed: <span class="n">true</span>)
 <span class="k">end</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L74" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L74" target="_blank">
       View source
      </a>
      ]
@@ -692,7 +692,7 @@ m.times <span class="k">do</span>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L20" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L20" target="_blank">
       View source
      </a>
      ]
@@ -758,12 +758,12 @@ m.times <span class="k">do</span>
      <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">TSPGraph</span>(<span class="t">Int64</span>).new(n)
 dist <span class="o">=</span> graph.shortest_route
 dist[(<span class="n">1</span> <span class="o">&lt;&lt;</span> n) <span class="o">-</span> <span class="n">1</span>][<span class="n">0</span>] <span class="c"># =&gt; ans</span>
-dist.last.first <span class="c"># =&gt; ans</span></code></pre>
+dist.last.first       <span class="c"># =&gt; ans</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L97" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L97" target="_blank">
       View source
      </a>
      ]
@@ -845,7 +845,7 @@ dist[(<span class="n">1</span> <span class="o">&lt;&lt;</span> n) <span class="o
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L128" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L128" target="_blank">
       View source
      </a>
      ]
@@ -865,7 +865,7 @@ dist[(<span class="n">1</span> <span class="o">&lt;&lt;</span> n) <span class="o
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/tsp.cr#L19" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/tsp.cr#L19" target="_blank">
       View source
      </a>
      ]

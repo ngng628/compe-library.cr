@@ -337,7 +337,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L6" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L6" target="_blank">
     nglib/graph/floyd_warshall.cr
    </a>
    <br/>
@@ -486,7 +486,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L41" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L41" target="_blank">
       View source
      </a>
      ]
@@ -520,7 +520,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L33" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L33" target="_blank">
       View source
      </a>
      ]
@@ -551,7 +551,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L16" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L16" target="_blank">
       View source
      </a>
      ]
@@ -607,14 +607,14 @@
 graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>.new(n)
 m.times <span class="k">do</span>
   u, v, w <span class="o">=</span> read_line.split.map <span class="o">&amp;</span>.to_i64
-  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span>  <span class="c"># 0-index</span>
+  u <span class="o">-=</span> <span class="n">1</span>; v <span class="o">-=</span> <span class="n">1</span> <span class="c"># 0-index</span>
   graph.add_edge(u, v, w, directed: <span class="n">true</span>)
 <span class="k">end</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L62" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -634,7 +634,7 @@ m.times <span class="k">do</span>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L8" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L8" target="_blank">
       View source
      </a>
      ]
@@ -664,12 +664,12 @@ m.times <span class="k">do</span>
      <pre><code class="language-crystal">mat <span class="o">=</span> [[<span class="n">0</span>, <span class="n">3</span>, <span class="n">1</span>], [<span class="n">-2</span>, <span class="n">0</span>, <span class="n">4</span>], [<span class="n">nil</span>, <span class="n">nil</span>, <span class="n">0</span>]]
 graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">FloydWarshallGraph</span>.new(mat)
 d <span class="o">=</span> graph.shortest_path <span class="c"># =&gt; [[0, 3, 1], [-2, 0, -1], [nil, nil, 0]]</span>
-d[<span class="n">0</span>][<span class="n">1</span>] <span class="c"># =&gt; 3  (i から j への最短経路長)</span></code></pre>
+d[<span class="n">0</span>][<span class="n">1</span>]                 <span class="c"># =&gt; 3  (i から j への最短経路長)</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L77" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L77" target="_blank">
       View source
      </a>
      ]
@@ -689,7 +689,7 @@ d[<span class="n">0</span>][<span class="n">1</span>] <span class="c"># =&gt; 3 
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/d8c5521fee5b5c1a4a298cac5941780592e1fd09/src/nglib/graph/floyd_warshall.cr#L7" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64a23ad16105653b41c69d03079859c008cf213a/src/nglib/graph/floyd_warshall.cr#L7" target="_blank">
       View source
      </a>
      ]
