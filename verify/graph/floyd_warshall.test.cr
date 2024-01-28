@@ -1,4 +1,4 @@
-# verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A
+# verification-helper: PROBLEM http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_C
 
 require "../../src/nglib/graph/floyd_warshall.cr"
 
@@ -10,6 +10,10 @@ m.times do
 end
 
 d = graph.shortest_path
-n.times do |i|
-  puts d[i].map { |elem| elem.nil? ? "INF" : elem }.join ' '
+if n.times.any? { |i| (d[i][i] || Int64::MAX) < 0 }
+  puts "NEGATIVE CYCLE"
+else
+  n.times do |i|
+    puts d[i].map { |elem| elem || "INF" }.join ' '
+  end
 end

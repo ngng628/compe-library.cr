@@ -20,7 +20,7 @@ ans = String.build { |io|
       end
     when 3
       li = set.greater_equal_index(query[0])
-      ri = set.less_equal_index(query[1])
+      ri = set.less_index(query[1] + 1)
       next if li.nil? || ri.nil?
       (li..ri).each do |i|
         io << set.at(i) << '\n'

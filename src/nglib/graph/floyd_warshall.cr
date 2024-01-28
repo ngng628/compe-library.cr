@@ -60,8 +60,21 @@ module NgLib
     # end
     # ```
     def add_edge(u : Int, v : Int, w : T, directed : Bool = false)
-      @mat[u][v] = w
-      @mat[v][u] = w unless directed
+      uv = @mat[u][v]
+      if uv.nil?
+        @mat[u][v] = w
+      else
+        @mat[u][v] = {uv, w}.min
+      end
+
+      unless directed
+        vu = @mat[v][u]
+        if vu.nil?
+          @mat[v][u] = w
+        else
+          @mat[v][u] = {vu, w}.min
+        end
+      end
     end
 
     # 全点対最短経路長を返します。
