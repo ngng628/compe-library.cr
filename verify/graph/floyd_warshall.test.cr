@@ -14,6 +14,6 @@ if n.times.any? { |i| (d[i][i] || Int64::MAX) < 0 }
   puts "NEGATIVE CYCLE"
 else
   n.times do |i|
-    puts d[i].map { |elem| elem.nil? ? "INF" : elem }.join ' '
+    puts d[i].map { |elem| elem || "INF" }.join ' '
   end
 end
