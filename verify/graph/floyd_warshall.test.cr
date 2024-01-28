@@ -10,7 +10,7 @@ m.times do
 end
 
 d = graph.shortest_path
-if n.times.any? { |i| d[i][i] || Int64::MAX < 0 }
+if n.times.any? { |i| (d[i][i] || Int64::MAX) < 0 }
   puts "NEGATIVE CYCLE"
 else
   n.times do |i|
