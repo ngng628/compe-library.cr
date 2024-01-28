@@ -79,7 +79,7 @@ module NgLib
         @mat[u][v] = {uv, w}.min
       end
 
-      if directed
+      unless directed
         vu = @mat[v][u]
         if vu.nil?
           @mat[v][u] = w
