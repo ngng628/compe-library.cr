@@ -1,4 +1,3 @@
-require "../constants.cr"
 require "atcoder/priority_queue"
 
 struct Int
@@ -158,11 +157,13 @@ module NgLib
 
     # 全マス間の最短経路長を返します。
     #
+    # 到達できない場合は `nil` が格納されます。
+    #
     # ```
     # dist = grid.shortest_path
     # dist[si][sj][gi][gj] # => 4
     # ```
-    def shortest_path : Array(Array(Int64))
+    def shortest_path : Array(Array(Array(Array(Int64?))))
       Array.new(@h) { |start_i|
         Array.new(@w) { |start_j|
           shortest_path(start_i, start_j)
@@ -172,23 +173,31 @@ module NgLib
 
     # 始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
     #
+    # 到達できない場合は `nil` が格納されます。
+    #
     # ```
     # dist = grid.shortest_path(start: {si, sj})
     # dist[gi][gj] # => 4
     # ```
-    def shortest_path(start : Tuple) : Array(Array(Int64))
+    def shortest_path(start : Tuple) : Array(Array(Int64?))
       queue = Deque.new([start])
-      dist = Array.new(@h) { Array.new(@w) { OO } }
+      dist = Array.new(@h) { Array.new(@w) { nil.as(Int64?) } }
       dist[start[0]][start[1]] = 0
       until queue.empty?
         i, j = queue.shift
+        d = dist[i][j] || raise NilAssertionError.new
         each_neighbor(i, j) do |i_adj, j_adj|
-          next if dist[i_adj][j_adj] != OO
-          dist[i_adj][j_adj] = dist[i][j] + 1
+          next unless dist[i_adj][j_adj].nil?
+          dist[i_adj][j_adj] = d + 1
           queue << {i_adj, j_adj}
         end
       end
       dist
+    end
+
+    # :ditto:
+    def shortest_path(start_i : Int, start_j : Int) : Array(Array(Int64?))
+      shortest_path({start_i, start_j})
     end
 
     # 始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
@@ -196,7 +205,7 @@ module NgLib
     # ```
     # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) # => 4
     # ```
-    def shortest_path(start : Tuple, dest : Tuple) : Int64
+    def shortest_path(start : Tuple, dest : Tuple) : Int64?
       shortest_path(start)[dest[0]][dest[1]]
     end
 
@@ -504,23 +513,29 @@ module NgLib
       Grid(U).new(ret, @delta)
     end
 
-    def index(& : T ->) : {Int32, Int32}?
-      each_with_coord do |elem, (i, j)|
-        return {i, j} if yield elem
+    def index(offset = {0, 0}, & : T ->) : {Int32, Int32}?
+      i, j = offset
+      while i < @h
+        while j < @w
+          return {i, j} if yield self[i, j]
+          j += 1
+        end
+        j = 0
+        i += 1
       end
       nil
     end
 
-    def index(obj) : {Int32, Int32}?
-      index { |elem| elem == obj }
+    def index(obj, offset = {0, 0}) : {Int32, Int32}?
+      index(offset) { |elem| elem == obj }
     end
 
-    def index!(& : T ->) : {Int32, Int32}
-      index { |elem| yield elem } || raise Exception.new("Not found.")
+    def index!(offset = {0, 0}, & : T ->) : {Int32, Int32}
+      index(offset) { |elem| yield elem } || raise Exception.new("Not found.")
     end
 
-    def index!(obj) : {Int32, Int32}?
-      index! { |elem| elem == obj }
+    def index!(obj, offset = {0, 0}) : {Int32, Int32}?
+      index!(offset) { |elem| elem == obj }
     end
 
     # 位置 $(y, x)$ の近傍で、侵入可能な位置を列挙します。
