@@ -133,7 +133,7 @@ module NgLib
     end
 
     # `item` の個数を返します。
-    # 
+    #
     # 計算量は対数オーダーです。
     def count(item : T)
       count(.., item)
