@@ -12,7 +12,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::SuccinctBitVector - nglib main
+   NgLib::CompressedWaveletMatrix(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -123,7 +123,7 @@
          BinaryBfsGraph
         </a>
        </li>
-       <li class="" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
+       <li class="current" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
         <a href="../NgLib/CompressedWaveletMatrix.html">
          CompressedWaveletMatrix
         </a>
@@ -280,7 +280,7 @@
          StaticRectangleSum
         </a>
        </li>
-       <li class="current" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
+       <li class="" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
         <a href="../NgLib/SuccinctBitVector.html">
          SuccinctBitVector
         </a>
@@ -312,12 +312,12 @@
     </span>
     NgLib::
     <wbr/>
-    SuccinctBitVector
+    CompressedWaveletMatrix(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/SuccinctBitVector.html">
-      NgLib::SuccinctBitVector
+     <a href="../NgLib/CompressedWaveletMatrix.html">
+      NgLib::CompressedWaveletMatrix(T)
      </a>
     </li>
     <li class="superclass">
@@ -328,55 +328,19 @@
     </li>
    </ul>
    <h2>
-    <a class="anchor" href="#overview" id="overview">
+    <a class="anchor" href="#included-modules" id="included-modules">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
       </use>
      </svg>
     </a>
-    Overview
+    Included Modules
    </h2>
-   <p>
-    <code>
-     <a href="../NgLib/SuccinctBitVector.html">
-      SuccinctBitVector
-     </a>
-    </code>
-    は簡易ビットベクトル（簡易辞書、Succinct Indexable Dictionary）を提供するクラスです。
-   </p>
-   <p>
-    前計算 $O(n / 32)$ で次の操作が $O(1)$ くらいでできます。
-   </p>
-   <ul>
-    <li>
-     <code>
-      .[i]
-     </code>
-     # =&gt; $i$ 番目のビットにアクセスする （$O(1)$）
-    </li>
-    <li>
-     <code>
-      <a href="../NgLib/SuccinctBitVector.html#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
-       .sum(r)
-      </a>
-     </code>
-     # =&gt;  $[0, r)$ にある $1$ の個数を求める （$O(1)$）
-    </li>
-    <li>
-     <code>
-      <a href="../NgLib/SuccinctBitVector.html#kth_bit_index%28k%29%3AUInt32-instance-method">
-       .kth_bit_index(k)
-      </a>
-     </code>
-     # =&gt; $k$ 番目に現れる $1$ の位置を求める （$O(\log{n})$）
+   <ul class="other-types-list">
+    <li class="other-type">
+     Indexable(T)
     </li>
    </ul>
-   <p>
-    例えばこの問題が解けます →
-    <a href="https://atcoder.jp/contests/abc305/tasks/abc305_d">
-     D - Sleep Log
-    </a>
-   </p>
    <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
@@ -386,8 +350,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L11" target="_blank">
-    nglib/data_structure/succinct_bit_vector.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L212" target="_blank">
+    nglib/data_structure/wavelet_matrix.cr
    </a>
    <br/>
    <h2>
@@ -401,30 +365,20 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%29-class-method">
+     <a class="signature" href="#new%28values%3AArray%28T%29%29-class-method">
       <strong>
        .new
       </strong>
-      (n : Int)
+      (values : Array(T))
      </a>
-     <div class="summary">
-      <p>
-       長さ $n$ のビット列を構築します。
-      </p>
-     </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%2C%26%29-class-method">
+     <a class="signature" href="#new%28n%3AInt%2C%26%3AInt32-%3ET%29-class-method">
       <strong>
        .new
       </strong>
-      (n : Int, &amp;)
+      (n : Int, &amp; : Int32 -&gt; T)
      </a>
-     <div class="summary">
-      <p>
-       長さ $n$ のビット列を構築します。
-      </p>
-     </div>
     </li>
    </ul>
    <h2>
@@ -438,176 +392,209 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AUInt32-instance-method">
+     <a class="signature" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cbound%3ARange%28T%7CNil%2CT%7CNil%29%29%3AInt32-instance-method">
       <strong>
-       #[]
+       #count
       </strong>
-      (range : Range(Int | Nil, Int | Nil)) : UInt32
+      (range : Range(Int | Nil, Int | Nil), bound : Range(T | Nil, T | Nil)) : Int32
      </a>
      <div class="summary">
       <p>
        <code>
         range
        </code>
-       の範囲の総和を返します。
+       の表す区間に含まれる要素の中で
+       <code>
+        bound
+       </code>
+       が表す範囲の値の個数を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%28i%29%3AUInt32-instance-method">
+     <a class="signature" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Citem%3AT%29-instance-method">
       <strong>
-       #[]
+       #count
       </strong>
-      (i) : UInt32
+      (range : Range(Int | Nil, Int | Nil), item : T)
      </a>
      <div class="summary">
       <p>
-       $i$ 番目のビットを返します。
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素の中で
+       <code>
+        item
+       </code>
+       の個数を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#build-instance-method">
+     <a class="signature" href="#count%28item%3AT%29-instance-method">
       <strong>
-       #build
+       #count
       </strong>
+      (item : T)
      </a>
      <div class="summary">
       <p>
-       総和が計算できるようにデータ構造を構築します。
+       <code>
+        item
+       </code>
+       の個数を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#count_ones%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AInt32-instance-method">
+     <a class="signature" href="#kth_largest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
       <strong>
-       #count_ones
+       #kth_largest
       </strong>
-      (range : Range(Int | Nil, Int | Nil)) : Int32
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#count_ones%3AInt32-instance-method">
-      <strong>
-       #count_ones
-      </strong>
-      : Int32
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#count_zeros%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AInt32-instance-method">
-      <strong>
-       #count_zeros
-      </strong>
-      (range : Range(Int | Nil, Int | Nil)) : Int32
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#count_zeros%3AInt32-instance-method">
-      <strong>
-       #count_zeros
-      </strong>
-      : Int32
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#kth_bit_index%28k%29%3AUInt32-instance-method">
-      <strong>
-       #kth_bit_index
-      </strong>
-      (k) : UInt32
+      (range : Range(Int | Nil, Int | Nil), kth : Int)
      </a>
      <div class="summary">
       <p>
-       $k$ 番目に出現する $1$ の位置を求めます。
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素のうち、
+       <code>
+        kth
+       </code>
+       番目に大きい値を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#reset%28i%3AInt%29-instance-method">
+     <a class="signature" href="#kth_largest%28kth%3AInt32%29-instance-method">
       <strong>
-       #reset
+       #kth_largest
       </strong>
-      (i : Int)
+      (kth : Int32)
      </a>
      <div class="summary">
       <p>
-       左から $i$ 番目のビットを 0 にします。
+       <code>
+        kth
+       </code>
+       番目に大きい値を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#set%28i%3AInt%29-instance-method">
+     <a class="signature" href="#kth_smallest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
       <strong>
-       #set
+       #kth_smallest
       </strong>
-      (i : Int)
+      (range : Range(Int | Nil, Int | Nil), kth : Int)
      </a>
      <div class="summary">
       <p>
-       左から $i$ 番目のビットを 1 にします。
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素のうち、
+       <code>
+        kth
+       </code>
+       番目に小さい値を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#size%3AUInt32-instance-method">
+     <a class="signature" href="#kth_smallest%28kth%3AInt32%29-instance-method">
+      <strong>
+       #kth_smallest
+      </strong>
+      (kth : Int32)
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        kth
+       </code>
+       番目に小さい値を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#next_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Clower_bound%29%3AT%7CNil-instance-method">
+      <strong>
+       #next_value
+      </strong>
+      (range : Range(Int | Nil, Int | Nil), lower_bound) : T | Nil
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素のうち、
+       <code>
+        lower_bound
+       </code>
+       <strong>
+        以上
+       </strong>
+       の値の最小値を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#prev_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AT%7CNil-instance-method">
+      <strong>
+       #prev_value
+      </strong>
+      (range : Range(Int | Nil, Int | Nil), upper_bound) : T | Nil
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素のうち、
+       <code>
+        upper_bound
+       </code>
+       <strong>
+        未満
+       </strong>
+       の値の最大値を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method">
       <strong>
        #size
       </strong>
-      : UInt32
+      (*args, **options)
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#sum%28l%2Cr%29%3AUInt32-instance-method">
+     <a class="signature" href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">
       <strong>
-       #sum
+       #size
       </strong>
-      (l, r) : UInt32
+      (*args, **options, &amp;)
      </a>
-     <div class="summary">
-      <p>
-       $[l, r)$ の総和を返します。
-      </p>
-     </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
+     <a class="signature" href="#unsafe_fetch%28index%3AInt%29-instance-method">
       <strong>
-       #sum
+       #unsafe_fetch
       </strong>
-      (range : Range(Int | Nil, Int | Nil))
+      (index : Int)
      </a>
      <div class="summary">
       <p>
-       <code>
-        range
-       </code>
-       の範囲で総和を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#sum%28r%29%3AUInt32-instance-method">
-      <strong>
-       #sum
-      </strong>
-      (r) : UInt32
-     </a>
-     <div class="summary">
-      <p>
-       $[0, r)$ の総和を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#sum-instance-method">
-      <strong>
-       #sum
-      </strong>
-     </a>
-     <div class="summary">
-      <p>
-       $[0, n)$ の総和を返します。
+       Returns the element at the given
+       <em>
+        index
+       </em>
+       , without doing any bounds check.
       </p>
      </div>
     </li>
@@ -623,39 +610,27 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(n:Int)-class-method">
+   <div class="entry-detail" id="new(values:Array(T))-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (n :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+     (values : Array(T))
+     <a class="method-permalink" href="#new%28values%3AArray%28T%29%29-class-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      長さ $n$ のビット列を構築します。
-     </p>
-     <p>
-      計算量は $O(n / 32)$ です。
-     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L22" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L220" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="new(n:Int,&amp;)-class-method">
+   <div class="entry-detail" id="new(n:Int,&amp;:Int32-&gt;T)-class-method">
     <div class="signature">
      def self.
      <strong>
@@ -665,26 +640,15 @@
      <a href="../Int.html">
       Int
      </a>
-     , &amp;)
-     <a class="method-permalink" href="#new%28n%3AInt%2C%26%29-class-method">
+     , &amp; : Int32 -&gt; T)
+     <a class="method-permalink" href="#new%28n%3AInt%2C%26%3AInt32-%3ET%29-class-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      長さ $n$ のビット列を構築します。
-     </p>
-     <p>
-      ブロックでは $i$ 番目のビットの値を返してください。
-     </p>
-     <p>
-      計算量は $O(n)$ です。
-     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L36" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L225" target="_blank">
       View source
      </a>
      ]
@@ -699,11 +663,11 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="[](range:Range(Int|Nil,Int|Nil)):UInt32-instance-method">
+   <div class="entry-detail" id="count(range:Range(Int|Nil,Int|Nil),bound:Range(T|Nil,T|Nil)):Int32-instance-method">
     <div class="signature">
      def
      <strong>
-      []
+      count
      </strong>
      (range : Range(
      <a href="../Int.html">
@@ -713,8 +677,8 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil)) : UInt32
-     <a class="method-permalink" href="#%5B%5D%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AUInt32-instance-method">
+     | Nil), bound : Range(T | Nil, T | Nil)) : Int32
+     <a class="method-permalink" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cbound%3ARange%28T%7CNil%2CT%7CNil%29%29%3AInt32-instance-method">
       #
      </a>
     </div>
@@ -723,72 +687,27 @@
       <code>
        range
       </code>
-      の範囲の総和を返します。
+      の表す区間に含まれる要素の中で
+      <code>
+       bound
+      </code>
+      が表す範囲の値の個数を返します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L124" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L294" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="[](i):UInt32-instance-method">
+   <div class="entry-detail" id="count(range:Range(Int|Nil,Int|Nil),item:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      []
-     </strong>
-     (i) : UInt32
-     <a class="method-permalink" href="#%5B%5D%28i%29%3AUInt32-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      $i$ 番目のビットを返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L119" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="build-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      build
-     </strong>
-     <a class="method-permalink" href="#build-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      総和が計算できるようにデータ構造を構築します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L67" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="count_ones(range:Range(Int|Nil,Int|Nil)):Int32-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      count_ones
+      count
      </strong>
      (range : Range(
      <a href="../Int.html">
@@ -798,45 +717,68 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil)) : Int32
-     <a class="method-permalink" href="#count_ones%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AInt32-instance-method">
+     | Nil), item : T)
+     <a class="method-permalink" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Citem%3AT%29-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       range
+      </code>
+      の表す区間に含まれる要素の中で
+      <code>
+       item
+      </code>
+      の個数を返します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L112" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L289" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="count_ones:Int32-instance-method">
+   <div class="entry-detail" id="count(item:T)-instance-method">
     <div class="signature">
      def
      <strong>
-      count_ones
+      count
      </strong>
-     : Int32
-     <a class="method-permalink" href="#count_ones%3AInt32-instance-method">
+     (item : T)
+     <a class="method-permalink" href="#count%28item%3AT%29-instance-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       item
+      </code>
+      の個数を返します。
+     </p>
+     <p>
+      計算量は対数オーダーです。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L108" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L284" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="count_zeros(range:Range(Int|Nil,Int|Nil)):Int32-instance-method">
+   <div class="entry-detail" id="kth_largest(range:Range(Int|Nil,Int|Nil),kth:Int)-instance-method">
     <div class="signature">
      def
      <strong>
-      count_zeros
+      kth_largest
      </strong>
      (range : Range(
      <a href="../Int.html">
@@ -846,57 +788,184 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil)) : Int32
-     <a class="method-permalink" href="#count_zeros%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29%3AInt32-instance-method">
-      #
+     | Nil), kth :
+     <a href="../Int.html">
+      Int
      </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L102" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="count_zeros:Int32-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      count_zeros
-     </strong>
-     : Int32
-     <a class="method-permalink" href="#count_zeros%3AInt32-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L98" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="kth_bit_index(k):UInt32-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      kth_bit_index
-     </strong>
-     (k) : UInt32
-     <a class="method-permalink" href="#kth_bit_index%28k%29%3AUInt32-instance-method">
+     )
+     <a class="method-permalink" href="#kth_largest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      $k$ 番目に出現する $1$ の位置を求めます。
+      <code>
+       range
+      </code>
+      の表す区間に含まれる要素のうち、
+      <code>
+       kth
+      </code>
+      番目に大きい値を返します。
      </p>
+     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
+wm.kth_largest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">0</span>) <span class="c"># =&gt; 3</span>
+wm.kth_largest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 2</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L277" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="kth_largest(kth:Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      kth_largest
+     </strong>
+     (kth : Int32)
+     <a class="method-permalink" href="#kth_largest%28kth%3AInt32%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
      <p>
-      言い換えると、$sum(i) = k$ となるような最小の $i$ を返します。
+      <code>
+       kth
+      </code>
+      番目に大きい値を返します。
+     </p>
+     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
+wm.kth_smallest(<span class="n">0</span>) <span class="c"># =&gt; 5</span>
+wm.kth_smallest(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
+wm.kth_smallest(<span class="n">2</span>) <span class="c"># =&gt; 2</span>
+wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 1</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L266" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="kth_smallest(range:Range(Int|Nil,Int|Nil),kth:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      kth_smallest
+     </strong>
+     (range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil), kth :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#kth_smallest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       range
+      </code>
+      の表す区間に含まれる要素のうち、
+      <code>
+       kth
+      </code>
+      番目に小さい値を返します。
+     </p>
+     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
+wm.kth_smallest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">0</span>) <span class="c"># =&gt; 2</span>
+wm.kth_smallest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 3</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L253" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="kth_smallest(kth:Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      kth_smallest
+     </strong>
+     (kth : Int32)
+     <a class="method-permalink" href="#kth_smallest%28kth%3AInt32%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       kth
+      </code>
+      番目に小さい値を返します。
+     </p>
+     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
+wm.kth_smallest(<span class="n">0</span>) <span class="c"># =&gt; 1</span>
+wm.kth_smallest(<span class="n">1</span>) <span class="c"># =&gt; 2</span>
+wm.kth_smallest(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
+wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L242" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="next_value(range:Range(Int|Nil,Int|Nil),lower_bound):T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      next_value
+     </strong>
+     (range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil), lower_bound) : T | Nil
+     <a class="method-permalink" href="#next_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Clower_bound%29%3AT%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       range
+      </code>
+      の表す区間に含まれる要素のうち、
+      <code>
+       lower_bound
+      </code>
+      <strong>
+       以上
+      </strong>
+      の値の最小値を返します。
      </p>
      <p>
       存在しない場合は
@@ -905,133 +974,21 @@
       </code>
       を返します。
      </p>
-     <p>
-      本当は $O(1)$ にできるらしいですが、面倒なので $O(\log{n})$ です。
-     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L135" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L311" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="reset(i:Int)-instance-method">
+   <div class="entry-detail" id="prev_value(range:Range(Int|Nil,Int|Nil),upper_bound):T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      reset
-     </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#reset%28i%3AInt%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      左から $i$ 番目のビットを 0 にします。
-     </p>
-     <p>
-      計算量は $O(1)$ です。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L62" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="set(i:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      set
-     </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#set%28i%3AInt%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      左から $i$ 番目のビットを 1 にします。
-     </p>
-     <p>
-      計算量は $O(1)$ です。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L55" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="size:UInt32-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      size
-     </strong>
-     : UInt32
-     <a class="method-permalink" href="#size%3AUInt32-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L12" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="sum(l,r):UInt32-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      sum
-     </strong>
-     (l, r) : UInt32
-     <a class="method-permalink" href="#sum%28l%2Cr%29%3AUInt32-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      $[l, r)$ の総和を返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L87" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="sum(range:Range(Int|Nil,Int|Nil))-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      sum
+      prev_value
      </strong>
      (range : Range(
      <a href="../Int.html">
@@ -1041,8 +998,8 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil))
-     <a class="method-permalink" href="#sum%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%29-instance-method">
+     | Nil), upper_bound) : T | Nil
+     <a class="method-permalink" href="#prev_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AT%7CNil-instance-method">
       #
      </a>
     </div>
@@ -1051,62 +1008,135 @@
       <code>
        range
       </code>
-      の範囲で総和を返します。
+      の表す区間に含まれる要素のうち、
+      <code>
+       upper_bound
+      </code>
+      <strong>
+       未満
+      </strong>
+      の値の最大値を返します。
+     </p>
+     <p>
+      存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L92" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L303" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="sum(r):UInt32-instance-method">
+   <div class="entry-detail" id="size(*args,**options)-instance-method">
     <div class="signature">
      def
      <strong>
-      sum
+      size
      </strong>
-     (r) : UInt32
-     <a class="method-permalink" href="#sum%28r%29%3AUInt32-instance-method">
+     (*args, **options)
+     <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method">
       #
      </a>
-    </div>
-    <div class="doc">
-     <p>
-      $[0, r)$ の総和を返します。
-     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L82" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L218" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="sum-instance-method">
+   <div class="entry-detail" id="size(*args,**options,&amp;)-instance-method">
     <div class="signature">
      def
      <strong>
-      sum
+      size
      </strong>
-     <a class="method-permalink" href="#sum-instance-method">
+     (*args, **options, &amp;)
+     <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L218" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="unsafe_fetch(index:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      unsafe_fetch
+     </strong>
+     (index :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#unsafe_fetch%28index%3AInt%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Indexable(T)
+     </div>
      <p>
-      $[0, n)$ の総和を返します。
+      Returns the element at the given
+      <em>
+       index
+      </em>
+      , without doing any bounds check.
+     </p>
+     <p>
+      <code>
+       Indexable
+      </code>
+      makes sure to invoke this method with
+      <em>
+       index
+      </em>
+      in
+      <code>
+       0...size
+      </code>
+      ,
+so converting negative indices to positive ones is not needed here.
+     </p>
+     <p>
+      Clients never invoke this method directly. Instead, they access
+elements with
+      <code>
+       #[](index)
+      </code>
+      and
+      <code>
+       #[]?(index)
+      </code>
+      .
+     </p>
+     <p>
+      This method should only be directly invoked if you are absolutely
+sure the index is in bounds, to avoid a bounds check for a small boost
+of performance.
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/succinct_bit_vector.cr#L77" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L229" target="_blank">
       View source
      </a>
      ]

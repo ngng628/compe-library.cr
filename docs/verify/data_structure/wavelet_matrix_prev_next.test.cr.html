@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/data_structure/wavelet_matrix_prev_next.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-02-05 00:56:44+09:00</li>
+    <li>Last update: 2024-02-05 02:08:01+09:00</li>
     
     <li>Problem: <a href="https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549">https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1549</a>
 </li>
@@ -136,7 +136,7 @@
 <span class="n">require</span> <span class="s">"../../src/nglib/data_structure/wavelet_matrix"</span>
 
 <span class="n">_n</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span>
-<span class="n">wm</span> <span class="o">=</span> <span class="n">NgLib</span><span class="o">::</span><span class="n">WaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="p">.</span><span class="n">to_i64</span><span class="p">)</span>
+<span class="n">wm</span> <span class="o">=</span> <span class="n">NgLib</span><span class="o">::</span><span class="n">CompressedWaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="p">.</span><span class="n">to_i64</span><span class="p">)</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span>
 <span class="n">q</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span>
@@ -320,6 +320,8 @@
 </span>  <span class="cp">#
 </span>  <span class="cp"># ジェネリクス T は `#[]` などでの返却値の型を指定するものであって、
 </span>  <span class="cp"># 数列の値は非負整数でなければならないことに注意してください。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 基本的には `CompressedWaveletMatrix`
 </span>  <span class="k">class</span> <span class="nc">WaveletMatrix</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">include</span> <span class="n">Indexable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
@@ -392,7 +394,7 @@
 </span>    <span class="cp"># wm.kth_smallest(3) # =&gt; 5
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">kth</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">)</span>
-      <span class="n">kth_smallest</span><span class="p">(</span><span class="n">kth</span><span class="p">,</span> <span class="p">..)</span>
+      <span class="n">kth_smallest</span><span class="p">(..,</span> <span class="n">kth</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="cp"># `range` の表す区間に含まれる要素のうち、`kth` 番目に小さい値を返します。
@@ -433,7 +435,7 @@
 </span>    <span class="cp"># wm.kth_smallest(3) # =&gt; 1
 </span>    <span class="cp"># ```
 </span>    <span class="n">def</span> <span class="n">kth_largest</span><span class="p">(</span><span class="n">kth</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">)</span>
-      <span class="n">kth_largest</span><span class="p">(</span><span class="n">kth</span><span class="p">,</span> <span class="p">..)</span>
+      <span class="n">kth_largest</span><span class="p">(..,</span> <span class="n">kth</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="cp"># `range` の表す区間に含まれる要素のうち、`kth` 番目に大きい値を返します。
@@ -463,14 +465,14 @@
 </span>    <span class="n">def</span> <span class="n">count</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">bound</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">,</span> <span class="n">T</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">Int32</span>
       <span class="n">lower_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
       <span class="n">upper_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="n">T</span><span class="o">::</span><span class="n">MAX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">bound</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="n">count_impl</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">-</span> <span class="n">count_impl</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
+      <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">-</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="cp"># `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の最大値を返します。
 </span>    <span class="cp">#
 </span>    <span class="cp"># 存在しない場合は `nil` を返します。
 </span>    <span class="n">def</span> <span class="n">prev_value</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
-      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_impl</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
       <span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">end</span>
 
@@ -480,24 +482,14 @@
 </span>    <span class="n">def</span> <span class="n">next_value</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
       <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
       <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_impl</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
+      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
       <span class="n">cnt</span> <span class="o">==</span> <span class="p">(</span><span class="n">l</span><span class="p">...</span><span class="n">r</span><span class="p">).</span><span class="n">size</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">cnt</span><span class="p">)</span>
     <span class="n">end</span>
 
-    <span class="err">@</span><span class="p">[</span><span class="n">AlwaysInline</span><span class="p">]</span>
-    <span class="k">private</span> <span class="n">def</span> <span class="n">log2_floor</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
-      <span class="n">log2_floor</span> <span class="o">=</span> <span class="mi">63</span> <span class="o">-</span> <span class="n">n</span><span class="p">.</span><span class="n">leading_zeros_count</span>
-      <span class="n">log2_floor</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&amp;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">end</span>
-
-    <span class="err">@</span><span class="p">[</span><span class="n">AlwaysInline</span><span class="p">]</span>
-    <span class="k">private</span> <span class="n">def</span> <span class="n">succ0</span><span class="p">(</span><span class="n">left</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">right</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">height</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
-      <span class="n">lzeros</span> <span class="o">=</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="err">@</span><span class="n">bit_vectors</span><span class="p">[</span><span class="n">height</span><span class="p">].</span><span class="n">count_zeros</span><span class="p">(</span><span class="mf">0.</span><span class="p">..</span><span class="n">Math</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
-      <span class="n">rzeros</span> <span class="o">=</span> <span class="n">right</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="err">@</span><span class="n">bit_vectors</span><span class="p">[</span><span class="n">height</span><span class="p">].</span><span class="n">count_zeros</span><span class="p">(</span><span class="mf">0.</span><span class="p">..</span><span class="n">Math</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
-      <span class="p">{</span><span class="n">lzeros</span><span class="p">,</span> <span class="n">rzeros</span><span class="p">}</span>
-    <span class="n">end</span>
-
-    <span class="k">private</span> <span class="n">def</span> <span class="n">count_impl</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+    <span class="cp"># `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の個数を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
       <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
       <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
 
@@ -517,11 +509,139 @@
 
       <span class="n">ret</span>
     <span class="n">end</span>
+
+    <span class="err">@</span><span class="p">[</span><span class="n">AlwaysInline</span><span class="p">]</span>
+    <span class="k">private</span> <span class="n">def</span> <span class="n">log2_floor</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">UInt64</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">log2_floor</span> <span class="o">=</span> <span class="mi">63</span> <span class="o">-</span> <span class="n">n</span><span class="p">.</span><span class="n">leading_zeros_count</span>
+      <span class="n">log2_floor</span> <span class="o">+</span> <span class="p">((</span><span class="n">n</span> <span class="o">&amp;</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="err">@</span><span class="p">[</span><span class="n">AlwaysInline</span><span class="p">]</span>
+    <span class="k">private</span> <span class="n">def</span> <span class="n">succ0</span><span class="p">(</span><span class="n">left</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">right</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">height</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="n">lzeros</span> <span class="o">=</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="err">@</span><span class="n">bit_vectors</span><span class="p">[</span><span class="n">height</span><span class="p">].</span><span class="n">count_zeros</span><span class="p">(</span><span class="mf">0.</span><span class="p">..</span><span class="n">Math</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+      <span class="n">rzeros</span> <span class="o">=</span> <span class="n">right</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="err">@</span><span class="n">bit_vectors</span><span class="p">[</span><span class="n">height</span><span class="p">].</span><span class="n">count_zeros</span><span class="p">(</span><span class="mf">0.</span><span class="p">..</span><span class="n">Math</span><span class="p">.</span><span class="n">min</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">size</span><span class="p">))</span>
+      <span class="p">{</span><span class="n">lzeros</span><span class="p">,</span> <span class="n">rzeros</span><span class="p">}</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+
+  <span class="k">class</span> <span class="nf">CompressedWaveletMatrix</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">include</span> <span class="n">Indexable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="err">@</span><span class="n">wm</span> <span class="o">:</span> <span class="n">WaveletMatrix</span><span class="p">(</span><span class="n">Int32</span><span class="p">)</span>
+    <span class="err">@</span><span class="n">uniqued</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+
+    <span class="n">delegate</span> <span class="n">size</span><span class="p">,</span> <span class="n">to</span><span class="o">:</span> <span class="err">@</span><span class="n">wm</span>
+
+    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">values</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
+      <span class="err">@</span><span class="n">uniqued</span> <span class="o">=</span> <span class="n">values</span><span class="p">.</span><span class="n">sort</span><span class="p">.</span><span class="n">uniq</span><span class="o">!</span>
+      <span class="err">@</span><span class="n">wm</span> <span class="o">=</span> <span class="n">WaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">values</span><span class="p">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">get_index</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="p">})</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">self</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="o">&amp;</span> <span class="o">:</span> <span class="n">Int32</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">CompressedWaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">yield</span> <span class="n">i</span> <span class="p">})</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">unsafe_fetch</span><span class="p">(</span><span class="n">index</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">uniqued</span><span class="p">[</span><span class="err">@</span><span class="n">wm</span><span class="p">.</span><span class="n">unsafe_fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `kth` 番目に小さい値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># wm = WaveletMatrix.new([1, 3, 2, 5])
+</span>    <span class="cp"># wm.kth_smallest(0) # =&gt; 1
+</span>    <span class="cp"># wm.kth_smallest(1) # =&gt; 2
+</span>    <span class="cp"># wm.kth_smallest(2) # =&gt; 3
+</span>    <span class="cp"># wm.kth_smallest(3) # =&gt; 5
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">kth</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">)</span>
+      <span class="n">kth_smallest</span><span class="p">(..,</span> <span class="n">kth</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素のうち、`kth` 番目に小さい値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># wm = WaveletMatrix.new([1, 3, 2, 5])
+</span>    <span class="cp"># wm.kth_smallest(1..2, 0) # =&gt; 2
+</span>    <span class="cp"># wm.kth_smallest(1..2, 1) # =&gt; 3
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">kth</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">uniqued</span><span class="p">[</span><span class="err">@</span><span class="n">wm</span><span class="p">.</span><span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">kth</span><span class="p">)]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `kth` 番目に大きい値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># wm = WaveletMatrix.new([1, 3, 2, 5])
+</span>    <span class="cp"># wm.kth_smallest(0) # =&gt; 5
+</span>    <span class="cp"># wm.kth_smallest(1) # =&gt; 3
+</span>    <span class="cp"># wm.kth_smallest(2) # =&gt; 2
+</span>    <span class="cp"># wm.kth_smallest(3) # =&gt; 1
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">kth_largest</span><span class="p">(</span><span class="n">kth</span> <span class="o">:</span> <span class="n">Int32</span><span class="p">)</span>
+      <span class="n">kth_largest</span><span class="p">(..,</span> <span class="n">kth</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素のうち、`kth` 番目に大きい値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># ```
+</span>    <span class="cp"># wm = WaveletMatrix.new([1, 3, 2, 5])
+</span>    <span class="cp"># wm.kth_largest(1..2, 0) # =&gt; 3
+</span>    <span class="cp"># wm.kth_largest(1..2, 1) # =&gt; 2
+</span>    <span class="cp"># ```
+</span>    <span class="n">def</span> <span class="n">kth_largest</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">kth</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
+      <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">range</span><span class="p">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">kth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `item` の個数を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 計算量は対数オーダーです。
+</span>    <span class="n">def</span> <span class="n">count</span><span class="p">(</span><span class="n">item</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">count</span><span class="p">(..,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素の中で `item` の個数を返します。
+</span>    <span class="n">def</span> <span class="n">count</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">item</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="n">count</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">item</span><span class="p">..</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素の中で `bound` が表す範囲の値の個数を返します。
+</span>    <span class="n">def</span> <span class="n">count</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">bound</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">,</span> <span class="n">T</span><span class="o">?</span><span class="p">))</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="n">lower_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">upper_bound</span> <span class="o">=</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="n">T</span><span class="o">::</span><span class="n">MAX</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">bound</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">bound</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">-</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の最大値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">prev_value</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)</span>
+      <span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="cp"># `range` の表す区間に含まれる要素のうち、`lower_bound` **以上** の値の最小値を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">next_value</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">end</span> <span class="o">||</span> <span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">||</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="n">cnt</span> <span class="o">=</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">)</span>
+      <span class="n">cnt</span> <span class="o">==</span> <span class="p">(</span><span class="n">l</span><span class="p">...</span><span class="n">r</span><span class="p">).</span><span class="n">size</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">kth_smallest</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">cnt</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">get_index</span><span class="p">(</span><span class="n">value</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">uniqued</span><span class="p">.</span><span class="n">bsearch_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">value</span> <span class="p">}</span> <span class="o">||</span> <span class="err">@</span><span class="n">uniqued</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">upper_bound</span><span class="p">)</span> <span class="o">:</span> <span class="n">Int32</span>
+      <span class="err">@</span><span class="n">wm</span><span class="p">.</span><span class="n">count_less_eq</span><span class="p">(</span><span class="n">range</span><span class="p">,</span> <span class="n">get_index</span><span class="p">(</span><span class="n">upper_bound</span><span class="p">))</span>
+    <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
 
 <span class="n">_n</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span>
-<span class="n">wm</span> <span class="o">=</span> <span class="n">NgLib</span><span class="o">::</span><span class="n">WaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="p">.</span><span class="n">to_i64</span><span class="p">)</span>
+<span class="n">wm</span> <span class="o">=</span> <span class="n">NgLib</span><span class="o">::</span><span class="n">CompressedWaveletMatrix</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">read_line</span><span class="p">.</span><span class="n">split</span><span class="p">.</span><span class="n">map</span> <span class="o">&amp;</span><span class="p">.</span><span class="n">to_i64</span><span class="p">)</span>
 
 <span class="n">q</span> <span class="o">=</span> <span class="n">read_line</span><span class="p">.</span><span class="n">to_i64</span>
 <span class="n">q</span><span class="p">.</span><span class="n">times</span> <span class="k">do</span>

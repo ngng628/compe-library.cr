@@ -123,6 +123,11 @@
          BinaryBfsGraph
         </a>
        </li>
+       <li class="" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
+        <a href="../NgLib/CompressedWaveletMatrix.html">
+         CompressedWaveletMatrix
+        </a>
+       </li>
        <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
         <a href="../NgLib/DijkstraGraph.html">
          DijkstraGraph
@@ -345,6 +350,14 @@
     などでの返却値の型を指定するものであって、
 数列の値は非負整数でなければならないことに注意してください。
    </p>
+   <p>
+    基本的には
+    <code>
+     <a href="../NgLib/CompressedWaveletMatrix.html">
+      CompressedWaveletMatrix
+     </a>
+    </code>
+   </p>
    <h2>
     <a class="anchor" href="#included-modules" id="included-modules">
      <svg aria-hidden="true" class="octicon-link">
@@ -368,7 +381,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L8" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L10" target="_blank">
     nglib/data_structure/wavelet_matrix.cr
    </a>
    <br/>
@@ -476,6 +489,29 @@
         item
        </code>
        の個数を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#count_less_eq%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AInt32-instance-method">
+      <strong>
+       #count_less_eq
+      </strong>
+      (range : Range(Int | Nil, Int | Nil), upper_bound) : Int32
+     </a>
+     <div class="summary">
+      <p>
+       <code>
+        range
+       </code>
+       の表す区間に含まれる要素のうち、
+       <code>
+        upper_bound
+       </code>
+       <strong>
+        未満
+       </strong>
+       の値の個数を返します。
       </p>
      </div>
     </li>
@@ -666,7 +702,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L22" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L24" target="_blank">
       View source
      </a>
      ]
@@ -696,7 +732,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L53" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L55" target="_blank">
       View source
      </a>
      ]
@@ -745,7 +781,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L148" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L150" target="_blank">
       View source
      </a>
      ]
@@ -785,7 +821,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L143" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L145" target="_blank">
       View source
      </a>
      ]
@@ -816,7 +852,57 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L138" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L140" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="count_less_eq(range:Range(Int|Nil,Int|Nil),upper_bound):Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      count_less_eq
+     </strong>
+     (range : Range(
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil,
+     <a href="../Int.html">
+      Int
+     </a>
+     | Nil), upper_bound) : Int32
+     <a class="method-permalink" href="#count_less_eq%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      <code>
+       range
+      </code>
+      の表す区間に含まれる要素のうち、
+      <code>
+       upper_bound
+      </code>
+      <strong>
+       未満
+      </strong>
+      の値の個数を返します。
+     </p>
+     <p>
+      存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L177" target="_blank">
       View source
      </a>
      ]
@@ -863,7 +949,7 @@ wm.kth_largest(<span class="n">1</span>..<span class="n">2</span>, <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L131" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L133" target="_blank">
       View source
      </a>
      ]
@@ -896,7 +982,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 1</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L120" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L122" target="_blank">
       View source
      </a>
      ]
@@ -943,7 +1029,7 @@ wm.kth_smallest(<span class="n">1</span>..<span class="n">2</span>, <span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L90" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L92" target="_blank">
       View source
      </a>
      ]
@@ -976,7 +1062,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L79" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L81" target="_blank">
       View source
      </a>
      ]
@@ -1026,7 +1112,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L165" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L167" target="_blank">
       View source
      </a>
      ]
@@ -1076,7 +1162,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L157" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L159" target="_blank">
       View source
      </a>
      ]
@@ -1096,7 +1182,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L15" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L17" target="_blank">
       View source
      </a>
      ]
@@ -1116,7 +1202,7 @@ wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L15" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L17" target="_blank">
       View source
      </a>
      ]
@@ -1154,7 +1240,7 @@ wm.unsafe_fetch(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/c682e25e4f9496fb859c914dd80615d0e347bb22/src/nglib/data_structure/wavelet_matrix.cr#L66" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/48647e9acc7dd235d892f84feee0d65f7a9797f0/src/nglib/data_structure/wavelet_matrix.cr#L68" target="_blank">
       View source
      </a>
      ]
