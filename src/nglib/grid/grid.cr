@@ -70,6 +70,40 @@ module NgLib
       @bar = T.bar
     end
 
+    # 位置 `pos` に対して次の座標をタプルで返します。
+    #
+    # ここで「次」とは、each_with_coord で走査するときの順と同様です。
+    #
+    # 次が存在しない場合は `nil` を返します。
+    #
+    # ```
+    # grid.h, grid.w # => 3, 4
+    # grid.next_coord({1, 2}) # => {1, 3}
+    # grid.next_coord({1, 3}) # => {2, 0}
+    # grid.next_coord({2, 3}) # => nil
+    # ```
+    def next_coord(pos)
+      j = (pos[1] + 1) % @w
+      i = pos[0] + (j == 0 ? 1 : 0)
+      i >= @h ? nil : {i, j}
+    end
+
+    # 位置 `pos` に対して次の座標をタプルで返します。
+    #
+    # ここで「次」とは、each_with_coord で走査するときの順と同様です。
+    #
+    # 次が存在しない場合はエラーを送出します。
+    #
+    # ```
+    # grid.h, grid.w # => 3, 4
+    # grid.next_coord({1, 2}) # => {1, 3}
+    # grid.next_coord({1, 3}) # => {2, 0}
+    # grid.next_coord({2, 3}) # => nil
+    # ```
+    def next_coord!(pos)
+      next_coord(pos) || raise Exception.new
+    end
+
     # 位置 `pos` がグリッドの範囲外なら `true` を返します。
     #
     # ```
