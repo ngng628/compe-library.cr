@@ -182,6 +182,11 @@
            Pos
           </a>
          </li>
+         <li class="" data-id="nglib/NgLib/Grid/UnreachableError" data-name="nglib::grid::unreachableerror">
+          <a href="../NgLib/Grid/UnreachableError.html">
+           UnreachableError
+          </a>
+         </li>
         </ul>
        </li>
        <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
@@ -280,6 +285,11 @@
          TSPGraph
         </a>
        </li>
+       <li class="" data-id="nglib/NgLib/WaveletMatrix" data-name="nglib::waveletmatrix(t)">
+        <a href="../NgLib/WaveletMatrix.html">
+         WaveletMatrix
+        </a>
+       </li>
        <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
         <a href="../NgLib/Weight.html">
          Weight
@@ -335,7 +345,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L17" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L16" target="_blank">
     nglib/grid/grid.cr
    </a>
    <br/>
@@ -795,11 +805,19 @@
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#index%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     <a class="signature" href="#index%28offset%3D%7B0%2C0%7D%2C%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       <strong>
        #index
       </strong>
-      (&amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
+      (offset = {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }, &amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
      </a>
      <div class="summary">
       <p>
@@ -808,11 +826,19 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#index%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     <a class="signature" href="#index%28obj%2Coffset%3D%7B0%2C0%7D%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       <strong>
        #index
       </strong>
-      (obj) : Tuple(Int32, Int32) | Nil
+      (obj, offset = {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }) : Tuple(Int32, Int32) | Nil
      </a>
      <div class="summary">
       <p>
@@ -825,11 +851,19 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#index%21%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
+     <a class="signature" href="#index%21%28offset%3D%7B0%2C0%7D%2C%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
       <strong>
        #index!
       </strong>
-      (&amp; : T -&gt; ) : Tuple(Int32, Int32)
+      (offset = {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }, &amp; : T -&gt; ) : Tuple(Int32, Int32)
      </a>
      <div class="summary">
       <p>
@@ -838,11 +872,19 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#index%21%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     <a class="signature" href="#index%21%28obj%2Coffset%3D%7B0%2C0%7D%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       <strong>
        #index!
       </strong>
-      (obj) : Tuple(Int32, Int32) | Nil
+      (obj, offset = {
+      <span class="n">
+       0
+      </span>
+      ,
+      <span class="n">
+       0
+      </span>
+      }) : Tuple(Int32, Int32) | Nil
      </a>
      <div class="summary">
       <p>
@@ -947,24 +989,11 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+     <a class="signature" href="#shortest_path%28start_i%3AInt%2Cstart_j%3AInt%29%3AArray%28Array%28Int64%7CNil%29%29-instance-method">
       <strong>
        #shortest_path
       </strong>
-      (start : Tuple, dest : Tuple) : Int64
-     </a>
-     <div class="summary">
-      <p>
-       始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%29%29-instance-method">
-      <strong>
-       #shortest_path
-      </strong>
-      (start : Tuple) : Array(Array(Int64))
+      (start_i : Int, start_j : Int) : Array(Array(Int64 | Nil))
      </a>
      <div class="summary">
       <p>
@@ -973,11 +1002,37 @@
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#shortest_path%3AArray%28Array%28Int64%29%29-instance-method">
+     <a class="signature" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64%7CNil-instance-method">
       <strong>
        #shortest_path
       </strong>
-      : Array(Array(Int64))
+      (start : Tuple, dest : Tuple) : Int64 | Nil
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%7CNil%29%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      (start : Tuple) : Array(Array(Int64 | Nil))
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%3AArray%28Array%28Array%28Array%28Int64%7CNil%29%29%29%29-instance-method">
+      <strong>
+       #shortest_path
+      </strong>
+      : Array(Array(Array(Array(Int64 | Nil))))
      </a>
      <div class="summary">
       <p>
@@ -1033,6 +1088,19 @@
      <div class="summary">
       <p>
        全マス間の最短経路長を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#shortest_path%21%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+      <strong>
+       #shortest_path!
+      </strong>
+      (start : Tuple, dest : Tuple) : Int64
+     </a>
+     <div class="summary">
+      <p>
+       始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
       </p>
      </div>
     </li>
@@ -1117,7 +1185,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L64" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L66" target="_blank">
       View source
      </a>
      ]
@@ -1162,7 +1230,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L20" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L22" target="_blank">
       View source
      </a>
      ]
@@ -1182,7 +1250,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L52" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L54" target="_blank">
       View source
      </a>
      ]
@@ -1202,7 +1270,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L56" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L58" target="_blank">
       View source
      </a>
      ]
@@ -1222,7 +1290,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L60" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -1258,7 +1326,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L24" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L26" target="_blank">
       View source
      </a>
      ]
@@ -1295,7 +1363,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L595" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L622" target="_blank">
       View source
      </a>
      ]
@@ -1323,7 +1391,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L591" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L618" target="_blank">
       View source
      </a>
      ]
@@ -1351,7 +1419,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L603" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L630" target="_blank">
       View source
      </a>
      ]
@@ -1379,7 +1447,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L599" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L626" target="_blank">
       View source
      </a>
      ]
@@ -1423,7 +1491,7 @@ grid.barred?(<span class="n">1</span>, <span class="n">1</span>) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L123" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L125" target="_blank">
       View source
      </a>
      ]
@@ -1463,7 +1531,7 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L107" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L109" target="_blank">
       View source
      </a>
      ]
@@ -1487,7 +1555,7 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L48" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L50" target="_blank">
       View source
      </a>
      ]
@@ -1519,7 +1587,7 @@ gird.each { <span class="o">|</span>c<span class="o">|</span> puts c } <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L425" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L446" target="_blank">
       View source
      </a>
      ]
@@ -1556,7 +1624,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L534" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L561" target="_blank">
       View source
      </a>
      ]
@@ -1593,7 +1661,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L552" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L579" target="_blank">
       View source
      </a>
      ]
@@ -1625,7 +1693,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L463" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L484" target="_blank">
       View source
      </a>
      ]
@@ -1659,7 +1727,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L440" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L461" target="_blank">
       View source
      </a>
      ]
@@ -1687,7 +1755,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L566" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L593" target="_blank">
       View source
      </a>
      ]
@@ -1731,7 +1799,7 @@ grid.free?(<span class="n">1</span>, <span class="n">1</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L155" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L157" target="_blank">
       View source
      </a>
      ]
@@ -1771,7 +1839,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L139" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L141" target="_blank">
       View source
      </a>
      ]
@@ -1791,20 +1859,28 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L47" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L49" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="index(&amp;:T-&gt;):Tuple(Int32,Int32)|Nil-instance-method">
+   <div class="entry-detail" id="index(offset={0,0},&amp;:T-&gt;):Tuple(Int32,Int32)|Nil-instance-method">
     <div class="signature">
      def
      <strong>
       index
      </strong>
-     (&amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
-     <a class="method-permalink" href="#index%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     (offset = {
+     <span class="n">
+      0
+     </span>
+     ,
+     <span class="n">
+      0
+     </span>
+     }, &amp; : T -&gt; ) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%28offset%3D%7B0%2C0%7D%2C%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       #
      </a>
     </div>
@@ -1827,20 +1903,28 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L507" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L528" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="index(obj):Tuple(Int32,Int32)|Nil-instance-method">
+   <div class="entry-detail" id="index(obj,offset={0,0}):Tuple(Int32,Int32)|Nil-instance-method">
     <div class="signature">
      def
      <strong>
       index
      </strong>
-     (obj) : Tuple(Int32, Int32) | Nil
-     <a class="method-permalink" href="#index%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     (obj, offset = {
+     <span class="n">
+      0
+     </span>
+     ,
+     <span class="n">
+      0
+     </span>
+     }) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%28obj%2Coffset%3D%7B0%2C0%7D%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       #
      </a>
     </div>
@@ -1871,20 +1955,28 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L514" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L541" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="index!(&amp;:T-&gt;):Tuple(Int32,Int32)-instance-method">
+   <div class="entry-detail" id="index!(offset={0,0},&amp;:T-&gt;):Tuple(Int32,Int32)-instance-method">
     <div class="signature">
      def
      <strong>
       index!
      </strong>
-     (&amp; : T -&gt; ) : Tuple(Int32, Int32)
-     <a class="method-permalink" href="#index%21%28%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
+     (offset = {
+     <span class="n">
+      0
+     </span>
+     ,
+     <span class="n">
+      0
+     </span>
+     }, &amp; : T -&gt; ) : Tuple(Int32, Int32)
+     <a class="method-permalink" href="#index%21%28offset%3D%7B0%2C0%7D%2C%26%3AT-%3E%29%3ATuple%28Int32%2CInt32%29-instance-method">
       #
      </a>
     </div>
@@ -1907,20 +1999,28 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L518" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L545" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="index!(obj):Tuple(Int32,Int32)|Nil-instance-method">
+   <div class="entry-detail" id="index!(obj,offset={0,0}):Tuple(Int32,Int32)|Nil-instance-method">
     <div class="signature">
      def
      <strong>
       index!
      </strong>
-     (obj) : Tuple(Int32, Int32) | Nil
-     <a class="method-permalink" href="#index%21%28obj%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
+     (obj, offset = {
+     <span class="n">
+      0
+     </span>
+     ,
+     <span class="n">
+      0
+     </span>
+     }) : Tuple(Int32, Int32) | Nil
+     <a class="method-permalink" href="#index%21%28obj%2Coffset%3D%7B0%2C0%7D%29%3ATuple%28Int32%2CInt32%29%7CNil-instance-method">
       #
      </a>
     </div>
@@ -1951,7 +2051,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L522" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L549" target="_blank">
       View source
      </a>
      ]
@@ -1991,7 +2091,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L376" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L397" target="_blank">
       View source
      </a>
      ]
@@ -2020,7 +2120,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L476" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L497" target="_blank">
       View source
      </a>
      ]
@@ -2049,7 +2149,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L493" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L514" target="_blank">
       View source
      </a>
      ]
@@ -2077,7 +2177,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L562" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L589" target="_blank">
       View source
      </a>
      ]
@@ -2109,7 +2209,7 @@ grid.over?(<span class="n">0</span>, <span class="n">0</span>)           <span c
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L91" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L93" target="_blank">
       View source
      </a>
      ]
@@ -2145,20 +2245,62 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L79" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L81" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path(start:Tuple,dest:Tuple):Int64-instance-method">
+   <div class="entry-detail" id="shortest_path(start_i:Int,start_j:Int):Array(Array(Int64|Nil))-instance-method">
     <div class="signature">
      def
      <strong>
       shortest_path
      </strong>
-     (start : Tuple, dest : Tuple) : Int64
-     <a class="method-permalink" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+     (start_i :
+     <a href="../Int.html">
+      Int
+     </a>
+     , start_j :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Array(Array(Int64 | Nil))
+     <a class="method-permalink" href="#shortest_path%28start_i%3AInt%2Cstart_j%3AInt%29%3AArray%28Array%28Int64%7CNil%29%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
+     </p>
+     <p>
+      到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
+     <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
+dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L202" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path(start:Tuple,dest:Tuple):Int64|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path
+     </strong>
+     (start : Tuple, dest : Tuple) : Int64 | Nil
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%2Cdest%3ATuple%29%3AInt64%7CNil-instance-method">
       #
      </a>
     </div>
@@ -2171,20 +2313,20 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L199" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L211" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path(start:Tuple):Array(Array(Int64))-instance-method">
+   <div class="entry-detail" id="shortest_path(start:Tuple):Array(Array(Int64|Nil))-instance-method">
     <div class="signature">
      def
      <strong>
       shortest_path
      </strong>
-     (start : Tuple) : Array(Array(Int64))
-     <a class="method-permalink" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%29%29-instance-method">
+     (start : Tuple) : Array(Array(Int64 | Nil))
+     <a class="method-permalink" href="#shortest_path%28start%3ATuple%29%3AArray%28Array%28Int64%7CNil%29%29-instance-method">
       #
      </a>
     </div>
@@ -2192,26 +2334,33 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
      <p>
       始点 $(s_i, s_j)$ から各マスへの最短経路長を返します。
      </p>
+     <p>
+      到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
      <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path(start: {si, sj})
 dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L179" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L185" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="shortest_path:Array(Array(Int64))-instance-method">
+   <div class="entry-detail" id="shortest_path:Array(Array(Array(Array(Int64|Nil))))-instance-method">
     <div class="signature">
      def
      <strong>
       shortest_path
      </strong>
-     : Array(Array(Int64))
-     <a class="method-permalink" href="#shortest_path%3AArray%28Array%28Int64%29%29-instance-method">
+     : Array(Array(Array(Array(Int64 | Nil))))
+     <a class="method-permalink" href="#shortest_path%3AArray%28Array%28Array%28Array%28Int64%7CNil%29%29%29%29-instance-method">
       #
      </a>
     </div>
@@ -2219,13 +2368,20 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
      <p>
       全マス間の最短経路長を返します。
      </p>
+     <p>
+      到達できない場合は
+      <code>
+       nil
+      </code>
+      が格納されます。
+     </p>
      <pre><code class="language-crystal">dist <span class="o">=</span> grid.shortest_path
 dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L165" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L169" target="_blank">
       View source
      </a>
      ]
@@ -2283,7 +2439,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L313" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L334" target="_blank">
       View source
      </a>
      ]
@@ -2343,7 +2499,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L238" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L259" target="_blank">
       View source
      </a>
      ]
@@ -2400,7 +2556,33 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L216" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L237" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="shortest_path!(start:Tuple,dest:Tuple):Int64-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      shortest_path!
+     </strong>
+     (start : Tuple, dest : Tuple) : Int64
+     <a class="method-permalink" href="#shortest_path%21%28start%3ATuple%2Cdest%3ATuple%29%3AInt64-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+     </p>
+     <pre><code class="language-crystal">grid.shortest_path(start: {si, sj}, dest: {gi, gj}) <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L220" target="_blank">
       View source
      </a>
      ]
@@ -2433,7 +2615,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L570" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L597" target="_blank">
       View source
      </a>
      ]
@@ -2492,7 +2674,7 @@ grid.to_graph <span class="c"># =&gt; [[3, 1], [0], [], [0], [], [8], [], [], [5
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L334" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L355" target="_blank">
       View source
      </a>
      ]
@@ -2527,7 +2709,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L580" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L607" target="_blank">
       View source
      </a>
      ]
@@ -2547,7 +2729,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/b9ce371a66f152b0ff2706f2dbb2f65172748784/src/nglib/grid/grid.cr#L47" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/64966b9f75bbc0a49179a5bd2e5651c52b9de84d/src/nglib/grid/grid.cr#L49" target="_blank">
       View source
      </a>
      ]
