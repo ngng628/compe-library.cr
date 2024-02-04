@@ -5,7 +5,7 @@ require "../../src/nglib/data_structure/wavelet_matrix"
 _n, q = read_line.split.map &.to_i64
 a = read_line.split.map &.to_i64
 
-wm = NgLib::WaveletMatrix.new(a)
+wm = NgLib::CompressedWaveletMatrix.new(a)
 
 q.times do
   l, r, k = read_line.split.map &.to_i64

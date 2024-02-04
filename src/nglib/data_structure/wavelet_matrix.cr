@@ -5,6 +5,8 @@ module NgLib
   #
   # ジェネリクス T は `#[]` などでの返却値の型を指定するものであって、
   # 数列の値は非負整数でなければならないことに注意してください。
+  #
+  # 基本的には `CompressedWaveletMatrix`
   class WaveletMatrix(T)
     include Indexable(T)
 
@@ -77,7 +79,7 @@ module NgLib
     # wm.kth_smallest(3) # => 5
     # ```
     def kth_smallest(kth : Int32)
-      kth_smallest(kth, ..)
+      kth_smallest(.., kth)
     end
 
     # `range` の表す区間に含まれる要素のうち、`kth` 番目に小さい値を返します。
@@ -118,7 +120,7 @@ module NgLib
     # wm.kth_smallest(3) # => 1
     # ```
     def kth_largest(kth : Int32)
-      kth_largest(kth, ..)
+      kth_largest(.., kth)
     end
 
     # `range` の表す区間に含まれる要素のうち、`kth` 番目に大きい値を返します。
@@ -148,14 +150,14 @@ module NgLib
     def count(range : Range(Int?, Int?), bound : Range(T?, T?)) : Int32
       lower_bound = (bound.begin || 0)
       upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? 0 : 1)
-      count_impl(range, upper_bound) - count_impl(range, lower_bound)
+      count_less_eq(range, upper_bound) - count_less_eq(range, lower_bound)
     end
 
     # `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の最大値を返します。
     #
     # 存在しない場合は `nil` を返します。
     def prev_value(range : Range(Int?, Int?), upper_bound) : T?
-      cnt = count_impl(range, upper_bound)
+      cnt = count_less_eq(range, upper_bound)
       cnt == 0 ? nil : kth_smallest(range, cnt - 1)
     end
 
@@ -165,24 +167,14 @@ module NgLib
     def next_value(range : Range(Int?, Int?), lower_bound) : T?
       l = (range.begin || 0)
       r = (range.end || size) + (range.exclusive? || range.end.nil? ? 0 : 1)
-      cnt = count_impl(range, lower_bound)
+      cnt = count_less_eq(range, lower_bound)
       cnt == (l...r).size ? nil : kth_smallest(range, cnt)
     end
 
-    @[AlwaysInline]
-    private def log2_floor(n : UInt64) : Int32
-      log2_floor = 63 - n.leading_zeros_count
-      log2_floor + ((n & n - 1) == 0 ? 0 : 1)
-    end
-
-    @[AlwaysInline]
-    private def succ0(left : Int, right : Int, height : Int)
-      lzeros = left <= 0 ? 0 : @bit_vectors[height].count_zeros(0...Math.min(left, size))
-      rzeros = right <= 0 ? 0 : @bit_vectors[height].count_zeros(0...Math.min(right, size))
-      {lzeros, rzeros}
-    end
-
-    private def count_impl(range : Range(Int?, Int?), upper_bound) : Int32
+    # `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の個数を返します。
+    #
+    # 存在しない場合は `nil` を返します。
+    def count_less_eq(range : Range(Int?, Int?), upper_bound) : Int32
       l = (range.begin || 0)
       r = (range.end || size) + (range.exclusive? || range.end.nil? ? 0 : 1)
 
@@ -201,6 +193,134 @@ module NgLib
       end
 
       ret
+    end
+
+    @[AlwaysInline]
+    private def log2_floor(n : UInt64) : Int32
+      log2_floor = 63 - n.leading_zeros_count
+      log2_floor + ((n & n - 1) == 0 ? 0 : 1)
+    end
+
+    @[AlwaysInline]
+    private def succ0(left : Int, right : Int, height : Int)
+      lzeros = left <= 0 ? 0 : @bit_vectors[height].count_zeros(0...Math.min(left, size))
+      rzeros = right <= 0 ? 0 : @bit_vectors[height].count_zeros(0...Math.min(right, size))
+      {lzeros, rzeros}
+    end
+  end
+
+  class CompressedWaveletMatrix(T)
+    include Indexable(T)
+
+    @wm : WaveletMatrix(Int32)
+    @uniqued : Array(T)
+
+    delegate size, to: @wm
+
+    def initialize(values : Array(T))
+      @uniqued = values.sort.uniq!
+      @wm = WaveletMatrix.new(values.map { |elem| get_index(elem) })
+    end
+
+    def self.new(n : Int, & : Int32 -> T)
+      CompressedWaveletMatrix.new(Array.new(n) { |i| yield i })
+    end
+
+    def unsafe_fetch(index : Int)
+      @uniqued[@wm.unsafe_fetch(index)]
+    end
+
+    # `kth` 番目に小さい値を返します。
+    #
+    # ```
+    # wm = WaveletMatrix.new([1, 3, 2, 5])
+    # wm.kth_smallest(0) # => 1
+    # wm.kth_smallest(1) # => 2
+    # wm.kth_smallest(2) # => 3
+    # wm.kth_smallest(3) # => 5
+    # ```
+    def kth_smallest(kth : Int32)
+      kth_smallest(.., kth)
+    end
+
+    # `range` の表す区間に含まれる要素のうち、`kth` 番目に小さい値を返します。
+    #
+    # ```
+    # wm = WaveletMatrix.new([1, 3, 2, 5])
+    # wm.kth_smallest(1..2, 0) # => 2
+    # wm.kth_smallest(1..2, 1) # => 3
+    # ```
+    def kth_smallest(range : Range(Int?, Int?), kth : Int)
+      @uniqued[@wm.kth_smallest(range, kth)]
+    end
+
+    # `kth` 番目に大きい値を返します。
+    #
+    # ```
+    # wm = WaveletMatrix.new([1, 3, 2, 5])
+    # wm.kth_smallest(0) # => 5
+    # wm.kth_smallest(1) # => 3
+    # wm.kth_smallest(2) # => 2
+    # wm.kth_smallest(3) # => 1
+    # ```
+    def kth_largest(kth : Int32)
+      kth_largest(.., kth)
+    end
+
+    # `range` の表す区間に含まれる要素のうち、`kth` 番目に大きい値を返します。
+    #
+    # ```
+    # wm = WaveletMatrix.new([1, 3, 2, 5])
+    # wm.kth_largest(1..2, 0) # => 3
+    # wm.kth_largest(1..2, 1) # => 2
+    # ```
+    def kth_largest(range : Range(Int?, Int?), kth : Int)
+      kth_smallest(range, range.size - kth - 1)
+    end
+
+    # `item` の個数を返します。
+    #
+    # 計算量は対数オーダーです。
+    def count(item : T)
+      count(.., item)
+    end
+
+    # `range` の表す区間に含まれる要素の中で `item` の個数を返します。
+    def count(range : Range(Int?, Int?), item : T)
+      count(range, item..item)
+    end
+
+    # `range` の表す区間に含まれる要素の中で `bound` が表す範囲の値の個数を返します。
+    def count(range : Range(Int?, Int?), bound : Range(T?, T?)) : Int32
+      lower_bound = (bound.begin || 0)
+      upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? 0 : 1)
+      count_less_eq(range, upper_bound) - count_less_eq(range, lower_bound)
+    end
+
+    # `range` の表す区間に含まれる要素のうち、`upper_bound` **未満** の値の最大値を返します。
+    #
+    # 存在しない場合は `nil` を返します。
+    def prev_value(range : Range(Int?, Int?), upper_bound) : T?
+      cnt = count_less_eq(range, upper_bound)
+      cnt == 0 ? nil : kth_smallest(range, cnt - 1)
+    end
+
+    # `range` の表す区間に含まれる要素のうち、`lower_bound` **以上** の値の最小値を返します。
+    #
+    # 存在しない場合は `nil` を返します。
+    def next_value(range : Range(Int?, Int?), lower_bound) : T?
+      l = (range.begin || 0)
+      r = (range.end || size) + (range.exclusive? || range.end.nil? ? 0 : 1)
+      cnt = count_less_eq(range, lower_bound)
+      cnt == (l...r).size ? nil : kth_smallest(range, cnt)
+    end
+
+    private def get_index(value : T)
+      @uniqued.bsearch_index { |x| x >= value } || @uniqued.size
+    end
+
+    private def count_less_eq(range : Range(Int?, Int?), upper_bound) : Int32
+      @wm.count_less_eq(range, get_index(upper_bound))
     end
   end
 end
