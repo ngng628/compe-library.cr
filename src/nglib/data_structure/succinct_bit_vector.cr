@@ -13,6 +13,8 @@ module NgLib
     @blocks : UInt32
     @bits : Array(UInt32)
     @sums : Array(UInt32)
+    @n_zeros : Int32
+    @n_ones : Int32
 
     # 長さ $n$ のビット列を構築します。
     #
@@ -22,6 +24,8 @@ module NgLib
       @blocks = (@size + 31) >> 5
       @bits = [0_u32] * @blocks
       @sums = [0_u32] * @blocks
+      @n_zeros = 0
+      @n_ones = 0
     end
 
     # 長さ $n$ のビット列を構築します。
@@ -38,6 +42,9 @@ module NgLib
       @size.times do |i|
         set i if (yield i) == 1
       end
+
+      @n_zeros = 0
+      @n_ones = 0
 
       build
     end
@@ -62,6 +69,8 @@ module NgLib
       (1...@blocks).each do |i|
         @sums[i] = @sums[i - 1] + @bits[i - 1].popcount
       end
+      @n_zeros = @size.to_i - sum(0...@size)
+      @n_ones = @size.to_i - @n_zeros
     end
 
     # $[0, n)$ の総和を返します。
@@ -84,6 +93,26 @@ module NgLib
       l = (range.begin || 0)
       r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
       sum(l, r)
+    end
+
+    def count_zeros : Int32
+      @size.to_i - sum(0...@size).to_i
+    end
+
+    def count_zeros(range : Range(Int?, Int?)) : Int32
+      l = (range.begin || 0)
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
+      (l...r).size.to_i - sum(l, r).to_i
+    end
+
+    def count_ones : Int32
+      @size.to_i - count_zeros
+    end
+
+    def count_ones(range : Range(Int?, Int?)) : Int32
+      l = (range.begin || 0)
+      r = (range.end || @size) + (range.exclusive? || range.end.nil? ? 0 : 1)
+      (l...r).size.to_i - count_zeros(range)
     end
 
     # $i$ 番目のビットを返します。
