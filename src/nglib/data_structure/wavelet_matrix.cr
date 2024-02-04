@@ -6,7 +6,7 @@ module NgLib
   # ジェネリクス T は `#[]` などでの返却値の型を指定するものであって、
   # 数列の値は非負整数でなければならないことに注意してください。
   #
-  # 基本的には `CompressedWaveletMatrix`
+  # 基本的には `CompressedWaveletMatrix` の方が高速です。
   class WaveletMatrix(T)
     include Indexable(T)
 
