@@ -19,7 +19,7 @@ end
 
 ans = 0
 positions.each_cons(2) do |(s, t)|
-  ans += grid.shortest_path({s[0], s[1]}, {t[0], t[1]})
+  ans += grid.shortest_path!({s[0], s[1]}, {t[0], t[1]})
 end
 
 puts ans

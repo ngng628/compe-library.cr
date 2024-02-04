@@ -14,6 +14,9 @@ end
 
 module NgLib
   class Grid(T)
+    class UnreachableError < Exception
+    end
+
     include Enumerable(T)
 
     def self.add(v1 : {Int, Int}, v2 : {Int, Int})
@@ -207,6 +210,15 @@ module NgLib
     # ```
     def shortest_path(start : Tuple, dest : Tuple) : Int64?
       shortest_path(start)[dest[0]][dest[1]]
+    end
+
+    # 始点 $(s_i, s_j)$ から終点 $(g_i, g_j)$ への最短経路長を返します。
+    #
+    # ```
+    # grid.shortest_path(start: {si, sj}, dest: {gi, gj}) # => 4
+    # ```
+    def shortest_path!(start : Tuple, dest : Tuple) : Int64
+      shortest_path(start)[dest[0]][dest[1]] || raise UnreachableError.new
     end
 
     # 全マス間の最短経路長を返します。
