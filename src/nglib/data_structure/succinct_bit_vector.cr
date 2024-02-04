@@ -21,7 +21,7 @@ module NgLib
     # 計算量は $O(n / 32)$ です。
     def initialize(n : Int)
       @size = n.to_u32
-      @blocks = (@size + 31) >> 5
+      @blocks = (@size >> 5) + 1
       @bits = [0_u32] * @blocks
       @sums = [0_u32] * @blocks
       @n_zeros = 0
@@ -35,7 +35,7 @@ module NgLib
     # 計算量は $O(n)$ です。
     def initialize(n : Int, & : -> Int)
       @size = n.to_u32
-      @blocks = (@size + 31) >> 5
+      @blocks = (@size >> 5) + 1
       @bits = [0_u32] * @blocks
       @sums = [0_u32] * @blocks
 
@@ -69,13 +69,13 @@ module NgLib
       (1...@blocks).each do |i|
         @sums[i] = @sums[i - 1] + @bits[i - 1].popcount
       end
-      @n_zeros = @size.to_i - sum(0...@size)
+      @n_zeros = @size.to_i - sum
       @n_ones = @size.to_i - @n_zeros
     end
 
     # $[0, n)$ の総和を返します。
     def sum
-      sum(n)
+      sum(size)
     end
 
     # $[0, r)$ の総和を返します。
@@ -96,7 +96,7 @@ module NgLib
     end
 
     def count_zeros : Int32
-      @size.to_i - sum(0...@size).to_i
+      @n_zeros
     end
 
     def count_zeros(range : Range(Int?, Int?)) : Int32
@@ -106,7 +106,7 @@ module NgLib
     end
 
     def count_ones : Int32
-      @size.to_i - count_zeros
+      @n_ones
     end
 
     def count_ones(range : Range(Int?, Int?)) : Int32
