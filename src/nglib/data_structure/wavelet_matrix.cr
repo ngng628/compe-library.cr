@@ -11,7 +11,7 @@ module NgLib
     include Indexable(T)
 
     @values : Array(UInt64)
-    @n_nodes : Int32
+    @n_bits : Int32
     @bit_vectors : Array(NgLib::SuccinctBitVector)
 
     delegate size, to: @values
@@ -24,12 +24,12 @@ module NgLib
     def initialize(values : Array(T))
       n = values.size
       @values = values.map(&.to_u64)
-      @n_nodes = log2_floor({1_u64, @values.max}.max) + 1
-      @bit_vectors = Array.new(@n_nodes) { NgLib::SuccinctBitVector.new(n) }
+      @n_bits = log2_floor({1_u64, @values.max}.max) + 1
+      @bit_vectors = Array.new(@n_bits) { NgLib::SuccinctBitVector.new(n) }
 
       cur = @values.clone
       nxt = Array.new(n) { 0_u64 }
-      (@n_nodes - 1).downto(0) do |height|
+      (@n_bits - 1).downto(0) do |height|
         n.times do |i|
           @bit_vectors[height].set(i) if cur[i].bit(height) == 1
         end
@@ -94,7 +94,7 @@ module NgLib
       r = (range.end || size) + (range.exclusive? || range.end.nil? ? 0 : 1)
 
       ret = T.zero
-      (@n_nodes - 1).downto(0) do |height|
+      (@n_bits - 1).downto(0) do |height|
         lzeros, rzeros = succ0(l, r, height)
 
         if kth < rzeros - lzeros
@@ -178,10 +178,10 @@ module NgLib
       l = (range.begin || 0)
       r = (range.end || size) + (range.exclusive? || range.end.nil? ? 0 : 1)
 
-      return (l...r).size.to_i if upper_bound >= (T.zero.succ << @n_nodes)
+      return (l...r).size.to_i if upper_bound >= (T.zero.succ << @n_bits)
 
       ret = 0
-      (@n_nodes - 1).downto(0) do |height|
+      (@n_bits - 1).downto(0) do |height|
         lzeros, rzeros = succ0(l, r, height)
         if upper_bound.bit(height) == 1
           ret += rzeros - lzeros
