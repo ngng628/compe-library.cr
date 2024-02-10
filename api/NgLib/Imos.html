@@ -12,7 +12,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::CompressedWaveletMatrix(T) - nglib main
+   NgLib::Imos(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -123,7 +123,7 @@
          BinaryBfsGraph
         </a>
        </li>
-       <li class="current" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
+       <li class="" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
         <a href="../NgLib/CompressedWaveletMatrix.html">
          CompressedWaveletMatrix
         </a>
@@ -194,7 +194,7 @@
          </li>
         </ul>
        </li>
-       <li class="" data-id="nglib/NgLib/Imos" data-name="nglib::imos(t)">
+       <li class="current" data-id="nglib/NgLib/Imos" data-name="nglib::imos(t)">
         <a href="../NgLib/Imos.html">
          Imos
         </a>
@@ -317,12 +317,12 @@
     </span>
     NgLib::
     <wbr/>
-    CompressedWaveletMatrix(T)
+    Imos(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/CompressedWaveletMatrix.html">
-      NgLib::CompressedWaveletMatrix(T)
+     <a href="../NgLib/Imos.html">
+      NgLib::Imos(T)
      </a>
     </li>
     <li class="superclass">
@@ -343,7 +343,7 @@
    </h2>
    <ul class="other-types-list">
     <li class="other-type">
-     Indexable(T)
+     Enumerable(T)
     </li>
    </ul>
    <h2>
@@ -355,8 +355,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L212" target="_blank">
-    nglib/data_structure/wavelet_matrix.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L2" target="_blank">
+    nglib/data_structure/imos.cr
    </a>
    <br/>
    <h2>
@@ -370,19 +370,18 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28values%3AArray%28T%29%29-class-method">
+     <a class="signature" href="#new%28n%3AInt%29-class-method">
       <strong>
        .new
       </strong>
-      (values : Array(T))
+      (n : Int)
      </a>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%2C%26%3AInt32-%3ET%29-class-method">
+     <a class="signature" href="#new-class-method">
       <strong>
        .new
       </strong>
-      (n : Int, &amp; : Int32 -&gt; T)
      </a>
     </li>
    </ul>
@@ -397,209 +396,116 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cbound%3ARange%28T%7CNil%2CT%7CNil%29%29%3AInt32-instance-method">
+     <a class="signature" href="#%5B%5D%28i%3AInt%29%3AT-instance-method">
       <strong>
-       #count
+       #[]
       </strong>
-      (range : Range(Int | Nil, Int | Nil), bound : Range(T | Nil, T | Nil)) : Int32
+      (i : Int) : T
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#%5B%5D%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+      <strong>
+       #[]?
+      </strong>
+      (i : Int) : T | Nil
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#add%28l%3AInt%2Cr%3AInt%2Cval%3AT%29%3AT-instance-method">
+      <strong>
+       #add
+      </strong>
+      (l : Int, r : Int, val : T) : T
      </a>
      <div class="summary">
       <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素の中で
-       <code>
-        bound
-       </code>
-       が表す範囲の値の個数を返します。
+       [l, r) に val を加算します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Citem%3AT%29-instance-method">
+     <a class="signature" href="#add%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cval%3AT%29%3AT-instance-method">
       <strong>
-       #count
+       #add
       </strong>
-      (range : Range(Int | Nil, Int | Nil), item : T)
+      (range : Range(Int | Nil, Int | Nil), val : T) : T
      </a>
      <div class="summary">
       <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素の中で
-       <code>
-        item
-       </code>
-       の個数を返します。
+       range の範囲に val を加算します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#count%28item%3AT%29-instance-method">
+     <a class="signature" href="#build-instance-method">
       <strong>
-       #count
+       #build
       </strong>
-      (item : T)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#each%28%26%3AT-%3E%29-instance-method">
+      <strong>
+       #each
+      </strong>
+      (&amp; : T -&gt; )
      </a>
      <div class="summary">
       <p>
-       <code>
-        item
-       </code>
-       の個数を返します。
+       Must yield this collection's elements to the block.
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#kth_largest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
+     <a class="signature" href="#get%28i%3AInt%29%3AT-instance-method">
       <strong>
-       #kth_largest
+       #get
       </strong>
-      (range : Range(Int | Nil, Int | Nil), kth : Int)
+      (i : Int) : T
      </a>
      <div class="summary">
       <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素のうち、
-       <code>
-        kth
-       </code>
-       番目に大きい値を返します。
+       添字 i の値を取得します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#kth_largest%28kth%3AInt32%29-instance-method">
+     <a class="signature" href="#get%21%28i%3AInt%29%3AT-instance-method">
       <strong>
-       #kth_largest
+       #get!
       </strong>
-      (kth : Int32)
+      (i : Int) : T
      </a>
      <div class="summary">
       <p>
-       <code>
-        kth
-       </code>
-       番目に大きい値を返します。
+       添字 i の値を取得します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#kth_smallest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
+     <a class="signature" href="#get%3F%28i%3AInt%29%3AT%7CNil-instance-method">
       <strong>
-       #kth_smallest
+       #get?
       </strong>
-      (range : Range(Int | Nil, Int | Nil), kth : Int)
+      (i : Int) : T | Nil
      </a>
      <div class="summary">
       <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素のうち、
-       <code>
-        kth
-       </code>
-       番目に小さい値を返します。
+       添字 i の値を取得します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#kth_smallest%28kth%3AInt32%29-instance-method">
-      <strong>
-       #kth_smallest
-      </strong>
-      (kth : Int32)
-     </a>
-     <div class="summary">
-      <p>
-       <code>
-        kth
-       </code>
-       番目に小さい値を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#next_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Clower_bound%29%3AT%7CNil-instance-method">
-      <strong>
-       #next_value
-      </strong>
-      (range : Range(Int | Nil, Int | Nil), lower_bound) : T | Nil
-     </a>
-     <div class="summary">
-      <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素のうち、
-       <code>
-        lower_bound
-       </code>
-       <strong>
-        以上
-       </strong>
-       の値の最小値を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#prev_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AT%7CNil-instance-method">
-      <strong>
-       #prev_value
-      </strong>
-      (range : Range(Int | Nil, Int | Nil), upper_bound) : T | Nil
-     </a>
-     <div class="summary">
-      <p>
-       <code>
-        range
-       </code>
-       の表す区間に含まれる要素のうち、
-       <code>
-        upper_bound
-       </code>
-       <strong>
-        未満
-       </strong>
-       の値の最大値を返します。
-      </p>
-     </div>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method">
+     <a class="signature" href="#size%3AInt32-instance-method">
       <strong>
        #size
       </strong>
-      (*args, **options)
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">
-      <strong>
-       #size
-      </strong>
-      (*args, **options, &amp;)
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#unsafe_fetch%28index%3AInt%29-instance-method">
-      <strong>
-       #unsafe_fetch
-      </strong>
-      (index : Int)
+      : Int32
      </a>
      <div class="summary">
       <p>
-       Returns the element at the given
-       <em>
-        index
-       </em>
-       , without doing any bounds check.
+       Returns the number of elements in the collection.
       </p>
      </div>
     </li>
@@ -615,27 +521,7 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(values:Array(T))-class-method">
-    <div class="signature">
-     def self.
-     <strong>
-      new
-     </strong>
-     (values : Array(T))
-     <a class="method-permalink" href="#new%28values%3AArray%28T%29%29-class-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L220" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="new(n:Int,&amp;:Int32-&gt;T)-class-method">
+   <div class="entry-detail" id="new(n:Int)-class-method">
     <div class="signature">
      def self.
      <strong>
@@ -645,15 +531,34 @@
      <a href="../Int.html">
       Int
      </a>
-     , &amp; : Int32 -&gt; T)
-     <a class="method-permalink" href="#new%28n%3AInt%2C%26%3AInt32-%3ET%29-class-method">
+     )
+     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
       #
      </a>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L225" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L17" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     <a class="method-permalink" href="#new-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L10" target="_blank">
       View source
      </a>
      ]
@@ -668,11 +573,98 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="count(range:Range(Int|Nil,Int|Nil),bound:Range(T|Nil,T|Nil)):Int32-instance-method">
+   <div class="entry-detail" id="[](i:Int):T-instance-method">
     <div class="signature">
      def
      <strong>
-      count
+      []
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T
+     <a class="method-permalink" href="#%5B%5D%28i%3AInt%29%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L100" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="[]?(i:Int):T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      []?
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T | Nil
+     <a class="method-permalink" href="#%5B%5D%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L101" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="add(l:Int,r:Int,val:T):T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add
+     </strong>
+     (l :
+     <a href="../Int.html">
+      Int
+     </a>
+     , r :
+     <a href="../Int.html">
+      Int
+     </a>
+     , val : T) : T
+     <a class="method-permalink" href="#add%28l%3AInt%2Cr%3AInt%2Cval%3AT%29%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      [l, r) に val を加算します。
+     </p>
+     <p>
+      <span class="flag purple">
+       NOTE
+      </span>
+      このAPIの使用は推奨されません。Rangeで指定してください。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L27" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="add(range:Range(Int|Nil,Int|Nil),val:T):T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add
      </strong>
      (range : Range(
      <a href="../Int.html">
@@ -682,466 +674,206 @@
      <a href="../Int.html">
       Int
      </a>
-     | Nil), bound : Range(T | Nil, T | Nil)) : Int32
-     <a class="method-permalink" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cbound%3ARange%28T%7CNil%2CT%7CNil%29%29%3AInt32-instance-method">
+     | Nil), val : T) : T
+     <a class="method-permalink" href="#add%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cval%3AT%29%3AT-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素の中で
-      <code>
-       bound
-      </code>
-      が表す範囲の値の個数を返します。
+      range の範囲に val を加算します。
      </p>
+     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
+imos.add(<span class="n">0</span>..n, <span class="n">10</span>)</code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L294" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L40" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="count(range:Range(Int|Nil,Int|Nil),item:T)-instance-method">
+   <div class="entry-detail" id="build-instance-method">
     <div class="signature">
      def
      <strong>
-      count
+      build
      </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), item : T)
-     <a class="method-permalink" href="#count%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Citem%3AT%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素の中で
-      <code>
-       item
-      </code>
-      の個数を返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L289" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="count(item:T)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      count
-     </strong>
-     (item : T)
-     <a class="method-permalink" href="#count%28item%3AT%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       item
-      </code>
-      の個数を返します。
-     </p>
-     <p>
-      計算量は対数オーダーです。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L284" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="kth_largest(range:Range(Int|Nil,Int|Nil),kth:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      kth_largest
-     </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), kth :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#kth_largest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素のうち、
-      <code>
-       kth
-      </code>
-      番目に大きい値を返します。
-     </p>
-     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
-wm.kth_largest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">0</span>) <span class="c"># =&gt; 3</span>
-wm.kth_largest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 2</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L277" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="kth_largest(kth:Int32)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      kth_largest
-     </strong>
-     (kth : Int32)
-     <a class="method-permalink" href="#kth_largest%28kth%3AInt32%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       kth
-      </code>
-      番目に大きい値を返します。
-     </p>
-     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
-wm.kth_smallest(<span class="n">0</span>) <span class="c"># =&gt; 5</span>
-wm.kth_smallest(<span class="n">1</span>) <span class="c"># =&gt; 3</span>
-wm.kth_smallest(<span class="n">2</span>) <span class="c"># =&gt; 2</span>
-wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 1</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L266" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="kth_smallest(range:Range(Int|Nil,Int|Nil),kth:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      kth_smallest
-     </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), kth :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#kth_smallest%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Ckth%3AInt%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素のうち、
-      <code>
-       kth
-      </code>
-      番目に小さい値を返します。
-     </p>
-     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
-wm.kth_smallest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">0</span>) <span class="c"># =&gt; 2</span>
-wm.kth_smallest(<span class="n">1</span>..<span class="n">2</span>, <span class="n">1</span>) <span class="c"># =&gt; 3</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L253" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="kth_smallest(kth:Int32)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      kth_smallest
-     </strong>
-     (kth : Int32)
-     <a class="method-permalink" href="#kth_smallest%28kth%3AInt32%29-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       kth
-      </code>
-      番目に小さい値を返します。
-     </p>
-     <pre><code class="language-crystal">wm <span class="o">=</span> <span class="t">WaveletMatrix</span>.new([<span class="n">1</span>, <span class="n">3</span>, <span class="n">2</span>, <span class="n">5</span>])
-wm.kth_smallest(<span class="n">0</span>) <span class="c"># =&gt; 1</span>
-wm.kth_smallest(<span class="n">1</span>) <span class="c"># =&gt; 2</span>
-wm.kth_smallest(<span class="n">2</span>) <span class="c"># =&gt; 3</span>
-wm.kth_smallest(<span class="n">3</span>) <span class="c"># =&gt; 5</span></code></pre>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L242" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="next_value(range:Range(Int|Nil,Int|Nil),lower_bound):T|Nil-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      next_value
-     </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), lower_bound) : T | Nil
-     <a class="method-permalink" href="#next_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Clower_bound%29%3AT%7CNil-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素のうち、
-      <code>
-       lower_bound
-      </code>
-      <strong>
-       以上
-      </strong>
-      の値の最小値を返します。
-     </p>
-     <p>
-      存在しない場合は
-      <code>
-       nil
-      </code>
-      を返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L311" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="prev_value(range:Range(Int|Nil,Int|Nil),upper_bound):T|Nil-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      prev_value
-     </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), upper_bound) : T | Nil
-     <a class="method-permalink" href="#prev_value%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cupper_bound%29%3AT%7CNil-instance-method">
-      #
-     </a>
-    </div>
-    <div class="doc">
-     <p>
-      <code>
-       range
-      </code>
-      の表す区間に含まれる要素のうち、
-      <code>
-       upper_bound
-      </code>
-      <strong>
-       未満
-      </strong>
-      の値の最大値を返します。
-     </p>
-     <p>
-      存在しない場合は
-      <code>
-       nil
-      </code>
-      を返します。
-     </p>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L303" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="size(*args,**options)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      size
-     </strong>
-     (*args, **options)
-     <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%29-instance-method">
+     <a class="method-permalink" href="#build-instance-method">
       #
      </a>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L218" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L103" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="size(*args,**options,&amp;)-instance-method">
+   <div class="entry-detail" id="each(&amp;:T-&gt;)-instance-method">
     <div class="signature">
      def
      <strong>
-      size
+      each
      </strong>
-     (*args, **options, &amp;)
-     <a class="method-permalink" href="#size%28%2Aargs%2C%2A%2Aoptions%2C%26%29-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L218" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="unsafe_fetch(index:Int)-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      unsafe_fetch
-     </strong>
-     (index :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#unsafe_fetch%28index%3AInt%29-instance-method">
+     (&amp; : T -&gt; )
+     <a class="method-permalink" href="#each%28%26%3AT-%3E%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <div class="doc-inherited">
-      Description copied from module Indexable(T)
+      Description copied from module Enumerable(T)
      </div>
      <p>
-      Returns the element at the given
-      <em>
-       index
-      </em>
-      , without doing any bounds check.
-     </p>
-     <p>
-      <code>
-       Indexable
-      </code>
-      makes sure to invoke this method with
-      <em>
-       index
-      </em>
-      in
-      <code>
-       0...size
-      </code>
-      ,
-so converting negative indices to positive ones is not needed here.
-     </p>
-     <p>
-      Clients never invoke this method directly. Instead, they access
-elements with
-      <code>
-       #[](index)
-      </code>
-      and
-      <code>
-       #[]?(index)
-      </code>
-      .
-     </p>
-     <p>
-      This method should only be directly invoked if you are absolutely
-sure the index is in bounds, to avoid a bounds check for a small boost
-of performance.
+      Must yield this collection's elements to the block.
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/wavelet_matrix.cr#L229" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L95" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="get(i:Int):T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      get
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T
+     <a class="method-permalink" href="#get%28i%3AInt%29%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      添字 i の値を取得します。
+     </p>
+     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
+imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
+imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
+imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
+imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L59" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="get!(i:Int):T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      get!
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T
+     <a class="method-permalink" href="#get%21%28i%3AInt%29%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      添字 i の値を取得します。
+     </p>
+     <p>
+      配列が build 済みかの確認は行いません。
+     </p>
+     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
+imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
+imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
+imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
+imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L75" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="get?(i:Int):T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      get?
+     </strong>
+     (i :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : T | Nil
+     <a class="method-permalink" href="#get%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      添字 i の値を取得します。
+     </p>
+     <p>
+      配列外参照をした場合 nil が返ります。
+     </p>
+     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
+imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
+imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
+imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
+imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L90" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#size%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <div class="doc-inherited">
+      Description copied from module Enumerable(T)
+     </div>
+     <p>
+      Returns the number of elements in the collection.
+     </p>
+     <pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].size <span class="c"># =&gt; 4</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L5" target="_blank">
       View source
      </a>
      ]
