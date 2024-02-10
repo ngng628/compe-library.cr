@@ -4,6 +4,11 @@ module NgLib
   # 累積和クエリは $O(\log{N})$ で処理することができます。
   #
   # 実装は BIT (Fenwick Tree) です。
+  #
+  # もし、区間加算 $1$ 点取得がしたい場合は、このライブラリといもす法を組み合わせると良いです。
+  # 長さ $n$ の数列に対して操作する場合、BIT の長さは $n + 1$ 必要なことに注意してください。
+  # - $[l, r)$ に $x$ を加算 : `#add(l, x); add(r, -x)`
+  # - $i$ 番目を取得 : `#[..i]`
   class DynamicRangeSum(T)
     getter size : Int32
     @data : Array(T)
