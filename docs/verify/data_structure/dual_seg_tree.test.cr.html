@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/data_structure/dual_seg_tree.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-02-11 14:49:54+09:00</li>
+    <li>Last update: 2024-02-11 14:58:19+09:00</li>
     
     <li>Problem: <a href="https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E">https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E</a>
 </li>
@@ -173,7 +173,6 @@
 
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="err">@</span><span class="n">n_leaves</span> <span class="o">:</span> <span class="n">Int32</span>
-    <span class="err">@</span><span class="n">rank</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="err">@</span><span class="n">nodes</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">)</span>
 
     <span class="cp"># 作用素 $f(x) = x + f$ とした双対セグメント木を作ります。
@@ -227,10 +226,8 @@
 </span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">size</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="o">&amp;</span><span class="err">@</span><span class="n">application</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">.</span><span class="n">to_i32</span>
       <span class="err">@</span><span class="n">n_leaves</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="err">@</span><span class="n">rank</span> <span class="o">=</span> <span class="mi">0</span>
       <span class="k">while</span> <span class="err">@</span><span class="n">n_leaves</span> <span class="o">&lt;</span> <span class="err">@</span><span class="n">size</span>
         <span class="err">@</span><span class="n">n_leaves</span> <span class="o">*=</span> <span class="mi">2</span>
-        <span class="err">@</span><span class="n">rank</span> <span class="o">+=</span> <span class="mi">1</span>
       <span class="n">end</span>
       <span class="err">@</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">n_leaves</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span> <span class="p">}</span>
     <span class="n">end</span>
@@ -244,10 +241,8 @@
 </span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">values</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">),</span> <span class="o">&amp;</span><span class="err">@</span><span class="n">application</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">values</span><span class="p">.</span><span class="n">size</span>
       <span class="err">@</span><span class="n">n_leaves</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="err">@</span><span class="n">rank</span> <span class="o">=</span> <span class="mi">0</span>
       <span class="k">while</span> <span class="err">@</span><span class="n">n_leaves</span> <span class="o">&lt;</span> <span class="err">@</span><span class="n">size</span>
         <span class="err">@</span><span class="n">n_leaves</span> <span class="o">*=</span> <span class="mi">2</span>
-        <span class="err">@</span><span class="n">rank</span> <span class="o">+=</span> <span class="mi">1</span>
       <span class="n">end</span>
       <span class="err">@</span><span class="n">nodes</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="o">?</span><span class="p">).</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">n_leaves</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="n">nil</span> <span class="p">}</span>
       <span class="n">values</span><span class="p">.</span><span class="n">each_with_index</span> <span class="k">do</span> <span class="o">|</span><span class="n">elem</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span>
