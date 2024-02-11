@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-02-11 14:43:18+09:00</li>
+    <li>Last update: 2024-02-11 14:49:54+09:00</li>
     
     
     
@@ -226,7 +226,7 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/utils/fastin.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/utils/fastin.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/utils/fastin.cr"><img class="emoji" title=":question:" alt=":question:" src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png" height="20" width="20"> src/nglib/utils/fastin.cr
             
         </a></li>
     
@@ -528,7 +528,7 @@
       <span class="n">t</span> <span class="o">=</span> <span class="n">at</span><span class="o">?</span><span class="p">(</span><span class="n">k</span><span class="p">);</span> <span class="n">t</span> <span class="o">?</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="n">nil</span>
     <span class="n">end</span>
 
-    <span class="n">def</span> <span class="nf">each_key</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">K</span> <span class="o">-&gt;</span><span class="p">)</span>
+    <span class="n">def</span> <span class="n">each_key</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">K</span> <span class="o">-&gt;</span><span class="p">)</span>
       <span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">key</span><span class="p">,</span> <span class="n">_</span><span class="o">|</span>
         <span class="n">yield</span> <span class="n">key</span>
       <span class="n">end</span>
@@ -1599,6 +1599,8 @@
     <span class="n">include</span> <span class="n">Indexable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
     <span class="n">include</span> <span class="n">Indexable</span><span class="o">::</span><span class="n">Mutable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 
+    <span class="k">class</span> <span class="nc">NotInitializeError</span> <span class="o">&lt;</span> <span class="n">Exception</span><span class="p">;</span> <span class="n">end</span>
+
     <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="err">@</span><span class="n">n_leaves</span> <span class="o">:</span> <span class="n">Int32</span>
     <span class="err">@</span><span class="n">rank</span> <span class="o">:</span> <span class="n">Int32</span>
@@ -1686,7 +1688,7 @@
     <span class="n">def</span> <span class="n">unsafe_fetch</span><span class="p">(</span><span class="n">index</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
       <span class="n">node_index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="err">@</span><span class="n">n_leaves</span>
       <span class="n">push</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
-      <span class="err">@</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
+      <span class="err">@</span><span class="n">nodes</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotInitializeError</span><span class="p">.</span><span class="k">new</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">unsafe_put</span><span class="p">(</span><span class="n">index</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">value</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
