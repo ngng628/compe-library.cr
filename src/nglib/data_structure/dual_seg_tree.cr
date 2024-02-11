@@ -10,7 +10,6 @@ module NgLib
 
     getter size : Int32
     @n_leaves : Int32
-    @rank : Int32
     @nodes : Array(T?)
 
     # 作用素 $f(x) = x + f$ とした双対セグメント木を作ります。
@@ -64,10 +63,8 @@ module NgLib
     def initialize(size : Int, &@application : T, T -> T)
       @size = size.to_i32
       @n_leaves = 1
-      @rank = 0
       while @n_leaves < @size
         @n_leaves *= 2
-        @rank += 1
       end
       @nodes = Array(T?).new(@n_leaves * 2) { nil }
     end
@@ -81,10 +78,8 @@ module NgLib
     def initialize(values : Array(T), &@application : T, T -> T)
       @size = values.size
       @n_leaves = 1
-      @rank = 0
       while @n_leaves < @size
         @n_leaves *= 2
-        @rank += 1
       end
       @nodes = Array(T?).new(@n_leaves * 2) { nil }
       values.each_with_index do |elem, i|
