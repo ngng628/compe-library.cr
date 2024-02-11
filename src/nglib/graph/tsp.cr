@@ -71,7 +71,7 @@ module NgLib
     #   graph.add_edge(u, v, w, directed: true)
     # end
     # ```
-    def add_edge(u : Int, v : Int, w : T, directed : Bool = false)
+    def add_edge(u : Int, v : Int, w : T, directed : Bool = true)
       uv = @mat[u][v]
       if uv.nil?
         @mat[u][v] = w

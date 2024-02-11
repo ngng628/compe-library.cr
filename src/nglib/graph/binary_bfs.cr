@@ -37,7 +37,7 @@ module NgLib
     # graph.add_edge(u, v)                 # => (u) <---w---> (v)
     # graph.add_edge(u, v, directed: true) # => (u) ----w---> (v)
     # ```
-    def add_edge(u : Int, v : Int, w : Int, directed : Bool = false)
+    def add_edge(u : Int, v : Int, w : Int, directed : Bool = true)
       raise Exception.new("w should be 0 or 1") unless w.in?({0, 1})
       @graph[u.to_i32] << Edge.new(v, w)
       @graph[v.to_i32] << Edge.new(u, w) unless directed

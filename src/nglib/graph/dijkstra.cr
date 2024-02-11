@@ -48,7 +48,7 @@ module NgLib
     # graph.add_edge(u, v, w)                 # => (u) <---w---> (v)
     # graph.add_edge(u, v, w, directed: true) # => (u) ----w---> (v)
     # ```
-    def add_edge(u : Int, v : Int, w : Weight, directed : Bool = false)
+    def add_edge(u : Int, v : Int, w : Weight, directed : Bool = true)
       @graph[u.to_i32] << Edge.new(v.to_i32, w)
       @graph[v.to_i32] << Edge.new(u.to_i32, w) unless directed
     end
@@ -127,7 +127,7 @@ module NgLib
     # route = graph.shortest_path_route(start: 2, dest: 0)
     # route # => [2, 7, 1, 0]
     # ```
-    def shortest_path_tree(start, directed : Bool = false) : Array(Array(Int32))
+    def shortest_path_tree(start, directed : Bool = true) : Array(Array(Int32))
       dist = [Weight.inf] * @size
       dist[start] = Weight.zero
       next_node = AtCoder::PriorityQueue({Weight, Int32}).min

@@ -28,7 +28,7 @@ module NgLib
     # graph.add_edge(u, v)                 # => (u) <---w---> (v)
     # graph.add_edge(u, v, directed: true) # => (u) ----w---> (v)
     # ```
-    def add_edge(u : Int, v : Int, directed : Bool = false)
+    def add_edge(u : Int, v : Int, directed : Bool = true)
       @graph[u.to_i32] << v.to_i32
       @graph[v.to_i32] << u.to_i32 unless directed
     end
