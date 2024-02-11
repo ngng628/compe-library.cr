@@ -6,6 +6,8 @@ module NgLib
     include Indexable(T)
     include Indexable::Mutable(T)
 
+    class NotInitializeError < Exception; end
+
     getter size : Int32
     @n_leaves : Int32
     @rank : Int32
@@ -93,7 +95,7 @@ module NgLib
     def unsafe_fetch(index : Int)
       node_index = index + @n_leaves
       push(node_index)
-      @nodes[node_index]
+      @nodes[node_index] || raise NotInitializeError.new
     end
 
     def unsafe_put(index : Int, value : T)
