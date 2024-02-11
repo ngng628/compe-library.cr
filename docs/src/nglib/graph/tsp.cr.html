@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/graph/tsp.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-02-11 14:58:19+09:00</li>
+    <li>Last update: 2024-02-11 15:03:43+09:00</li>
     
     
     
@@ -206,7 +206,7 @@
 </span>    <span class="cp">#   graph.add_edge(u, v, w, directed: true)
 </span>    <span class="cp"># end
 </span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+</span>    <span class="n">def</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
       <span class="n">uv</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span>
       <span class="k">if</span> <span class="n">uv</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
         <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
@@ -392,7 +392,7 @@
 </span>    <span class="cp">#   graph.add_edge(u, v, w, directed: true)
 </span>    <span class="cp"># end
 </span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">false</span><span class="p">)</span>
+</span>    <span class="n">def</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">u</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">v</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">w</span> <span class="o">:</span> <span class="n">T</span><span class="p">,</span> <span class="n">directed</span> <span class="o">:</span> <span class="n">Bool</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span>
       <span class="n">uv</span> <span class="o">=</span> <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span>
       <span class="k">if</span> <span class="n">uv</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
         <span class="err">@</span><span class="n">mat</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>
