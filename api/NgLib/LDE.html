@@ -12,7 +12,7 @@
   </script>
   <meta content="nglib" name="repository-name"/>
   <title>
-   NgLib::Imos(T) - nglib main
+   NgLib::LDE(T) - nglib main
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
@@ -194,11 +194,6 @@
          </li>
         </ul>
        </li>
-       <li class="current" data-id="nglib/NgLib/Imos" data-name="nglib::imos(t)">
-        <a href="../NgLib/Imos.html">
-         Imos
-        </a>
-       </li>
        <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
         <a href="../NgLib/LCA.html">
          LCA
@@ -207,6 +202,18 @@
          <li class="" data-id="nglib/NgLib/LCA/Graph" data-name="nglib::lca::graph">
           <a href="../NgLib/LCA/Graph.html">
            Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent open current" data-id="nglib/NgLib/LDE" data-name="nglib::lde(t)">
+        <a href="../NgLib/LDE.html">
+         LDE
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LDE/NotHasSolutionError" data-name="nglib::lde::nothassolutionerror">
+          <a href="../NgLib/LDE/NotHasSolutionError.html">
+           NotHasSolutionError
           </a>
          </li>
         </ul>
@@ -317,12 +324,12 @@
     </span>
     NgLib::
     <wbr/>
-    Imos(T)
+    LDE(T)
    </h1>
    <ul class="superclass-hierarchy">
     <li class="superclass">
-     <a href="../NgLib/Imos.html">
-      NgLib::Imos(T)
+     <a href="../NgLib/LDE.html">
+      NgLib::LDE(T)
      </a>
     </li>
     <li class="superclass">
@@ -333,19 +340,29 @@
     </li>
    </ul>
    <h2>
-    <a class="anchor" href="#included-modules" id="included-modules">
+    <a class="anchor" href="#overview" id="overview">
      <svg aria-hidden="true" class="octicon-link">
       <use href="#octicon-link">
       </use>
      </svg>
     </a>
-    Included Modules
+    Overview
    </h2>
-   <ul class="other-types-list">
-    <li class="other-type">
-     Enumerable(T)
-    </li>
-   </ul>
+   <p>
+    不定方程式 $ax + by = c$ を解きます。
+   </p>
+   <p>
+    常に解が存在するわけではないので、
+    <code>
+     <a href="../NgLib/LDE.html#has_solution%3F-instance-method">
+      #has_solution?
+     </a>
+    </code>
+    などで解が存在するかを確かめるようにしてください。
+   </p>
+   <p>
+    多分、解の媒介変数 $m = 0$ のとき、$|x| + |y|$ が最小になります。
+   </p>
    <h2>
     <a class="anchor" href="#defined-in" id="defined-in">
      <svg aria-hidden="true" class="octicon-link">
@@ -355,8 +372,8 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L2" target="_blank">
-    nglib/data_structure/imos.cr
+   <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L7" target="_blank">
+    nglib/math/lde.cr
    </a>
    <br/>
    <h2>
@@ -370,19 +387,17 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#new%28n%3AInt%29-class-method">
+     <a class="signature" href="#new%28a%2Cb%2Cc%29-class-method">
       <strong>
        .new
       </strong>
-      (n : Int)
+      (a, b, c)
      </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#new-class-method">
-      <strong>
-       .new
-      </strong>
-     </a>
+     <div class="summary">
+      <p>
+       不定方程式 $ax + by = c$ を作ります。
+      </p>
+     </div>
     </li>
    </ul>
    <h2>
@@ -396,116 +411,195 @@
    </h2>
    <ul class="list-summary">
     <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%28i%3AInt%29%3AT-instance-method">
+     <a class="signature" href="#h%3AT%7CNil-instance-method">
       <strong>
-       #[]
+       #h
       </strong>
-      (i : Int) : T
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#%5B%5D%3F%28i%3AInt%29%3AT%7CNil-instance-method">
-      <strong>
-       #[]?
-      </strong>
-      (i : Int) : T | Nil
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#add%28l%3AInt%2Cr%3AInt%2Cval%3AT%29%3AT-instance-method">
-      <strong>
-       #add
-      </strong>
-      (l : Int, r : Int, val : T) : T
+      : T | Nil
      </a>
      <div class="summary">
       <p>
-       [l, r) に val を加算します。
+       解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、 この $h$ を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#add%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cval%3AT%29%3AT-instance-method">
+     <a class="signature" href="#h%21%3AT-instance-method">
       <strong>
-       #add
+       #h!
       </strong>
-      (range : Range(Int | Nil, Int | Nil), val : T) : T
+      : T
      </a>
      <div class="summary">
       <p>
-       range の範囲に val を加算します。
+       現在の $m$ の値に対する $h$ の解を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#build-instance-method">
+     <a class="signature" href="#has_solution%3F-instance-method">
       <strong>
-       #build
+       #has_solution?
       </strong>
-     </a>
-    </li>
-    <li class="entry-summary">
-     <a class="signature" href="#each%28%26%3AT-%3E%29-instance-method">
-      <strong>
-       #each
-      </strong>
-      (&amp; : T -&gt; )
      </a>
      <div class="summary">
       <p>
-       Must yield this collection's elements to the block.
+       解が存在するかを返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%28i%3AInt%29%3AT-instance-method">
+     <a class="signature" href="#inspect%28io%3AIO%29-instance-method">
       <strong>
-       #get
+       #inspect
       </strong>
-      (i : Int) : T
+      (io : IO)
      </a>
      <div class="summary">
       <p>
-       添字 i の値を取得します。
+       Appends a String representation of this object which includes its class name, its object address and the values of all instance variables.
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%21%28i%3AInt%29%3AT-instance-method">
+     <a class="signature" href="#k%3AT%7CNil-instance-method">
       <strong>
-       #get!
+       #k
       </strong>
-      (i : Int) : T
+      : T | Nil
      </a>
      <div class="summary">
       <p>
-       添字 i の値を取得します。
+       解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、 この $k$ を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#get%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+     <a class="signature" href="#k%21%3AT-instance-method">
       <strong>
-       #get?
+       #k!
       </strong>
-      (i : Int) : T | Nil
+      : T
      </a>
      <div class="summary">
       <p>
-       添字 i の値を取得します。
+       現在の $m$ の値に対する $k$ の解を返します。
       </p>
      </div>
     </li>
     <li class="entry-summary">
-     <a class="signature" href="#size%3AInt32-instance-method">
+     <a class="signature" href="#m-instance-method">
       <strong>
-       #size
+       #m
       </strong>
-      : Int32
      </a>
      <div class="summary">
       <p>
-       Returns the number of elements in the collection.
+       媒介変数 $m$ の値を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#m%3D%28m%29-instance-method">
+      <strong>
+       #m=
+      </strong>
+      (m)
+     </a>
+     <div class="summary">
+      <p>
+       媒介変数 $m$ の値を更新します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#solution%3ATuple%28T%2CT%2CT%2CT%29%7CNil-instance-method">
+      <strong>
+       #solution
+      </strong>
+      : Tuple(T, T, T, T) | Nil
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する解を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#solution%21%3ATuple%28T%2CT%2CT%2CT%29-instance-method">
+      <strong>
+       #solution!
+      </strong>
+      : Tuple(T, T, T, T)
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する解を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#to_s%28io%3AIO%29-instance-method">
+      <strong>
+       #to_s
+      </strong>
+      (io : IO)
+     </a>
+     <div class="summary">
+      <p>
+       Appends a short String representation of this object which includes its class name and its object address.
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#x%3AT%7CNil-instance-method">
+      <strong>
+       #x
+      </strong>
+      : T | Nil
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する $x$ の解を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#x%21%3AT-instance-method">
+      <strong>
+       #x!
+      </strong>
+      : T
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する $x$ の解を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#y%3AT%7CNil-instance-method">
+      <strong>
+       #y
+      </strong>
+      : T | Nil
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する $y$ の解を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#y%21%3AT-instance-method">
+      <strong>
+       #y!
+      </strong>
+      : T
+     </a>
+     <div class="summary">
+      <p>
+       現在の $m$ の値に対する $y$ の解を返します。
       </p>
      </div>
     </li>
@@ -521,44 +615,26 @@
     </a>
     Constructor Detail
    </h2>
-   <div class="entry-detail" id="new(n:Int)-class-method">
+   <div class="entry-detail" id="new(a,b,c)-class-method">
     <div class="signature">
      def self.
      <strong>
       new
      </strong>
-     (n :
-     <a href="../Int.html">
-      Int
-     </a>
-     )
-     <a class="method-permalink" href="#new%28n%3AInt%29-class-method">
+     (a, b, c)
+     <a class="method-permalink" href="#new%28a%2Cb%2Cc%29-class-method">
       #
      </a>
+    </div>
+    <div class="doc">
+     <p>
+      不定方程式 $ax + by = c$ を作ります。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L17" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="new-class-method">
-    <div class="signature">
-     def self.
-     <strong>
-      new
-     </strong>
-     <a class="method-permalink" href="#new-class-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L10" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L23" target="_blank">
       View source
      </a>
      ]
@@ -573,307 +649,475 @@
     </a>
     Instance Method Detail
    </h2>
-   <div class="entry-detail" id="[](i:Int):T-instance-method">
+   <div class="entry-detail" id="h:T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      []
+      h
      </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T
-     <a class="method-permalink" href="#%5B%5D%28i%3AInt%29%3AT-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L100" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="[]?(i:Int):T|Nil-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      []?
-     </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T | Nil
-     <a class="method-permalink" href="#%5B%5D%3F%28i%3AInt%29%3AT%7CNil-instance-method">
-      #
-     </a>
-    </div>
-    <br/>
-    <div>
-     [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L101" target="_blank">
-      View source
-     </a>
-     ]
-    </div>
-   </div>
-   <div class="entry-detail" id="add(l:Int,r:Int,val:T):T-instance-method">
-    <div class="signature">
-     def
-     <strong>
-      add
-     </strong>
-     (l :
-     <a href="../Int.html">
-      Int
-     </a>
-     , r :
-     <a href="../Int.html">
-      Int
-     </a>
-     , val : T) : T
-     <a class="method-permalink" href="#add%28l%3AInt%2Cr%3AInt%2Cval%3AT%29%3AT-instance-method">
+     : T | Nil
+     <a class="method-permalink" href="#h%3AT%7CNil-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      [l, r) に val を加算します。
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $h$ を返します。
      </p>
      <p>
-      <span class="flag purple">
-       NOTE
-      </span>
-      このAPIの使用は推奨されません。Rangeで指定してください。
+      解が存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
      </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L27" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L114" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="add(range:Range(Int|Nil,Int|Nil),val:T):T-instance-method">
+   <div class="entry-detail" id="h!:T-instance-method">
     <div class="signature">
      def
      <strong>
-      add
+      h!
      </strong>
-     (range : Range(
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil,
-     <a href="../Int.html">
-      Int
-     </a>
-     | Nil), val : T) : T
-     <a class="method-permalink" href="#add%28range%3ARange%28Int%7CNil%2CInt%7CNil%29%2Cval%3AT%29%3AT-instance-method">
+     : T
+     <a class="method-permalink" href="#h%21%3AT-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      range の範囲に val を加算します。
+      現在の $m$ の値に対する $h$ の解を返します。
      </p>
-     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
-imos.add(<span class="n">0</span>..n, <span class="n">10</span>)</code></pre>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $h$ を返します。
+     </p>
+     <p>
+      解が存在しない場合は例外を送出します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L40" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L124" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="build-instance-method">
+   <div class="entry-detail" id="has_solution?-instance-method">
     <div class="signature">
      def
      <strong>
-      build
+      has_solution?
      </strong>
-     <a class="method-permalink" href="#build-instance-method">
+     <a class="method-permalink" href="#has_solution%3F-instance-method">
       #
      </a>
     </div>
+    <div class="doc">
+     <p>
+      解が存在するかを返します。
+     </p>
+    </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L103" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L146" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="each(&amp;:T-&gt;)-instance-method">
+   <div class="entry-detail" id="inspect(io:IO)-instance-method">
     <div class="signature">
      def
      <strong>
-      each
+      inspect
      </strong>
-     (&amp; : T -&gt; )
-     <a class="method-permalink" href="#each%28%26%3AT-%3E%29-instance-method">
+     (io : IO)
+     <a class="method-permalink" href="#inspect%28io%3AIO%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <div class="doc-inherited">
-      Description copied from module Enumerable(T)
+      Description copied from class Reference
      </div>
      <p>
-      Must yield this collection's elements to the block.
+      Appends a String representation of this object
+which includes its class name, its object address
+and the values of all instance variables.
      </p>
+     <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">"John"</span>, <span class="n">32</span>).inspect <span class="c"># =&gt; #&lt;Person:0x10fd31f20 @name="John", @age=32&gt;</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L95" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L166" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get(i:Int):T-instance-method">
+   <div class="entry-detail" id="k:T|Nil-instance-method">
     <div class="signature">
      def
      <strong>
-      get
+      k
      </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T
-     <a class="method-permalink" href="#get%28i%3AInt%29%3AT-instance-method">
+     : T | Nil
+     <a class="method-permalink" href="#k%3AT%7CNil-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      添字 i の値を取得します。
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $k$ を返します。
      </p>
-     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
-imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
-imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
-imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
-imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
+     <p>
+      解が存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L59" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L96" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get!(i:Int):T-instance-method">
+   <div class="entry-detail" id="k!:T-instance-method">
     <div class="signature">
      def
      <strong>
-      get!
+      k!
      </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T
-     <a class="method-permalink" href="#get%21%28i%3AInt%29%3AT-instance-method">
+     : T
+     <a class="method-permalink" href="#k%21%3AT-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      添字 i の値を取得します。
+      現在の $m$ の値に対する $k$ の解を返します。
      </p>
      <p>
-      配列が build 済みかの確認は行いません。
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $k$ を返します。
      </p>
-     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
-imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
-imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
-imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
-imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
+     <p>
+      解が存在しない場合は例外を送出します。
+     </p>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L75" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L106" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="get?(i:Int):T|Nil-instance-method">
+   <div class="entry-detail" id="m-instance-method">
     <div class="signature">
      def
      <strong>
-      get?
+      m
      </strong>
-     (i :
-     <a href="../Int.html">
-      Int
-     </a>
-     ) : T | Nil
-     <a class="method-permalink" href="#get%3F%28i%3AInt%29%3AT%7CNil-instance-method">
+     <a class="method-permalink" href="#m-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <p>
-      添字 i の値を取得します。
+      媒介変数 $m$ の値を返します。
      </p>
-     <p>
-      配列外参照をした場合 nil が返ります。
-     </p>
-     <pre><code class="language-crystal">imos <span class="o">=</span> <span class="t">Imos</span>(<span class="t">Int32</span>).new(n)
-imos.add(<span class="n">0</span>..n, <span class="n">10</span>)
-imos.add(<span class="n">0</span>..n <span class="o">//</span> <span class="n">2</span>, <span class="n">10</span>)
-imos.get(<span class="n">0</span>) <span class="c"># =&gt; 20</span>
-imos.get(n) <span class="c"># =&gt; 10</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L90" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L151" target="_blank">
       View source
      </a>
      ]
     </div>
    </div>
-   <div class="entry-detail" id="size:Int32-instance-method">
+   <div class="entry-detail" id="m=(m)-instance-method">
     <div class="signature">
      def
      <strong>
-      size
+      m=
      </strong>
-     : Int32
-     <a class="method-permalink" href="#size%3AInt32-instance-method">
+     (m)
+     <a class="method-permalink" href="#m%3D%28m%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      媒介変数 $m$ の値を更新します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L156" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="solution:Tuple(T,T,T,T)|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      solution
+     </strong>
+     : Tuple(T, T, T, T) | Nil
+     <a class="method-permalink" href="#solution%3ATuple%28T%2CT%2CT%2CT%29%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する解を返します。
+     </p>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+$(x_0, b', y_0, a')$ をこの順に格納したタプルとして返します。
+     </p>
+     <p>
+      解が存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L134" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="solution!:Tuple(T,T,T,T)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      solution!
+     </strong>
+     : Tuple(T, T, T, T)
+     <a class="method-permalink" href="#solution%21%3ATuple%28T%2CT%2CT%2CT%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する解を返します。
+     </p>
+     <p>
+      解が存在しない場合は例外を送出します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L141" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="to_s(io:IO)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      to_s
+     </strong>
+     (io : IO)
+     <a class="method-permalink" href="#to_s%28io%3AIO%29-instance-method">
       #
      </a>
     </div>
     <div class="doc">
      <div class="doc-inherited">
-      Description copied from module Enumerable(T)
+      Description copied from class Reference
      </div>
      <p>
-      Returns the number of elements in the collection.
+      Appends a short String representation of this object
+which includes its class name and its object address.
      </p>
-     <pre><code class="language-crystal">[<span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>, <span class="n">4</span>].size <span class="c"># =&gt; 4</span></code></pre>
+     <pre><code class="language-crystal"><span class="k">class</span> <span class="t">Person</span>
+  <span class="k">def</span> <span class="m">initialize</span>(@name : <span class="t">String</span>, @age : <span class="t">Int32</span>)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Person</span>.new(<span class="s">"John"</span>, <span class="n">32</span>).to_s <span class="c"># =&gt; #&lt;Person:0x10a199f20&gt;</span></code></pre>
     </div>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6887a2b5a40904fbd550431b53ca8aac1d22e4eb/src/nglib/data_structure/imos.cr#L5" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L162" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="x:T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      x
+     </strong>
+     : T | Nil
+     <a class="method-permalink" href="#x%3AT%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する $x$ の解を返します。
+     </p>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $x$ を返します。
+     </p>
+     <p>
+      解が存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L58" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="x!:T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      x!
+     </strong>
+     : T
+     <a class="method-permalink" href="#x%21%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する $x$ の解を返します。
+     </p>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $x$ を返します。
+     </p>
+     <p>
+      解が存在しない場合は例外を送出します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L68" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="y:T|Nil-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      y
+     </strong>
+     : T | Nil
+     <a class="method-permalink" href="#y%3AT%7CNil-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する $y$ の解を返します。
+     </p>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $y$ を返します。
+     </p>
+     <p>
+      解が存在しない場合は
+      <code>
+       nil
+      </code>
+      を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L78" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="y!:T-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      y!
+     </strong>
+     : T
+     <a class="method-permalink" href="#y%21%3AT-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      現在の $m$ の値に対する $y$ の解を返します。
+     </p>
+     <p>
+      解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+この $y$ を返します。
+     </p>
+     <p>
+      解が存在しない場合は例外を送出します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/b8fa8bf9cb2495df242eaf3b2c2dd02a92112a36/src/nglib/math/lde.cr#L88" target="_blank">
       View source
      </a>
      ]

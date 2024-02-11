@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-02-11 04:33:31+09:00</li>
+    <li>Last update: 2024-02-11 12:59:18+09:00</li>
     
     
     
@@ -114,15 +114,11 @@
             
         </a></li>
     
-        <li><a href="/compe-library.cr/docs/src/nglib/data_structure/dynamic_range_sum.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/data_structure/dynamic_range_sum.cr
+        <li><a href="/compe-library.cr/docs/src/nglib/data_structure/dynamic_range_sum.cr"><img class="emoji" title=":x:" alt=":x:" src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png" height="20" width="20"> src/nglib/data_structure/dynamic_range_sum.cr
             
         </a></li>
     
         <li><a href="/compe-library.cr/docs/src/nglib/data_structure/dynamic_rectangle_sum.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/data_structure/dynamic_rectangle_sum.cr
-            
-        </a></li>
-    
-        <li><a href="/compe-library.cr/docs/src/nglib/data_structure/imos.cr"><img class="emoji" title=":warning:" alt=":warning:" src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png" height="20" width="20"> src/nglib/data_structure/imos.cr
             
         </a></li>
     
@@ -215,6 +211,10 @@
         </a></li>
     
         <li><a href="/compe-library.cr/docs/src/nglib/grid/grid.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/grid/grid.cr
+            
+        </a></li>
+    
+        <li><a href="/compe-library.cr/docs/src/nglib/math/lde.cr"><img class="emoji" title=":heavy_check_mark:" alt=":heavy_check_mark:" src="https://github.githubassets.com/images/icons/emoji/unicode/2714.png" height="20" width="20"> src/nglib/math/lde.cr
             
         </a></li>
     
@@ -1990,118 +1990,6 @@
         <span class="n">i</span> <span class="o">-=</span> <span class="p">(</span><span class="n">i</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">i</span><span class="p">)</span>
       <span class="n">end</span>
       <span class="n">acc</span>
-    <span class="n">end</span>
-  <span class="n">end</span>
-<span class="n">end</span>
-<span class="n">module</span> <span class="n">NgLib</span>
-  <span class="k">class</span> <span class="nc">Imos</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    <span class="n">include</span> <span class="n">Enumerable</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-  
-    <span class="n">getter</span> <span class="n">size</span> <span class="o">:</span> <span class="n">Int32</span>
-    <span class="err">@</span><span class="n">added</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    <span class="err">@</span><span class="n">sums</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    <span class="err">@</span><span class="n">should_build</span> <span class="o">:</span> <span class="n">Bool</span>
-  
-    <span class="n">def</span> <span class="n">initialize</span>
-      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
-      <span class="err">@</span><span class="n">added</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">T</span>
-      <span class="err">@</span><span class="n">sums</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">T</span>
-      <span class="err">@</span><span class="n">should_build</span> <span class="o">=</span> <span class="nb">true</span>
-    <span class="n">end</span>
-  
-    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">n</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span>
-      <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">n</span><span class="p">.</span><span class="n">to_i32</span>
-      <span class="err">@</span><span class="n">added</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">){</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span> <span class="p">}</span>
-      <span class="err">@</span><span class="n">sums</span> <span class="o">=</span> <span class="p">[]</span> <span class="n">of</span> <span class="n">T</span>
-      <span class="err">@</span><span class="n">should_build</span> <span class="o">=</span> <span class="nb">true</span>
-    <span class="n">end</span>
-  
-    <span class="cp"># [l, r) に val を加算します。
-</span>    <span class="cp">#
-</span>    <span class="cp"># NOTE: このAPIの使用は推奨されません。Rangeで指定してください。
-</span>    <span class="n">def</span> <span class="n">add</span><span class="p">(</span><span class="n">l</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">r</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">val</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
-      <span class="err">@</span><span class="n">added</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span>
-      <span class="err">@</span><span class="n">added</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-=</span> <span class="n">val</span>
-      <span class="err">@</span><span class="n">should_build</span> <span class="o">=</span> <span class="nb">true</span>
-      <span class="n">val</span>
-    <span class="n">end</span>
-  
-    <span class="cp"># range の範囲に val を加算します。
-</span>    <span class="cp">#
-</span>    <span class="cp"># ```
-</span>    <span class="cp"># imos = Imos(Int32).new(n)
-</span>    <span class="cp"># imos.add(0..n, 10)
-</span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">add</span><span class="p">(</span><span class="n">range</span> <span class="o">:</span> <span class="n">Range</span><span class="p">(</span><span class="n">Int</span><span class="o">?</span><span class="p">,</span> <span class="n">Int</span><span class="o">?</span><span class="p">),</span> <span class="n">val</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
-      <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">begin</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span>
-      <span class="n">right</span> <span class="o">=</span> <span class="k">if</span> <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">nil</span><span class="o">?</span>
-          <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">else</span>
-          <span class="n">range</span><span class="p">.</span><span class="n">end</span><span class="p">.</span><span class="n">not_nil</span><span class="o">!</span> <span class="o">+</span> <span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">exclusive</span><span class="o">?</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">end</span>
-      <span class="n">add</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
-    <span class="n">end</span>
-  
-    <span class="cp"># 添字 i の値を取得します。
-</span>    <span class="cp">#
-</span>    <span class="cp"># ```
-</span>    <span class="cp"># imos = Imos(Int32).new(n)
-</span>    <span class="cp"># imos.add(0..n, 10)
-</span>    <span class="cp"># imos.add(0..n // 2, 10)
-</span>    <span class="cp"># imos.get(0) # =&gt; 20
-</span>    <span class="cp"># imos.get(n) # =&gt; 10
-</span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">get</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
-      <span class="n">build</span> <span class="k">if</span> <span class="err">@</span><span class="n">should_build</span>
-      <span class="err">@</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">end</span>
-  
-    <span class="cp"># 添字 i の値を取得します。
-</span>    <span class="cp">#
-</span>    <span class="cp"># 配列が build 済みかの確認は行いません。
-</span>    <span class="cp">#
-</span>    <span class="cp"># ```
-</span>    <span class="cp"># imos = Imos(Int32).new(n)
-</span>    <span class="cp"># imos.add(0..n, 10)
-</span>    <span class="cp"># imos.add(0..n // 2, 10)
-</span>    <span class="cp"># imos.get(0) # =&gt; 20
-</span>    <span class="cp"># imos.get(n) # =&gt; 10
-</span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">get</span><span class="o">!</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span>
-      <span class="err">@</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">end</span>
-  
-    <span class="cp"># 添字 i の値を取得します。
-</span>    <span class="cp">#
-</span>    <span class="cp"># 配列外参照をした場合 nil が返ります。
-</span>    <span class="cp">#
-</span>    <span class="cp"># ```
-</span>    <span class="cp"># imos = Imos(Int32).new(n)
-</span>    <span class="cp"># imos.add(0..n, 10)
-</span>    <span class="cp"># imos.add(0..n // 2, 10)
-</span>    <span class="cp"># imos.get(0) # =&gt; 20
-</span>    <span class="cp"># imos.get(n) # =&gt; 10
-</span>    <span class="cp"># ```
-</span>    <span class="n">def</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
-      <span class="n">build</span> <span class="k">if</span> <span class="err">@</span><span class="n">should_build</span>
-      <span class="err">@</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">?</span>
-    <span class="n">end</span>
-  
-    <span class="n">def</span> <span class="n">each</span><span class="p">(</span><span class="o">&amp;</span> <span class="o">:</span> <span class="n">T</span> <span class="o">-&gt;</span> <span class="p">)</span>
-      <span class="n">build</span> <span class="k">if</span> <span class="err">@</span><span class="n">should_build</span>
-      <span class="err">@</span><span class="n">sums</span><span class="p">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">yield</span> <span class="n">s</span> <span class="p">}</span>
-    <span class="n">end</span>
-  
-    <span class="n">def</span> <span class="p">[](</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="p">;</span> <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">end</span>
-    <span class="n">def</span> <span class="p">[]</span><span class="o">?</span><span class="p">(</span><span class="n">i</span> <span class="o">:</span> <span class="n">Int</span><span class="p">)</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span><span class="p">;</span> <span class="n">get</span><span class="o">?</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="n">end</span>
-  
-    <span class="n">def</span> <span class="n">build</span>
-      <span class="err">@</span><span class="n">sums</span> <span class="o">=</span> <span class="err">@</span><span class="n">added</span><span class="p">.</span><span class="n">dup</span>
-      <span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="n">times</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-        <span class="err">@</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="err">@</span><span class="n">sums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-      <span class="n">end</span>
-      <span class="err">@</span><span class="n">sums</span><span class="p">.</span><span class="n">pop</span>
-      <span class="err">@</span><span class="n">should_build</span> <span class="o">=</span> <span class="nb">false</span>
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
@@ -5741,6 +5629,186 @@
 
     <span class="n">def</span> <span class="p">[]</span><span class="o">=</span><span class="p">(</span><span class="n">y</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">x</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">c</span> <span class="o">:</span> <span class="n">T</span><span class="p">)</span>
       <span class="err">@</span><span class="n">s</span><span class="p">[</span><span class="n">y</span><span class="o">*</span><span class="err">@</span><span class="n">w</span> <span class="o">+</span> <span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="n">end</span>
+  <span class="n">end</span>
+<span class="n">end</span>
+<span class="n">module</span> <span class="n">NgLib</span>
+  <span class="cp"># 不定方程式 $ax + by = c$ を解きます。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 常に解が存在するわけではないので、`#has_solution?` などで解が存在するかを確かめるようにしてください。
+</span>  <span class="cp">#
+</span>  <span class="cp"># 多分、解の媒介変数 $m = 0$ のとき、$|x| + |y|$ が最小になります。
+</span>  <span class="k">class</span> <span class="nc">LDE</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">NotHasSolutionError</span> <span class="o">&lt;</span> <span class="n">Exception</span><span class="p">;</span> <span class="n">end</span>
+
+    <span class="err">@</span><span class="n">a</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">b</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">c</span> <span class="o">:</span> <span class="n">T</span>
+
+    <span class="err">@</span><span class="n">check</span> <span class="o">:</span> <span class="n">Bool</span>
+
+    <span class="err">@</span><span class="n">x0</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">y0</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">a2</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">b2</span> <span class="o">:</span> <span class="n">T</span>
+    <span class="err">@</span><span class="n">m</span> <span class="o">:</span> <span class="n">T</span>
+
+    <span class="cp"># 不定方程式 $ax + by = c$ を作ります。
+</span>    <span class="n">def</span> <span class="n">initialize</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">a</span><span class="p">,</span> <span class="err">@</span><span class="n">b</span><span class="p">,</span> <span class="err">@</span><span class="n">c</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">m</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">]</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">]</span>
+
+      <span class="err">@</span><span class="n">check</span> <span class="o">=</span> <span class="nb">true</span>
+      <span class="n">g</span> <span class="o">=</span> <span class="err">@</span><span class="n">a</span><span class="p">.</span><span class="n">gcd</span><span class="p">(</span><span class="err">@</span><span class="n">b</span><span class="p">)</span>
+
+      <span class="k">if</span> <span class="err">@</span><span class="n">c</span> <span class="o">%</span> <span class="n">g</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="err">@</span><span class="n">x0</span> <span class="o">=</span> <span class="err">@</span><span class="n">y0</span> <span class="o">=</span> <span class="err">@</span><span class="n">a2</span> <span class="o">=</span> <span class="err">@</span><span class="n">b2</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span>
+        <span class="err">@</span><span class="n">check</span> <span class="o">=</span> <span class="nb">false</span>
+      <span class="k">else</span>
+        <span class="n">extgcd</span><span class="p">(</span><span class="err">@</span><span class="n">a</span><span class="p">.</span><span class="n">abs</span><span class="p">,</span> <span class="err">@</span><span class="n">b</span><span class="p">.</span><span class="n">abs</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="err">@</span><span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="err">@</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">0</span>
+
+        <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="err">@</span><span class="n">c</span> <span class="c1">// g</span>
+        <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="err">@</span><span class="n">c</span> <span class="c1">// g</span>
+
+        <span class="err">@</span><span class="n">x0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="err">@</span><span class="n">y0</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="err">@</span><span class="n">a2</span> <span class="o">=</span> <span class="o">-</span><span class="err">@</span><span class="n">a</span> <span class="c1">// g</span>
+        <span class="err">@</span><span class="n">b2</span> <span class="o">=</span> <span class="err">@</span><span class="n">b</span> <span class="c1">// g</span>
+      <span class="n">end</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $x$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $x$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">x</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span> <span class="o">?</span> <span class="err">@</span><span class="n">x0</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $x$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $x$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は例外を送出します。
+</span>    <span class="n">def</span> <span class="n">x</span><span class="o">!</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">x</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotHasSolutionError</span><span class="p">.</span><span class="k">new</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $y$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $y$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">y</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span> <span class="o">?</span> <span class="err">@</span><span class="n">y0</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $y$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $y$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は例外を送出します。
+</span>    <span class="n">def</span> <span class="n">y</span><span class="o">!</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">y</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotHasSolutionError</span><span class="p">.</span><span class="k">new</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $k$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">k</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span> <span class="o">?</span> <span class="err">@</span><span class="n">b2</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $k$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $k$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は例外を送出します。
+</span>    <span class="n">def</span> <span class="n">k</span><span class="o">!</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">k</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotHasSolutionError</span><span class="p">.</span><span class="k">new</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $h$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">h</span> <span class="o">:</span> <span class="n">T</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span> <span class="o">?</span> <span class="err">@</span><span class="n">a2</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する $h$ の解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># この $h$ を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は例外を送出します。
+</span>    <span class="n">def</span> <span class="n">h</span><span class="o">!</span> <span class="o">:</span> <span class="n">T</span>
+      <span class="n">h</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotHasSolutionError</span><span class="p">.</span><span class="k">new</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解は媒介変数 $m$ を用いて $x = x_0 + mk,\ y = y_0 + mh$ と求まるので、
+</span>    <span class="cp"># $(x_0, b', y_0, a')$ をこの順に格納したタプルとして返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は `nil` を返します。
+</span>    <span class="n">def</span> <span class="n">solution</span> <span class="o">:</span> <span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">}</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span> <span class="o">?</span> <span class="p">{</span><span class="err">@</span><span class="n">x0</span><span class="p">,</span> <span class="err">@</span><span class="n">b2</span><span class="p">,</span> <span class="err">@</span><span class="n">y0</span><span class="p">,</span> <span class="err">@</span><span class="n">a2</span><span class="p">}</span> <span class="o">:</span> <span class="n">nil</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 現在の $m$ の値に対する解を返します。
+</span>    <span class="cp">#
+</span>    <span class="cp"># 解が存在しない場合は例外を送出します。
+</span>    <span class="n">def</span> <span class="n">solution</span><span class="o">!</span> <span class="o">:</span> <span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">}</span>
+      <span class="n">solution</span> <span class="o">||</span> <span class="n">raise</span> <span class="n">NotHasSolutionError</span><span class="p">.</span><span class="k">new</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 解が存在するかを返します。
+</span>    <span class="n">def</span> <span class="n">has_solution</span><span class="o">?</span>
+      <span class="err">@</span><span class="n">check</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 媒介変数 $m$ の値を返します。
+</span>    <span class="n">def</span> <span class="n">m</span>
+      <span class="err">@</span><span class="n">m</span>
+    <span class="n">end</span>
+
+    <span class="cp"># 媒介変数 $m$ の値を更新します。
+</span>    <span class="n">def</span> <span class="n">m</span><span class="o">=</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+      <span class="err">@</span><span class="n">x0</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="err">@</span><span class="n">m</span> <span class="o">-</span> <span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="err">@</span><span class="n">b2</span>
+      <span class="err">@</span><span class="n">y0</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="err">@</span><span class="n">m</span> <span class="o">-</span> <span class="n">m</span><span class="p">))</span> <span class="o">*</span> <span class="err">@</span><span class="n">a2</span>
+      <span class="err">@</span><span class="n">m</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">to_s</span><span class="p">(</span><span class="n">io</span> <span class="o">:</span> <span class="n">IO</span><span class="p">)</span>
+      <span class="n">io</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">"x"</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="err">@</span><span class="n">b</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="s">" - "</span> <span class="o">:</span> <span class="s">" + "</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">b</span><span class="p">.</span><span class="n">abs</span> <span class="o">&lt;&lt;</span> <span class="s">"y = "</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">c</span> <span class="o">&lt;&lt;</span> <span class="s">" # =&gt; x = "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">", y = "</span> <span class="o">&lt;&lt;</span> <span class="n">y</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">inspect</span><span class="p">(</span><span class="n">io</span> <span class="o">:</span> <span class="n">IO</span><span class="p">)</span>
+      <span class="n">to_s</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+    <span class="n">end</span>
+
+    <span class="k">private</span> <span class="n">def</span> <span class="n">extgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">T</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a</span>
+      <span class="n">end</span>
+      <span class="n">d</span> <span class="o">=</span> <span class="n">extgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+      <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="n">a</span> <span class="c1">// b) * x[0]</span>
+      <span class="n">d</span>
     <span class="n">end</span>
   <span class="n">end</span>
 <span class="n">end</span>
