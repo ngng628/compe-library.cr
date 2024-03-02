@@ -32,7 +32,7 @@ module NgLib
       @values[i] = x
     end
   
-    private def lower_bound(v : AVLTree::SortedSet, x : Int32)
+    private def lower_bound(v : NgLib::AATreeSet(Int32), x : Int32)
       v.greater_equal_index(x) || v.size
     end
   end
