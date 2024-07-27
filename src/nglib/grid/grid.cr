@@ -244,7 +244,7 @@ module NgLib
           next_j = walls[pos] + 1
           now_j = {now_j - iter, next_j}.max
         when 'R'
-          walls = line[now_i]
+          walls = lwalls[now_i]
           pos = walls.bsearch_index { |x| x > now_j }
           next_j = pos ? walls[pos] - 1 : @w - 1
           now_j = {now_j + iter, next_j}.min
@@ -262,6 +262,10 @@ module NgLib
       end
 
       {now_i, now_j}
+    end
+
+    def simulate(si : Int, sj : Int, directions : Enumerable) : {Int32, Int32}
+      simulate(si, sj, directions, [1] * directions.size)
     end
 
     def line_walls : Array(Array(Int32))
@@ -286,10 +290,6 @@ module NgLib
         walls[j] << @h
       end
       walls
-    end
-
-    def simulate(si : Int, sj : Int, directions : Enumerable) : {Int32, Int32}
-      simulate(si, sj, directions, [1] * directions.size)
     end
 
     # 全マス間の最短経路長を返します。
