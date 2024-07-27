@@ -16,6 +16,66 @@ module NgLib
       @size.times { |i| @csum[i + 1] = @csum[i] + array[i] }
     end
 
+    # self[0...r] >= x を満たす最小の self[0...r]
+    def lower_bound(x)
+      ac = @size + 1
+      wa = 0
+      while ac - wa > 1
+        wj = ac + (wa - ac) // 2
+        if self[0...wj] >= x
+          ac = wj
+        else
+          wa = wj
+        end
+      end
+      ac == @size + 1 ? nil : self[0...ac]
+    end
+
+    # self[0...r] >= x を満たす最小の r を返します。
+    def lower_bound_index(x)
+      ac = @size + 1
+      wa = 0
+      while ac - wa > 1
+        wj = ac + (wa - ac) // 2
+        if self[0...wj] >= x
+          ac = wj
+        else
+          wa = wj
+        end
+      end
+      ac == @size + 1 ? nil : ac
+    end
+
+    # self[0...r] > x を満たす最小の self[0...r]
+    def upper_bound(x)
+      ac = @size + 1
+      wa = 0
+      while ac - wa > 1
+        wj = ac + (wa - ac) // 2
+        if self[0...wj] > x
+          ac = wj
+        else
+          wa = wj
+        end
+      end
+      ac == @size + 1 ? nil : self[0...ac]
+    end
+
+    # self[0...r] > x を満たす最小の r を返します。
+    def upper_bound_index(x)
+      ac = @size + 1
+      wa = 0
+      while ac - wa > 1
+        wj = ac + (wa - ac) // 2
+        if self[0...wj] > x
+          ac = wj
+        else
+          wa = wj
+        end
+      end
+      ac == @size + 1 ? nil : ac
+    end
+
     # $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(1)$ で返します。
     #
     # ```
