@@ -55,18 +55,57 @@ module NgLib
       new(s, DYDX2)
     end
 
+    def self.dydx2(height : Int, width : Int)
+      new(height, width, DYDX2)
+    end
+
+    def self.dydx2(height : Int, &)
+      new(height, DYDX2) { |line| yield line }
+    end
+
     def self.dydx4(s : Array(Array(T)))
       new(s, DYDX4)
+    end
+
+    def self.dydx4(height : Int, width : Int, &)
+      new(height, width, DYDX4) { |i, j| yield i, j }
+    end
+
+    def self.dydx4(height : Int, &)
+      new(height, DYDX4) { |line| yield line }
     end
 
     def self.dydx8(s : Array(Array(T)))
       new(s, DYDX8)
     end
 
+    def self.dydx8(height : Int, width : Int, &)
+      new(height, width, DYDX8) { |i, j| yield i, j }
+    end
+
+    def self.dydx8(height : Int, &)
+      new(height, DYDX8) { |line| yield line }
+    end
+
     def initialize(s : Array(Array(T)), @delta)
       @h = s.size
       @w = s[0].size
       @s = s.flatten
+      @bar = T.bar
+    end
+
+    def initialize(h : Int, @delta, &)
+      @h = h.to_i
+      @w = -1
+      @s = Array(Array(T)).new(h) { |line| t = (yield line); @w = t.size; t }.flatten
+      raise "@w is null" if @w == -1
+      @bar = T.bar
+    end
+
+    def initialize(h : Int, w : Int, @delta, &)
+      @h = h.to_i
+      @w = w.to_i
+      @s = Array(T).new(h * w) { |x| yield x // w, x % w }
       @bar = T.bar
     end
 
@@ -190,6 +229,58 @@ module NgLib
     @[AlwaysInline]
     def free?(y : Int, x : Int) : Bool
       !barred?(y, x)
+    end
+
+    def simulate(si : Int, sj : Int, directions : Enumerable, iterations : Enumerable) : {Int32, Int32}
+      line_walls = Array.new(@h) { [] of Int32 }
+      @h.times do |i|
+        line_walls[i] << -1
+        @w.times do |j|
+          line_walls[i] << j if barred?(i, j)
+        end
+        line_walls[i] << @w
+      end
+      
+      col_walls = Array.new(@w) { [] of Int32 }
+      @w.times do |j|
+        col_walls[j] << -1
+        @h.times do |i|
+          col_walls[j] << i if barred?(i, j)
+        end
+        col_walls[j] << @h
+      end
+
+      now_i, now_j = si.to_i, sj.to_i
+      directions.zip(iterations) do |dir, iter|
+        case dir
+        when 'L'
+          walls = line_walls[now_i]
+          pos = (walls.bsearch_index { |x| x >= now_j } || walls.size) - 1
+          next_j = walls[pos] + 1
+          now_j = {now_j - iter, next_j}.max
+        when 'R'
+          walls = line_walls[now_i]
+          pos = walls.bsearch_index { |x| x > now_j }
+          next_j = pos ? walls[pos] - 1 : @w - 1
+          now_j = {now_j + iter, next_j}.min
+        when 'U'
+          walls = col_walls[now_j]
+          pos = (walls.bsearch_index { |x| x >= now_i } || walls.size) - 1
+          next_i = (pos >= 0 ? walls[pos] : -1) + 1
+          now_i = {now_i - iter, next_i}.max
+        when 'D'
+          walls = col_walls[now_j]
+          pos = walls.bsearch_index { |x| x > now_i }
+          next_i = pos ? walls[pos] - 1 : @h - 1
+          now_i = {now_i + iter, next_i}.min
+        end
+      end
+
+      {now_i, now_j}
+    end
+
+    def simulate(si : Int, sj : Int, directions : Enumerable) : {Int32, Int32}
+      simulate(si, sj, directions, [1] * directions.size)
     end
 
     # 全マス間の最短経路長を返します。
