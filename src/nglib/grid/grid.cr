@@ -264,7 +264,7 @@ module NgLib
       {now_i, now_j}
     end
 
-    def line_walls : Array(Int32)
+    def line_walls : Array(Array(Int32))
       walls = Array.new(@h) { [] of Int32 }
       @h.times do |i|
         walls[i] << -1
@@ -276,7 +276,7 @@ module NgLib
       walls
     end
 
-    def column_walls : Array(Int32)
+    def column_walls : Array(Array(Int32))
       walls = Array.new(@w) { [] of Int32 }
       @w.times do |j|
         walls[j] << -1
