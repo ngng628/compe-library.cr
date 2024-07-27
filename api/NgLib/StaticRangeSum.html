@@ -377,7 +377,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L3" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L3" target="_blank">
     nglib/data_structure/static_range_sum.cr
    </a>
    <br/>
@@ -578,12 +578,64 @@
      </div>
     </li>
     <li class="entry-summary">
+     <a class="signature" href="#lower_bound%28x%29-instance-method">
+      <strong>
+       #lower_bound
+      </strong>
+      (x)
+     </a>
+     <div class="summary">
+      <p>
+       self[0...r] &gt;= x を満たす最小の self[0...r]
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#lower_bound_index%28x%29-instance-method">
+      <strong>
+       #lower_bound_index
+      </strong>
+      (x)
+     </a>
+     <div class="summary">
+      <p>
+       self[0...r] &gt;= x を満たす最小の r を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#size%3AInt64-instance-method">
       <strong>
        #size
       </strong>
       : Int64
      </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#upper_bound%28x%29-instance-method">
+      <strong>
+       #upper_bound
+      </strong>
+      (x)
+     </a>
+     <div class="summary">
+      <p>
+       self[0...r] &gt; x を満たす最小の self[0...r]
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#upper_bound_index%28x%29-instance-method">
+      <strong>
+       #upper_bound_index
+      </strong>
+      (x)
+     </a>
+     <div class="summary">
+      <p>
+       self[0...r] &gt; x を満たす最小の r を返します。
+      </p>
+     </div>
     </li>
    </ul>
    <div class="methods-inherited">
@@ -622,7 +674,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L13" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L13" target="_blank">
       View source
      </a>
      ]
@@ -661,7 +713,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L73" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L133" target="_blank">
       View source
      </a>
      ]
@@ -699,7 +751,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L78" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L138" target="_blank">
       View source
      </a>
      ]
@@ -729,7 +781,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L83" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L143" target="_blank">
       View source
      </a>
      ]
@@ -767,7 +819,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L88" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L148" target="_blank">
       View source
      </a>
      ]
@@ -787,7 +839,7 @@ csum <span class="o">=</span> <span class="t">StaticRangeSum</span>(<span class=
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L5" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L5" target="_blank">
       View source
      </a>
      ]
@@ -815,7 +867,7 @@ csum.get(<span class="n">0</span>...<span class="n">5</span>) <span class="c"># 
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L26" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L86" target="_blank">
       View source
      </a>
      ]
@@ -851,7 +903,7 @@ csum.get(<span class="n">0</span>...<span class="n">5</span>) <span class="c"># 
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L32" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L92" target="_blank">
       View source
      </a>
      ]
@@ -876,7 +928,7 @@ csum.get(<span class="n">0</span>...<span class="n">5</span>) <span class="c"># 
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L61" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L121" target="_blank">
       View source
      </a>
      ]
@@ -909,7 +961,7 @@ csum.get(<span class="n">0</span>...<span class="n">5</span>) <span class="c"># 
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L66" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L126" target="_blank">
       View source
      </a>
      ]
@@ -945,7 +997,7 @@ csum.get?(<span class="n">7</span>...<span class="n">5</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L48" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L108" target="_blank">
       View source
      </a>
      ]
@@ -989,7 +1041,57 @@ csum.get?(<span class="n">7</span>...<span class="n">5</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L54" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L114" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="lower_bound(x)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      lower_bound
+     </strong>
+     (x)
+     <a class="method-permalink" href="#lower_bound%28x%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      self[0...r] &gt;= x を満たす最小の self[0...r]
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L20" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="lower_bound_index(x)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      lower_bound_index
+     </strong>
+     (x)
+     <a class="method-permalink" href="#lower_bound_index%28x%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      self[0...r] &gt;= x を満たす最小の r を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L35" target="_blank">
       View source
      </a>
      ]
@@ -1009,7 +1111,57 @@ csum.get?(<span class="n">7</span>...<span class="n">5</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/6b185fc1e3a2d440b7d17b05285506debba3d99a/src/nglib/data_structure/static_range_sum.cr#L4" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L4" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="upper_bound(x)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      upper_bound
+     </strong>
+     (x)
+     <a class="method-permalink" href="#upper_bound%28x%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      self[0...r] &gt; x を満たす最小の self[0...r]
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L50" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="upper_bound_index(x)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      upper_bound_index
+     </strong>
+     (x)
+     <a class="method-permalink" href="#upper_bound_index%28x%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      self[0...r] &gt; x を満たす最小の r を返します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/data_structure/static_range_sum.cr#L65" target="_blank">
       View source
      </a>
      ]

@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/src/nglib/data_structure/static_range_sum.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-07-28 05:50:56+09:00</li>
+    <li>Last update: 2024-07-28 06:26:08+09:00</li>
     
     
     
@@ -149,6 +149,66 @@
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">to_i64</span>
       <span class="err">@</span><span class="n">csum</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="err">@</span><span class="n">csum</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="err">@</span><span class="n">csum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt;= x を満たす最小の self[0...r]
+</span>    <span class="n">def</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">ac</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt;= x を満たす最小の r を返します。
+</span>    <span class="n">def</span> <span class="n">lower_bound_index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">ac</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt; x を満たす最小の self[0...r]
+</span>    <span class="n">def</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">ac</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt; x を満たす最小の r を返します。
+</span>    <span class="n">def</span> <span class="n">upper_bound_index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">ac</span>
     <span class="n">end</span>
 
     <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(1)$ で返します。
@@ -251,6 +311,66 @@
       <span class="err">@</span><span class="n">size</span> <span class="o">=</span> <span class="n">array</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">to_i64</span>
       <span class="err">@</span><span class="n">csum</span> <span class="o">=</span> <span class="n">Array</span><span class="p">.</span><span class="k">new</span><span class="p">(</span><span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">zero</span><span class="p">)</span>
       <span class="err">@</span><span class="n">size</span><span class="p">.</span><span class="n">times</span> <span class="p">{</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="err">@</span><span class="n">csum</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="err">@</span><span class="n">csum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt;= x を満たす最小の self[0...r]
+</span>    <span class="n">def</span> <span class="n">lower_bound</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">ac</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt;= x を満たす最小の r を返します。
+</span>    <span class="n">def</span> <span class="n">lower_bound_index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">ac</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt; x を満たす最小の self[0...r]
+</span>    <span class="n">def</span> <span class="n">upper_bound</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">ac</span><span class="p">]</span>
+    <span class="n">end</span>
+
+    <span class="cp"># self[0...r] &gt; x を満たす最小の r を返します。
+</span>    <span class="n">def</span> <span class="n">upper_bound_index</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="n">ac</span> <span class="o">=</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="n">wa</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="k">while</span> <span class="n">ac</span> <span class="o">-</span> <span class="n">wa</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="n">wj</span> <span class="o">=</span> <span class="n">ac</span> <span class="o">+</span> <span class="p">(</span><span class="n">wa</span> <span class="o">-</span> <span class="n">ac</span><span class="p">)</span> <span class="c1">// 2</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">[</span><span class="mf">0.</span><span class="p">..</span><span class="n">wj</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">x</span>
+          <span class="n">ac</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="k">else</span>
+          <span class="n">wa</span> <span class="o">=</span> <span class="n">wj</span>
+        <span class="n">end</span>
+      <span class="n">end</span>
+      <span class="n">ac</span> <span class="o">==</span> <span class="err">@</span><span class="n">size</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">nil</span> <span class="o">:</span> <span class="n">ac</span>
     <span class="n">end</span>
 
     <span class="cp"># $[l, r)$ 番目までの要素の総和 $\sum_{i=l}^{r-1} a_i$ を $O(1)$ で返します。
