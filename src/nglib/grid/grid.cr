@@ -232,44 +232,29 @@ module NgLib
     end
 
     def simulate(si : Int, sj : Int, directions : Enumerable, iterations : Enumerable) : {Int32, Int32}
-      line_walls = Array.new(@h) { [] of Int32 }
-      @h.times do |i|
-        line_walls[i] << -1
-        @w.times do |j|
-          line_walls[i] << j if barred?(i, j)
-        end
-        line_walls[i] << @w
-      end
-      
-      col_walls = Array.new(@w) { [] of Int32 }
-      @w.times do |j|
-        col_walls[j] << -1
-        @h.times do |i|
-          col_walls[j] << i if barred?(i, j)
-        end
-        col_walls[j] << @h
-      end
+      lwalls = self.line_walls
+      cwalls = self.column_walls
 
       now_i, now_j = si.to_i, sj.to_i
       directions.zip(iterations) do |dir, iter|
         case dir
         when 'L'
-          walls = line_walls[now_i]
+          walls = lwalls[now_i]
           pos = (walls.bsearch_index { |x| x >= now_j } || walls.size) - 1
           next_j = walls[pos] + 1
           now_j = {now_j - iter, next_j}.max
         when 'R'
-          walls = line_walls[now_i]
+          walls = line[now_i]
           pos = walls.bsearch_index { |x| x > now_j }
           next_j = pos ? walls[pos] - 1 : @w - 1
           now_j = {now_j + iter, next_j}.min
         when 'U'
-          walls = col_walls[now_j]
+          walls = cwalls[now_j]
           pos = (walls.bsearch_index { |x| x >= now_i } || walls.size) - 1
           next_i = (pos >= 0 ? walls[pos] : -1) + 1
           now_i = {now_i - iter, next_i}.max
         when 'D'
-          walls = col_walls[now_j]
+          walls = cwalls[now_j]
           pos = walls.bsearch_index { |x| x > now_i }
           next_i = pos ? walls[pos] - 1 : @h - 1
           now_i = {now_i + iter, next_i}.min
@@ -277,6 +262,30 @@ module NgLib
       end
 
       {now_i, now_j}
+    end
+
+    def line_walls : Array(Int32)
+      walls = Array.new(@h) { [] of Int32 }
+      @h.times do |i|
+        walls[i] << -1
+        @w.times do |j|
+          walls[i] << j if barred?(i, j)
+        end
+        walls[i] << @w
+      end
+      walls
+    end
+
+    def column_walls : Array(Int32)
+      walls = Array.new(@w) { [] of Int32 }
+      @w.times do |j|
+        walls[j] << -1
+        @h.times do |i|
+          walls[j] << i if barred?(i, j)
+        end
+        walls[j] << @h
+      end
+      walls
     end
 
     def simulate(si : Int, sj : Int, directions : Enumerable) : {Int32, Int32}
