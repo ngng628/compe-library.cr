@@ -379,7 +379,7 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L16" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L16" target="_blank">
     nglib/grid/grid.cr
    </a>
    <br/>
@@ -579,6 +579,22 @@
       (s : Array(Array(T)), delta : Array(Tuple(Int32, Int32)))
      </a>
     </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28h%3AInt%2Cw%3AInt%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%2C%26%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (h : Int, w : Int, delta : Array(Tuple(Int32, Int32)), &amp;)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28h%3AInt%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%2C%26%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (h : Int, delta : Array(Tuple(Int32, Int32)), &amp;)
+     </a>
+    </li>
    </ul>
    <h2>
     <a class="anchor" href="#class-method-summary" id="class-method-summary">
@@ -599,11 +615,27 @@
      </a>
     </li>
     <li class="entry-summary">
+     <a class="signature" href="#dydx2%28height%3AInt%2Cwidth%3AInt%29-class-method">
+      <strong>
+       .dydx2
+      </strong>
+      (height : Int, width : Int)
+     </a>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#dydx2%28s%3AArray%28Array%28T%29%29%29-class-method">
       <strong>
        .dydx2
       </strong>
       (s : Array(Array(T)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx2%28height%3AInt%2C%26%29-class-method">
+      <strong>
+       .dydx2
+      </strong>
+      (height : Int, &amp;)
      </a>
     </li>
     <li class="entry-summary">
@@ -615,11 +647,43 @@
      </a>
     </li>
     <li class="entry-summary">
+     <a class="signature" href="#dydx4%28height%3AInt%2Cwidth%3AInt%2C%26%29-class-method">
+      <strong>
+       .dydx4
+      </strong>
+      (height : Int, width : Int, &amp;)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx4%28height%3AInt%2C%26%29-class-method">
+      <strong>
+       .dydx4
+      </strong>
+      (height : Int, &amp;)
+     </a>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#dydx8%28s%3AArray%28Array%28T%29%29%29-class-method">
       <strong>
        .dydx8
       </strong>
       (s : Array(Array(T)))
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx8%28height%3AInt%2Cwidth%3AInt%2C%26%29-class-method">
+      <strong>
+       .dydx8
+      </strong>
+      (height : Int, width : Int, &amp;)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#dydx8%28height%3AInt%2C%26%29-class-method">
+      <strong>
+       .dydx8
+      </strong>
+      (height : Int, &amp;)
      </a>
     </li>
     <li class="entry-summary">
@@ -710,6 +774,14 @@
        を返します。
       </p>
      </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#column_walls%3AArray%28Int32%29-instance-method">
+      <strong>
+       #column_walls
+      </strong>
+      : Array(Int32)
+     </a>
     </li>
     <li class="entry-summary">
      <a class="signature" href="#delta%3AArray%28Pos%29-instance-method">
@@ -951,6 +1023,14 @@
      </div>
     </li>
     <li class="entry-summary">
+     <a class="signature" href="#line_walls%3AArray%28Int32%29-instance-method">
+      <strong>
+       #line_walls
+      </strong>
+      : Array(Int32)
+     </a>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#map%28%26%3AT-%3EU%29%3AGrid%28U%29forallU-instance-method">
       <strong>
        #map
@@ -1173,6 +1253,22 @@
      </div>
     </li>
     <li class="entry-summary">
+     <a class="signature" href="#simulate%28si%3AInt%2Csj%3AInt%2Cdirections%3AEnumerable%2Citerations%3AEnumerable%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      <strong>
+       #simulate
+      </strong>
+      (si : Int, sj : Int, directions : Enumerable, iterations : Enumerable) : Tuple(Int32, Int32)
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#simulate%28si%3AInt%2Csj%3AInt%2Cdirections%3AEnumerable%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      <strong>
+       #simulate
+      </strong>
+      (si : Int, sj : Int, directions : Enumerable) : Tuple(Int32, Int32)
+     </a>
+    </li>
+    <li class="entry-summary">
      <a class="signature" href="#to_a%3AArray%28Array%28T%29%29-instance-method">
       <strong>
        #to_a
@@ -1253,7 +1349,59 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L66" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L90" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(h:Int,w:Int,delta:Array(Tuple(Int32,Int32)),&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (h :
+     <a href="../Int.html">
+      Int
+     </a>
+     , w :
+     <a href="../Int.html">
+      Int
+     </a>
+     , delta : Array(Tuple(Int32, Int32)), &amp;)
+     <a class="method-permalink" href="#new%28h%3AInt%2Cw%3AInt%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L105" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(h:Int,delta:Array(Tuple(Int32,Int32)),&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (h :
+     <a href="../Int.html">
+      Int
+     </a>
+     , delta : Array(Tuple(Int32, Int32)), &amp;)
+     <a class="method-permalink" href="#new%28h%3AInt%2Cdelta%3AArray%28Tuple%28Int32%2CInt32%29%29%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L97" target="_blank">
       View source
      </a>
      ]
@@ -1298,7 +1446,35 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L22" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L22" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx2(height:Int,width:Int)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx2
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , width :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#dydx2%28height%3AInt%2Cwidth%3AInt%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L58" target="_blank">
       View source
      </a>
      ]
@@ -1318,7 +1494,31 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L54" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L54" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx2(height:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx2
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#dydx2%28height%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L62" target="_blank">
       View source
      </a>
      ]
@@ -1338,7 +1538,59 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L58" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L66" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx4(height:Int,width:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx4
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , width :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#dydx4%28height%3AInt%2Cwidth%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L70" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx4(height:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx4
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#dydx4%28height%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L74" target="_blank">
       View source
      </a>
      ]
@@ -1358,7 +1610,59 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L62" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L78" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx8(height:Int,width:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx8
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , width :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#dydx8%28height%3AInt%2Cwidth%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L82" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="dydx8(height:Int,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      dydx8
+     </strong>
+     (height :
+     <a href="../Int.html">
+      Int
+     </a>
+     , &amp;)
+     <a class="method-permalink" href="#dydx8%28height%3AInt%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L86" target="_blank">
       View source
      </a>
      ]
@@ -1394,7 +1698,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L26" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L26" target="_blank">
       View source
      </a>
      ]
@@ -1431,7 +1735,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L656" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L756" target="_blank">
       View source
      </a>
      ]
@@ -1459,7 +1763,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L652" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L752" target="_blank">
       View source
      </a>
      ]
@@ -1487,7 +1791,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L664" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L764" target="_blank">
       View source
      </a>
      ]
@@ -1515,7 +1819,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L660" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L760" target="_blank">
       View source
      </a>
      ]
@@ -1559,7 +1863,7 @@ grid.barred?(<span class="n">1</span>, <span class="n">1</span>) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L159" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L198" target="_blank">
       View source
      </a>
      ]
@@ -1599,7 +1903,27 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L143" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L182" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="column_walls:Array(Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      column_walls
+     </strong>
+     : Array(Int32)
+     <a class="method-permalink" href="#column_walls%3AArray%28Int32%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L279" target="_blank">
       View source
      </a>
      ]
@@ -1623,7 +1947,7 @@ grid.barred?({<span class="n">1</span>, <span class="n">1</span>}) <span class="
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L50" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L50" target="_blank">
       View source
      </a>
      ]
@@ -1655,7 +1979,7 @@ gird.each { <span class="o">|</span>c<span class="o">|</span> puts c } <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L480" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L580" target="_blank">
       View source
      </a>
      ]
@@ -1692,7 +2016,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L595" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L695" target="_blank">
       View source
      </a>
      ]
@@ -1729,7 +2053,7 @@ grid.each_neighbor(<span class="n">1</span>, <span class="n">1</span>) <span cla
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L613" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L713" target="_blank">
       View source
      </a>
      ]
@@ -1761,7 +2085,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L518" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L618" target="_blank">
       View source
      </a>
      ]
@@ -1795,7 +2119,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L495" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L595" target="_blank">
       View source
      </a>
      ]
@@ -1823,7 +2147,7 @@ gird.each { <span class="o">|</span>c, (i, j)<span class="o">|</span> puts c, {i
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L627" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L727" target="_blank">
       View source
      </a>
      ]
@@ -1867,7 +2191,7 @@ grid.free?(<span class="n">1</span>, <span class="n">1</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L191" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L230" target="_blank">
       View source
      </a>
      ]
@@ -1907,7 +2231,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L175" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L214" target="_blank">
       View source
      </a>
      ]
@@ -1927,7 +2251,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L49" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L49" target="_blank">
       View source
      </a>
      ]
@@ -1971,7 +2295,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L562" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L662" target="_blank">
       View source
      </a>
      ]
@@ -2023,7 +2347,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L575" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L675" target="_blank">
       View source
      </a>
      ]
@@ -2067,7 +2391,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L579" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L679" target="_blank">
       View source
      </a>
      ]
@@ -2119,7 +2443,7 @@ grid.free?({<span class="n">1</span>, <span class="n">1</span>}) <span class="c"
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L583" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L683" target="_blank">
       View source
      </a>
      ]
@@ -2159,7 +2483,27 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L431" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L531" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="line_walls:Array(Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      line_walls
+     </strong>
+     : Array(Int32)
+     <a class="method-permalink" href="#line_walls%3AArray%28Int32%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L267" target="_blank">
       View source
      </a>
      ]
@@ -2188,7 +2532,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L531" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L631" target="_blank">
       View source
      </a>
      ]
@@ -2217,7 +2561,7 @@ grid.label_grid <span class="c"># =&gt; [[0, 0, -1], [0, -2, 1], [-2, -2, 1]]</s
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L548" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L648" target="_blank">
       View source
      </a>
      ]
@@ -2260,7 +2604,7 @@ grid.next_coord({<span class="n">2</span>, <span class="n">3</span>}) <span clas
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L85" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L124" target="_blank">
       View source
      </a>
      ]
@@ -2299,7 +2643,7 @@ grid.next_coord({<span class="n">2</span>, <span class="n">3</span>}) <span clas
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L103" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L142" target="_blank">
       View source
      </a>
      ]
@@ -2327,7 +2671,7 @@ grid.next_coord({<span class="n">2</span>, <span class="n">3</span>}) <span clas
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L623" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L723" target="_blank">
       View source
      </a>
      ]
@@ -2359,7 +2703,7 @@ grid.over?(<span class="n">0</span>, <span class="n">0</span>)           <span c
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L127" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L166" target="_blank">
       View source
      </a>
      ]
@@ -2395,7 +2739,7 @@ grid.over?({<span class="n">0</span>, <span class="n">0</span>})           <span
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L115" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L154" target="_blank">
       View source
      </a>
      ]
@@ -2437,7 +2781,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L236" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L336" target="_blank">
       View source
      </a>
      ]
@@ -2463,7 +2807,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L245" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L345" target="_blank">
       View source
      </a>
      ]
@@ -2497,7 +2841,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L219" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L319" target="_blank">
       View source
      </a>
      ]
@@ -2531,7 +2875,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L203" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L303" target="_blank">
       View source
      </a>
      ]
@@ -2589,7 +2933,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L368" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L468" target="_blank">
       View source
      </a>
      ]
@@ -2649,7 +2993,7 @@ dist[gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L293" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L393" target="_blank">
       View source
      </a>
      ]
@@ -2706,7 +3050,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L271" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L371" target="_blank">
       View source
      </a>
      ]
@@ -2732,7 +3076,63 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L254" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L354" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="simulate(si:Int,sj:Int,directions:Enumerable,iterations:Enumerable):Tuple(Int32,Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      simulate
+     </strong>
+     (si :
+     <a href="../Int.html">
+      Int
+     </a>
+     , sj :
+     <a href="../Int.html">
+      Int
+     </a>
+     , directions : Enumerable, iterations : Enumerable) : Tuple(Int32, Int32)
+     <a class="method-permalink" href="#simulate%28si%3AInt%2Csj%3AInt%2Cdirections%3AEnumerable%2Citerations%3AEnumerable%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L234" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="simulate(si:Int,sj:Int,directions:Enumerable):Tuple(Int32,Int32)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      simulate
+     </strong>
+     (si :
+     <a href="../Int.html">
+      Int
+     </a>
+     , sj :
+     <a href="../Int.html">
+      Int
+     </a>
+     , directions : Enumerable) : Tuple(Int32, Int32)
+     <a class="method-permalink" href="#simulate%28si%3AInt%2Csj%3AInt%2Cdirections%3AEnumerable%29%3ATuple%28Int32%2CInt32%29-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L291" target="_blank">
       View source
      </a>
      ]
@@ -2765,7 +3165,7 @@ dist[si][sj][gi][gj] <span class="c"># =&gt; 4</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L631" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L731" target="_blank">
       View source
      </a>
      ]
@@ -2824,7 +3224,7 @@ grid.to_graph <span class="c"># =&gt; [[3, 1], [0], [], [0], [], [8], [], [], [5
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L389" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L489" target="_blank">
       View source
      </a>
      ]
@@ -2859,7 +3259,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L641" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L741" target="_blank">
       View source
      </a>
      ]
@@ -2879,7 +3279,7 @@ which includes its class name and its object address.
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/e53f531e8392641a770a9b0d9bb1ed863b90792a/src/nglib/grid/grid.cr#L49" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/e308f7c483e327b69bff0e3daea8ba4ae6d6ad79/src/nglib/grid/grid.cr#L49" target="_blank">
       View source
      </a>
      ]
