@@ -81,7 +81,7 @@
 
 <ul>
     <li><a href="/blob/master/verify/grid/shortest_path.test.cr">View this file on GitHub</a></li>
-    <li>Last update: 2024-07-28 05:43:55+09:00</li>
+    <li>Last update: 2024-07-28 05:50:56+09:00</li>
     
     <li>Problem: <a href="https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0558">https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0558</a>
 </li>
@@ -411,7 +411,7 @@
           <span class="n">next_j</span> <span class="o">=</span> <span class="n">walls</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
           <span class="n">now_j</span> <span class="o">=</span> <span class="p">{</span><span class="n">now_j</span> <span class="o">-</span> <span class="n">iter</span><span class="p">,</span> <span class="n">next_j</span><span class="p">}.</span><span class="n">max</span>
         <span class="n">when</span> <span class="sc">'R'</span>
-          <span class="n">walls</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="n">now_i</span><span class="p">]</span>
+          <span class="n">walls</span> <span class="o">=</span> <span class="n">lwalls</span><span class="p">[</span><span class="n">now_i</span><span class="p">]</span>
           <span class="n">pos</span> <span class="o">=</span> <span class="n">walls</span><span class="p">.</span><span class="n">bsearch_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">now_j</span> <span class="p">}</span>
           <span class="n">next_j</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">?</span> <span class="n">walls</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="err">@</span><span class="n">w</span> <span class="o">-</span> <span class="mi">1</span>
           <span class="n">now_j</span> <span class="o">=</span> <span class="p">{</span><span class="n">now_j</span> <span class="o">+</span> <span class="n">iter</span><span class="p">,</span> <span class="n">next_j</span><span class="p">}.</span><span class="n">min</span>
@@ -429,6 +429,10 @@
       <span class="n">end</span>
 
       <span class="p">{</span><span class="n">now_i</span><span class="p">,</span> <span class="n">now_j</span><span class="p">}</span>
+    <span class="n">end</span>
+
+    <span class="n">def</span> <span class="n">simulate</span><span class="p">(</span><span class="n">si</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">sj</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">directions</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span>
+      <span class="n">simulate</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">sj</span><span class="p">,</span> <span class="n">directions</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">directions</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="n">def</span> <span class="n">line_walls</span> <span class="o">:</span> <span class="n">Array</span><span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">Int32</span><span class="p">))</span>
@@ -453,10 +457,6 @@
         <span class="n">walls</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="err">@</span><span class="n">h</span>
       <span class="n">end</span>
       <span class="n">walls</span>
-    <span class="n">end</span>
-
-    <span class="n">def</span> <span class="n">simulate</span><span class="p">(</span><span class="n">si</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">sj</span> <span class="o">:</span> <span class="n">Int</span><span class="p">,</span> <span class="n">directions</span> <span class="o">:</span> <span class="n">Enumerable</span><span class="p">)</span> <span class="o">:</span> <span class="p">{</span><span class="n">Int32</span><span class="p">,</span> <span class="n">Int32</span><span class="p">}</span>
-      <span class="n">simulate</span><span class="p">(</span><span class="n">si</span><span class="p">,</span> <span class="n">sj</span><span class="p">,</span> <span class="n">directions</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">directions</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>
     <span class="n">end</span>
 
     <span class="cp"># 全マス間の最短経路長を返します。
