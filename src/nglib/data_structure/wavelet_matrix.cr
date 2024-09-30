@@ -148,8 +148,8 @@ module NgLib
 
     # `range` の表す区間に含まれる要素の中で `bound` が表す範囲の値の個数を返します。
     def count(range : Range(Int?, Int?), bound : Range(T?, T?)) : Int32
-      lower_bound = (bound.begin || 0)
-      upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? 0 : 1)
+      lower_bound = (bound.begin || T.zero)
+      upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? T.zero : T.zero.succ)
       count_less_eq(range, upper_bound) - count_less_eq(range, lower_bound)
     end
 
@@ -292,8 +292,8 @@ module NgLib
 
     # `range` の表す区間に含まれる要素の中で `bound` が表す範囲の値の個数を返します。
     def count(range : Range(Int?, Int?), bound : Range(T?, T?)) : Int32
-      lower_bound = (bound.begin || 0)
-      upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? 0 : 1)
+      lower_bound = (bound.begin || T.zero)
+      upper_bound = (bound.end || T::MAX) + (bound.exclusive? || bound.end.nil? ? T.zero : T.zero.succ)
       count_less_eq(range, upper_bound) - count_less_eq(range, lower_bound)
     end
 
