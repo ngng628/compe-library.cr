@@ -6,7 +6,7 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     container:
-      image: crystallang/crystal:1.10.1
+      image: crystallang/crystal:1.14.0
       options: --security-opt seccomp=unconfined
 
     steps:
@@ -66,7 +66,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     container:
-      image: crystallang/crystal:1.10.1
+      image: crystallang/crystal:1.14.0
       options: --security-opt seccomp=unconfined
     steps:
       - uses: actions/checkout@v3
