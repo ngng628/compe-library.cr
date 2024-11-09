@@ -16,7 +16,7 @@ module NgLib
     @log : Int32
     @table : Array(Array({Int32, T}))
     @should_build : Bool
-  
+
     # n 頂点 0 辺のグラフを作ります。
     #
     # 移動回数の上限を limit で指定します。
@@ -33,7 +33,7 @@ module NgLib
       @table = Array.new(@log) { Array.new(n) { {-1, T.zero} } }
       @should_build = true
     end
-  
+
     # n 頂点 n 辺のグラフを作ります。
     #
     # ブロックで各 i に対する移動先と重みをタプルで返す必要があります。
@@ -52,7 +52,7 @@ module NgLib
       @table = Array.new(@log) { |j| Array.new(n) { |i| j == 0 ? (yield i) : {-1, T.zero} } }
       @should_build = true
     end
-  
+
     # 頂点 s から頂点 t に重み weight の辺を追加します。
     #
     # ```
@@ -66,7 +66,7 @@ module NgLib
       @table[0][s] = {t.to_i32, weight}
       @should_build = true
     end
-  
+
     # query　が高速にできるよう、データを構築します。
     def build
       (0...@log - 1).each do |k|
@@ -83,7 +83,7 @@ module NgLib
       end
       @should_build = false
     end
-  
+
     # 頂点 start から times 回移動したときいる場所を返します。
     #
     # ```
@@ -100,7 +100,7 @@ module NgLib
       build if @should_build
       query(start, times)[1]
     end
-  
+
     # 頂点 start から times 回移動したときいる場所を返します。
     #
     # build 済みかの確認を行いません。
@@ -118,7 +118,7 @@ module NgLib
     def where!(start : Int, times : Int)
       query!(start, times)[1]
     end
-  
+
     # 頂点 start から times 回移動する経路中の重みの総和を返します。
     #
     # ```
@@ -135,7 +135,7 @@ module NgLib
       build if @should_build
       query(start, times)[0]
     end
-  
+
     # 頂点 start から times 回移動する経路中の重みの総和を返します。
     #
     # build 済みかの確認を行いません。
@@ -153,7 +153,7 @@ module NgLib
     def weight_sum!(start : Int, times : Int)
       query!(start, times)[0]
     end
-  
+
     # 頂点 start から times 回移動する経路中の重みの総和と場所を返します。
     #
     # ```
@@ -170,7 +170,7 @@ module NgLib
       build if @should_build
       query!(start, times)
     end
-  
+
     # 頂点 start から times 回移動する経路中の重みの総和と場所を返します。
     #
     # build 済みかの確認を行いません。
@@ -196,8 +196,9 @@ module NgLib
       end
       {acc, start}
     end
-  
+
     [AlwaysInline]
+
     def impl_log2(x : Int) : Int32
       Int32.new(sizeof(typeof(x)) * 8 - x.leading_zeros_count)
     end

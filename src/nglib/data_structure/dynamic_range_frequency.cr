@@ -12,9 +12,9 @@ module NgLib
       @values = array.clone
       @size = array.size
       @map = Hash(Int32, NgLib::AATreeSet(Int32)).new
-      array.each_with_index do |a, i|
-        @map[a] = NgLib::AATreeSet(Int32).new unless @map.has_key?(a)
-        @map[a] << i
+      array.each_with_index do |elem, i|
+        @map[elem] = NgLib::AATreeSet(Int32).new unless @map.has_key?(elem)
+        @map[elem] << i
       end
     end
 
