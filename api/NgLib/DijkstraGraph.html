@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <meta content="Crystal Docs 1.9.2" name="generator"/>
+  <meta content="Crystal Docs 1.16.3" name="generator"/>
   <meta content="main" name="crystal_docs.project_version"/>
   <meta content="nglib" name="crystal_docs.project_name"/>
   <link href="../css/style.css" rel="stylesheet" type="text/css"/>
@@ -16,8 +16,6 @@
   </title>
   <script type="text/javascript">
    CrystalDocs.base_path = "../";
-  </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6">
   </script>
   <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
@@ -121,6 +119,11 @@
        <li class="" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
         <a href="../NgLib/BinaryBfsGraph.html">
          BinaryBfsGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BinaryLifting" data-name="nglib::binarylifting(t)">
+        <a href="../NgLib/BinaryLifting.html">
+         BinaryLifting
         </a>
        </li>
        <li class="" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
@@ -294,6 +297,16 @@
          SparseTable
         </a>
        </li>
+       <li class="" data-id="nglib/NgLib/SqrtMap" data-name="nglib::sqrtmap(k, v)">
+        <a href="../NgLib/SqrtMap.html">
+         SqrtMap
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SqrtSet" data-name="nglib::sqrtset(t)">
+        <a href="../NgLib/SqrtSet.html">
+         SqrtSet
+        </a>
+       </li>
        <li class="" data-id="nglib/NgLib/StaticRangeFrequency" data-name="nglib::staticrangefrequency(t)">
         <a href="../NgLib/StaticRangeFrequency.html">
          StaticRangeFrequency
@@ -392,11 +405,11 @@
     </a>
     Defined in:
    </h2>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/dijkstra.cr#L25" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/dijkstra.cr#L25" target="_blank">
     nglib/graph/dijkstra.cr
    </a>
    <br/>
-   <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L10" target="_blank">
+   <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L10" target="_blank">
     nglib/graph/radix_dijkstra.cr
    </a>
    <br/>
@@ -604,7 +617,7 @@
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L79" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L79" target="_blank">
       View source
      </a>
      ]
@@ -668,7 +681,7 @@ graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L94" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L94" target="_blank">
       View source
      </a>
      ]
@@ -719,7 +732,7 @@ graph.add_edge(u, v, w, directed: <span class="n">true</span>) <span class="c">#
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/dijkstra.cr#L51" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/dijkstra.cr#L51" target="_blank">
       View source
      </a>
      ]
@@ -762,7 +775,7 @@ dist <span class="c"># =&gt; 12</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L142" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L142" target="_blank">
       View source
      </a>
      ]
@@ -797,7 +810,7 @@ dist <span class="c"># =&gt; [3, 8, 0, 7, 1]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L115" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L115" target="_blank">
       View source
      </a>
      ]
@@ -823,7 +836,7 @@ dists <span class="c"># =&gt; [[0, 1, 3], [1, 0, 2], [1, 1, 0]]</span></code></p
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L105" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L105" target="_blank">
       View source
      </a>
      ]
@@ -858,7 +871,7 @@ route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L152" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L152" target="_blank">
       View source
      </a>
      ]
@@ -900,7 +913,7 @@ route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L173" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L173" target="_blank">
       View source
      </a>
      ]
@@ -920,7 +933,7 @@ route <span class="c"># =&gt; [2, 7, 1, 0]</span></code></pre>
     <br/>
     <div>
      [
-     <a href="https://github.com/ngng628/compe-library.cr/blob/916edb3fede7da69f6ae8c731d4993f9bef3254e/src/nglib/graph/radix_dijkstra.cr#L71" target="_blank">
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/radix_dijkstra.cr#L71" target="_blank">
       View source
      </a>
      ]

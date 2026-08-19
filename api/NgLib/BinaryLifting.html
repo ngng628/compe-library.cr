@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Crystal Docs 1.16.3" name="generator"/>
+  <meta content="main" name="crystal_docs.project_version"/>
+  <meta content="nglib" name="crystal_docs.project_name"/>
+  <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+  <script src="../js/doc.js" type="text/javascript">
+  </script>
+  <meta content="nglib" name="repository-name"/>
+  <title>
+   NgLib::BinaryLifting(T) - nglib main
+  </title>
+  <script type="text/javascript">
+   CrystalDocs.base_path = "../";
+  </script>
+  <script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script type="text/javascript">
+   MathJax = {
+  tex: {
+    inlineMath: [['$', '$']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+  </script>
+ </head>
+ <body>
+  <svg class="hidden">
+   <symbol id="octicon-link" viewbox="0 0 16 16">
+    <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" fill="currentColor" fill-rule="evenodd">
+    </path>
+   </symbol>
+  </svg>
+  <input id="sidebar-btn" type="checkbox"/>
+  <label for="sidebar-btn" id="sidebar-btn-label">
+   <svg class="open" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Open Sidebar
+    </title>
+    <path d="M80 96v64h352V96H80zm0 112v64h352v-64H80zm0 112v64h352v-64H80z" fill="currentColor">
+    </path>
+   </svg>
+   <svg class="close" height="2em" viewbox="0 0 512 512" width="2em" xmlns="http://www.w3.org/2000/svg">
+    <title>
+     Close Sidebar
+    </title>
+    <path d="m118.6 73.4-45.2 45.2L210.7 256 73.4 393.4l45.2 45.2L256 301.3l137.4 137.3 45.2-45.2L301.3 256l137.3-137.4-45.2-45.2L256 210.7Z" fill="currentColor">
+    </path>
+   </svg>
+  </label>
+  <div class="sidebar">
+   <div class="sidebar-header">
+    <div class="search-box">
+     <input aria-label="Search" class="search-input" placeholder="Search..." spellcheck="false" type="search"/>
+    </div>
+    <div class="project-summary">
+     <h1 class="project-name">
+      <a href="../index.html">
+       nglib
+      </a>
+     </h1>
+     <span class="project-version">
+      main
+     </span>
+    </div>
+   </div>
+   <div class="search-results hidden">
+    <ul class="search-list">
+    </ul>
+   </div>
+   <div class="types-list">
+    <ul>
+     <li class="" data-id="nglib/toplevel" data-name="top level namespace">
+      <a href="../toplevel.html">
+       Top Level Namespace
+      </a>
+     </li>
+     <li class="" data-id="nglib/Char" data-name="char">
+      <a href="../Char.html">
+       Char
+      </a>
+     </li>
+     <li class="" data-id="nglib/Int" data-name="int">
+      <a href="../Int.html">
+       Int
+      </a>
+     </li>
+     <li class="parent open current" data-id="nglib/NgLib" data-name="nglib">
+      <a href="../NgLib.html">
+       NgLib
+      </a>
+      <ul>
+       <li class="" data-id="nglib/NgLib/AATreeMap" data-name="nglib::aatreemap(k, v)">
+        <a href="../NgLib/AATreeMap.html">
+         AATreeMap
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeMultiset" data-name="nglib::aatreemultiset(t)">
+        <a href="../NgLib/AATreeMultiset.html">
+         AATreeMultiset
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/AATreeSet" data-name="nglib::aatreeset(t)">
+        <a href="../NgLib/AATreeSet.html">
+         AATreeSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BfsGraph" data-name="nglib::bfsgraph">
+        <a href="../NgLib/BfsGraph.html">
+         BfsGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/BinaryBfsGraph" data-name="nglib::binarybfsgraph">
+        <a href="../NgLib/BinaryBfsGraph.html">
+         BinaryBfsGraph
+        </a>
+       </li>
+       <li class="current" data-id="nglib/NgLib/BinaryLifting" data-name="nglib::binarylifting(t)">
+        <a href="../NgLib/BinaryLifting.html">
+         BinaryLifting
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/CompressedWaveletMatrix" data-name="nglib::compressedwaveletmatrix(t)">
+        <a href="../NgLib/CompressedWaveletMatrix.html">
+         CompressedWaveletMatrix
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/DijkstraGraph" data-name="nglib::dijkstragraph(weight)">
+        <a href="../NgLib/DijkstraGraph.html">
+         DijkstraGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/DijkstraGraph/Edge" data-name="nglib::dijkstragraph::edge(w)">
+          <a href="../NgLib/DijkstraGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/DualSegTree" data-name="nglib::dualsegtree(t)">
+        <a href="../NgLib/DualSegTree.html">
+         DualSegTree
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/DualSegTree/NotInitializeError" data-name="nglib::dualsegtree::notinitializeerror">
+          <a href="../NgLib/DualSegTree/NotInitializeError.html">
+           NotInitializeError
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRangeFrequency" data-name="nglib::dynamicrangefrequency(t)">
+        <a href="../NgLib/DynamicRangeFrequency.html">
+         DynamicRangeFrequency
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRangeSum" data-name="nglib::dynamicrangesum(t)">
+        <a href="../NgLib/DynamicRangeSum.html">
+         DynamicRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/DynamicRectangleSum" data-name="nglib::dynamicrectanglesum(t)">
+        <a href="../NgLib/DynamicRectangleSum.html">
+         DynamicRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Edge" data-name="nglib::edge">
+        <a href="../NgLib/Edge.html">
+         Edge
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/EulerTourTree" data-name="nglib::eulertourtree">
+        <a href="../NgLib/EulerTourTree.html">
+         EulerTourTree
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/FastIn" data-name="nglib::fastin">
+        <a href="../NgLib/FastIn.html">
+         FastIn
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/FastIn/Scanner" data-name="nglib::fastin::scanner">
+          <a href="../NgLib/FastIn/Scanner.html">
+           Scanner
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/FloydWarshallGraph" data-name="nglib::floydwarshallgraph(t)">
+        <a href="../NgLib/FloydWarshallGraph.html">
+         FloydWarshallGraph
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/Grid" data-name="nglib::grid(t)">
+        <a href="../NgLib/Grid.html">
+         Grid
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/Grid/Pos" data-name="nglib::grid::pos">
+          <a href="../NgLib/Grid/Pos.html">
+           Pos
+          </a>
+         </li>
+         <li class="" data-id="nglib/NgLib/Grid/UnreachableError" data-name="nglib::grid::unreachableerror">
+          <a href="../NgLib/Grid/UnreachableError.html">
+           UnreachableError
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/LCA" data-name="nglib::lca">
+        <a href="../NgLib/LCA.html">
+         LCA
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LCA/Graph" data-name="nglib::lca::graph">
+          <a href="../NgLib/LCA/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/LDE" data-name="nglib::lde(t)">
+        <a href="../NgLib/LDE.html">
+         LDE
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/LDE/NotHasSolutionError" data-name="nglib::lde::nothassolutionerror">
+          <a href="../NgLib/LDE/NotHasSolutionError.html">
+           NotHasSolutionError
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/MaxFlowGraph" data-name="nglib::maxflowgraph(cap)">
+        <a href="../NgLib/MaxFlowGraph.html">
+         MaxFlowGraph
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/MaxFlowGraph/Edge" data-name="nglib::maxflowgraph::edge(t)">
+          <a href="../NgLib/MaxFlowGraph/Edge.html">
+           Edge
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/MexSet" data-name="nglib::mexset(t)">
+        <a href="../NgLib/MexSet.html">
+         MexSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/MSTGraph" data-name="nglib::mstgraph(t)">
+        <a href="../NgLib/MSTGraph.html">
+         MSTGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/PotentializedDisjointSet" data-name="nglib::potentializeddisjointset(abel)">
+        <a href="../NgLib/PotentializedDisjointSet.html">
+         PotentializedDisjointSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/PrioritySum" data-name="nglib::prioritysum(t)">
+        <a href="../NgLib/PrioritySum.html">
+         PrioritySum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/RollingHash" data-name="nglib::rollinghash">
+        <a href="../NgLib/RollingHash.html">
+         RollingHash
+        </a>
+       </li>
+       <li class="parent" data-id="nglib/NgLib/SCC" data-name="nglib::scc">
+        <a href="../NgLib/SCC.html">
+         SCC
+        </a>
+        <ul>
+         <li class="" data-id="nglib/NgLib/SCC/Graph" data-name="nglib::scc::graph">
+          <a href="../NgLib/SCC/Graph.html">
+           Graph
+          </a>
+         </li>
+        </ul>
+       </li>
+       <li class="" data-id="nglib/NgLib/SlideMinmax" data-name="nglib::slideminmax(t)">
+        <a href="../NgLib/SlideMinmax.html">
+         SlideMinmax
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SparseTable" data-name="nglib::sparsetable(t)">
+        <a href="../NgLib/SparseTable.html">
+         SparseTable
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SqrtMap" data-name="nglib::sqrtmap(k, v)">
+        <a href="../NgLib/SqrtMap.html">
+         SqrtMap
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SqrtSet" data-name="nglib::sqrtset(t)">
+        <a href="../NgLib/SqrtSet.html">
+         SqrtSet
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeFrequency" data-name="nglib::staticrangefrequency(t)">
+        <a href="../NgLib/StaticRangeFrequency.html">
+         StaticRangeFrequency
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRangeSum" data-name="nglib::staticrangesum(t)">
+        <a href="../NgLib/StaticRangeSum.html">
+         StaticRangeSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/StaticRectangleSum" data-name="nglib::staticrectanglesum(t)">
+        <a href="../NgLib/StaticRectangleSum.html">
+         StaticRectangleSum
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/SuccinctBitVector" data-name="nglib::succinctbitvector">
+        <a href="../NgLib/SuccinctBitVector.html">
+         SuccinctBitVector
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/TSPGraph" data-name="nglib::tspgraph(t)">
+        <a href="../NgLib/TSPGraph.html">
+         TSPGraph
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/WaveletMatrix" data-name="nglib::waveletmatrix(t)">
+        <a href="../NgLib/WaveletMatrix.html">
+         WaveletMatrix
+        </a>
+       </li>
+       <li class="" data-id="nglib/NgLib/Weight" data-name="nglib::weight">
+        <a href="../NgLib/Weight.html">
+         Weight
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </div>
+  </div>
+  <div class="main-content">
+   <h1 class="type-name">
+    <span class="kind">
+     class
+    </span>
+    NgLib::
+    <wbr/>
+    BinaryLifting(T)
+   </h1>
+   <ul class="superclass-hierarchy">
+    <li class="superclass">
+     <a href="../NgLib/BinaryLifting.html">
+      NgLib::BinaryLifting(T)
+     </a>
+    </li>
+    <li class="superclass">
+     Reference
+    </li>
+    <li class="superclass">
+     Object
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#overview" id="overview">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Overview
+   </h2>
+   <p>
+    ダブリングを実現します。
+   </p>
+   <pre><code class="language-crystal">graph <span class="o">=</span> <span class="t">NgLib</span><span class="t">::</span><span class="t">BinaryLifting</span>(<span class="t">Int64</span>).new(n) {
+  {to[i], weight[i]}
+}
+
+graph.query
+graph.where
+graph.weight_sum</code></pre>
+   <h2>
+    <a class="anchor" href="#defined-in" id="defined-in">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Defined in:
+   </h2>
+   <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L13" target="_blank">
+    nglib/graph/binary_lifting.cr
+   </a>
+   <br/>
+   <h2>
+    <a class="anchor" href="#constructors" id="constructors">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructors
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%3AInt%2Climit%3AInt%3DUInt64%3A%3AMAX//2%2Cinitial%3AT%3DT.zero%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n : Int, limit : Int =
+      <span class="t">
+       UInt64
+      </span>
+      <span class="t">
+       ::
+      </span>
+      <span class="t">
+       MAX
+      </span>
+      <span class="o">
+       //
+      </span>
+      <span class="n">
+       2
+      </span>
+      , initial : T =
+      <span class="t">
+       T
+      </span>
+      .zero)
+     </a>
+     <div class="summary">
+      <p>
+       n 頂点 0 辺のグラフを作ります。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#new%28n%3AInt%2Climit%3AInt%3DUInt64%3A%3AMAX//2%2Cinitial%3AT%3DT.zero%2C%26%29-class-method">
+      <strong>
+       .new
+      </strong>
+      (n : Int, limit : Int =
+      <span class="t">
+       UInt64
+      </span>
+      <span class="t">
+       ::
+      </span>
+      <span class="t">
+       MAX
+      </span>
+      <span class="o">
+       //
+      </span>
+      <span class="n">
+       2
+      </span>
+      , initial : T =
+      <span class="t">
+       T
+      </span>
+      .zero, &amp;)
+     </a>
+     <div class="summary">
+      <p>
+       n 頂点 n 辺のグラフを作ります。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <h2>
+    <a class="anchor" href="#instance-method-summary" id="instance-method-summary">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Summary
+   </h2>
+   <ul class="list-summary">
+    <li class="entry-summary">
+     <a class="signature" href="#add_edge%28s%3AInt%2Ct%3AInt%2Cweight%3AT%3DT.zero%29-instance-method">
+      <strong>
+       #add_edge
+      </strong>
+      (s : Int, t : Int, weight : T =
+      <span class="t">
+       T
+      </span>
+      .zero)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 s から頂点 t に重み weight の辺を追加します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#build-instance-method">
+      <strong>
+       #build
+      </strong>
+     </a>
+     <div class="summary">
+      <p>
+       query　が高速にできるよう、データを構築します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#impl_log2%28x%3AInt%29%3AInt32-instance-method">
+      <strong>
+       #impl_log2
+      </strong>
+      (x : Int) : Int32
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#query%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #query
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動する経路中の重みの総和と場所を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#query%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #query!
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動する経路中の重みの総和と場所を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#size%3AInt32-instance-method">
+      <strong>
+       #size
+      </strong>
+      : Int32
+     </a>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#weight_sum%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #weight_sum
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動する経路中の重みの総和を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#weight_sum%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #weight_sum!
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動する経路中の重みの総和を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#where%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #where
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動したときいる場所を返します。
+      </p>
+     </div>
+    </li>
+    <li class="entry-summary">
+     <a class="signature" href="#where%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      <strong>
+       #where!
+      </strong>
+      (start : Int, times : Int)
+     </a>
+     <div class="summary">
+      <p>
+       頂点 start から times 回移動したときいる場所を返します。
+      </p>
+     </div>
+    </li>
+   </ul>
+   <div class="methods-inherited">
+   </div>
+   <h2>
+    <a class="anchor" href="#constructor-detail" id="constructor-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Constructor Detail
+   </h2>
+   <div class="entry-detail" id="new(n:Int,limit:Int=UInt64::MAX//2,initial:T=T.zero)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     , limit :
+     <a href="../Int.html">
+      Int
+     </a>
+     =
+     <span class="t">
+      UInt64
+     </span>
+     <span class="t">
+      ::
+     </span>
+     <span class="t">
+      MAX
+     </span>
+     <span class="o">
+      //
+     </span>
+     <span class="n">
+      2
+     </span>
+     , initial : T =
+     <span class="t">
+      T
+     </span>
+     .zero)
+     <a class="method-permalink" href="#new%28n%3AInt%2Climit%3AInt%3DUInt64%3A%3AMAX//2%2Cinitial%3AT%3DT.zero%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      n 頂点 0 辺のグラフを作ります。
+     </p>
+     <p>
+      移動回数の上限を limit で指定します。
+initial でノードの初期値を指定します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L29" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="new(n:Int,limit:Int=UInt64::MAX//2,initial:T=T.zero,&amp;)-class-method">
+    <div class="signature">
+     def self.
+     <strong>
+      new
+     </strong>
+     (n :
+     <a href="../Int.html">
+      Int
+     </a>
+     , limit :
+     <a href="../Int.html">
+      Int
+     </a>
+     =
+     <span class="t">
+      UInt64
+     </span>
+     <span class="t">
+      ::
+     </span>
+     <span class="t">
+      MAX
+     </span>
+     <span class="o">
+      //
+     </span>
+     <span class="n">
+      2
+     </span>
+     , initial : T =
+     <span class="t">
+      T
+     </span>
+     .zero, &amp;)
+     <a class="method-permalink" href="#new%28n%3AInt%2Climit%3AInt%3DUInt64%3A%3AMAX//2%2Cinitial%3AT%3DT.zero%2C%26%29-class-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      n 頂点 n 辺のグラフを作ります。
+     </p>
+     <p>
+      ブロックで各 i に対する移動先と重みをタプルで返す必要があります。
+     </p>
+     <p>
+      移動回数の上限を limit で指定します。
+initial でノードの初期値を指定します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n) { <span class="o">|</span>i<span class="o">|</span> {a[i].to_i32, <span class="n">0</span>} }</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L48" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <h2>
+    <a class="anchor" href="#instance-method-detail" id="instance-method-detail">
+     <svg aria-hidden="true" class="octicon-link">
+      <use href="#octicon-link">
+      </use>
+     </svg>
+    </a>
+    Instance Method Detail
+   </h2>
+   <div class="entry-detail" id="add_edge(s:Int,t:Int,weight:T=T.zero)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      add_edge
+     </strong>
+     (s :
+     <a href="../Int.html">
+      Int
+     </a>
+     , t :
+     <a href="../Int.html">
+      Int
+     </a>
+     , weight : T =
+     <span class="t">
+      T
+     </span>
+     .zero)
+     <a class="method-permalink" href="#add_edge%28s%3AInt%2Ct%3AInt%2Cweight%3AT%3DT.zero%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 s から頂点 t に重み weight の辺を追加します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">10</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n) { <span class="o">|</span>i<span class="o">|</span> {a[i].to_i32, <span class="n">0</span>} }
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">5</span>, <span class="n">3</span>)
+graph.add_edge(<span class="n">5</span>, <span class="n">1</span>, <span class="n">2</span>)</code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L65" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="build-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      build
+     </strong>
+     <a class="method-permalink" href="#build-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      query　が高速にできるよう、データを構築します。
+     </p>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L71" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="impl_log2(x:Int):Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      impl_log2
+     </strong>
+     (x :
+     <a href="../Int.html">
+      Int
+     </a>
+     ) : Int32
+     <a class="method-permalink" href="#impl_log2%28x%3AInt%29%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L202" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="query(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      query
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#query%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動する経路中の重みの総和と場所を返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">0</span>, <span class="n">100</span>)
+
+graph.query(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; {2, 122}</span>
+graph.query(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; {0, 221}</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L169" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="query!(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      query!
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#query%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動する経路中の重みの総和と場所を返します。
+     </p>
+     <p>
+      build 済みかの確認を行いません。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">0</span>, <span class="n">100</span>)
+
+graph.query!(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; {2, 122}</span>
+graph.query!(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; {0, 221}</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L188" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="size:Int32-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      size
+     </strong>
+     : Int32
+     <a class="method-permalink" href="#size%3AInt32-instance-method">
+      #
+     </a>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L14" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="weight_sum(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      weight_sum
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#weight_sum%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動する経路中の重みの総和を返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">0</span>, <span class="n">100</span>)
+
+graph.weight_sum(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 122</span>
+graph.weight_sum(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 221</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L134" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="weight_sum!(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      weight_sum!
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#weight_sum%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動する経路中の重みの総和を返します。
+     </p>
+     <p>
+      build 済みかの確認を行いません。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">0</span>, <span class="n">100</span>)
+
+graph.weight_sum!(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 122</span>
+graph.weight_sum!(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 221</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L153" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="where(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      where
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#where%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動したときいる場所を返します。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">1</span>, <span class="n">100</span>)
+
+graph.where(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 2</span>
+graph.where(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 0</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L99" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+   <div class="entry-detail" id="where!(start:Int,times:Int)-instance-method">
+    <div class="signature">
+     def
+     <strong>
+      where!
+     </strong>
+     (start :
+     <a href="../Int.html">
+      Int
+     </a>
+     , times :
+     <a href="../Int.html">
+      Int
+     </a>
+     )
+     <a class="method-permalink" href="#where%21%28start%3AInt%2Ctimes%3AInt%29-instance-method">
+      #
+     </a>
+    </div>
+    <div class="doc">
+     <p>
+      頂点 start から times 回移動したときいる場所を返します。
+     </p>
+     <p>
+      build 済みかの確認を行いません。
+     </p>
+     <pre><code class="language-crystal">n <span class="o">=</span> <span class="n">3</span>
+graph <span class="o">=</span> <span class="t">BinaryLifting</span>.new(n)
+graph.add_edge(<span class="n">0</span>, <span class="n">1</span>, <span class="n">1</span>)
+graph.add_edge(<span class="n">1</span>, <span class="n">2</span>, <span class="n">10</span>)
+graph.add_edge(<span class="n">2</span>, <span class="n">0</span>, <span class="n">100</span>)
+
+graph.where!(start: <span class="n">0</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 2</span>
+graph.where!(start: <span class="n">1</span>, times: <span class="n">5</span>) <span class="c"># =&gt; 0</span></code></pre>
+    </div>
+    <br/>
+    <div>
+     [
+     <a href="https://github.com/ngng628/compe-library.cr/blob/2306d51a85d26e4be37457490ea5c3365021136a/src/nglib/graph/binary_lifting.cr#L118" target="_blank">
+      View source
+     </a>
+     ]
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
