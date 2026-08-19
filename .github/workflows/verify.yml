@@ -30,7 +30,6 @@ jobs:
 
     - name: Install pip dependencies
       run: |
-        python3 -m pip install --upgrade pip --break-system-packages
         python3 -m pip install -U online-judge-verify-helper --break-system-packages
         python3 -m pip install beautifulsoup4 --break-system-packages
 

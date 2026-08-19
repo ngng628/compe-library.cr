@@ -126,7 +126,7 @@ module NgLib
       level = [0] * @size
       iter = [0] * @size
 
-      bfs = ->{
+      bfs = -> {
         level = [-1] * @size
         level[s] = 0
         que = Deque(Int32).new([s.to_i32])
